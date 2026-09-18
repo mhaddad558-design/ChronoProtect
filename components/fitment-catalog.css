@@ -18,7 +18,7 @@
 .cp-cat__count {
   font-family: var(--cp-ui);
   font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--cp-sage);
   margin-top: 1rem;
@@ -37,7 +37,7 @@
 .cp-cat__series {
   font-family: var(--cp-ui);
   font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--cp-ink-faint);
   margin: 0.5rem 0 0;
@@ -66,9 +66,9 @@
   border-radius: 2px;
   background: var(--cp-bg-panel);
   padding: 0.35rem 0.75rem;
-  font-size: 0.85rem;
+  font-family: var(--cp-ui);
+  font-size: 0.8rem;
   color: var(--cp-ink-soft);
-  font-variant-numeric: tabular-nums;
 }
 
 .cp-cat__refs li mark {

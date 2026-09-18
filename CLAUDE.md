@@ -38,7 +38,7 @@ Never substitute these. They come from the crest logo.
 --cp-border:    rgba(188,144,108,0.22)
 ```
 
-Type: **Cormorant Garamond** headings, **Montserrat** nav and buttons, **Jost** body. The look is quiet luxury — dark ground, restrained bronze, generous space. No gradient washes, no drop shadows on cards, no accent-colored single words inside headlines.
+Type: **Bodoni Moda** headings, **DM Mono** for labels, nav, buttons and reference numbers, **Schibsted Grotesk** body. **Jost** only inside the crest lockups, because it matches the logo lettering. The set was chosen to avoid the fonts every luxury template uses (Cormorant, Montserrat, Playfair); don't drift back to them. The look is quiet luxury — dark ground, restrained bronze, generous space. No gradient washes, no drop shadows on cards, no accent-colored single words inside headlines.
 
 ## Product model (important)
 

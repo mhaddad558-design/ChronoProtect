@@ -75,7 +75,7 @@ export default function Lockup({
         y={455}
         textAnchor="middle"
         fill="var(--cp-ink)"
-        fontFamily="var(--cp-body)"
+        fontFamily="var(--cp-logo)"
         fontSize="96"
         fontWeight="400"
       >
@@ -86,7 +86,7 @@ export default function Lockup({
         y={545}
         textAnchor="middle"
         fill="var(--cp-sage)"
-        fontFamily="var(--cp-body)"
+        fontFamily="var(--cp-logo)"
         fontSize="60"
         fontWeight="300"
         letterSpacing="5"
