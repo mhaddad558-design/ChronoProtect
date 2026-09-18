@@ -10,6 +10,14 @@ export type BraceletName = "Oyster" | "Jubilee" | "President" | "Oysterflex";
 
 export type CoverageName = "chronoshield" | "chronoguard";
 
+/**
+ * `bespoke` families are cut to order rather than sold from the configurator —
+ * diamond-paved pieces where the stone setting changes the template and the
+ * studio quotes per watch. They are listed so the reference still resolves and
+ * the customer is told what happens next, instead of hitting a dead end.
+ */
+export type FitmentStatus = "active" | "bespoke";
+
 export interface FitmentFamily {
   model: string;
   series: string | null;
@@ -26,7 +34,16 @@ export interface FitmentFamily {
    * it has to ask, and offers only these.
    */
   bracelets?: BraceletName[];
-  status: string;
+  status: FitmentStatus;
+}
+
+/**
+ * True when a reference is cut to order rather than sold from the configurator.
+ * The stone setting changes the template on these, so the studio quotes per
+ * watch instead of shipping a stock kit.
+ */
+export function isBespoke(reference: string): boolean {
+  return findFitment(reference)?.family.status === "bespoke";
 }
 
 /** Every bracelet the kits are cut for, used when the family does not say. */

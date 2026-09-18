@@ -210,6 +210,35 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+/*
+ * Stands in for the submit button when a reference is cut to order. Selector
+ * carries the element too, so it outranks `.cp-kit a` — otherwise the link
+ * takes the bronze link colour and disappears into the bronze button.
+ */
+.cp-kit a.cp-kit__cta {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--cp-bronze);
+  color: var(--cp-bg-deep);
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+}
+
+.cp-kit a.cp-kit__cta:hover {
+  background: #cba07b;
+  color: var(--cp-bg-deep);
+  text-decoration: none;
+}
+
 .cp-kit button:disabled {
   opacity: 0.6;
   cursor: progress;

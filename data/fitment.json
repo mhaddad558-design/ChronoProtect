@@ -56,9 +56,6 @@
         "116523",
         "116528",
         "116589",
-        "116595",
-        "116598",
-        "116599",
         "126503",
         "126508",
         "126509"
@@ -71,6 +68,21 @@
         "chronoguard"
       ],
       "status": "active"
+    },
+    {
+      "model": "Daytona",
+      "series": "Diamond-paved · Made to order",
+      "matchType": "exact",
+      "references": [
+        "116595",
+        "116598",
+        "116599"
+      ],
+      "coverage": [
+        "chronoshield",
+        "chronoguard"
+      ],
+      "status": "bespoke"
     },
     {
       "model": "Daytona",

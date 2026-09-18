@@ -12,10 +12,11 @@ import {
   braceletsFor,
   coverageFor,
   findFitment,
+  isBespoke,
   suggestReferences,
   type BraceletName,
 } from "@/lib/fitment";
-import { BRACELETS } from "@/lib/site";
+import { BRACELETS, STUDIO_EMAIL } from "@/lib/site";
 
 /**
  * Step 5 asks which bracelet, and only ChronoShield+ needs it — ChronoGuard+
@@ -100,6 +101,9 @@ export default function FindYourKit() {
    * bracelet coverage that cannot be delivered.
    */
   const coverageOptions = useMemo(() => coverageFor(reference), [reference]);
+
+  /** Diamond-paved references are quoted per watch, not sold from here. */
+  const bespoke = useMemo(() => isBespoke(reference), [reference]);
   const coverageNote =
     coverageOptions.length === 1 && coverageOptions[0] === "chronoguard"
       ? `This reference is on ${braceletOptions.join(" or ")}, which ChronoShield+ does not cover. ChronoGuard+ protects the case and clasp and leaves the strap alone.`
@@ -130,6 +134,9 @@ export default function FindYourKit() {
   function submitReference(e: React.FormEvent) {
     e.preventDefault();
     if (!reference.trim()) return;
+    // Belt and braces: the submit button is replaced by the enquiry link for a
+    // bespoke reference, so this should be unreachable.
+    if (bespoke) return;
     setStep(2);
   }
 
@@ -211,12 +218,37 @@ export default function FindYourKit() {
             {fitment && (
               <p className="cp-kit__confirm">
                 {fitment.family.model}
-                {fitment.family.series ? ` — ${fitment.family.series}` : ""}. Templates are cut for
-                this reference.
+                {fitment.family.series ? ` — ${fitment.family.series}` : ""}.{" "}
+                {bespoke
+                  ? "This one is cut to order."
+                  : "Templates are cut for this reference."}
               </p>
             )}
 
-            <button type="submit">Continue</button>
+            {/*
+              Diamond-paved pieces are quoted per watch — the stone setting
+              changes the template — so the flow stops here and hands over to the
+              studio rather than walking the customer through five questions that
+              cannot end in a checkout.
+            */}
+            {bespoke ? (
+              <>
+                <p className="cp-kit__note" style={{ marginTop: "1.5rem" }}>
+                  The setting on this reference changes the cut, so the studio
+                  measures and quotes it individually rather than shipping a stock kit.
+                </p>
+                <a
+                  className="cp-kit__cta"
+                  href={`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent(
+                    `ChronoProtect+ bespoke enquiry — ${reference.trim().toUpperCase()}`
+                  )}`}
+                >
+                  Request a bespoke quote
+                </a>
+              </>
+            ) : (
+              <button type="submit">Continue</button>
+            )}
           </form>
           <p className="cp-kit__aside">
             Reference not listed? <a href="/catalog">Search the fitment catalog</a> or{" "}

@@ -72,7 +72,12 @@ export default function FitmentCatalog() {
               Only called out when the family is restricted — saying "both lines"
               on every other row would be noise.
             */}
-            {family.coverage.length === 1 ? (
+            {family.status === "bespoke" ? (
+              <p className="cp-cat__only">
+                <span className="cp-dot" />
+                Cut to order — quoted per watch
+              </p>
+            ) : family.coverage.length === 1 ? (
               <p className="cp-cat__only">
                 <span className="cp-dot" />
                 {family.coverage[0] === "chronoguard" ? "ChronoGuard+ only" : "ChronoShield+ only"}
