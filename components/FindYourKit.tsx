@@ -1,10 +1,23 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { createKitCheckout, type Coverage, type Finish, type KitSelection } from "@/lib/shopify/cart";
+import {
+  createKitCheckout,
+  type Bracelet,
+  type Coverage,
+  type Finish,
+  type KitSelection,
+} from "@/lib/shopify/cart";
 import { findFitment, suggestReferences } from "@/lib/fitment";
 
-type Step = 1 | 2 | 3 | 4 | 5 | 6;
+/**
+ * Step 5 asks which bracelet, and only ChronoShield+ needs it — ChronoGuard+
+ * stops at the clasp and is priced the same whatever the bracelet. So the flow
+ * is six questions for ChronoShield+ and five for ChronoGuard+, and step 5 is
+ * skipped in both directions.
+ */
+type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+const RESULT: Step = 7;
 type Usage = "daily" | "occasion" | "rotation";
 type Application = "self" | "professional";
 
@@ -25,6 +38,7 @@ export default function FindYourKit() {
   const [usage, setUsage] = useState<Usage | null>(null);
   const [finish, setFinish] = useState<Finish | null>(null);
   const [coverage, setCoverage] = useState<Coverage | null>(null);
+  const [bracelet, setBracelet] = useState<Bracelet | null>(null);
   const [application, setApplication] = useState<Application | null>(null);
 
   const [submitting, setSubmitting] = useState(false);
@@ -36,9 +50,22 @@ export default function FindYourKit() {
     [reference, fitment]
   );
 
+  /** ChronoGuard+ has no bracelet question, so step 5 drops out of its flow. */
+  const asksBracelet = coverage === "chronoshield";
+  const totalSteps = asksBracelet ? 6 : 5;
+
+  /** Where a given step sits once the skipped one is removed. */
+  function stepNumber(s: Step): number {
+    return !asksBracelet && s > 5 ? s - 1 : s;
+  }
+
   function back() {
     setError(null);
-    setStep((s) => (Math.max(1, s - 1) as Step));
+    setStep((s) => {
+      const previous = s - 1;
+      if (previous === 5 && !asksBracelet) return 4;
+      return Math.max(1, previous) as Step;
+    });
   }
 
   function submitReference(e: React.FormEvent) {
@@ -49,6 +76,9 @@ export default function FindYourKit() {
 
   async function goToCheckout() {
     if (!finish || !coverage || !application) return;
+    // ChronoShield+ is cut and priced per bracelet, so it cannot go to checkout
+    // without one.
+    if (asksBracelet && !bracelet) return;
 
     setSubmitting(true);
     setError(null);
@@ -59,6 +89,7 @@ export default function FindYourKit() {
         usage: usage ? USAGE_LABELS[usage] : undefined,
         finish,
         coverage,
+        bracelet: asksBracelet && bracelet ? bracelet : undefined,
         application,
       };
       const checkoutUrl = await createKitCheckout(selection);
@@ -77,15 +108,17 @@ export default function FindYourKit() {
     <div className="cp-kit">
       <header className="cp-kit__progress">
         <span className="cp-kit__step">
-          {step <= 5 ? `Step ${step} of 5` : "Your recommendation"}
+          {step < RESULT
+            ? `Step ${stepNumber(step)} of ${totalSteps}`
+            : "Your recommendation"}
         </span>
-        {step > 1 && step < 6 && (
+        {step > 1 && step < RESULT && (
           <button type="button" onClick={back} className="cp-kit__back">
             Back
           </button>
         )}
         <div className="cp-kit__bar" aria-hidden="true">
-          <div style={{ width: `${(Math.min(step, 6) / 6) * 100}%` }} />
+          <div style={{ width: `${(stepNumber(step) / (totalSteps + 1)) * 100}%` }} />
         </div>
       </header>
 
@@ -176,13 +209,38 @@ export default function FindYourKit() {
           ]}
           selected={coverage}
           onSelect={(v) => {
-            setCoverage(v as Coverage);
-            setStep(5);
+            const next = v as Coverage;
+            setCoverage(next);
+            // Only ChronoShield+ is cut per bracelet; ChronoGuard+ skips to
+            // application. Clear any bracelet picked on an earlier pass so it
+            // cannot leak into a ChronoGuard+ order.
+            if (next === "chronoshield") {
+              setStep(5);
+            } else {
+              setBracelet(null);
+              setStep(6);
+            }
           }}
         />
       )}
 
       {step === 5 && (
+        <Choice
+          heading="Which bracelet is it on?"
+          options={[
+            { value: "Oyster", title: "Oyster", detail: "Three-piece links with flat outer rows. The standard sports bracelet." },
+            { value: "Jubilee", title: "Jubilee", detail: "Five-piece links with polished centre rows." },
+            { value: "President", title: "President", detail: "Three-piece semi-circular links, concealed clasp." },
+          ]}
+          selected={bracelet}
+          onSelect={(v) => {
+            setBracelet(v as Bracelet);
+            setStep(6);
+          }}
+        />
+      )}
+
+      {step === 6 && (
         <Choice
           heading="How would you like it applied?"
           options={[
@@ -192,12 +250,12 @@ export default function FindYourKit() {
           selected={application}
           onSelect={(v) => {
             setApplication(v as Application);
-            setStep(6);
+            setStep(RESULT);
           }}
         />
       )}
 
-      {step === 6 && coverage && finish && application && (
+      {step === RESULT && coverage && finish && application && (
         <section className="cp-kit__result">
           <h1>{COVERAGE_LABELS[coverage]}</h1>
           <p>
@@ -210,6 +268,7 @@ export default function FindYourKit() {
             {usage && <Row label="Wear pattern" value={USAGE_LABELS[usage]} />}
             <Row label="Finish" value={finish} />
             <Row label="Coverage" value={COVERAGE_LABELS[coverage]} />
+            {asksBracelet && bracelet && <Row label="Bracelet" value={bracelet} />}
             <Row
               label="Application"
               value={application === "professional" ? "Studio installation" : "Self-applied"}
@@ -235,6 +294,7 @@ export default function FindYourKit() {
               setUsage(null);
               setFinish(null);
               setCoverage(null);
+              setBracelet(null);
               setApplication(null);
               setError(null);
             }}

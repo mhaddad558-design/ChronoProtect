@@ -42,7 +42,17 @@ Type: **Cormorant Garamond** headings, **Montserrat** nav and buttons, **Jost** 
 
 ## Product model (important)
 
-Shopify holds **two kit products plus an installation product**, with one variant option: `Finish` (Gloss / Stealth). Four kit variants total.
+Shopify holds **two kit products plus an installation product**.
+
+- **ChronoShield+** has two options: `Finish` (Gloss / Stealth) and `Bracelet`
+  (Oyster / Jubilee / President). Six variants. The film runs over every link,
+  so the bracelet changes the template and the price — it has to be a variant,
+  because price lives on the variant and a line attribute cannot carry one.
+- **ChronoGuard+** has one option: `Finish`. Two variants. It stops at the clasp,
+  so the bracelet changes nothing about what is cut or charged.
+
+Eight kit variants total. Two of Shopify's three option slots are now spoken for
+on ChronoShield+, which is the reason the reference must stay an attribute.
 
 The **reference number is a cart line attribute, never a variant.** The catalog has 64 references; making them variants would blow past Shopify's three-option limit and produce 192 SKUs for no gain. Attributes print on the order, which is all the cutting operation needs.
 

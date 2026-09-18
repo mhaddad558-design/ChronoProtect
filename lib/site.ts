@@ -23,6 +23,26 @@ export const FINISHES = [
   },
 ] as const;
 
+/**
+ * ChronoShield+ runs the film over every link, so the bracelet changes both the
+ * template and the price — it is a Shopify variant option on that product only.
+ * ChronoGuard+ stops at the clasp and is priced the same whatever the bracelet.
+ */
+export const BRACELETS = [
+  {
+    name: "Oyster",
+    detail: "Three-piece links with flat outer rows. The standard sports bracelet.",
+  },
+  {
+    name: "Jubilee",
+    detail: "Five-piece links with polished centre rows, so there is more edge to cover.",
+  },
+  {
+    name: "President",
+    detail: "Three-piece semi-circular links with a concealed clasp.",
+  },
+] as const;
+
 export interface KitCopy {
   title: string;
   /**

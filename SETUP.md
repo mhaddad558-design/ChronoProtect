@@ -20,8 +20,8 @@ hand instead.
 
 | Product | Handle | Option "Finish" | Notes |
 |---|---|---|---|
-| ChronoShield+ | `chronoshield` | Gloss, Stealth | Whole-watch coverage |
-| ChronoGuard+ | `chronoguard` | Gloss, Stealth | Case and clasp only |
+| ChronoShield+ | `chronoshield` | Gloss, Stealth | Whole-watch coverage. **Also** a second option `Bracelet`: Oyster, Jubilee, President — 6 variants |
+| ChronoGuard+ | `chronoguard` | Gloss, Stealth | Case and clasp only. No bracelet option — 2 variants |
 | Professional Installation | `professional-installation` | none | Single variant, added as its own line |
 
 The **product titles carry the plus, the handles do not.** Handles are
@@ -31,7 +31,7 @@ plus reaches order confirmations and packing slips — `cart.ts` writes the
 Shopify product title into the `Coverage` line attribute, so whatever you type
 there is what prints.
 
-Four kit variants total. **Do not create a variant per reference number.** There are 64 references in the catalog; at two finishes each that's 128 combinations, and it would consume two of Shopify's three option slots for data that is really just an attribute. The reference travels as a cart line attribute instead — it prints on the order and packing slip, which is all the cutting operation needs.
+Eight kit variants total. **Do not create a variant per reference number.** There are 64 references in the catalog; against the six ChronoShield+ combinations that's 384, and with `Finish` and `Bracelet` already taking two of Shopify's three option slots there is only one left. The reference is not a choice that changes price, so it does not belong there. The reference travels as a cart line attribute instead — it prints on the order and packing slip, which is all the cutting operation needs.
 
 Set each product's "Requires shipping" on, and inventory tracking off (or to a made-to-order policy) since kits are cut per order rather than stocked.
 
@@ -100,6 +100,8 @@ Studio installation is pushed as a **second line item** rather than folded into 
 
 - [ ] Both kit products resolve (`GET_KIT_PRODUCTS` returns non-null)
 - [ ] Both finishes exist with exactly the option name `Finish`
+- [ ] ChronoShield+ has a second option named exactly `Bracelet` with all three values, and all six variants are priced
+- [ ] A ChronoShield+ test order for Jubilee shows **Jubilee** on the order, not Oyster
 - [ ] A test order shows the Reference attribute on the order detail
 - [ ] Unknown reference (e.g. `999999`) still lets the customer proceed and routes them to the fit-guide email
 - [ ] Checkout completes end to end in Shopify's test mode

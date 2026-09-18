@@ -5,7 +5,7 @@ import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
 import { formatMoney, getProduct, startingPrice } from "@/lib/shopify/products";
-import { FINISHES, KIT_COPY } from "@/lib/site";
+import { BRACELETS, FINISHES, KIT_COPY } from "@/lib/site";
 
 type KitHandle = keyof typeof KIT_COPY;
 
@@ -121,21 +121,35 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
           <div className="cp-grid cp-grid--3">
             {FINISHES.map((finish) => {
-              const variant = product?.variants.nodes.find((node) =>
-                node.selectedOptions.some(
-                  (option) =>
-                    option.name.toLowerCase() === "finish" &&
-                    option.value.toLowerCase() === finish.name.toLowerCase()
-                )
+              // ChronoShield+ has a variant per finish AND bracelet, so a finish
+              // maps to three prices, not one. Show the cheapest as a "From" —
+              // picking any single variant's price would misreport the others.
+              const matching =
+                product?.variants.nodes.filter((node) =>
+                  node.selectedOptions.some(
+                    (option) =>
+                      option.name.toLowerCase() === "finish" &&
+                      option.value.toLowerCase() === finish.name.toLowerCase()
+                  )
+                ) ?? [];
+
+              const cheapest = matching.reduce<(typeof matching)[number] | null>(
+                (low, node) =>
+                  low && Number(low.price.amount) <= Number(node.price.amount) ? low : node,
+                null
               );
+              const varies = matching.length > 1;
 
               return (
                 <article className="cp-card" key={finish.name}>
                   <h3 style={{ fontSize: "1.35rem" }}>{finish.name}</h3>
                   <p>{finish.detail}</p>
                   <div className="cp-card__foot">
-                    <Price value={formatMoney(variant?.price)} />
-                    {variant && !variant.availableForSale ? (
+                    <Price
+                      value={formatMoney(cheapest?.price)}
+                      lead={varies ? "From" : undefined}
+                    />
+                    {matching.length > 0 && !matching.some((node) => node.availableForSale) ? (
                       <p className="cp-price--pending" style={{ marginTop: "0.5rem" }}>
                         Currently unavailable
                       </p>
@@ -147,6 +161,32 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
           </div>
         </div>
       </section>
+
+      {handle === "chronoshield" ? (
+        <section className="cp-band">
+          <div className="cp-shell">
+            <div className="cp-measure">
+              <p className="cp-eyebrow">Bracelets</p>
+              <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
+                Cut to the bracelet, link by link.
+              </h2>
+              <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
+                Every link is covered individually, so the template and the price both follow the
+                bracelet. The configurator asks which one you are on.
+              </p>
+            </div>
+
+            <dl className="cp-spec" style={{ marginTop: "3rem" }}>
+              {BRACELETS.map((option) => (
+                <div className="cp-spec__row" key={option.name}>
+                  <dt>{option.name}</dt>
+                  <dd>{option.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      ) : null}
 
       <section className="cp-band cp-band--mid">
         <div className="cp-shell cp-measure">

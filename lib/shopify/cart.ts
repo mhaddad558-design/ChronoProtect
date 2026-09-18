@@ -3,15 +3,21 @@ import { GET_KIT_PRODUCTS, CART_CREATE, GET_CART } from "./queries";
 
 export type Coverage = "chronoshield" | "chronoguard";
 export type Finish = "Gloss" | "Stealth";
+export type Bracelet = "Oyster" | "Jubilee" | "President";
 export type Application = "self" | "professional";
 
-/** The five answers the Find Your Kit configurator collects. */
+/** The answers the Find Your Kit configurator collects. */
 export interface KitSelection {
   reference: string;
   model?: string;
   usage?: string;
   finish: Finish;
   coverage: Coverage;
+  /**
+   * Only ChronoShield+ is cut and priced per bracelet — ChronoGuard+ stops at
+   * the clasp — so this is absent for ChronoGuard+ selections.
+   */
+  bracelet?: Bracelet;
   application: Application;
 }
 
@@ -42,10 +48,32 @@ interface Cart {
 
 const CART_ID_KEY = "chronoprotect:cartId";
 
-function findVariantByFinish(product: Product, finish: Finish): Variant | undefined {
-  return product.variants.nodes.find((v) =>
-    v.selectedOptions.some(
-      (o) => o.name.toLowerCase() === "finish" && o.value.toLowerCase() === finish.toLowerCase()
+/**
+ * Finds the variant matching every option we were given.
+ *
+ * This must check all of them, not just find a variant that mentions one. When
+ * ChronoShield+ gained a Bracelet option, matching on Finish alone would return
+ * the first Gloss variant whatever its bracelet — charging and cutting an Oyster
+ * kit for a customer who chose Jubilee, with nothing to show it had gone wrong.
+ *
+ * Options the caller does not specify are ignored, so ChronoGuard+ (Finish only)
+ * still resolves with the same call.
+ */
+function findVariant(
+  product: Product,
+  wanted: Record<string, string | undefined>
+): Variant | undefined {
+  const required = Object.entries(wanted).filter(([, value]) => value != null) as Array<
+    [string, string]
+  >;
+
+  return product.variants.nodes.find((variant) =>
+    required.every(([name, value]) =>
+      variant.selectedOptions.some(
+        (option) =>
+          option.name.toLowerCase() === name.toLowerCase() &&
+          option.value.toLowerCase() === value.toLowerCase()
+      )
     )
   );
 }
@@ -67,20 +95,36 @@ export async function createKitCheckout(selection: KitSelection): Promise<string
     );
   }
 
-  const variant = findVariantByFinish(product, selection.finish);
+  // Bracelet is only an option on ChronoShield+; passing it for ChronoGuard+
+  // would match nothing, so it is dropped for that line.
+  const wantsBracelet = selection.coverage === "chronoshield";
+  const wanted = {
+    Finish: selection.finish,
+    Bracelet: wantsBracelet ? selection.bracelet : undefined,
+  };
+  const chosen = [selection.finish, wantsBracelet ? selection.bracelet : null]
+    .filter(Boolean)
+    .join(" / ");
+
+  const variant = findVariant(product, wanted);
   if (!variant) {
     throw new ShopifyError(
-      `${product.title} has no "${selection.finish}" finish variant. Check the Finish option values in Shopify.`
+      `${product.title} has no "${chosen}" variant. Check the Finish` +
+        (wantsBracelet ? " and Bracelet option values" : " option values") +
+        ` in Shopify.`
     );
   }
   if (!variant.availableForSale) {
-    throw new ShopifyError(`${product.title} in ${selection.finish} is currently unavailable.`);
+    throw new ShopifyError(`${product.title} in ${chosen} is currently unavailable.`);
   }
 
   const attributes = [
     { key: "Reference", value: selection.reference.toUpperCase() },
     selection.model ? { key: "Model", value: selection.model } : null,
     { key: "Coverage", value: product.title },
+    wantsBracelet && selection.bracelet
+      ? { key: "Bracelet", value: selection.bracelet }
+      : null,
     {
       key: "Application",
       value: selection.application === "professional" ? "Studio installation" : "Self-applied",
