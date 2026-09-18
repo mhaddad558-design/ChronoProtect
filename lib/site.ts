@@ -18,10 +18,6 @@ export const FINISHES = [
       "Optically invisible. Reflects light like the polished metal beneath, so the watch reads unchanged.",
   },
   {
-    name: "Matte",
-    detail: "A softened, low-glare surface that mutes reflections without dulling the case lines.",
-  },
-  {
     name: "Stealth",
     detail: "A deep satin finish that quiets the whole watch and takes the shine out of the bezel.",
   },

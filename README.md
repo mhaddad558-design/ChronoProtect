@@ -118,7 +118,7 @@ scripts/
 - **Prices are never hardcoded.** They come from Shopify, and when Shopify has not answered the
   page says so rather than inventing a number.
 - **Reference numbers are cart line attributes, not variants.** The only variant option is
-  `Finish` (Gloss / Matte / Stealth). See CLAUDE.md for why.
+  `Finish` (Gloss / Stealth). See CLAUDE.md for why.
 - **Storefront API only.** No Admin API token belongs in this repo.
 - Adding fitment means editing `data/fitment.json`. The catalog page, the configurator lookup, and
   the type-ahead all read from it.

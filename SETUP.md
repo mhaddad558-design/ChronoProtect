@@ -12,10 +12,16 @@ Basic or above. A headless build that reads products, manages a cart, and sends 
 
 ### 2. Create three products
 
+**Quickest path:** import `shopify/products-import.csv` (Products → Import). It
+creates all three products and the four kit variants as drafts at £0.00, leaving
+you to set prices and publish. See `shopify/README.md`. The rest of this section
+describes what that import produces, and is what to follow if you create them by
+hand instead.
+
 | Product | Handle | Option "Finish" | Notes |
 |---|---|---|---|
-| ChronoShield+ | `chronoshield` | Gloss, Matte, Stealth | Whole-watch coverage |
-| ChronoGuard+ | `chronoguard` | Gloss, Matte, Stealth | Case and clasp only |
+| ChronoShield+ | `chronoshield` | Gloss, Stealth | Whole-watch coverage |
+| ChronoGuard+ | `chronoguard` | Gloss, Stealth | Case and clasp only |
 | Professional Installation | `professional-installation` | none | Single variant, added as its own line |
 
 The **product titles carry the plus, the handles do not.** Handles are
@@ -25,7 +31,7 @@ plus reaches order confirmations and packing slips — `cart.ts` writes the
 Shopify product title into the `Coverage` line attribute, so whatever you type
 there is what prints.
 
-Six kit variants total. **Do not create a variant per reference number.** There are 64 references in the catalog; at three finishes each that's 192 combinations, and it would consume two of Shopify's three option slots for data that is really just an attribute. The reference travels as a cart line attribute instead — it prints on the order and packing slip, which is all the cutting operation needs.
+Four kit variants total. **Do not create a variant per reference number.** There are 64 references in the catalog; at two finishes each that's 128 combinations, and it would consume two of Shopify's three option slots for data that is really just an attribute. The reference travels as a cart line attribute instead — it prints on the order and packing slip, which is all the cutting operation needs.
 
 Set each product's "Requires shipping" on, and inventory tracking off (or to a made-to-order policy) since kits are cut per order rather than stocked.
 
@@ -93,7 +99,7 @@ Studio installation is pushed as a **second line item** rather than folded into 
 ## Verify before shipping
 
 - [ ] Both kit products resolve (`GET_KIT_PRODUCTS` returns non-null)
-- [ ] All three finishes exist with exactly the option name `Finish`
+- [ ] Both finishes exist with exactly the option name `Finish`
 - [ ] A test order shows the Reference attribute on the order detail
 - [ ] Unknown reference (e.g. `999999`) still lets the customer proceed and routes them to the fit-guide email
 - [ ] Checkout completes end to end in Shopify's test mode

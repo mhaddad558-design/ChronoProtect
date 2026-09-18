@@ -25,7 +25,7 @@ export default async function KitsPage() {
           <p className="cp-eyebrow">The two lines</p>
           <h1 style={{ fontSize: "clamp(2.2rem, 6vw, 3.4rem)" }}>Same film, different reach.</h1>
           <p className="cp-lede" style={{ marginTop: "1.5rem" }}>
-            Both kits use the same material, the same three finishes, and the same per-reference
+            Both kits use the same material, the same two finishes, and the same per-reference
             templates. The only question is how far the coverage runs.
           </p>
         </div>

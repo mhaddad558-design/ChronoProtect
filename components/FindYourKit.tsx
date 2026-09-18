@@ -157,7 +157,6 @@ export default function FindYourKit() {
           heading="Which finish do you prefer?"
           options={[
             { value: "Gloss", title: "Gloss", detail: "Optically invisible. Reflects light like the polished metal beneath." },
-            { value: "Matte", title: "Matte", detail: "A softened, low-glare surface that mutes reflections." },
             { value: "Stealth", title: "Stealth", detail: "A deep satin finish that quiets the whole watch." },
           ]}
           selected={finish}

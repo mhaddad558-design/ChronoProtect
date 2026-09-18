@@ -3,7 +3,7 @@
  *
  * Product model:
  *   - Two products, handles `chronoshield` and `chronoguard`
- *   - One variant option, "Finish": Gloss | Matte | Stealth
+ *   - One variant option, "Finish": Gloss | Stealth
  *   - Reference number travels as a cart line ATTRIBUTE, not a variant.
  *     60+ references x 3 finishes as variants would be unmanageable and
  *     would burn two of Shopify's three option slots for no benefit.

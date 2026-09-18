@@ -41,7 +41,7 @@ export default async function HomePage() {
         <ul className="cp-hero__meta">
           <li>{referenceCount} references</li>
           <li>{modelCount} model families</li>
-          <li>Three finishes</li>
+          <li>Two finishes</li>
           <li>Cut per order</li>
         </ul>
       </section>
@@ -77,7 +77,7 @@ export default async function HomePage() {
             <Step
               no="02"
               title="Choose coverage and finish"
-              body="Case to clasp or case and clasp, in gloss, matte, or stealth. Five questions, no account required."
+              body="Case to clasp or case and clasp, in gloss or stealth. Five questions, no account required."
             />
             <Step
               no="03"
@@ -98,7 +98,7 @@ export default async function HomePage() {
           <div className="cp-measure">
             <p className="cp-eyebrow">Finishes</p>
             <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
-              Three surfaces, one film thickness.
+              Two surfaces, one film thickness.
             </h2>
             <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
               The finish changes how the watch reads in light. It does not change the protection.

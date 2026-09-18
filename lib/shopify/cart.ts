@@ -2,7 +2,7 @@ import { storefront, ShopifyError } from "./client";
 import { GET_KIT_PRODUCTS, CART_CREATE, GET_CART } from "./queries";
 
 export type Coverage = "chronoshield" | "chronoguard";
-export type Finish = "Gloss" | "Matte" | "Stealth";
+export type Finish = "Gloss" | "Stealth";
 export type Application = "self" | "professional";
 
 /** The five answers the Find Your Kit configurator collects. */

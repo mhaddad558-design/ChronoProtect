@@ -42,7 +42,7 @@ Type: **Cormorant Garamond** headings, **Montserrat** nav and buttons, **Jost** 
 
 ## Product model (important)
 
-Shopify holds **two kit products plus an installation product**, with one variant option: `Finish` (Gloss / Matte / Stealth). Six kit variants total.
+Shopify holds **two kit products plus an installation product**, with one variant option: `Finish` (Gloss / Stealth). Four kit variants total.
 
 The **reference number is a cart line attribute, never a variant.** The catalog has 64 references; making them variants would blow past Shopify's three-option limit and produce 192 SKUs for no gain. Attributes print on the order, which is all the cutting operation needs.
 
