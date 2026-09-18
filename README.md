@@ -58,7 +58,7 @@ npm run crest
 
 The "Chrono PROTECT+" lettering inside the shield is raster in the master, so
 the extraction leaves it behind and the site sets the wordmark as live type in
-Tenor Sans — sharper, selectable, and translatable.
+Red Hat Display — sharper, selectable, and translatable.
 
 ### Badge lockups
 

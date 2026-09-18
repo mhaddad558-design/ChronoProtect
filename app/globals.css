@@ -19,14 +19,14 @@
 
   /*
    * Type. Chosen against the usual luxury-template set (Cormorant, Montserrat,
-   * Playfair): a wide, lightly flared sans for display, a monospace for
-   * anything that reads like a spec — reference numbers, labels, buttons — and
-   * a quiet grotesk for body. Tenor Sans has a single weight, so nothing set in
-   * it may ask for more than 400 or the browser fakes a bold.
+   * Playfair): a clean, tightly set sans for display, a monospace for anything
+   * that reads like a spec — reference numbers, labels, buttons — and a quiet
+   * grotesk for body. Headings sit at 400; the wordmark at 500 so it holds up
+   * at small sizes beside the crest.
    * --cp-logo is Jost only because it matches the lettering in the crest
    * artwork; the badge lockups use it and nothing else does.
    */
-  --cp-display: "Tenor Sans", "Gill Sans", system-ui, sans-serif;
+  --cp-display: "Red Hat Display", system-ui, sans-serif;
   --cp-ui: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
   --cp-body: "Schibsted Grotesk", system-ui, sans-serif;
   --cp-logo: "Jost", system-ui, sans-serif;
@@ -60,8 +60,8 @@ h2,
 h3 {
   font-family: var(--cp-display);
   font-weight: 400;
-  line-height: 1.14;
-  letter-spacing: -0.01em;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
   margin: 0;
 }
 
@@ -200,7 +200,8 @@ svg {
   color: var(--cp-ink);
   font-family: var(--cp-display);
   font-size: 1.25rem;
-  letter-spacing: 0;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 .cp-wordmark:hover {
@@ -347,9 +348,8 @@ svg {
 }
 
 .cp-hero h1 {
-  /* Tenor sets wide: sized and measured so the headline holds three lines. */
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  max-width: 21ch;
+  font-size: clamp(2.5rem, 6.5vw, 4.4rem);
+  max-width: 20ch;
 }
 
 .cp-hero__line {
