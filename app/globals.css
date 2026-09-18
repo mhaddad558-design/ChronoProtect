@@ -19,12 +19,14 @@
 
   /*
    * Type. Chosen against the usual luxury-template set (Cormorant, Montserrat,
-   * Playfair): a didone for display, a monospace for anything that reads like
-   * a spec — reference numbers, labels, buttons — and a quiet grotesk for body.
+   * Playfair): a wide, lightly flared sans for display, a monospace for
+   * anything that reads like a spec — reference numbers, labels, buttons — and
+   * a quiet grotesk for body. Tenor Sans has a single weight, so nothing set in
+   * it may ask for more than 400 or the browser fakes a bold.
    * --cp-logo is Jost only because it matches the lettering in the crest
    * artwork; the badge lockups use it and nothing else does.
    */
-  --cp-serif: "Bodoni Moda", "Didot", Georgia, serif;
+  --cp-display: "Tenor Sans", "Gill Sans", system-ui, sans-serif;
   --cp-ui: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
   --cp-body: "Schibsted Grotesk", system-ui, sans-serif;
   --cp-logo: "Jost", system-ui, sans-serif;
@@ -56,9 +58,10 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--cp-serif);
+  font-family: var(--cp-display);
   font-weight: 400;
-  line-height: 1.12;
+  line-height: 1.14;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
@@ -195,7 +198,7 @@ svg {
   align-items: center;
   gap: 0.75rem;
   color: var(--cp-ink);
-  font-family: var(--cp-serif);
+  font-family: var(--cp-display);
   font-size: 1.25rem;
   letter-spacing: 0;
 }
@@ -344,8 +347,9 @@ svg {
 }
 
 .cp-hero h1 {
-  font-size: clamp(2.6rem, 7vw, 4.6rem);
-  max-width: 18ch;
+  /* Tenor sets wide: sized and measured so the headline holds three lines. */
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  max-width: 21ch;
 }
 
 .cp-hero__line {
@@ -502,7 +506,7 @@ svg {
 /* ---------- price ---------- */
 
 .cp-price {
-  font-family: var(--cp-serif);
+  font-family: var(--cp-display);
   font-size: 2rem;
   color: var(--cp-ink);
 }

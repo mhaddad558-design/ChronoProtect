@@ -109,14 +109,14 @@ confirmations:
 
 | Role | Font | Why |
 |---|---|---|
-| Headings | Bodoni Moda | A high-contrast didone from print and horology catalogues |
+| Headings | Tenor Sans | Modern and sleek: wide proportions, lightly flared strokes. One weight only |
 | Labels, nav, buttons, reference numbers | DM Mono | Reads like caseback engraving or a spec sheet. The slashed zero keeps `0` and `O` apart in references |
 | Body | Schibsted Grotesk | Quiet, sturdy, and not one of the usual defaults |
 | Crest lockups only | Jost | Matches the lettering in the logo artwork |
 
 All four are on Google Fonts. Shopify's checkout branding offers its own fixed
 font list rather than any Google Font, so there, pick the closest match: a
-high-contrast serif for headings and a plain sans for body.
+wide, clean sans for headings and a plain sans for body.
 
 Buttons are uppercase with light letter-spacing — the only place caps are used.
 
