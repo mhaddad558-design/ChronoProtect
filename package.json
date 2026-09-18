@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "crest": "node scripts/extract-crest.mjs"
+    "crest": "node scripts/extract-crest.mjs",
+    "verify:shopify": "node scripts/verify-shopify.mjs"
   },
   "dependencies": {
     "next": "^15.1.6",
