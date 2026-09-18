@@ -51,11 +51,9 @@
         "116508",
         "116509",
         "116518",
-        "116519",
         "116520",
         "116523",
         "116528",
-        "116589",
         "126503",
         "126508",
         "126509"
@@ -65,6 +63,22 @@
       ],
       "coverage": [
         "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    },
+    {
+      "model": "Daytona",
+      "series": "Engraved & gem-set bezel · Oysterflex",
+      "matchType": "exact",
+      "references": [
+        "116519",
+        "116589"
+      ],
+      "bracelets": [
+        "Oysterflex"
+      ],
+      "coverage": [
         "chronoguard"
       ],
       "status": "active"
