@@ -8,7 +8,8 @@ import {
   type Finish,
   type KitSelection,
 } from "@/lib/shopify/cart";
-import { findFitment, suggestReferences } from "@/lib/fitment";
+import { braceletsFor, findFitment, suggestReferences } from "@/lib/fitment";
+import { BRACELETS } from "@/lib/site";
 
 /**
  * Step 5 asks which bracelet, and only ChronoShield+ needs it — ChronoGuard+
@@ -50,8 +51,18 @@ export default function FindYourKit() {
     [reference, fitment]
   );
 
-  /** ChronoGuard+ has no bracelet question, so step 5 drops out of its flow. */
-  const asksBracelet = coverage === "chronoshield";
+  /**
+   * Which bracelets this reference could be on. Most families were sold on one,
+   * so the catalog settles it and the customer is never asked.
+   */
+  const braceletOptions = useMemo(() => braceletsFor(reference), [reference]);
+
+  /**
+   * Step 5 only appears when it has something to decide: ChronoGuard+ never
+   * needs it, and neither does a reference that came on a single bracelet.
+   */
+  const needsBracelet = coverage === "chronoshield";
+  const asksBracelet = needsBracelet && braceletOptions.length > 1;
   const totalSteps = asksBracelet ? 6 : 5;
 
   /** Where a given step sits once the skipped one is removed. */
@@ -77,8 +88,8 @@ export default function FindYourKit() {
   async function goToCheckout() {
     if (!finish || !coverage || !application) return;
     // ChronoShield+ is cut and priced per bracelet, so it cannot go to checkout
-    // without one.
-    if (asksBracelet && !bracelet) return;
+    // without one — whether the customer chose it or the catalog filled it in.
+    if (needsBracelet && !bracelet) return;
 
     setSubmitting(true);
     setError(null);
@@ -89,7 +100,7 @@ export default function FindYourKit() {
         usage: usage ? USAGE_LABELS[usage] : undefined,
         finish,
         coverage,
-        bracelet: asksBracelet && bracelet ? bracelet : undefined,
+        bracelet: needsBracelet && bracelet ? bracelet : undefined,
         application,
       };
       const checkoutUrl = await createKitCheckout(selection);
@@ -211,15 +222,22 @@ export default function FindYourKit() {
           onSelect={(v) => {
             const next = v as Coverage;
             setCoverage(next);
-            // Only ChronoShield+ is cut per bracelet; ChronoGuard+ skips to
-            // application. Clear any bracelet picked on an earlier pass so it
-            // cannot leak into a ChronoGuard+ order.
-            if (next === "chronoshield") {
-              setStep(5);
-            } else {
+
+            if (next !== "chronoshield") {
+              // ChronoGuard+ stops at the clasp. Clear any bracelet picked on an
+              // earlier pass so it cannot leak into the order.
               setBracelet(null);
               setStep(6);
+              return;
             }
+            if (braceletOptions.length === 1) {
+              // The catalog knows this reference came on one bracelet, so fill
+              // it in rather than asking a question with a single answer.
+              setBracelet(braceletOptions[0]);
+              setStep(6);
+              return;
+            }
+            setStep(5);
           }}
         />
       )}
@@ -227,11 +245,11 @@ export default function FindYourKit() {
       {step === 5 && (
         <Choice
           heading="Which bracelet is it on?"
-          options={[
-            { value: "Oyster", title: "Oyster", detail: "Three-piece links with flat outer rows. The standard sports bracelet." },
-            { value: "Jubilee", title: "Jubilee", detail: "Five-piece links with polished centre rows." },
-            { value: "President", title: "President", detail: "Three-piece semi-circular links, concealed clasp." },
-          ]}
+          // Only the bracelets this family was sold on, so a GMT-Master II is
+          // never offered a President.
+          options={BRACELETS.filter((b) =>
+            braceletOptions.some((name) => name === b.name)
+          ).map((b) => ({ value: b.name, title: b.name, detail: b.detail }))}
           selected={bracelet}
           onSelect={(v) => {
             setBracelet(v as Bracelet);
@@ -268,7 +286,16 @@ export default function FindYourKit() {
             {usage && <Row label="Wear pattern" value={USAGE_LABELS[usage]} />}
             <Row label="Finish" value={finish} />
             <Row label="Coverage" value={COVERAGE_LABELS[coverage]} />
-            {asksBracelet && bracelet && <Row label="Bracelet" value={bracelet} />}
+            {/*
+              Shown even when the catalog filled it in, so a customer on a
+              swapped bracelet can see the assumption and correct us.
+            */}
+            {needsBracelet && bracelet && (
+              <Row
+                label="Bracelet"
+                value={asksBracelet ? bracelet : `${bracelet} — from your reference`}
+              />
+            )}
             <Row
               label="Application"
               value={application === "professional" ? "Studio installation" : "Self-applied"}

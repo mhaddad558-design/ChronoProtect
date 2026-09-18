@@ -12,6 +12,11 @@
         "1162-",
         "1262-"
       ],
+      "bracelets": [
+        "Oyster",
+        "Jubilee",
+        "President"
+      ],
       "coverage": [
         "chronoshield",
         "chronoguard"
@@ -24,6 +29,11 @@
       "matchType": "prefix",
       "references": [
         "1263-"
+      ],
+      "bracelets": [
+        "Oyster",
+        "Jubilee",
+        "President"
       ],
       "coverage": [
         "chronoshield",
@@ -53,6 +63,9 @@
         "126508",
         "126509"
       ],
+      "bracelets": [
+        "Oyster"
+      ],
       "coverage": [
         "chronoshield",
         "chronoguard"
@@ -72,6 +85,9 @@
         "126506",
         "126515LN",
         "126529LN"
+      ],
+      "bracelets": [
+        "Oyster"
       ],
       "coverage": [
         "chronoshield",
@@ -98,6 +114,10 @@
         "126719BLRO",
         "126720VTNR"
       ],
+      "bracelets": [
+        "Oyster",
+        "Jubilee"
+      ],
       "coverage": [
         "chronoshield",
         "chronoguard"
@@ -123,6 +143,9 @@
         "116610LV",
         "16610"
       ],
+      "bracelets": [
+        "Oyster"
+      ],
       "coverage": [
         "chronoshield",
         "chronoguard"
@@ -142,6 +165,9 @@
         "126613LB",
         "126619",
         "124060"
+      ],
+      "bracelets": [
+        "Oyster"
       ],
       "coverage": [
         "chronoshield",

@@ -1,13 +1,24 @@
 import fitmentData from "@/data/fitment.json";
 
+export type BraceletName = "Oyster" | "Jubilee" | "President";
+
 export interface FitmentFamily {
   model: string;
   series: string | null;
   matchType: "exact" | "prefix";
   references: string[];
   coverage: Array<"chronoshield" | "chronoguard">;
+  /**
+   * Which bracelets this family was sold on. One entry means the configurator
+   * can settle it from the reference alone and skip the question; several means
+   * it has to ask, and offers only these.
+   */
+  bracelets?: BraceletName[];
   status: string;
 }
+
+/** Every bracelet the kits are cut for, used when the family does not say. */
+export const ALL_BRACELETS: BraceletName[] = ["Oyster", "Jubilee", "President"];
 
 export interface FitmentMatch {
   family: FitmentFamily;
@@ -63,6 +74,19 @@ export function suggestReferences(input: string, limit = 6): string[] {
     }
   }
   return hits;
+}
+
+/**
+ * The bracelets a reference could be on.
+ *
+ * Falls back to all of them for a reference the catalog does not know, so an
+ * unlisted watch is asked rather than assumed. A single entry is the signal to
+ * skip the question and fill it in.
+ */
+export function braceletsFor(reference: string): BraceletName[] {
+  const match = findFitment(reference);
+  const listed = match?.family.bracelets;
+  return listed && listed.length > 0 ? listed : ALL_BRACELETS;
 }
 
 /** Which coverage line the catalog recommends for a reference, if any. */
