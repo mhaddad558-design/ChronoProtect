@@ -21,8 +21,8 @@
    * Type. Chosen against the usual luxury-template set (Cormorant, Montserrat,
    * Playfair): a clean, tightly set sans for display, a monospace for anything
    * that reads like a spec — reference numbers, labels, buttons — and a quiet
-   * grotesk for body. Headings sit at 400; the wordmark at 500 so it holds up
-   * at small sizes beside the crest.
+   * grotesk for body. Headings sit at the light 300; the wordmark one step up
+   * at 400 so it holds up at small sizes beside the crest.
    * --cp-logo is Jost only because it matches the lettering in the crest
    * artwork; the badge lockups use it and nothing else does.
    */
@@ -59,7 +59,7 @@ h1,
 h2,
 h3 {
   font-family: var(--cp-display);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.12;
   letter-spacing: -0.015em;
   margin: 0;
@@ -200,7 +200,7 @@ svg {
   color: var(--cp-ink);
   font-family: var(--cp-display);
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.01em;
 }
 

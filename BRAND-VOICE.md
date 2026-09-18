@@ -109,7 +109,7 @@ confirmations:
 
 | Role | Font | Why |
 |---|---|---|
-| Headings | Red Hat Display, regular (400) | Modern and sleek: tight and clean, with slightly negative letter-spacing. The wordmark uses 500 |
+| Headings | Red Hat Display, light (300) | Modern and sleek: tight and clean, with slightly negative letter-spacing. The wordmark uses 400 |
 | Labels, nav, buttons, reference numbers | DM Mono | Reads like caseback engraving or a spec sheet. The slashed zero keeps `0` and `O` apart in references |
 | Body | Schibsted Grotesk | Quiet, sturdy, and not one of the usual defaults |
 | Crest lockups only | Jost | Matches the lettering in the logo artwork |
