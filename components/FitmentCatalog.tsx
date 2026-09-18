@@ -1,0 +1,152 @@
+"use client";
+
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { allFamilies, type FitmentFamily } from "@/lib/fitment";
+import { STUDIO_EMAIL } from "@/lib/site";
+
+function normalize(value: string): string {
+  return value.replace(/[\s-]/g, "").toUpperCase();
+}
+
+/**
+ * The fitment catalog, filtered client-side.
+ *
+ * Prefix families (the Datejusts) are shown as the stored prefix with a note,
+ * because Rolex appends dial and bezel digits per configuration and listing
+ * every combination would be noise.
+ */
+export default function FitmentCatalog() {
+  const families = allFamilies();
+  const [query, setQuery] = useState("");
+
+  const normalized = normalize(query);
+
+  const results = useMemo(() => {
+    if (!normalized) return families;
+
+    return families
+      .map((family) => {
+        const modelHit = normalize(`${family.model}${family.series ?? ""}`).includes(normalized);
+        const refs = family.references.filter((ref) => {
+          const stored = normalize(ref);
+          return family.matchType === "prefix"
+            ? stored.startsWith(normalized) || normalized.startsWith(stored)
+            : stored.includes(normalized);
+        });
+
+        if (refs.length > 0) return { ...family, references: refs };
+        if (modelHit) return family;
+        return null;
+      })
+      .filter((family): family is FitmentFamily => family !== null);
+  }, [families, normalized]);
+
+  const shown = results.reduce((total, family) => total + family.references.length, 0);
+
+  return (
+    <>
+      <label htmlFor="catalog-search" className="cp-eyebrow" style={{ marginBottom: 0 }}>
+        Search by reference or model
+      </label>
+      <input
+        id="catalog-search"
+        className="cp-cat__search"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="126610LN, Daytona, GMT"
+        autoComplete="off"
+        type="search"
+      />
+      <p className="cp-cat__count">
+        {shown} {shown === 1 ? "reference" : "references"}
+        {normalized ? " matching" : " in the catalog"}
+      </p>
+
+      <div style={{ marginTop: "3rem" }}>
+        {results.map((family) => (
+          <section className="cp-cat__family" key={`${family.model}-${family.series ?? "base"}`}>
+            <h3>{family.model}</h3>
+            {family.series ? <p className="cp-cat__series">{family.series}</p> : null}
+
+            <ul className="cp-cat__refs">
+              {family.references.map((ref) => (
+                <li key={ref}>
+                  <Reference value={ref} query={normalized} prefix={family.matchType === "prefix"} />
+                </li>
+              ))}
+            </ul>
+
+            {family.matchType === "prefix" ? (
+              <p className="cp-cat__prefix">
+                Matched on the leading digits. Rolex appends dial and bezel digits per
+                configuration, so any reference starting with one of these is covered.
+              </p>
+            ) : null}
+          </section>
+        ))}
+
+        {results.length === 0 ? (
+          <div className="cp-cat__empty">
+            <p>
+              Nothing in the catalog matches that yet. Templates are added as the studio approves
+              new fitment.
+            </p>
+            <p>
+              <a
+                href={`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent(
+                  `ChronoProtect+ fit guide — ${query}`
+                )}`}
+              >
+                Request a fit guide for {query.trim() || "your reference"}
+              </a>{" "}
+              or <Link href="/find-your-kit">start the configurator anyway</Link>.
+            </p>
+          </div>
+        ) : null}
+      </div>
+    </>
+  );
+}
+
+/** Highlights the matched span inside a reference. */
+function Reference({
+  value,
+  query,
+  prefix,
+}: {
+  value: string;
+  query: string;
+  prefix: boolean;
+}) {
+  const label = prefix ? `${value}…` : value;
+  if (!query) return <>{label}</>;
+
+  const at = normalize(value).indexOf(query);
+  if (at < 0) return <>{label}</>;
+
+  // normalize() only strips spaces and hyphens, so walk the raw string to map
+  // the normalized offsets back onto the characters actually rendered.
+  let seen = 0;
+  let start = -1;
+  let end = value.length;
+  for (let i = 0; i < value.length; i += 1) {
+    if (seen === at + query.length) {
+      end = i;
+      break;
+    }
+    if (/[\s-]/.test(value[i])) continue;
+    if (seen === at) start = i;
+    seen += 1;
+  }
+  if (start < 0) return <>{label}</>;
+
+  return (
+    <>
+      {value.slice(0, start)}
+      <mark>{value.slice(start, end)}</mark>
+      {value.slice(end)}
+      {prefix ? "…" : ""}
+    </>
+  );
+}

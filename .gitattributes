@@ -1,0 +1,8 @@
+# Normalise line endings: LF in the repository, native in the working tree.
+# The site is authored on Windows and deploys to Linux, so without this the
+# first checkout on a build server shows every file as modified.
+* text=auto eol=lf
+
+# The brand master is a generated export — treat it as binary so diffs of its
+# 4MB of path data never land in a review.
+brand/ig-logo-source.svg -text -diff linguist-generated

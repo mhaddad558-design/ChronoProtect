@@ -1,0 +1,153 @@
+{
+  "updated": "2026-09-17",
+  "families": [
+    {
+      "model": "Datejust 36",
+      "series": null,
+      "matchType": "prefix",
+      "references": [
+        "66-",
+        "16-",
+        "162-",
+        "1162-",
+        "1262-"
+      ],
+      "coverage": [
+        "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    },
+    {
+      "model": "Datejust 41",
+      "series": null,
+      "matchType": "prefix",
+      "references": [
+        "1263-"
+      ],
+      "coverage": [
+        "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    },
+    {
+      "model": "Daytona",
+      "series": "Engraved & gem-set bezel · 2000–Present",
+      "matchType": "exact",
+      "references": [
+        "116503",
+        "116505",
+        "116508",
+        "116509",
+        "116518",
+        "116519",
+        "116520",
+        "116523",
+        "116528",
+        "116589",
+        "116595",
+        "116598",
+        "116599",
+        "126503",
+        "126508",
+        "126509"
+      ],
+      "coverage": [
+        "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    },
+    {
+      "model": "Daytona",
+      "series": "Cerachrom bezel · 2011–Present",
+      "matchType": "exact",
+      "references": [
+        "116500LN",
+        "116506",
+        "116515LN",
+        "116519LN",
+        "126500LN",
+        "126506",
+        "126515LN",
+        "126529LN"
+      ],
+      "coverage": [
+        "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    },
+    {
+      "model": "GMT-Master II",
+      "series": "2007–Present",
+      "matchType": "exact",
+      "references": [
+        "116710LN",
+        "126710BLRO",
+        "126710BLNR",
+        "126715CHNR",
+        "116710BLNR",
+        "116713LN",
+        "116718LN",
+        "116719BLRO",
+        "126710GRNR",
+        "126711CHNR",
+        "126713GRNR",
+        "126719BLRO",
+        "126720VTNR"
+      ],
+      "coverage": [
+        "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    },
+    {
+      "model": "Submariner",
+      "series": "Pre-2020 · 40mm",
+      "matchType": "exact",
+      "references": [
+        "14060M",
+        "114060",
+        "16618",
+        "16613",
+        "16610LV",
+        "116618LN",
+        "116618LB",
+        "116613LN",
+        "116613LB",
+        "116619",
+        "116610LN",
+        "116610LV",
+        "16610"
+      ],
+      "coverage": [
+        "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    },
+    {
+      "model": "Submariner",
+      "series": "2020–Present · 41mm",
+      "matchType": "exact",
+      "references": [
+        "126610LN",
+        "126610LV",
+        "126618LN",
+        "126618LB",
+        "126613LN",
+        "126613LB",
+        "126619",
+        "124060"
+      ],
+      "coverage": [
+        "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    }
+  ]
+}

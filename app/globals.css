@@ -1,0 +1,596 @@
+/*
+ * ChronoProtect+ — site chrome.
+ *
+ * Tokens are the ones in CLAUDE.md, taken from the crest. They are repeated in
+ * components/find-your-kit.css so that the configurator drop stays portable;
+ * the values must stay identical in both files.
+ */
+:root {
+  --cp-bg-deep: #0b110d;
+  --cp-bg-mid: #141f19;
+  --cp-bg-panel: #182821;
+  --cp-bronze: #bc906c;
+  --cp-bronze-soft: rgba(188, 144, 108, 0.16);
+  --cp-sage: #7a9483;
+  --cp-ink: #ffffff;
+  --cp-ink-soft: rgba(255, 255, 255, 0.72);
+  --cp-ink-faint: rgba(255, 255, 255, 0.48);
+  --cp-border: rgba(188, 144, 108, 0.22);
+
+  --cp-serif: "Cormorant Garamond", Georgia, serif;
+  --cp-ui: "Montserrat", system-ui, sans-serif;
+  --cp-body: "Jost", system-ui, sans-serif;
+
+  --cp-shell: 72rem;
+  --cp-gutter: 1.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cp-bg-deep);
+  color: var(--cp-ink);
+  font-family: var(--cp-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--cp-serif);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+}
+
+a {
+  color: var(--cp-bronze);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cp-bronze);
+  outline-offset: 3px;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---------- layout primitives ---------- */
+
+.cp-shell {
+  width: 100%;
+  max-width: var(--cp-shell);
+  margin: 0 auto;
+  padding-inline: var(--cp-gutter);
+}
+
+.cp-band {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+  border-top: 1px solid var(--cp-border);
+}
+
+.cp-band--mid {
+  background: var(--cp-bg-mid);
+}
+
+.cp-eyebrow {
+  font-family: var(--cp-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cp-sage);
+  margin: 0 0 1.25rem;
+}
+
+.cp-lede {
+  color: var(--cp-ink-soft);
+  font-size: 1.05rem;
+  max-width: 38rem;
+}
+
+.cp-measure {
+  max-width: 40rem;
+}
+
+.cp-skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.cp-skip:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  background: var(--cp-bronze);
+  color: var(--cp-bg-deep);
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+}
+
+/* ---------- buttons ---------- */
+
+.cp-btn {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: var(--cp-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border: 1px solid var(--cp-bronze);
+  border-radius: 4px;
+  background: var(--cp-bronze);
+  color: var(--cp-bg-deep);
+  cursor: pointer;
+}
+
+.cp-btn:hover {
+  text-decoration: none;
+  background: #cba07b;
+  border-color: #cba07b;
+}
+
+.cp-btn--ghost {
+  background: none;
+  color: var(--cp-bronze);
+}
+
+.cp-btn--ghost:hover {
+  background: var(--cp-bronze-soft);
+  border-color: var(--cp-bronze);
+}
+
+/* ---------- header ---------- */
+
+.cp-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(11, 17, 13, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--cp-border);
+}
+
+.cp-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 4.5rem;
+}
+
+.cp-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--cp-ink);
+  font-family: var(--cp-serif);
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.cp-wordmark:hover {
+  text-decoration: none;
+  color: var(--cp-bronze);
+}
+
+.cp-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-family: var(--cp-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cp-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cp-nav a {
+  color: var(--cp-ink-soft);
+}
+
+.cp-nav a:hover,
+.cp-nav a[aria-current="page"] {
+  color: var(--cp-bronze);
+  text-decoration: none;
+}
+
+.cp-nav .cp-btn {
+  padding: 0.7rem 1.25rem;
+  color: var(--cp-bg-deep);
+}
+
+.cp-nav .cp-btn:hover {
+  color: var(--cp-bg-deep);
+}
+
+/* The toggle only exists on narrow screens. */
+.cp-nav__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: -0.75rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--cp-ink-soft);
+  cursor: pointer;
+}
+
+.cp-nav__toggle-bars {
+  display: grid;
+  gap: 0.35rem;
+  width: 1.15rem;
+}
+
+.cp-nav__toggle-bars > span {
+  display: block;
+  height: 1px;
+  background: currentColor;
+}
+
+.cp-nav__toggle[aria-expanded="true"] {
+  color: var(--cp-bronze);
+}
+
+/* Visually hidden, still read out. */
+.cp-skip-visually {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 60rem) {
+  .cp-nav {
+    gap: 0.75rem;
+  }
+
+  .cp-nav__toggle {
+    display: flex;
+  }
+
+  /* Links leave the bar and become a panel under the header. */
+  .cp-nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: grid;
+    gap: 0;
+    background: var(--cp-bg-panel);
+    border-bottom: 1px solid var(--cp-border);
+    font-size: 0.78rem;
+  }
+
+  .cp-nav__links[data-open="false"] {
+    display: none;
+  }
+
+  .cp-nav__links li {
+    border-top: 1px solid var(--cp-border);
+  }
+
+  .cp-nav__links a {
+    display: block;
+    padding: 1.1rem var(--cp-gutter);
+  }
+}
+
+@media (max-width: 30rem) {
+  /*
+   * Below this the wordmark text, the CTA, and the toggle cannot all fit on one
+   * line. The crest carries the brand on its own, so the text steps aside and
+   * the primary action stays visible.
+   */
+  .cp-wordmark__text {
+    display: none;
+  }
+
+  .cp-nav__cta {
+    padding: 0.7rem 1rem;
+    font-size: 0.68rem;
+  }
+}
+
+/* ---------- hero ---------- */
+
+.cp-hero {
+  padding-block: clamp(5rem, 13vw, 10rem);
+}
+
+.cp-hero h1 {
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  max-width: 18ch;
+}
+
+.cp-hero__line {
+  margin: 1.75rem 0 2.5rem;
+  color: var(--cp-ink-soft);
+  font-size: 1.1rem;
+  max-width: 42ch;
+}
+
+.cp-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cp-hero__meta {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--cp-border);
+  font-family: var(--cp-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cp-ink-faint);
+}
+
+/* ---------- page head with a badge lockup ---------- */
+
+.cp-pagehead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(2rem, 6vw, 4.5rem);
+  align-items: center;
+}
+
+.cp-pagehead__mark {
+  justify-self: end;
+}
+
+@media (max-width: 56rem) {
+  .cp-pagehead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* The mark leads on narrow screens, where it reads as a product badge. */
+  .cp-pagehead__mark {
+    order: -1;
+    justify-self: start;
+  }
+}
+
+/* ---------- cards / grids ---------- */
+
+.cp-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.cp-grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.cp-grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.cp-card {
+  background: var(--cp-bg-panel);
+  border: 1px solid var(--cp-border);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.cp-card p {
+  color: var(--cp-ink-faint);
+  margin: 0 0 1.5rem;
+}
+
+.cp-card__foot {
+  margin-top: auto;
+}
+
+.cp-step {
+  border-top: 1px solid var(--cp-border);
+  padding-top: 1.5rem;
+}
+
+.cp-step__no {
+  font-family: var(--cp-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--cp-sage);
+}
+
+.cp-step h3 {
+  font-size: 1.35rem;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.cp-step p {
+  color: var(--cp-ink-faint);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- specification list ---------- */
+
+.cp-spec {
+  margin: 0;
+  border-top: 1px solid var(--cp-border);
+}
+
+.cp-spec__row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 14rem) 1fr;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--cp-border);
+}
+
+.cp-spec__row dt {
+  font-family: var(--cp-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cp-sage);
+  padding-top: 0.2rem;
+}
+
+.cp-spec__row dd {
+  margin: 0;
+  color: var(--cp-ink-soft);
+}
+
+@media (max-width: 40rem) {
+  .cp-spec__row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+/* ---------- price ---------- */
+
+.cp-price {
+  font-family: var(--cp-serif);
+  font-size: 2rem;
+  color: var(--cp-ink);
+}
+
+.cp-price__note {
+  font-family: var(--cp-body);
+  font-size: 0.8rem;
+  color: var(--cp-ink-faint);
+  letter-spacing: normal;
+}
+
+.cp-price--pending {
+  font-family: var(--cp-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cp-ink-faint);
+}
+
+/* ---------- footer ---------- */
+
+.cp-footer {
+  border-top: 1px solid var(--cp-border);
+  padding-block: 4rem 3rem;
+  background: var(--cp-bg-mid);
+}
+
+.cp-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 2.5rem;
+}
+
+.cp-footer h4 {
+  font-family: var(--cp-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cp-sage);
+  margin: 0 0 1rem;
+}
+
+.cp-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.cp-footer ul a {
+  color: var(--cp-ink-soft);
+}
+
+.cp-footer ul a:hover {
+  color: var(--cp-bronze);
+}
+
+.cp-footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--cp-border);
+  font-size: 0.8rem;
+  color: var(--cp-ink-faint);
+}
+
+/* ---------- misc ---------- */
+
+.cp-note {
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  background: var(--cp-bg-panel);
+  padding: 1.25rem 1.5rem;
+  color: var(--cp-ink-soft);
+  font-size: 0.9rem;
+}
+
+.cp-dot {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--cp-sage);
+  margin-right: 0.6rem;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

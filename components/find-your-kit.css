@@ -1,0 +1,228 @@
+/* ChronoProtect+ brand tokens — keep in sync with the design canvas. */
+:root {
+  --cp-bg-deep: #0b110d;
+  --cp-bg-mid: #141f19;
+  --cp-bg-panel: #182821;
+  --cp-bronze: #bc906c;
+  --cp-bronze-soft: rgba(188, 144, 108, 0.16);
+  --cp-sage: #7a9483;
+  --cp-ink: #ffffff;
+  --cp-ink-soft: rgba(255, 255, 255, 0.72);
+  --cp-ink-faint: rgba(255, 255, 255, 0.48);
+  --cp-border: rgba(188, 144, 108, 0.22);
+}
+
+.cp-kit {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 7rem;
+  color: var(--cp-ink);
+  font-family: "Jost", system-ui, sans-serif;
+  background: var(--cp-bg-deep);
+}
+
+.cp-kit h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.9rem, 5vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+.cp-kit p {
+  color: var(--cp-ink-faint);
+  line-height: 1.7;
+  max-width: 34rem;
+}
+
+/* Progress */
+.cp-kit__progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+.cp-kit__step {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--cp-sage);
+}
+.cp-kit__back {
+  background: none;
+  border: 0;
+  color: var(--cp-ink-faint);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+}
+.cp-kit__back::before {
+  content: "\2190\00a0";
+}
+.cp-kit__bar {
+  grid-column: 1 / -1;
+  height: 3px;
+  background: var(--cp-bg-panel);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.cp-kit__bar > div {
+  height: 100%;
+  background: var(--cp-bronze);
+  transition: width 0.3s ease;
+}
+
+/* Form */
+.cp-kit label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--cp-ink-soft);
+  margin: 2rem 0 0.5rem;
+}
+.cp-kit input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: var(--cp-bg-panel);
+  border: 1px solid var(--cp-border);
+  border-radius: 4px;
+  color: var(--cp-ink);
+  font: inherit;
+  font-size: 1rem;
+}
+.cp-kit input:focus-visible,
+.cp-kit button:focus-visible,
+.cp-kit a:focus-visible {
+  outline: 2px solid var(--cp-bronze);
+  outline-offset: 2px;
+}
+
+.cp-kit__suggestions {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+.cp-kit__suggestions button {
+  background: var(--cp-bg-mid);
+  border: 1px solid var(--cp-border);
+  border-radius: 2px;
+  color: var(--cp-ink-soft);
+  padding: 0.3rem 0.7rem;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.cp-kit__confirm {
+  color: var(--cp-sage);
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+}
+.cp-kit__aside {
+  font-size: 0.8rem;
+  margin-top: 1.25rem;
+}
+.cp-kit a {
+  color: var(--cp-bronze);
+}
+
+/* Options */
+.cp-kit__option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.875rem;
+  background: var(--cp-bg-panel);
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  color: var(--cp-ink);
+  font: inherit;
+  cursor: pointer;
+}
+.cp-kit__option[aria-pressed="true"] {
+  background: var(--cp-bronze-soft);
+  border-color: var(--cp-bronze);
+}
+.cp-kit__option-title {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.cp-kit__option-detail {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--cp-ink-faint);
+  line-height: 1.5;
+}
+
+/* Result */
+.cp-kit__result dl {
+  margin: 2rem 0;
+  padding: 1.75rem;
+  background: var(--cp-bg-panel);
+  border: 1px solid var(--cp-border);
+  border-radius: 8px;
+}
+.cp-kit__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--cp-border);
+}
+.cp-kit__row:last-child {
+  border-bottom: 0;
+}
+.cp-kit__row dt {
+  font-size: 0.8rem;
+  color: var(--cp-ink-faint);
+}
+.cp-kit__row dd {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.cp-kit form button[type="submit"],
+.cp-kit__result > button:not(.cp-kit__restart) {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--cp-bronze);
+  color: var(--cp-bg-deep);
+  border: 0;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.cp-kit button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.cp-kit__restart {
+  display: block;
+  margin: 1.25rem auto 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--cp-border);
+  color: var(--cp-ink-faint);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.cp-kit__error {
+  color: #e8a0a0;
+  font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-kit__bar > div {
+    transition: none;
+  }
+}
