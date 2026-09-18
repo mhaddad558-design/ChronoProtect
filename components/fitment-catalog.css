@@ -43,6 +43,15 @@
   margin: 0.5rem 0 0;
 }
 
+.cp-cat__only {
+  font-family: var(--cp-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cp-sage);
+  margin: 0.75rem 0 0;
+}
+
 .cp-cat__refs {
   list-style: none;
   display: flex;

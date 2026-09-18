@@ -120,6 +120,15 @@
   font-size: 0.85rem;
   margin-top: 0.75rem;
 }
+
+/* A note above a narrowed set of options, explaining why it is narrowed. */
+.cp-kit__note {
+  color: var(--cp-sage);
+  font-size: 0.85rem;
+  margin: 0 0 2rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--cp-border);
+}
 .cp-kit__aside {
   font-size: 0.8rem;
   margin-top: 1.25rem;

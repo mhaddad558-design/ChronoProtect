@@ -74,23 +74,37 @@
     },
     {
       "model": "Daytona",
-      "series": "Cerachrom bezel · 2011–Present",
+      "series": "Cerachrom bezel · Oyster bracelet",
       "matchType": "exact",
       "references": [
         "116500LN",
         "116506",
-        "116515LN",
-        "116519LN",
         "126500LN",
-        "126506",
-        "126515LN",
-        "126529LN"
+        "126506"
       ],
       "bracelets": [
         "Oyster"
       ],
       "coverage": [
         "chronoshield",
+        "chronoguard"
+      ],
+      "status": "active"
+    },
+    {
+      "model": "Daytona",
+      "series": "Cerachrom bezel · Oysterflex",
+      "matchType": "exact",
+      "references": [
+        "116515LN",
+        "116519LN",
+        "126515LN",
+        "126529LN"
+      ],
+      "bracelets": [
+        "Oysterflex"
+      ],
+      "coverage": [
         "chronoguard"
       ],
       "status": "active"

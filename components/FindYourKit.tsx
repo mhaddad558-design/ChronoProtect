@@ -8,7 +8,13 @@ import {
   type Finish,
   type KitSelection,
 } from "@/lib/shopify/cart";
-import { braceletsFor, findFitment, suggestReferences } from "@/lib/fitment";
+import {
+  braceletsFor,
+  coverageFor,
+  findFitment,
+  suggestReferences,
+  type BraceletName,
+} from "@/lib/fitment";
 import { BRACELETS } from "@/lib/site";
 
 /**
@@ -32,6 +38,31 @@ const COVERAGE_LABELS: Record<Coverage, string> = {
   chronoshield: "ChronoShield+",
   chronoguard: "ChronoGuard+",
 };
+
+/**
+ * The bracelets that exist as a Shopify variant. The catalog also names straps
+ * we do not cut for, such as Oysterflex, and those must never reach a variant
+ * lookup — a family on one is ChronoGuard+ only, which has no Bracelet option
+ * at all.
+ */
+const CUTTABLE: Bracelet[] = ["Oyster", "Jubilee", "President"];
+
+function isCuttable(name: BraceletName): name is Bracelet {
+  return (CUTTABLE as string[]).includes(name);
+}
+
+const COVERAGE_CHOICES: Array<{ value: Coverage; title: string; detail: string }> = [
+  {
+    value: "chronoshield",
+    title: "Case to clasp — ChronoShield+",
+    detail: "Case, bezel, full bracelet, and clasp. Total coverage for daily wear.",
+  },
+  {
+    value: "chronoguard",
+    title: "Case and clasp — ChronoGuard+",
+    detail: "The two points of contact that take the brunt of wear. No bracelet coverage.",
+  },
+];
 
 export default function FindYourKit() {
   const [step, setStep] = useState<Step>(1);
@@ -57,12 +88,29 @@ export default function FindYourKit() {
    */
   const braceletOptions = useMemo(() => braceletsFor(reference), [reference]);
 
+  /** Of those, the ones a ChronoShield+ variant actually exists for. */
+  const selectableBracelets = useMemo(
+    () => braceletOptions.filter(isCuttable),
+    [braceletOptions]
+  );
+
+  /**
+   * Which lines this reference can have. A Daytona on Oysterflex is ChronoGuard+
+   * only — no film is cut for that strap, and ChronoShield+ would promise
+   * bracelet coverage that cannot be delivered.
+   */
+  const coverageOptions = useMemo(() => coverageFor(reference), [reference]);
+  const coverageNote =
+    coverageOptions.length === 1 && coverageOptions[0] === "chronoguard"
+      ? `This reference is on ${braceletOptions.join(" or ")}, which ChronoShield+ does not cover. ChronoGuard+ protects the case and clasp and leaves the strap alone.`
+      : undefined;
+
   /**
    * Step 5 only appears when it has something to decide: ChronoGuard+ never
    * needs it, and neither does a reference that came on a single bracelet.
    */
   const needsBracelet = coverage === "chronoshield";
-  const asksBracelet = needsBracelet && braceletOptions.length > 1;
+  const asksBracelet = needsBracelet && selectableBracelets.length > 1;
   const totalSteps = asksBracelet ? 6 : 5;
 
   /** Where a given step sits once the skipped one is removed. */
@@ -214,10 +262,8 @@ export default function FindYourKit() {
       {step === 4 && (
         <Choice
           heading="How much of the watch do you want protected?"
-          options={[
-            { value: "chronoshield", title: "Case to clasp — ChronoShield+", detail: "Case, bezel, full bracelet, and clasp. Total coverage for daily wear." },
-            { value: "chronoguard", title: "Case and clasp — ChronoGuard+", detail: "The two points of contact that take the brunt of wear. No bracelet coverage." },
-          ]}
+          note={coverageNote}
+          options={COVERAGE_CHOICES.filter((c) => coverageOptions.includes(c.value))}
           selected={coverage}
           onSelect={(v) => {
             const next = v as Coverage;
@@ -230,10 +276,10 @@ export default function FindYourKit() {
               setStep(6);
               return;
             }
-            if (braceletOptions.length === 1) {
+            if (selectableBracelets.length === 1) {
               // The catalog knows this reference came on one bracelet, so fill
               // it in rather than asking a question with a single answer.
-              setBracelet(braceletOptions[0]);
+              setBracelet(selectableBracelets[0]);
               setStep(6);
               return;
             }
@@ -248,7 +294,7 @@ export default function FindYourKit() {
           // Only the bracelets this family was sold on, so a GMT-Master II is
           // never offered a President.
           options={BRACELETS.filter((b) =>
-            braceletOptions.some((name) => name === b.name)
+            selectableBracelets.some((name) => name === b.name)
           ).map((b) => ({ value: b.name, title: b.name, detail: b.detail }))}
           selected={bracelet}
           onSelect={(v) => {
@@ -345,11 +391,14 @@ function Row({ label, value }: { label: string; value: string }) {
 
 function Choice({
   heading,
+  note,
   options,
   selected,
   onSelect,
 }: {
   heading: string;
+  /** Shown above the options when the catalog has narrowed them. */
+  note?: string;
   options: Array<{ value: string; title: string; detail: string }>;
   selected: string | null;
   onSelect: (value: string) => void;
@@ -357,6 +406,7 @@ function Choice({
   return (
     <section>
       <h1>{heading}</h1>
+      {note ? <p className="cp-kit__note">{note}</p> : null}
       {options.map((o) => (
         <button
           key={o.value}

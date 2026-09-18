@@ -68,6 +68,17 @@ export default function FitmentCatalog() {
           <section className="cp-cat__family" key={`${family.model}-${family.series ?? "base"}`}>
             <h3>{family.model}</h3>
             {family.series ? <p className="cp-cat__series">{family.series}</p> : null}
+            {/*
+              Only called out when the family is restricted — saying "both lines"
+              on every other row would be noise.
+            */}
+            {family.coverage.length === 1 ? (
+              <p className="cp-cat__only">
+                <span className="cp-dot" />
+                {family.coverage[0] === "chronoguard" ? "ChronoGuard+ only" : "ChronoShield+ only"}
+                {family.bracelets?.length ? ` — on ${family.bracelets.join(" or ")}` : ""}
+              </p>
+            ) : null}
 
             <ul className="cp-cat__refs">
               {family.references.map((ref) => (

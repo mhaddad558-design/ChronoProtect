@@ -1,13 +1,25 @@
 import fitmentData from "@/data/fitment.json";
 
-export type BraceletName = "Oyster" | "Jubilee" | "President";
+/**
+ * Oysterflex is listed so the catalog can describe what a reference is on, but
+ * no kit is cut for it — a family on Oysterflex is ChronoGuard+ only, and
+ * ChronoGuard+ has no Bracelet variant in Shopify, so the name never travels
+ * there.
+ */
+export type BraceletName = "Oyster" | "Jubilee" | "President" | "Oysterflex";
+
+export type CoverageName = "chronoshield" | "chronoguard";
 
 export interface FitmentFamily {
   model: string;
   series: string | null;
   matchType: "exact" | "prefix";
   references: string[];
-  coverage: Array<"chronoshield" | "chronoguard">;
+  /**
+   * Which lines are cut for this family. ChronoShield+ runs over the bracelet,
+   * so a family on a strap we do not cut lists ChronoGuard+ only.
+   */
+  coverage: CoverageName[];
   /**
    * Which bracelets this family was sold on. One entry means the configurator
    * can settle it from the reference alone and skip the question; several means
@@ -87,6 +99,21 @@ export function braceletsFor(reference: string): BraceletName[] {
   const match = findFitment(reference);
   const listed = match?.family.bracelets;
   return listed && listed.length > 0 ? listed : ALL_BRACELETS;
+}
+
+/** Every line the kits are cut for, used when the family does not say. */
+export const ALL_COVERAGE: CoverageName[] = ["chronoshield", "chronoguard"];
+
+/**
+ * Which lines a reference can actually have.
+ *
+ * A reference the catalog does not know gets both, so an unlisted watch is not
+ * quietly refused a product.
+ */
+export function coverageFor(reference: string): CoverageName[] {
+  const match = findFitment(reference);
+  const listed = match?.family.coverage;
+  return listed && listed.length > 0 ? listed : ALL_COVERAGE;
 }
 
 /** Which coverage line the catalog recommends for a reference, if any. */

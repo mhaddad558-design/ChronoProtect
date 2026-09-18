@@ -26,7 +26,8 @@ export default function CatalogPage() {
         <p className="cp-lede" style={{ marginTop: "1.5rem" }}>
           Rows are split by whatever changes the template, not by date alone. A 40mm Submariner and
           a 41mm Submariner are different cuts, and so are an engraved Daytona bezel and a Cerachrom
-          one. Every family here takes both ChronoShield+ and ChronoGuard+.
+          one. Most families take both lines; where the watch is on a strap we do not cut film
+          for, only ChronoGuard+ is listed.
         </p>
       </div>
 
