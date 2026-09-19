@@ -75,13 +75,13 @@ export default function FitmentCatalog() {
             {family.status === "bespoke" ? (
               <p className="cp-cat__only">
                 <span className="cp-dot" />
-                Cut to order — quoted per watch
+                Cut to order and quoted per watch
               </p>
             ) : family.coverage.length === 1 ? (
               <p className="cp-cat__only">
                 <span className="cp-dot" />
                 {family.coverage[0] === "chronoguard" ? "ChronoGuard+ only" : "ChronoShield+ only"}
-                {family.bracelets?.length ? ` — on ${family.bracelets.join(" or ")}` : ""}
+                {family.bracelets?.length ? `, on ${family.bracelets.join(" or ")}` : ""}
               </p>
             ) : null}
 

@@ -37,6 +37,22 @@ export interface FitmentFamily {
   status: FitmentStatus;
 }
 
+/** Rolex names keep their capital even mid-sentence. */
+const PROPER = /^(Cerachrom|Oyster|Oysterflex|Jubilee|President)\b/;
+
+/**
+ * A family as it reads inside a sentence: "Submariner, 2020–present, 41mm".
+ * The series is stored capitalised because the catalog shows it as a heading;
+ * after a comma it drops to lower case unless it opens with a Rolex name.
+ */
+export function describeFamily(family: FitmentFamily): string {
+  if (!family.series) return family.model;
+  const series = PROPER.test(family.series)
+    ? family.series
+    : family.series.charAt(0).toLowerCase() + family.series.slice(1);
+  return `${family.model}, ${series}`;
+}
+
 /**
  * True when a reference is cut to order rather than sold from the configurator.
  * The stone setting changes the template on these, so the studio quotes per

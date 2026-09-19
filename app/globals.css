@@ -18,17 +18,19 @@
   --cp-border: rgba(188, 144, 108, 0.22);
 
   /*
-   * Type. Chosen against the usual luxury-template set (Cormorant, Montserrat,
-   * Playfair): a clean, tightly set sans for display, a monospace for anything
-   * that reads like a spec — reference numbers, labels, buttons — and a quiet
-   * grotesk for body. Headings sit at the light 300; the wordmark one step up
-   * at 400 so it holds up at small sizes beside the crest.
+   * Type. One family, Red Hat, in two cuts: Display for headings (light 300,
+   * the wordmark at 400) and Text for body, labels, nav and buttons. Everything
+   * is sentence case — no tracked capitals.
+   *
+   * --cp-ref is DM Mono and is only for reference numbers: the one thing on
+   * the site a customer reads as a code. The slashed zero keeps 0 and O apart.
    * --cp-logo is Jost only because it matches the lettering in the crest
    * artwork; the badge lockups use it and nothing else does.
    */
   --cp-display: "Red Hat Display", system-ui, sans-serif;
-  --cp-ui: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
-  --cp-body: "Schibsted Grotesk", system-ui, sans-serif;
+  --cp-body: "Red Hat Text", system-ui, sans-serif;
+  --cp-ui: var(--cp-body);
+  --cp-ref: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
   --cp-logo: "Jost", system-ui, sans-serif;
 
   --cp-shell: 72rem;
@@ -106,10 +108,9 @@ svg {
 
 .cp-eyebrow {
   font-family: var(--cp-ui);
-  font-size: 0.7rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  letter-spacing: 0.005em;
   color: var(--cp-sage);
   margin: 0 0 1.25rem;
 }
@@ -146,10 +147,9 @@ svg {
   display: inline-block;
   white-space: nowrap;
   font-family: var(--cp-ui);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.005em;
   padding: 1rem 2rem;
   border: 1px solid var(--cp-bronze);
   border-radius: 4px;
@@ -214,10 +214,9 @@ svg {
   align-items: center;
   gap: 1.75rem;
   font-family: var(--cp-ui);
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  letter-spacing: 0.005em;
 }
 
 .cp-nav__links {
@@ -365,21 +364,6 @@ svg {
   gap: 1rem;
 }
 
-.cp-hero__meta {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem;
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--cp-border);
-  font-family: var(--cp-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--cp-ink-faint);
-}
 
 /* ---------- page head with a badge lockup ---------- */
 
@@ -405,6 +389,102 @@ svg {
   }
 }
 
+/* ---------- hero reference field ---------- */
+
+/*
+ * The one bold element on the site. Everything around it stays quiet: the
+ * field is large, set in the reference face, and answers as the customer types.
+ */
+.cp-heroref {
+  max-width: 36rem;
+}
+
+.cp-heroref__label {
+  display: block;
+  font-family: var(--cp-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--cp-ink-soft);
+  margin-bottom: 0.6rem;
+}
+
+.cp-heroref__row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cp-heroref__input {
+  flex: 1;
+  min-width: 0;
+  padding: 1.05rem 1.2rem;
+  background: var(--cp-bg-panel);
+  border: 1px solid var(--cp-border);
+  border-radius: 4px;
+  color: var(--cp-ink);
+  font-family: var(--cp-ref);
+  font-size: 1.35rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.cp-heroref__input::placeholder {
+  color: var(--cp-ink-faint);
+}
+
+.cp-heroref__input:focus-visible {
+  outline: 2px solid var(--cp-bronze);
+  outline-offset: 2px;
+  border-color: var(--cp-bronze);
+}
+
+.cp-heroref__row .cp-btn {
+  padding-inline: 1.6rem;
+}
+
+.cp-heroref__status {
+  min-height: 1.6em;
+  margin: 0.85rem 0 0;
+  font-size: 0.95rem;
+  color: var(--cp-sage);
+}
+
+.cp-heroref__suggestions {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+.cp-heroref__suggestions button {
+  min-height: 2.75rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--cp-bg-mid);
+  border: 1px solid var(--cp-border);
+  border-radius: 2px;
+  color: var(--cp-ink-soft);
+  font-family: var(--cp-ref);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.cp-heroref__suggestions button:hover {
+  border-color: var(--cp-bronze);
+  color: var(--cp-ink);
+}
+
+.cp-heroref__browse {
+  margin: 1.5rem 0 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 30rem) {
+  .cp-heroref__row {
+    flex-direction: column;
+  }
+}
+
 /* ---------- cards / grids ---------- */
 
 .cp-grid {
@@ -414,11 +494,11 @@ svg {
 }
 
 .cp-grid--2 {
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
 }
 
 .cp-grid--3 {
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
 }
 
 .cp-card {
@@ -451,8 +531,8 @@ svg {
 
 .cp-step__no {
   font-family: var(--cp-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  font-size: 0.82rem;
+  letter-spacing: 0.005em;
   color: var(--cp-sage);
 }
 
@@ -484,9 +564,8 @@ svg {
 
 .cp-spec__row dt {
   font-family: var(--cp-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.005em;
   color: var(--cp-sage);
   padding-top: 0.2rem;
 }
@@ -520,9 +599,8 @@ svg {
 
 .cp-price--pending {
   font-family: var(--cp-ui);
-  font-size: 0.75rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.005em;
   color: var(--cp-ink-faint);
 }
 
@@ -542,10 +620,9 @@ svg {
 
 .cp-footer h4 {
   font-family: var(--cp-ui);
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.005em;
   color: var(--cp-sage);
   margin: 0 0 1rem;
 }

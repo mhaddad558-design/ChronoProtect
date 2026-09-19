@@ -45,8 +45,8 @@
 }
 .cp-kit__step {
   font-family: var(--cp-ui);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  letter-spacing: 0.005em;
   color: var(--cp-sage);
 }
 .cp-kit__back {
@@ -89,9 +89,9 @@
   border-radius: 4px;
   color: var(--cp-ink);
   font: inherit;
-  font-family: var(--cp-ui);
+  font-family: var(--cp-ref);
   font-size: 1rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 .cp-kit input:focus-visible,
 .cp-kit button:focus-visible,
@@ -115,9 +115,16 @@
   color: var(--cp-ink-soft);
   padding: 0.3rem 0.7rem;
   font: inherit;
+  font-family: var(--cp-ref);
   font-size: 0.8rem;
   cursor: pointer;
 }
+/* Reference numbers are the one thing on the site set as a code. */
+.cp-kit__ref {
+  font-family: var(--cp-ref);
+  letter-spacing: 0.02em;
+}
+
 .cp-kit__confirm {
   color: var(--cp-sage);
   font-size: 0.85rem;
@@ -207,10 +214,9 @@
   border: 0;
   border-radius: 4px;
   font-family: var(--cp-ui);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.005em;
   cursor: pointer;
 }
 /*
@@ -228,10 +234,9 @@
   color: var(--cp-bg-deep);
   border-radius: 4px;
   font-family: var(--cp-ui);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.005em;
   text-align: center;
   text-decoration: none;
 }

@@ -76,7 +76,6 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
       <section className="cp-band cp-band--mid">
         <div className="cp-shell">
-          <p className="cp-eyebrow">Coverage</p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>What the kit covers.</h2>
 
           <dl className="cp-spec" style={{ marginTop: "2.5rem" }}>
@@ -190,7 +189,6 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
       <section className="cp-band cp-band--mid">
         <div className="cp-shell cp-measure">
-          <p className="cp-eyebrow">Fitment</p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
             Cut to one reference, not to a size chart.
           </h2>

@@ -70,8 +70,12 @@ detail, then a short one landing it.
 > trimming. If you would rather not do it over your own watch, a studio
 > partner will.
 
-An em dash — like this — carries an aside. A colon introduces a consequence.
-Semicolons are rare.
+An em dash — like this — carries an aside inside a sentence. A colon introduces a
+consequence. Semicolons are rare.
+
+In short labels and lists of details, use commas: "Submariner, 2020–present,
+41mm". Not middle dots ("A · B") and not a word joined to a fragment by a
+dash ("Oyster — from your reference").
 
 ## Words to avoid
 
@@ -110,15 +114,16 @@ confirmations:
 | Role | Font | Why |
 |---|---|---|
 | Headings | Red Hat Display, light (300) | Modern and sleek: tight and clean, with slightly negative letter-spacing. The wordmark uses 400 |
-| Labels, nav, buttons, reference numbers | DM Mono | Reads like caseback engraving or a spec sheet. The slashed zero keeps `0` and `O` apart in references |
-| Body | Schibsted Grotesk | Quiet, sturdy, and not one of the usual defaults |
+| Body, labels, nav, buttons | Red Hat Text | The text cut of the heading family, so the two sit together without competing |
+| Reference numbers only | DM Mono | The one thing on the site read as a code. The slashed zero keeps `0` and `O` apart |
 | Crest lockups only | Jost | Matches the lettering in the logo artwork |
 
 All four are on Google Fonts. Shopify's checkout branding offers its own fixed
 font list rather than any Google Font, so there, pick the closest match: a
 clean sans for headings and a plain sans for body.
 
-Buttons are uppercase with light letter-spacing — the only place caps are used.
+Nothing is set in capitals: not labels, not buttons, not nav. The only capitals are
+reference numbers, which appear exactly as Rolex writes them.
 
 ## Colour, where you can control it
 

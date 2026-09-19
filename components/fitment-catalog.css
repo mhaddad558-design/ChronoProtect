@@ -17,9 +17,8 @@
 
 .cp-cat__count {
   font-family: var(--cp-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.005em;
   color: var(--cp-sage);
   margin-top: 1rem;
 }
@@ -36,18 +35,16 @@
 
 .cp-cat__series {
   font-family: var(--cp-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.005em;
   color: var(--cp-ink-faint);
   margin: 0.5rem 0 0;
 }
 
 .cp-cat__only {
   font-family: var(--cp-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.005em;
   color: var(--cp-sage);
   margin: 0.75rem 0 0;
 }
@@ -66,8 +63,8 @@
   border-radius: 2px;
   background: var(--cp-bg-panel);
   padding: 0.35rem 0.75rem;
-  font-family: var(--cp-ui);
-  font-size: 0.8rem;
+  font-family: var(--cp-ref);
+  font-size: 0.82rem;
   color: var(--cp-ink-soft);
 }
 

@@ -43,7 +43,7 @@
     },
     {
       "model": "Daytona",
-      "series": "Engraved & gem-set bezel · 2000–Present",
+      "series": "Engraved & gem-set bezel, 2000–present",
       "matchType": "exact",
       "references": [
         "116503",
@@ -69,7 +69,7 @@
     },
     {
       "model": "Daytona",
-      "series": "Engraved & gem-set bezel · Oysterflex",
+      "series": "Engraved & gem-set bezel, Oysterflex",
       "matchType": "exact",
       "references": [
         "116519",
@@ -85,7 +85,7 @@
     },
     {
       "model": "Daytona",
-      "series": "Diamond-paved · Made to order",
+      "series": "Diamond-paved, made to order",
       "matchType": "exact",
       "references": [
         "116595",
@@ -100,7 +100,7 @@
     },
     {
       "model": "Daytona",
-      "series": "Cerachrom bezel · Oyster bracelet",
+      "series": "Cerachrom bezel, Oyster bracelet",
       "matchType": "exact",
       "references": [
         "116500LN",
@@ -119,7 +119,7 @@
     },
     {
       "model": "Daytona",
-      "series": "Cerachrom bezel · Oysterflex",
+      "series": "Cerachrom bezel, Oysterflex",
       "matchType": "exact",
       "references": [
         "116515LN",
@@ -137,7 +137,7 @@
     },
     {
       "model": "GMT-Master II",
-      "series": "2007–Present",
+      "series": "2007–present",
       "matchType": "exact",
       "references": [
         "116710LN",
@@ -166,7 +166,7 @@
     },
     {
       "model": "Submariner",
-      "series": "Pre-2020 · 40mm",
+      "series": "Pre-2020, 40mm",
       "matchType": "exact",
       "references": [
         "14060M",
@@ -194,7 +194,7 @@
     },
     {
       "model": "Submariner",
-      "series": "2020–Present · 41mm",
+      "series": "2020–present, 41mm",
       "matchType": "exact",
       "references": [
         "126610LN",

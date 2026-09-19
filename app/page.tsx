@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroReference from "@/components/HeroReference";
 import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
@@ -9,7 +10,6 @@ export default async function HomePage() {
   const products = await getKitProducts();
   const families = allFamilies();
   const referenceCount = families.reduce((total, family) => total + family.references.length, 0);
-  const modelCount = new Set(families.map((family) => family.model)).size;
 
   return (
     <>
@@ -23,32 +23,17 @@ export default async function HomePage() {
               The case keeps its lines, the bracelet keeps its brushing, and the piece keeps its
               value.
             </p>
-            <div className="cp-hero__actions">
-              <Link href="/find-your-kit" className="cp-btn">
-                Find your kit
-              </Link>
-              <Link href="/catalog" className="cp-btn cp-btn--ghost">
-                Check your reference
-              </Link>
-            </div>
+            <HeroReference referenceCount={referenceCount} />
           </div>
 
           <div className="cp-pagehead__mark">
             <Lockup word="PROTECT+" label={SITE_NAME} height={340} />
           </div>
         </div>
-
-        <ul className="cp-hero__meta">
-          <li>{referenceCount} references</li>
-          <li>{modelCount} model families</li>
-          <li>Two finishes</li>
-          <li>Cut per order</li>
-        </ul>
       </section>
 
       <section className="cp-band cp-band--mid">
         <div className="cp-shell">
-          <p className="cp-eyebrow">Two lines</p>
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
             Cover the whole watch, or only where it takes the wear.
           </h2>
@@ -65,7 +50,6 @@ export default async function HomePage() {
 
       <section className="cp-band">
         <div className="cp-shell">
-          <p className="cp-eyebrow">How it works</p>
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>Four steps, one reference.</h2>
 
           <div className="cp-grid cp-grid--3">
@@ -119,7 +103,6 @@ export default async function HomePage() {
       <section className="cp-band">
         <div className="cp-shell">
           <div className="cp-measure">
-            <p className="cp-eyebrow">Fitment</p>
             <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
               {referenceCount} references, checked before you order.
             </h2>

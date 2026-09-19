@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   createKitCheckout,
   type Bracelet,
@@ -12,6 +12,7 @@ import {
   braceletsFor,
   coverageFor,
   findFitment,
+  describeFamily,
   isBespoke,
   suggestReferences,
   type BraceletName,
@@ -55,12 +56,12 @@ function isCuttable(name: BraceletName): name is Bracelet {
 const COVERAGE_CHOICES: Array<{ value: Coverage; title: string; detail: string }> = [
   {
     value: "chronoshield",
-    title: "Case to clasp — ChronoShield+",
+    title: "ChronoShield+",
     detail: "Case, bezel, full bracelet, and clasp. Total coverage for daily wear.",
   },
   {
     value: "chronoguard",
-    title: "Case and clasp — ChronoGuard+",
+    title: "ChronoGuard+",
     detail: "The two points of contact that take the brunt of wear. No bracelet coverage.",
   },
 ];
@@ -73,6 +74,13 @@ export default function FindYourKit() {
   const [coverage, setCoverage] = useState<Coverage | null>(null);
   const [bracelet, setBracelet] = useState<Bracelet | null>(null);
   const [application, setApplication] = useState<Application | null>(null);
+
+  useEffect(() => {
+    const ref = new URLSearchParams(window.location.search).get("ref");
+    if (!ref) return;
+    setReference(ref);
+    if (!isBespoke(ref)) setStep(2);
+  }, []);
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -217,11 +225,9 @@ export default function FindYourKit() {
 
             {fitment && (
               <p className="cp-kit__confirm">
-                {fitment.family.model}
-                {fitment.family.series ? ` — ${fitment.family.series}` : ""}.{" "}
-                {bespoke
-                  ? "This one is cut to order."
-                  : "Templates are cut for this reference."}
+                {describeFamily(fitment.family)}.
+                {/* A bespoke reference gets the fuller note below instead. */}
+                {bespoke ? null : " Templates are cut for this reference."}
               </p>
             )}
 
@@ -359,7 +365,7 @@ export default function FindYourKit() {
           </p>
 
           <dl>
-            <Row label="Reference" value={reference.toUpperCase()} />
+            <Row label="Reference" value={reference.toUpperCase()} mono />
             {fitment && <Row label="Model" value={fitment.family.model} />}
             {usage && <Row label="Wear pattern" value={USAGE_LABELS[usage]} />}
             <Row label="Finish" value={finish} />
@@ -371,7 +377,7 @@ export default function FindYourKit() {
             {needsBracelet && bracelet && (
               <Row
                 label="Bracelet"
-                value={asksBracelet ? bracelet : `${bracelet} — from your reference`}
+                value={asksBracelet ? bracelet : `${bracelet}, from your reference`}
               />
             )}
             <Row
@@ -412,11 +418,11 @@ export default function FindYourKit() {
   );
 }
 
-function Row({ label, value }: { label: string; value: string }) {
+function Row({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
     <div className="cp-kit__row">
       <dt>{label}</dt>
-      <dd>{value}</dd>
+      <dd className={mono ? "cp-kit__ref" : undefined}>{value}</dd>
     </div>
   );
 }

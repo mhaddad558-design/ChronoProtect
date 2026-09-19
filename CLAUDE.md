@@ -38,7 +38,7 @@ Never substitute these. They come from the crest logo.
 --cp-border:    rgba(188,144,108,0.22)
 ```
 
-Type: **Red Hat Display** headings (light 300, wordmark 400), **DM Mono** for labels, nav, buttons and reference numbers, **Schibsted Grotesk** body. **Jost** only inside the crest lockups, because it matches the logo lettering. The set was chosen to avoid the fonts every luxury template uses (Cormorant, Montserrat, Playfair); don't drift back to them. The look is quiet luxury — dark ground, restrained bronze, generous space. No gradient washes, no drop shadows on cards, no accent-colored single words inside headlines.
+Type: **Red Hat Display** headings (light 300, wordmark 400); **Red Hat Text** for body, labels, nav and buttons; **DM Mono** only for reference numbers; **Jost** only inside the crest lockups, because it matches the logo lettering. Everything is sentence case: no uppercase labels, buttons or nav. Don't add a label above a heading unless it says something the heading doesn't, and separate details with commas, not middle dots or spaced dashes.
 
 ## Product model (important)
 
