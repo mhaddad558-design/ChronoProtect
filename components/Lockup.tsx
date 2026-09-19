@@ -63,13 +63,15 @@ export default function Lockup({
         </mask>
       </defs>
 
-      <g mask={`url(#cp-mask-${word})`}>
+      {/* Three layers, so a parent can move them apart for depth (see HeroTilt). */}
+      <g className="cp-lockup__dots" mask={`url(#cp-mask-${word})`}>
         <rect x={VB.x} y={VB.y} width={VB.w} height={VB.h} fill={`url(#cp-halftone-${word})`} />
       </g>
 
       {/* The crest itself, already extracted from the master artwork. */}
-      <image href="/crest.svg" x={VB.x} y={VB.y} width={VB.w} height={VB.h} />
+      <image className="cp-lockup__shield" href="/crest.svg" x={VB.x} y={VB.y} width={VB.w} height={VB.h} />
 
+      <g className="cp-lockup__type">
       <text
         x={CX}
         y={455}
@@ -93,6 +95,7 @@ export default function Lockup({
       >
         {word}
       </text>
+      </g>
     </svg>
   );
 }

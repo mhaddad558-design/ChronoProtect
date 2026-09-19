@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import WatchDiagram, { type DiagramLine } from "./WatchDiagram";
 
 const LINES: Array<{ value: DiagramLine; label: string; says: string }> = [
@@ -24,6 +24,36 @@ const LINES: Array<{ value: DiagramLine; label: string; says: string }> = [
 export default function CoverageExplorer() {
   const [line, setLine] = useState<DiagramLine>("chronoshield");
   const active = LINES.find((l) => l.value === line)!;
+  const stage = useRef<HTMLDivElement>(null);
+
+  // Scroll applies the film: --p runs 0 to 1 as the drawing rises into view,
+  // and runs back if the visitor scrolls up. Under reduced motion it stays at
+  // 1, the finished drawing.
+  useEffect(() => {
+    const el = stage.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const box = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const progress = (vh * 0.95 - box.top) / (vh * 0.55);
+      el.style.setProperty("--p", Math.max(0, Math.min(1, progress)).toFixed(3));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
     <figure className="cp-explorer">
@@ -41,8 +71,8 @@ export default function CoverageExplorer() {
         ))}
       </div>
 
-      <div className="cp-explorer__stage">
-        <WatchDiagram line={line} id="home-coverage" height={440} />
+      <div className="cp-explorer__stage" ref={stage}>
+        <WatchDiagram line={line} id="home-coverage" height={440} reveal />
       </div>
 
       <figcaption className="cp-explorer__caption" aria-live="polite">

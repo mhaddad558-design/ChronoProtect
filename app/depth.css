@@ -544,6 +544,53 @@
   background: var(--cp-border);
 }
 
+/* ---------- motion: only ever in answer to the visitor ---------- */
+
+/*
+ * Hero crest. HeroTilt writes --mx and --my (-1 to 1) from the pointer; at
+ * rest both are 0, so every rule here resolves to no movement. The badge tilts
+ * a little and its three layers move by different amounts — dots least,
+ * lettering most — so it reads as a layered object rather than a flat mark.
+ */
+.cp-tilt {
+  --mx: 0;
+  --my: 0;
+  perspective: 900px;
+}
+
+.cp-tilt > svg {
+  transform: rotateY(calc(var(--mx) * 7deg)) rotateX(calc(var(--my) * -7deg));
+  will-change: transform;
+}
+
+.cp-tilt .cp-lockup__dots {
+  transform: translate(calc(var(--mx) * -10px), calc(var(--my) * -10px));
+}
+
+.cp-tilt .cp-lockup__shield {
+  transform: translate(calc(var(--mx) * 4px), calc(var(--my) * 4px));
+}
+
+.cp-tilt .cp-lockup__type {
+  transform: translate(calc(var(--mx) * 14px), calc(var(--my) * 14px));
+}
+
+/* The halo behind the crest drifts the other way, adding a fourth depth. */
+.cp-tilt.cp-halftone::before {
+  transform: translate(calc(var(--mx) * -22px), calc(var(--my) * -22px));
+}
+
+/*
+ * Film applied by scroll. --p (0 to 1) is set on an ancestor; each covered
+ * part carries --i, its place in the order case, bezel, lugs, bracelet
+ * outward, clasp. A part fills once --p passes it, so the film spreads out
+ * from the case. Default --p is 1: without script the drawing is complete.
+ */
+.cp-wd--reveal .cp-wd__film {
+  fill-opacity: clamp(0, calc(var(--p, 1) * 8.5 - var(--i, 0)), 1);
+  stroke-opacity: clamp(0.35, calc(var(--p, 1) * 8.5 - var(--i, 0)), 1);
+}
+
 /* ---------- configurator options with a picture ---------- */
 
 /* Two classes, so it outranks .cp-kit__option { display: block } in the

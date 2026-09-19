@@ -31,7 +31,7 @@ const ring = (outer: number, inner: number) => `${circle(outer)}${circle(inner)}
 
 /** Three-piece Oyster rows, tapering away from the lugs. */
 function linkRows(direction: 1 | -1, start: number, rows: number) {
-  const out: Array<{ x: number; y: number; w: number; key: string }> = [];
+  const out: Array<{ x: number; y: number; w: number; key: string; row: number }> = [];
   for (let i = 0; i < rows; i++) {
     const width = 72 - i * 2.4;
     const top = direction === -1 ? start - (i + 1) * 24 + 4 : start + i * 24;
@@ -39,7 +39,7 @@ function linkRows(direction: 1 | -1, start: number, rows: number) {
     const piece = width * 0.31;
     const gap = (width - piece * 3) / 2;
     [0, 1, 2].forEach((p) =>
-      out.push({ x: left + p * (piece + gap), y: top, w: piece, key: `${direction}-${i}-${p}` })
+      out.push({ x: left + p * (piece + gap), y: top, w: piece, key: `${direction}-${i}-${p}`, row: i })
     );
   }
   return out;
@@ -60,8 +60,14 @@ export default function WatchDiagram({
   id,
   height = 420,
   title,
+  reveal = false,
 }: {
   line: DiagramLine;
+  /**
+   * Let a parent apply the film progressively by setting --p (0 to 1) on an
+   * ancestor. Without it, or before --p is set, the drawing is complete.
+   */
+  reveal?: boolean;
   /** Unique per page: it namespaces the hatch pattern. */
   id: string;
   height?: number;
@@ -69,14 +75,18 @@ export default function WatchDiagram({
 }) {
   const covered = COVERS[line];
   const hatch = `${id}-hatch`;
-  const zone = (z: Zone) =>
+  const zone = (z: Zone, order = 0) =>
     covered.has(z)
-      ? { className: "cp-wd__film", fill: `url(#${hatch})` }
+      ? {
+          className: "cp-wd__film",
+          fill: `url(#${hatch})`,
+          style: { ["--i" as string]: order } as React.CSSProperties,
+        }
       : { className: "cp-wd__bare" };
 
   return (
     <svg
-      className="cp-wd"
+      className={reveal ? "cp-wd cp-wd--reveal" : "cp-wd"}
       viewBox="0 0 200 520"
       height={height}
       width={Math.round((height * 200) / 520)}
@@ -97,22 +107,22 @@ export default function WatchDiagram({
 
       {/* Bracelet */}
       {[...TOP_LINKS, ...BOTTOM_LINKS].map((l) => (
-        <rect key={l.key} x={l.x} y={l.y} width={l.w} height={20} rx={2} {...zone("links")} />
+        <rect key={l.key} x={l.x} y={l.y} width={l.w} height={20} rx={2} {...zone("links", 3 + l.row * 0.7)} />
       ))}
 
       {/* Clasp, with the coronet engraving as two strokes */}
-      <rect x={70} y={476} width={60} height={34} rx={5} {...zone("clasp")} />
+      <rect x={70} y={476} width={60} height={34} rx={5} {...zone("clasp", 7)} />
       <path d="M92,489 L96,483 L100,488 L104,483 L108,489 M92,493 L108,493" className="cp-wd__detail" />
 
       {/* Lugs sit behind the case */}
       {LUGS.map((d) => (
-        <path key={d} d={d} {...zone("lugs")} />
+        <path key={d} d={d} {...zone("lugs", 2)} />
       ))}
 
       {/* Case: an opaque disc first so overlapping lug fills don't show through */}
       <path d={circle(R_CASE)} className="cp-wd__ground" />
-      <path d={ring(R_CASE, R_BEZEL)} fillRule="evenodd" {...zone("case")} />
-      <path d={ring(R_BEZEL, R_BEZEL_IN)} fillRule="evenodd" {...zone("bezel")} />
+      <path d={ring(R_CASE, R_BEZEL)} fillRule="evenodd" {...zone("case", 0)} />
+      <path d={ring(R_BEZEL, R_BEZEL_IN)} fillRule="evenodd" {...zone("bezel", 1)} />
 
       {/* Crown — never filmed */}
       <rect x={172} y={251} width={11} height={18} rx={2} className="cp-wd__bare" />

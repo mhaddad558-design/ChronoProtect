@@ -2,6 +2,7 @@ import Link from "next/link";
 import CoverageExplorer from "@/components/CoverageExplorer";
 import FinishSwatch from "@/components/FinishSwatch";
 import HeroReference from "@/components/HeroReference";
+import HeroTilt from "@/components/HeroTilt";
 import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
@@ -48,10 +49,13 @@ export default async function HomePage() {
             <HeroReference referenceCount={referenceCount} />
           </div>
 
-          {/* The crest sits on its own halftone, taken from the logo artwork. */}
-          <div className="cp-pagehead__mark cp-halftone">
+          {/*
+            The crest sits on its own halftone, taken from the logo artwork, and
+            tilts toward the pointer so its layers separate.
+          */}
+          <HeroTilt className="cp-pagehead__mark cp-halftone">
             <Lockup word="PROTECT+" label={SITE_NAME} height={340} />
-          </div>
+          </HeroTilt>
         </div>
       </section>
 
