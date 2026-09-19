@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import WatchDiagram, { type DiagramLine } from "./WatchDiagram";
+import WatchDiagram, { MODEL_NAMES, type DiagramLine, type WatchModel } from "./WatchDiagram";
+
+const MODELS: WatchModel[] = ["submariner", "gmt", "daytona", "datejust"];
 
 const LINES: Array<{ value: DiagramLine; label: string; says: string }> = [
   {
@@ -23,6 +25,7 @@ const LINES: Array<{ value: DiagramLine; label: string; says: string }> = [
  */
 export default function CoverageExplorer() {
   const [line, setLine] = useState<DiagramLine>("chronoshield");
+  const [model, setModel] = useState<WatchModel>("submariner");
   const active = LINES.find((l) => l.value === line)!;
   const stage = useRef<HTMLDivElement>(null);
 
@@ -72,7 +75,21 @@ export default function CoverageExplorer() {
       </div>
 
       <div className="cp-explorer__stage" ref={stage}>
-        <WatchDiagram line={line} id="home-coverage" height={440} reveal />
+        <WatchDiagram line={line} model={model} id="home-coverage" height={440} reveal />
+      </div>
+
+      <div className="cp-explorer__models" role="group" aria-label="Show it on">
+        {MODELS.map((m) => (
+          <button
+            key={m}
+            type="button"
+            aria-pressed={model === m}
+            className="cp-explorer__model"
+            onClick={() => setModel(m)}
+          >
+            {MODEL_NAMES[m]}
+          </button>
+        ))}
       </div>
 
       <figcaption className="cp-explorer__caption" aria-live="polite">

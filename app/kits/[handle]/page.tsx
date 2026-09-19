@@ -83,7 +83,12 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
           <div className="cp-coverage">
             <div className="cp-halftone">
-              <WatchDiagram line={handle} id={`kit-${handle}`} height={400} />
+              <WatchDiagram
+                line={handle}
+                model={handle === "chronoshield" ? "submariner" : "daytona"}
+                id={`kit-${handle}`}
+                height={400}
+              />
             </div>
           <dl className="cp-spec">
             {copy.covers.map((area) => (

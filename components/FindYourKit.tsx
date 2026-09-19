@@ -20,7 +20,7 @@ import {
 import { BRACELETS, STUDIO_EMAIL } from "@/lib/site";
 import BraceletLinks from "./BraceletLinks";
 import FinishSwatch from "./FinishSwatch";
-import WatchDiagram from "./WatchDiagram";
+import WatchDiagram, { modelForFamily } from "./WatchDiagram";
 
 /**
  * Step 5 asks which bracelet, and only ChronoShield+ needs it — ChronoGuard+
@@ -306,7 +306,15 @@ export default function FindYourKit() {
           note={coverageNote}
           options={COVERAGE_CHOICES.filter((c) => coverageOptions.includes(c.value)).map((c) => ({
             ...c,
-            visual: <WatchDiagram line={c.value} id={`kit-step-${c.value}`} height={112} />,
+            visual: (
+              <WatchDiagram
+                line={c.value}
+                model={fitment ? modelForFamily(fitment.family.model) : undefined}
+                bracelet={selectableBracelets.length === 1 ? selectableBracelets[0] : undefined}
+                id={`kit-step-${c.value}`}
+                height={112}
+              />
+            ),
           }))}
           selected={coverage}
           onSelect={(v) => {

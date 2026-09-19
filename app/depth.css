@@ -79,21 +79,138 @@
   stroke-width: 1;
 }
 
-.cp-wd__tick {
-  stroke: rgba(255, 255, 255, 0.35);
+/* Bezel graduations, drawn over the bezel's film. */
+.cp-wd__scale {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.cp-wd__scale-shape {
+  fill: rgba(255, 255, 255, 0.12);
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 0.8;
+}
+
+.cp-wd__scale-dot {
+  fill: rgba(255, 255, 255, 0.7);
+}
+
+/* GMT bezel numerals: bold and slightly condensed, like the engraved insert */
+.cp-wd__numeral {
+  fill: rgba(255, 255, 255, 0.88);
+  font-family: var(--cp-ui);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.cp-wd__numeral--tachy {
+  font-size: 5.6px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.cp-wd__lume {
+  fill: var(--cp-ink);
+}
+
+.cp-wd__knurl {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 0.5;
+}
+
+.cp-wd__flute {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.32);
   stroke-width: 0.6;
 }
 
-.cp-wd__marker {
+/* The GMT's second colour: a light wash over the day half of the insert. */
+.cp-wd__tone {
+  fill: rgba(255, 255, 255, 0.08);
+  stroke: none;
+}
+
+/* Dial furniture. */
+.cp-wd__track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 0.5;
+}
+
+.cp-wd__plot {
+  fill: rgba(255, 255, 255, 0.1);
   stroke: var(--cp-ink-soft);
-  stroke-width: 1.6;
+  stroke-width: 0.9;
+}
+
+.cp-wd__bar {
+  fill: none;
+  stroke: var(--cp-ink-soft);
+  stroke-width: 3;
   stroke-linecap: round;
 }
 
-.cp-wd__hand {
-  stroke: var(--cp-ink);
-  stroke-width: 1.8;
+.cp-wd__date {
+  fill: rgba(255, 255, 255, 0.12);
+  stroke: var(--cp-ink-soft);
+  stroke-width: 0.7;
+}
+
+.cp-wd__cyclops {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 0.8;
+}
+
+.cp-wd__subdial {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 0.9;
+}
+
+.cp-wd__subhand {
+  stroke: var(--cp-ink-soft);
+  stroke-width: 1;
   stroke-linecap: round;
+}
+
+/* Hands. */
+.cp-wd__hand {
+  fill: none;
+  stroke: var(--cp-ink);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.cp-wd__hand-thin {
+  fill: none;
+  stroke: var(--cp-ink);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+}
+
+.cp-wd__hand-ring {
+  fill: var(--cp-bg-deep);
+  stroke: var(--cp-ink);
+  stroke-width: 1;
+}
+
+.cp-wd__hand-shape {
+  fill: var(--cp-bg-deep);
+  stroke: var(--cp-ink);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.cp-wd__hand-tip {
+  fill: var(--cp-bronze);
+  stroke: none;
 }
 
 .cp-wd__pin {
@@ -144,6 +261,37 @@
 .cp-explorer__option[aria-pressed="true"] {
   background: var(--cp-bronze);
   color: var(--cp-bg-deep);
+}
+
+/* The model row: quieter than the line switch, and free to wrap on a phone. */
+.cp-explorer__models {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.cp-explorer__model {
+  min-height: 44px;
+  padding: 0 0.15rem;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: var(--cp-ink-soft);
+  font-family: var(--cp-ui);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.cp-explorer__model:hover {
+  color: var(--cp-ink);
+}
+
+.cp-explorer__model[aria-pressed="true"] {
+  color: var(--cp-ink);
+  border-bottom-color: var(--cp-bronze);
 }
 
 /* Concentric rings behind the drawing, like the engraving on a caseback. */
@@ -609,6 +757,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cp-explorer__option,
+  .cp-explorer__model,
   .cp-card {
     transition: none;
   }

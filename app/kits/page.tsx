@@ -38,7 +38,12 @@ export default async function KitsPage() {
               <article className="cp-card" key={handle}>
                 <div className="cp-card__visual">
                   <Lockup word={copy.lockupWord} label={copy.title} height={150} />
-                  <WatchDiagram line={handle} id={`kits-${handle}`} height={200} />
+                  <WatchDiagram
+                    line={handle}
+                    model={handle === "chronoshield" ? "submariner" : "daytona"}
+                    id={`kits-${handle}`}
+                    height={200}
+                  />
                 </div>
                 <p className="cp-eyebrow" style={{ marginBottom: "0.75rem" }}>
                   {copy.coverage}
