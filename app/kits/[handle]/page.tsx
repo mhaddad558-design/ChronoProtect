@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BraceletLinks from "@/components/BraceletLinks";
+import FinishSwatch from "@/components/FinishSwatch";
 import Lockup from "@/components/Lockup";
+import WatchDiagram from "@/components/WatchDiagram";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
 import { formatMoney, getProduct, startingPrice } from "@/lib/shopify/products";
@@ -78,7 +81,11 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
         <div className="cp-shell">
           <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>What the kit covers.</h2>
 
-          <dl className="cp-spec" style={{ marginTop: "2.5rem" }}>
+          <div className="cp-coverage">
+            <div className="cp-halftone">
+              <WatchDiagram line={handle} id={`kit-${handle}`} height={400} />
+            </div>
+          <dl className="cp-spec">
             {copy.covers.map((area) => (
               <div className="cp-spec__row" key={area}>
                 <dt>Covered</dt>
@@ -92,6 +99,7 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
               </div>
             ))}
           </dl>
+          </div>
 
           {handle === "chronoguard" ? (
             <p className="cp-note" style={{ marginTop: "2rem" }}>
@@ -141,6 +149,9 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
               return (
                 <article className="cp-card" key={finish.name}>
+                  <div style={{ marginBottom: "1.25rem" }}>
+                    <FinishSwatch finish={finish.name} id={`kit-${handle}-${finish.name}`} size={96} />
+                  </div>
                   <h3 style={{ fontSize: "1.35rem" }}>{finish.name}</h3>
                   <p>{finish.detail}</p>
                   <div className="cp-card__foot">
@@ -171,14 +182,18 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
               </h2>
               <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
                 Every link is covered individually, so the template and the price both follow the
-                bracelet. The configurator asks which one you are on.
+                bracelet. The configurator reads it from your reference, and only asks when that
+                reference was sold on more than one.
               </p>
             </div>
 
             <dl className="cp-spec" style={{ marginTop: "3rem" }}>
               {BRACELETS.map((option) => (
-                <div className="cp-spec__row" key={option.name}>
-                  <dt>{option.name}</dt>
+                <div className="cp-spec__row cp-spec__row--visual" key={option.name}>
+                  <dt>
+                    <BraceletLinks kind={option.name} height={52} />
+                    {option.name}
+                  </dt>
                   <dd>{option.detail}</dd>
                 </div>
               ))}

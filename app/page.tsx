@@ -1,4 +1,6 @@
 import Link from "next/link";
+import CoverageExplorer from "@/components/CoverageExplorer";
+import FinishSwatch from "@/components/FinishSwatch";
 import HeroReference from "@/components/HeroReference";
 import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
@@ -6,10 +8,30 @@ import { allFamilies } from "@/lib/fitment";
 import { getKitProducts, startingPrice } from "@/lib/shopify/products";
 import { FINISHES, KIT_COPY, SITE_NAME } from "@/lib/site";
 
+const STEPS = [
+  {
+    title: "Give us the reference",
+    body: "The configurator checks the number against the fitment catalog and confirms the model before you go any further.",
+  },
+  {
+    title: "Choose coverage and finish",
+    body: "Case to clasp or case and clasp, in gloss or stealth. Five questions, no account required.",
+  },
+  {
+    title: "We cut the kit",
+    body: "Nothing is stocked. The template for your reference is cut after the order lands, so the tolerances stay tight.",
+  },
+  {
+    title: "Apply it, or let the studio",
+    body: "Kits arrive pre-cut and ready for a careful hour at home. A studio partner can fit it instead.",
+  },
+];
+
 export default async function HomePage() {
   const products = await getKitProducts();
   const families = allFamilies();
-  const referenceCount = families.reduce((total, family) => total + family.references.length, 0);
+  const references = families.flatMap((family) => family.references);
+  const referenceCount = references.length;
 
   return (
     <>
@@ -26,7 +48,8 @@ export default async function HomePage() {
             <HeroReference referenceCount={referenceCount} />
           </div>
 
-          <div className="cp-pagehead__mark">
+          {/* The crest sits on its own halftone, taken from the logo artwork. */}
+          <div className="cp-pagehead__mark cp-halftone">
             <Lockup word="PROTECT+" label={SITE_NAME} height={340} />
           </div>
         </div>
@@ -38,12 +61,12 @@ export default async function HomePage() {
             Cover the whole watch, or only where it takes the wear.
           </h2>
 
-          <div className="cp-grid cp-grid--2">
-            <KitCard
-              handle="chronoshield"
-              price={startingPrice(products.chronoshield)}
-            />
-            <KitCard handle="chronoguard" price={startingPrice(products.chronoguard)} />
+          <div className="cp-lines">
+            <CoverageExplorer />
+            <div className="cp-lines__cards">
+              <KitCard handle="chronoshield" price={startingPrice(products.chronoshield)} />
+              <KitCard handle="chronoguard" price={startingPrice(products.chronoguard)} />
+            </div>
           </div>
         </div>
       </section>
@@ -52,28 +75,18 @@ export default async function HomePage() {
         <div className="cp-shell">
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>Four steps, one reference.</h2>
 
-          <div className="cp-grid cp-grid--3">
-            <Step
-              no="01"
-              title="Give us the reference"
-              body="The configurator checks the number against the fitment catalog and confirms the model before you go any further."
-            />
-            <Step
-              no="02"
-              title="Choose coverage and finish"
-              body="Case to clasp or case and clasp, in gloss or stealth. Five questions, no account required."
-            />
-            <Step
-              no="03"
-              title="We cut the kit"
-              body="Nothing is stocked. The template for your reference is cut after the order lands, so the tolerances stay tight."
-            />
-            <Step
-              no="04"
-              title="Apply it, or let the studio"
-              body="Kits arrive pre-cut and ready for a careful hour at home. A studio partner can fit it instead."
-            />
-          </div>
+          {/* A genuine sequence, so it is numbered and joined by a rail. */}
+          <ol className="cp-steps">
+            {STEPS.map((step, i) => (
+              <li className="cp-steps__item" key={step.title}>
+                <span className="cp-steps__node" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -89,20 +102,30 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <dl className="cp-spec" style={{ marginTop: "3rem" }}>
+          <div className="cp-finishes">
             {FINISHES.map((finish) => (
-              <div className="cp-spec__row" key={finish.name}>
-                <dt>{finish.name}</dt>
-                <dd>{finish.detail}</dd>
-              </div>
+              <article className="cp-finish" key={finish.name}>
+                <FinishSwatch finish={finish.name} id={`home-${finish.name}`} />
+                <div>
+                  <h3>{finish.name}</h3>
+                  <p>{finish.detail}</p>
+                </div>
+              </article>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 
       <section className="cp-band">
-        <div className="cp-shell">
-          <div className="cp-measure">
+        <div className="cp-shell cp-wall">
+          {/* Every reference in the catalog, as the texture behind the panel. */}
+          <div className="cp-wall__refs" aria-hidden="true">
+            {references.map((ref) => (
+              <span key={ref}>{ref.endsWith("-") ? `${ref}…` : ref}</span>
+            ))}
+          </div>
+
+          <div className="cp-wall__panel">
             <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
               {referenceCount} references, checked before you order.
             </h2>
@@ -110,7 +133,7 @@ export default async function HomePage() {
               Submariner, GMT-Master II, Daytona, and Datejust. Templates are drawn per reference,
               because a Cerachrom bezel and an engraved one are not the same cut.
             </p>
-            <p style={{ marginTop: "2rem" }}>
+            <p style={{ marginTop: "2rem", marginBottom: 0 }}>
               <Link href="/catalog" className="cp-btn cp-btn--ghost">
                 Browse the catalog
               </Link>
@@ -119,7 +142,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="cp-band cp-band--mid">
+      <section className="cp-band cp-band--mid cp-watermark">
         <div className="cp-shell cp-measure">
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
             Start with the number on the case.
@@ -161,15 +184,5 @@ function KitCard({
         </p>
       </div>
     </article>
-  );
-}
-
-function Step({ no, title, body }: { no: string; title: string; body: string }) {
-  return (
-    <div className="cp-step">
-      <span className="cp-step__no">{no}</span>
-      <h3>{title}</h3>
-      <p>{body}</p>
-    </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Lockup from "@/components/Lockup";
+import WatchDiagram from "@/components/WatchDiagram";
 import Price from "@/components/Price";
 import { getKitProducts, startingPrice } from "@/lib/shopify/products";
 import { KIT_COPY } from "@/lib/site";
@@ -35,8 +36,9 @@ export default async function KitsPage() {
             const copy = KIT_COPY[handle];
             return (
               <article className="cp-card" key={handle}>
-                <div style={{ marginBottom: "1.5rem" }}>
+                <div className="cp-card__visual">
                   <Lockup word={copy.lockupWord} label={copy.title} height={150} />
+                  <WatchDiagram line={handle} id={`kits-${handle}`} height={200} />
                 </div>
                 <p className="cp-eyebrow" style={{ marginBottom: "0.75rem" }}>
                   {copy.coverage}

@@ -1,0 +1,568 @@
+/* =====================================================================
+ * Depth
+ *
+ * Every section gets depth from something in the brand's own world rather
+ * than from effects: the watch drawing, the crest's halftone, finish samples,
+ * bracelet links, the reference numbers themselves. Layering is done with the
+ * three forest tones and hairlines, never drop shadows or gradient washes
+ * (CLAUDE.md). The radial-gradient()s below draw dots and fade a mask; they
+ * are texture, not a colour wash.
+ * ===================================================================== */
+
+/*
+ * Textures and rings deliberately spill past their element. Clip them at the
+ * section edge so they can never push the page sideways. "clip" rather than
+ * "hidden" keeps sticky positioning and focus outlines working.
+ */
+.cp-hero,
+.cp-band {
+  overflow-x: clip;
+}
+
+/* ---------- the crest's halftone, as a texture behind things ---------- */
+
+.cp-halftone {
+  position: relative;
+  isolation: isolate;
+}
+
+.cp-halftone::before {
+  content: "";
+  position: absolute;
+  /* Wide enough that the dots show around the crest, not only behind it. */
+  inset: -32%;
+  z-index: -1;
+  background-image: radial-gradient(circle, rgba(188, 144, 108, 0.42) 1.3px, transparent 2px);
+  background-size: 14px 14px;
+  -webkit-mask-image: radial-gradient(closest-side, #000 45%, transparent 96%);
+  mask-image: radial-gradient(closest-side, #000 45%, transparent 96%);
+  pointer-events: none;
+}
+
+/* ---------- watch diagram ---------- */
+
+.cp-wd {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.cp-wd__film {
+  stroke: var(--cp-bronze);
+  stroke-width: 1;
+}
+
+.cp-wd__tint {
+  fill: var(--cp-bronze);
+  fill-opacity: 0.14;
+}
+
+.cp-wd__hatchline {
+  stroke: var(--cp-bronze);
+  stroke-width: 1.1;
+  stroke-opacity: 0.75;
+}
+
+.cp-wd__bare {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 1;
+}
+
+.cp-wd__ground {
+  fill: var(--cp-bg-deep);
+}
+
+.cp-wd__dial {
+  fill: var(--cp-bg-deep);
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 1;
+}
+
+.cp-wd__tick {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 0.6;
+}
+
+.cp-wd__marker {
+  stroke: var(--cp-ink-soft);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.cp-wd__hand {
+  stroke: var(--cp-ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.cp-wd__pin {
+  fill: var(--cp-bronze);
+}
+
+.cp-wd__detail {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 0.8;
+}
+
+/* ---------- coverage explorer ---------- */
+
+.cp-explorer {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+}
+
+.cp-explorer__switch {
+  display: inline-flex;
+  padding: 4px;
+  border: 1px solid var(--cp-border);
+  border-radius: 999px;
+  background: var(--cp-bg-deep);
+}
+
+.cp-explorer__option {
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--cp-ink-soft);
+  font-family: var(--cp-ui);
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cp-explorer__option:hover {
+  color: var(--cp-ink);
+}
+
+.cp-explorer__option[aria-pressed="true"] {
+  background: var(--cp-bronze);
+  color: var(--cp-bg-deep);
+}
+
+/* Concentric rings behind the drawing, like the engraving on a caseback. */
+.cp-explorer__stage {
+  position: relative;
+  isolation: isolate;
+  padding: 1rem 3rem;
+}
+
+.cp-explorer__stage::before,
+.cp-explorer__stage::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  border-radius: 50%;
+  border: 1px solid var(--cp-border);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cp-explorer__stage::before {
+  width: min(22rem, 86vw);
+  height: min(22rem, 86vw);
+  background-image: radial-gradient(circle, rgba(188, 144, 108, 0.22) 1px, transparent 1.6px);
+  background-size: 12px 12px;
+}
+
+.cp-explorer__stage::after {
+  width: min(26rem, 94vw);
+  height: min(26rem, 94vw);
+  border-style: dashed;
+  opacity: 0.6;
+}
+
+.cp-explorer__caption {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  max-width: 32ch;
+  color: var(--cp-ink-soft);
+  font-size: 0.95rem;
+}
+
+.cp-explorer__key {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--cp-bronze);
+  background-image: repeating-linear-gradient(45deg, var(--cp-bronze) 0 1px, transparent 1px 4px);
+}
+
+/* ---------- two lines: drawing beside the cards ---------- */
+
+.cp-lines {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.cp-lines__cards {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (max-width: 56rem) {
+  .cp-lines {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* A machined inner line on cards: detail without a shadow. */
+.cp-card {
+  outline: 1px solid rgba(255, 255, 255, 0.045);
+  outline-offset: -8px;
+  transition: border-color 0.2s ease;
+}
+
+.cp-card:hover,
+.cp-card:focus-within {
+  border-color: rgba(188, 144, 108, 0.55);
+}
+
+/* ---------- how it works: a real sequence, so a rail joins it ---------- */
+
+.cp-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  list-style: none;
+  margin: 3.5rem 0 0;
+  padding: 0;
+}
+
+.cp-steps::before {
+  content: "";
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  height: 1px;
+  background: var(--cp-border);
+}
+
+.cp-steps__item {
+  position: relative;
+}
+
+.cp-steps__node {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--cp-bronze);
+  border-radius: 50%;
+  background: var(--cp-bg-deep);
+  color: var(--cp-bronze);
+  font-family: var(--cp-display);
+  font-size: 0.95rem;
+}
+
+.cp-steps__item h3 {
+  font-size: 1.35rem;
+  margin: 1.4rem 0 0.5rem;
+}
+
+.cp-steps__item p {
+  margin: 0;
+  color: var(--cp-ink-faint);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 56rem) {
+  .cp-steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.25rem;
+  }
+
+  .cp-steps::before {
+    top: 1.25rem;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+
+  .cp-steps__item {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: 1.25rem;
+  }
+
+  .cp-steps__item h3 {
+    margin-top: 0.35rem;
+  }
+
+  .cp-steps__item p {
+    grid-column: 2;
+  }
+}
+
+/* ---------- finishes: seen, not just described ---------- */
+
+.cp-finishes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.cp-finish {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.75rem;
+  border: 1px solid var(--cp-border);
+  border-radius: 8px;
+  background: var(--cp-bg-panel);
+}
+
+.cp-finish h3 {
+  font-size: 1.5rem;
+  margin: 0 0 0.4rem;
+}
+
+.cp-finish p {
+  margin: 0;
+  color: var(--cp-ink-faint);
+  font-size: 0.95rem;
+}
+
+.cp-swatch__case {
+  fill: var(--cp-bg-deep);
+  stroke: rgba(255, 255, 255, 0.28);
+}
+
+/* Gloss reads bright and reflective; Stealth reads dark and grainy. */
+.cp-swatch__bezel {
+  fill: rgba(255, 255, 255, 0.1);
+  stroke: rgba(255, 255, 255, 0.32);
+}
+
+.cp-swatch--stealth .cp-swatch__bezel {
+  fill: rgba(0, 0, 0, 0.35);
+  stroke: rgba(255, 255, 255, 0.14);
+}
+
+.cp-swatch__grain {
+  fill: rgba(255, 255, 255, 0.16);
+}
+
+.cp-swatch__tick {
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 0.8;
+}
+
+.cp-swatch--stealth .cp-swatch__tick {
+  stroke: rgba(255, 255, 255, 0.28);
+}
+
+.cp-swatch__crystal {
+  fill: var(--cp-bg-deep);
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+.cp-swatch__shine {
+  fill: rgba(255, 255, 255, 0.55);
+}
+
+.cp-swatch__shine--soft {
+  fill: rgba(255, 255, 255, 0.22);
+}
+
+/* ---------- fitment: the references themselves as the texture ---------- */
+
+.cp-wall {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(1rem, 4vw, 3rem);
+}
+
+.cp-wall__refs {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 0.55rem 1.5rem;
+  padding: 1rem 0 1rem 38%;
+  font-family: var(--cp-ref);
+  font-size: 0.95rem;
+  color: var(--cp-sage);
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+}
+
+.cp-wall__panel {
+  position: relative;
+  max-width: 36rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border: 1px solid var(--cp-border);
+  border-radius: 8px;
+  background: var(--cp-bg-panel);
+  outline: 1px solid rgba(255, 255, 255, 0.045);
+  outline-offset: -8px;
+}
+
+@media (max-width: 56rem) {
+  .cp-wall__refs {
+    padding-left: 0;
+    align-content: flex-end;
+  }
+
+  .cp-wall__panel {
+    margin-bottom: 9rem;
+  }
+}
+
+/* ---------- closing band: the crest, cropped, behind the call to action ---------- */
+
+.cp-watermark {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.cp-watermark::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -4rem;
+  top: 50%;
+  width: min(34rem, 80vw);
+  aspect-ratio: 526 / 662;
+  transform: translateY(-50%) rotate(-8deg);
+  background: url("/crest.svg") no-repeat center / contain;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+/* ---------- kit pages ---------- */
+
+.cp-coverage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 56rem) {
+  .cp-coverage {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+
+  .cp-coverage .cp-spec {
+    width: 100%;
+  }
+}
+
+.cp-card__visual {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.cp-links__outer {
+  fill: rgba(255, 255, 255, 0.06);
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 1;
+}
+
+.cp-links__centre {
+  fill: rgba(188, 144, 108, 0.22);
+  stroke: var(--cp-bronze);
+  stroke-width: 1;
+}
+
+.cp-spec__row--visual {
+  align-items: center;
+}
+
+.cp-spec__row--visual dt {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ---------- installation: numbered because it is a sequence ---------- */
+
+.cp-spec--steps {
+  counter-reset: cp-step;
+  border-top: 0;
+}
+
+.cp-spec--steps .cp-spec__row {
+  position: relative;
+  padding-left: 3.5rem;
+  border-bottom: 0;
+}
+
+.cp-spec--steps .cp-spec__row::before {
+  counter-increment: cp-step;
+  content: counter(cp-step);
+  position: absolute;
+  left: 0;
+  top: 0.8rem;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--cp-bronze);
+  border-radius: 50%;
+  background: var(--cp-bg-mid);
+  color: var(--cp-bronze);
+  font-family: var(--cp-display);
+  font-size: 0.9rem;
+}
+
+.cp-spec--steps .cp-spec__row:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 1.125rem;
+  top: 3.05rem;
+  bottom: -0.8rem;
+  width: 1px;
+  background: var(--cp-border);
+}
+
+/* ---------- configurator options with a picture ---------- */
+
+/* Two classes, so it outranks .cp-kit__option { display: block } in the
+   configurator stylesheet, which loads after this one. */
+.cp-kit__option.cp-kit__option--visual {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.cp-kit__option-visual {
+  display: grid;
+  place-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-explorer__option,
+  .cp-card {
+    transition: none;
+  }
+}

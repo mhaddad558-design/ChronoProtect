@@ -33,7 +33,7 @@ export default async function InstallationPage() {
           <p className="cp-eyebrow">Applying it yourself</p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>What the hour looks like.</h2>
 
-          <dl className="cp-spec" style={{ marginTop: "2.5rem" }}>
+          <dl className="cp-spec cp-spec--steps" style={{ marginTop: "2.5rem" }}>
             <Row label="Before you start">
               Work on a clean, lint-free surface in good light, with the bracelet off the wrist. Take
               spring bars out only if you are comfortable doing so — the kit does not require it.

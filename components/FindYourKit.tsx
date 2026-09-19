@@ -18,6 +18,9 @@ import {
   type BraceletName,
 } from "@/lib/fitment";
 import { BRACELETS, STUDIO_EMAIL } from "@/lib/site";
+import BraceletLinks from "./BraceletLinks";
+import FinishSwatch from "./FinishSwatch";
+import WatchDiagram from "./WatchDiagram";
 
 /**
  * Step 5 asks which bracelet, and only ChronoShield+ needs it — ChronoGuard+
@@ -286,8 +289,8 @@ export default function FindYourKit() {
         <Choice
           heading="Which finish do you prefer?"
           options={[
-            { value: "Gloss", title: "Gloss", detail: "Optically invisible. Reflects light like the polished metal beneath." },
-            { value: "Stealth", title: "Stealth", detail: "A deep satin finish that quiets the whole watch." },
+            { value: "Gloss", title: "Gloss", detail: "Optically invisible. Reflects light like the polished metal beneath.", visual: <FinishSwatch finish="Gloss" id="kit-step-gloss" size={60} /> },
+            { value: "Stealth", title: "Stealth", detail: "A deep satin finish that quiets the whole watch.", visual: <FinishSwatch finish="Stealth" id="kit-step-stealth" size={60} /> },
           ]}
           selected={finish}
           onSelect={(v) => {
@@ -301,7 +304,10 @@ export default function FindYourKit() {
         <Choice
           heading="How much of the watch do you want protected?"
           note={coverageNote}
-          options={COVERAGE_CHOICES.filter((c) => coverageOptions.includes(c.value))}
+          options={COVERAGE_CHOICES.filter((c) => coverageOptions.includes(c.value)).map((c) => ({
+            ...c,
+            visual: <WatchDiagram line={c.value} id={`kit-step-${c.value}`} height={112} />,
+          }))}
           selected={coverage}
           onSelect={(v) => {
             const next = v as Coverage;
@@ -333,7 +339,12 @@ export default function FindYourKit() {
           // never offered a President.
           options={BRACELETS.filter((b) =>
             selectableBracelets.some((name) => name === b.name)
-          ).map((b) => ({ value: b.name, title: b.name, detail: b.detail }))}
+          ).map((b) => ({
+            value: b.name,
+            title: b.name,
+            detail: b.detail,
+            visual: <BraceletLinks kind={b.name} height={42} />,
+          }))}
           selected={bracelet}
           onSelect={(v) => {
             setBracelet(v as Bracelet);
@@ -437,7 +448,8 @@ function Choice({
   heading: string;
   /** Shown above the options when the catalog has narrowed them. */
   note?: string;
-  options: Array<{ value: string; title: string; detail: string }>;
+  /** An optional picture shown beside the words: a finish, coverage or bracelet. */
+  options: Array<{ value: string; title: string; detail: string; visual?: React.ReactNode }>;
   selected: string | null;
   onSelect: (value: string) => void;
 }) {
@@ -451,10 +463,24 @@ function Choice({
           type="button"
           onClick={() => onSelect(o.value)}
           aria-pressed={selected === o.value}
-          className="cp-kit__option"
+          className={o.visual ? "cp-kit__option cp-kit__option--visual" : "cp-kit__option"}
         >
-          <span className="cp-kit__option-title">{o.title}</span>
-          <span className="cp-kit__option-detail">{o.detail}</span>
+          {o.visual ? (
+            <>
+              <span className="cp-kit__option-visual" aria-hidden="true">
+                {o.visual}
+              </span>
+              <span>
+                <span className="cp-kit__option-title">{o.title}</span>
+                <span className="cp-kit__option-detail">{o.detail}</span>
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="cp-kit__option-title">{o.title}</span>
+              <span className="cp-kit__option-detail">{o.detail}</span>
+            </>
+          )}
         </button>
       ))}
     </section>
