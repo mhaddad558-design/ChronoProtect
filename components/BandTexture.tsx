@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export type TextureKind = "guilloche" | "brushing" | "moire" | "crest";
+export type TextureKind = "guilloche" | "brushing" | "moire" | "crest" | "engine";
 
 /**
  * Engraved line work behind a band, drawn the way a dial or a caseback is
@@ -89,6 +89,7 @@ export default function BandTexture({
           {kind === "brushing" ? <Brushing id={id} /> : null}
           {kind === "moire" ? <Moire /> : null}
           {kind === "crest" ? <Crest /> : null}
+          {kind === "engine" ? <Crest withMark={false} /> : null}
         </g>
       </svg>
     </div>
@@ -127,7 +128,7 @@ function Guilloche() {
  * engraved arcs around it, so the mark reads as struck into the pattern rather
  * than laid on top. The crest drifts against the lines as the pointer moves.
  */
-function Crest() {
+function Crest({ withMark = true }: { withMark?: boolean } = {}) {
   const arcs = Array.from({ length: 72 }, (_, i) => {
     const a = (i / 72) * Math.PI * 2;
     const inner = i % 6 === 0 ? 190 : 210;
@@ -144,14 +145,16 @@ function Crest() {
       <g className="cp-texture__near">
         <path d={arcs.join(" ")} />
       </g>
-      <image
-        className="cp-texture__crest"
-        href="/crest.svg"
-        x={600 - 143}
-        y={350 - 180}
-        width={286}
-        height={360}
-      />
+      {withMark ? (
+        <image
+          className="cp-texture__crest"
+          href="/crest.svg"
+          x={600 - 143}
+          y={350 - 180}
+          width={286}
+          height={360}
+        />
+      ) : null}
     </>
   );
 }

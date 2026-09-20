@@ -184,8 +184,9 @@ export default function FindYourKit() {
 
   return (
     <div className="cp-kit">
-      {/* The crest struck into engraved line work, behind the questions. */}
-      <BandTexture kind="crest" id="kit-bg" />
+      {/* Engraved line work behind the questions. No crest here: the header
+          already carries one, and two of them read as a mistake. */}
+      <BandTexture kind="engine" id="kit-bg" />
       <header className="cp-kit__progress">
         <span className="cp-kit__step">
           {step < RESULT
