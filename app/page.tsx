@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BandTexture from "@/components/BandTexture";
 import CoverageExplorer from "@/components/CoverageExplorer";
 import FinishSwatch from "@/components/FinishSwatch";
 import HeroReference from "@/components/HeroReference";
@@ -60,6 +61,7 @@ export default async function HomePage() {
       </section>
 
       <section className="cp-band cp-band--mid">
+        <BandTexture kind="guilloche" id="home-coverage-bg" />
         <div className="cp-shell">
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
             Cover the whole watch, or only where it takes the wear.
@@ -76,6 +78,7 @@ export default async function HomePage() {
       </section>
 
       <section className="cp-band">
+        <BandTexture kind="brushing" id="home-steps-bg" rotate={-4} />
         <div className="cp-shell">
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>Four steps, one reference.</h2>
 
@@ -95,6 +98,7 @@ export default async function HomePage() {
       </section>
 
       <section className="cp-band cp-band--mid">
+        <BandTexture kind="moire" id="home-finishes-bg" />
         <div className="cp-shell">
           <div className="cp-measure">
             <p className="cp-eyebrow">Finishes</p>
@@ -147,6 +151,7 @@ export default async function HomePage() {
       </section>
 
       <section className="cp-band cp-band--mid cp-watermark">
+        <BandTexture kind="crest" id="home-close-bg" />
         <div className="cp-shell cp-measure">
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
             Start with the number on the case.

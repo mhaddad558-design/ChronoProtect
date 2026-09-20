@@ -20,6 +20,7 @@ import {
 import { BRACELETS, STUDIO_EMAIL } from "@/lib/site";
 import BraceletLinks from "./BraceletLinks";
 import FinishSwatch from "./FinishSwatch";
+import BandTexture from "./BandTexture";
 import WatchDiagram, { modelForFamily } from "./WatchDiagram";
 
 /**
@@ -183,6 +184,8 @@ export default function FindYourKit() {
 
   return (
     <div className="cp-kit">
+      {/* The crest struck into engraved line work, behind the questions. */}
+      <BandTexture kind="crest" id="kit-bg" />
       <header className="cp-kit__progress">
         <span className="cp-kit__step">
           {step < RESULT

@@ -762,3 +762,100 @@
     transition: none;
   }
 }
+
+/* ------------------------------------------------------- engraved backdrops */
+
+/*
+ * Line work behind a band. It is drawn, never filled, and it answers the
+ * pointer through --tx/--ty written by BandTexture. Kept faint: it is the
+ * surface a section sits on, not an image on the page.
+ */
+.cp-texture {
+  --tx: 0;
+  --ty: 0;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at center, #000 42%, transparent 78%);
+}
+
+.cp-texture svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cp-texture circle,
+.cp-texture path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+/* The two layers move by different amounts; that difference is the effect. */
+.cp-texture__far {
+  stroke: var(--cp-sage);
+  stroke-width: 0.9;
+  opacity: 0.26;
+  transform: translate3d(calc(var(--tx) * 26px), calc(var(--ty) * 18px), 0);
+  transition: transform 0.35s ease-out;
+}
+
+.cp-texture__near {
+  stroke: var(--cp-bronze);
+  stroke-width: 1;
+  opacity: 0.3;
+  transform: translate3d(calc(var(--tx) * -34px), calc(var(--ty) * -24px), 0);
+  transition: transform 0.35s ease-out;
+}
+
+.cp-texture--brushing .cp-texture__far {
+  opacity: 0.2;
+}
+
+.cp-texture--moire .cp-texture__near,
+.cp-texture--moire .cp-texture__far {
+  opacity: 0.22;
+}
+
+/* The crest sits between the two layers and moves least, so it holds still
+   while the engraving slides behind it. */
+.cp-texture__crest {
+  opacity: 0.2;
+  transform: translate3d(calc(var(--tx) * -8px), calc(var(--ty) * -6px), 0);
+  transition: transform 0.35s ease-out;
+}
+
+/* A band carrying a texture becomes the positioning context for it. */
+.cp-band,
+.cp-kit {
+  position: relative;
+  isolation: isolate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-texture__far,
+  .cp-texture__near,
+  .cp-texture__crest {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Behind a form the same pattern has to stand further back, or it competes
+   with the field the visitor is typing into. */
+.cp-kit .cp-texture {
+  mask-image: radial-gradient(circle at center, #000 30%, transparent 62%);
+}
+
+.cp-kit .cp-texture__crest {
+  opacity: 0.1;
+}
+
+.cp-kit .cp-texture__near {
+  opacity: 0.18;
+}
+
+.cp-kit .cp-texture__far {
+  opacity: 0.16;
+}
