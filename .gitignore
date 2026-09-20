@@ -17,3 +17,6 @@ yarn-error.log*
 *.tsbuildinfo
 tsconfig.tsbuildinfo
 next-env.d.ts.timestamp
+
+# Photographs waiting to be used; not part of the site
+media-inbox/
