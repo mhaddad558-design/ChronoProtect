@@ -151,7 +151,7 @@ export default async function HomePage() {
       </section>
 
       <section className="cp-band cp-band--mid cp-watermark">
-        <BandTexture kind="crest" id="home-close-bg" />
+        <BandTexture kind="engine" id="home-close-bg" />
         <div className="cp-shell cp-measure">
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
             Start with the number on the case.
