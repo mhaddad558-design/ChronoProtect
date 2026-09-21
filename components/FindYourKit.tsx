@@ -22,6 +22,7 @@ import BraceletLinks from "./BraceletLinks";
 import FinishSwatch from "./FinishSwatch";
 import BandTexture from "./BandTexture";
 import WatchDiagram, { modelForFamily } from "./WatchDiagram";
+import WatchPicker from "./WatchPicker";
 
 /**
  * Step 5 asks which bracelet, and only ChronoShield+ needs it — ChronoGuard+
@@ -73,6 +74,8 @@ const COVERAGE_CHOICES: Array<{ value: Coverage; title: string; detail: string }
 export default function FindYourKit() {
   const [step, setStep] = useState<Step>(1);
   const [reference, setReference] = useState("");
+  /** Step 1 opens on pictures; typing a number is the alternative, not the default. */
+  const [entry, setEntry] = useState<"pick" | "type">("pick");
   const [usage, setUsage] = useState<Usage | null>(null);
   const [finish, setFinish] = useState<Finish | null>(null);
   const [coverage, setCoverage] = useState<Coverage | null>(null);
@@ -121,6 +124,18 @@ export default function FindYourKit() {
       ? `This reference is on ${braceletOptions.join(" or ")}, which ChronoShield+ does not cover. ChronoGuard+ protects the case and clasp and leaves the strap alone.`
       : undefined;
 
+
+  /**
+   * A Datejust is catalogued by prefix, so picking one by sight identifies the
+   * family rather than a single reference. The studio confirms the exact number
+   * from the photographs before cutting, and the order says so.
+   */
+  const identifiedOnly = reference.trim().endsWith("-");
+  const orderReference =
+    identifiedOnly && fitment
+      ? `${fitment.family.model} — reference to confirm`
+      : reference.trim();
+
   /**
    * Step 5 only appears when it has something to decide: ChronoGuard+ never
    * needs it, and neither does a reference that came on a single bracelet.
@@ -162,7 +177,7 @@ export default function FindYourKit() {
     setError(null);
     try {
       const selection: KitSelection = {
-        reference: reference.trim(),
+        reference: orderReference,
         model: fitment ? `${fitment.family.model}${fitment.family.series ? ` (${fitment.family.series})` : ""}` : undefined,
         usage: usage ? USAGE_LABELS[usage] : undefined,
         finish,
@@ -203,7 +218,17 @@ export default function FindYourKit() {
         </div>
       </header>
 
-      {step === 1 && (
+      {step === 1 && entry === "pick" && (
+        <WatchPicker
+          onPick={(ref) => {
+            setReference(ref);
+            setStep(2);
+          }}
+          onTypeInstead={() => setEntry("type")}
+        />
+      )}
+
+      {step === 1 && entry === "type" && (
         <section>
           <h1>Which watch are you protecting?</h1>
           <p>Enter the reference number so we can check it against the fitment catalog.</p>
@@ -263,6 +288,11 @@ export default function FindYourKit() {
               <button type="submit">Continue</button>
             )}
           </form>
+          <p className="cp-kit__aside">
+            <button type="button" className="cp-pick__link" onClick={() => setEntry("pick")}>
+              Pick it from pictures instead
+            </button>
+          </p>
           <p className="cp-kit__aside">
             Reference not listed? <a href="/catalog">Search the fitment catalog</a> or{" "}
             <a href="mailto:chronoshield@polsia.app?subject=ChronoShield%2B%20fit%20guide">
@@ -388,7 +418,11 @@ export default function FindYourKit() {
           </p>
 
           <dl>
-            <Row label="Reference" value={reference.toUpperCase()} mono />
+            {identifiedOnly ? (
+              <Row label="Watch" value={fitment ? fitment.family.model : "Identified from pictures"} />
+            ) : (
+              <Row label="Reference" value={reference.toUpperCase()} mono />
+            )}
             {fitment && <Row label="Model" value={fitment.family.model} />}
             {usage && <Row label="Wear pattern" value={USAGE_LABELS[usage]} />}
             <Row label="Finish" value={finish} />

@@ -1,0 +1,333 @@
+{
+  "updated": "2026-09-21",
+  "note": "What each reference looks like on the wrist, so an owner can point at theirs instead of hunting for the number. metal, bezel and dial are drawn as a thumbnail; hands and markers follow the metal, as they do on the real watches.",
+  "looks": [
+    {
+      "ref": "124060",
+      "metal": "steel",
+      "bezel": "black",
+      "detail": "No date"
+    },
+    {
+      "ref": "126610LN",
+      "metal": "steel",
+      "bezel": "black"
+    },
+    {
+      "ref": "126610LV",
+      "metal": "steel",
+      "bezel": "green",
+      "nickname": "Starbucks"
+    },
+    {
+      "ref": "126613LN",
+      "metal": "two-tone",
+      "bezel": "black"
+    },
+    {
+      "ref": "126613LB",
+      "metal": "two-tone",
+      "bezel": "blue",
+      "dial": "blue"
+    },
+    {
+      "ref": "126618LN",
+      "metal": "yellow",
+      "bezel": "black"
+    },
+    {
+      "ref": "126618LB",
+      "metal": "yellow",
+      "bezel": "blue",
+      "dial": "blue"
+    },
+    {
+      "ref": "126619",
+      "metal": "white",
+      "bezel": "blue",
+      "nickname": "Smurf",
+      "dial": "blue"
+    },
+    {
+      "ref": "14060M",
+      "metal": "steel",
+      "bezel": "black",
+      "detail": "No date"
+    },
+    {
+      "ref": "114060",
+      "metal": "steel",
+      "bezel": "black",
+      "detail": "No date"
+    },
+    {
+      "ref": "16610",
+      "metal": "steel",
+      "bezel": "black"
+    },
+    {
+      "ref": "16610LV",
+      "metal": "steel",
+      "bezel": "green",
+      "nickname": "Kermit"
+    },
+    {
+      "ref": "16613",
+      "metal": "two-tone",
+      "bezel": "blue",
+      "dial": "blue"
+    },
+    {
+      "ref": "16618",
+      "metal": "yellow",
+      "bezel": "blue",
+      "dial": "blue"
+    },
+    {
+      "ref": "116610LN",
+      "metal": "steel",
+      "bezel": "black"
+    },
+    {
+      "ref": "116610LV",
+      "metal": "steel",
+      "bezel": "green",
+      "nickname": "Hulk",
+      "dial": "green"
+    },
+    {
+      "ref": "116613LN",
+      "metal": "two-tone",
+      "bezel": "black"
+    },
+    {
+      "ref": "116613LB",
+      "metal": "two-tone",
+      "bezel": "blue",
+      "dial": "blue"
+    },
+    {
+      "ref": "116618LN",
+      "metal": "yellow",
+      "bezel": "black"
+    },
+    {
+      "ref": "116618LB",
+      "metal": "yellow",
+      "bezel": "blue",
+      "dial": "blue"
+    },
+    {
+      "ref": "116619",
+      "metal": "white",
+      "bezel": "blue",
+      "nickname": "Smurf",
+      "dial": "blue"
+    },
+    {
+      "ref": "116710LN",
+      "metal": "steel",
+      "bezel": "black"
+    },
+    {
+      "ref": "116710BLNR",
+      "metal": "steel",
+      "bezel": "blue-black",
+      "nickname": "Batman"
+    },
+    {
+      "ref": "126710BLRO",
+      "metal": "steel",
+      "bezel": "blue-red",
+      "nickname": "Pepsi"
+    },
+    {
+      "ref": "126710BLNR",
+      "metal": "steel",
+      "bezel": "blue-black",
+      "nickname": "Batgirl"
+    },
+    {
+      "ref": "126710GRNR",
+      "metal": "steel",
+      "bezel": "grey-black"
+    },
+    {
+      "ref": "126720VTNR",
+      "metal": "steel",
+      "bezel": "green-black",
+      "nickname": "Sprite",
+      "detail": "Crown on the left"
+    },
+    {
+      "ref": "116713LN",
+      "metal": "two-tone",
+      "bezel": "black"
+    },
+    {
+      "ref": "126713GRNR",
+      "metal": "two-tone",
+      "bezel": "grey-black"
+    },
+    {
+      "ref": "116718LN",
+      "metal": "yellow",
+      "bezel": "black"
+    },
+    {
+      "ref": "126715CHNR",
+      "metal": "everose",
+      "bezel": "brown-black",
+      "nickname": "Root beer"
+    },
+    {
+      "ref": "126711CHNR",
+      "metal": "everose-steel",
+      "bezel": "brown-black",
+      "nickname": "Root beer"
+    },
+    {
+      "ref": "116719BLRO",
+      "metal": "white",
+      "bezel": "blue-red"
+    },
+    {
+      "ref": "126719BLRO",
+      "metal": "white",
+      "bezel": "blue-red"
+    },
+    {
+      "ref": "116500LN",
+      "metal": "steel",
+      "bezel": "black"
+    },
+    {
+      "ref": "126500LN",
+      "metal": "steel",
+      "bezel": "black"
+    },
+    {
+      "ref": "116506",
+      "metal": "platinum",
+      "bezel": "brown",
+      "detail": "Ice blue dial",
+      "dial": "ice"
+    },
+    {
+      "ref": "126506",
+      "metal": "platinum",
+      "bezel": "brown",
+      "detail": "Ice blue dial",
+      "dial": "ice"
+    },
+    {
+      "ref": "116515LN",
+      "metal": "everose",
+      "bezel": "black",
+      "detail": "Rubber strap"
+    },
+    {
+      "ref": "126515LN",
+      "metal": "everose",
+      "bezel": "black",
+      "detail": "Rubber strap"
+    },
+    {
+      "ref": "116519LN",
+      "metal": "white",
+      "bezel": "black",
+      "detail": "Rubber strap"
+    },
+    {
+      "ref": "126529LN",
+      "metal": "white",
+      "bezel": "black",
+      "detail": "Rubber strap"
+    },
+    {
+      "ref": "116520",
+      "metal": "steel",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "116503",
+      "metal": "two-tone",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "116523",
+      "metal": "two-tone",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "126503",
+      "metal": "two-tone",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "116505",
+      "metal": "everose",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "116508",
+      "metal": "yellow",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "116518",
+      "metal": "yellow",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "116528",
+      "metal": "yellow",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "126508",
+      "metal": "yellow",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "116509",
+      "metal": "white",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "126509",
+      "metal": "white",
+      "bezel": "engraved"
+    },
+    {
+      "ref": "116519",
+      "metal": "white",
+      "bezel": "engraved",
+      "detail": "Rubber strap"
+    },
+    {
+      "ref": "116589",
+      "metal": "white",
+      "bezel": "diamond",
+      "detail": "Rubber strap"
+    },
+    {
+      "ref": "116595",
+      "metal": "everose",
+      "bezel": "diamond",
+      "detail": "Diamond-paved"
+    },
+    {
+      "ref": "116598",
+      "metal": "yellow",
+      "bezel": "diamond",
+      "detail": "Diamond-paved"
+    },
+    {
+      "ref": "116599",
+      "metal": "white",
+      "bezel": "diamond",
+      "detail": "Diamond-paved"
+    }
+  ]
+}

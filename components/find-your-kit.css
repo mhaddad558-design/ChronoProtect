@@ -272,3 +272,112 @@
     transition: none;
   }
 }
+
+/* ------------------------------------------------- picking a watch by sight */
+
+.cp-pick__models {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin: 2rem 0 1.5rem;
+}
+
+.cp-pick__model {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 1rem 0.5rem 1.25rem;
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  background: var(--cp-bg-mid);
+  color: var(--cp-ink);
+  font-family: var(--cp-ui);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cp-pick__model:hover,
+.cp-pick__model:focus-visible {
+  border-color: var(--cp-bronze);
+  background: var(--cp-bg-deep);
+}
+
+.cp-pick__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.6rem;
+  margin: 2rem 0 1.5rem;
+}
+
+/* One row per watch: the picture, what it is, and the number in the corner for
+   anyone who does happen to know it. */
+.cp-pick__look {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 0.15rem 0.85rem;
+  min-height: 44px;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  background: var(--cp-bg-mid);
+  color: var(--cp-ink);
+  font-family: var(--cp-ui);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cp-pick__look:hover,
+.cp-pick__look:focus-visible {
+  border-color: var(--cp-bronze);
+  background: var(--cp-bg-deep);
+}
+
+.cp-pick__look svg {
+  grid-row: 1 / 3;
+  width: 54px;
+  height: 54px;
+}
+
+.cp-pick__look-name {
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.cp-pick__look-detail {
+  color: var(--cp-ink-faint);
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.cp-pick__look-detail:empty {
+  display: none;
+}
+
+.cp-pick__look-ref {
+  grid-column: 2;
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ref);
+  font-size: 0.75rem;
+}
+
+.cp-pick__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cp-bronze);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-pick__model,
+  .cp-pick__look {
+    transition: none;
+  }
+}
