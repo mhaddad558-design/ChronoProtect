@@ -330,5 +330,98 @@
       "bezel": "diamond",
       "detail": "Diamond-paved"
     }
+  ],
+  "datejust": [
+    {
+      "id": "steel-smooth-silver",
+      "metal": "steel",
+      "bezel": "smooth",
+      "dial": "silver"
+    },
+    {
+      "id": "steel-smooth-blue",
+      "metal": "steel",
+      "bezel": "smooth",
+      "dial": "blue"
+    },
+    {
+      "id": "steel-smooth-black",
+      "metal": "steel",
+      "bezel": "smooth",
+      "dial": "black"
+    },
+    {
+      "id": "white-fluted-slate",
+      "metal": "white-rolesor",
+      "bezel": "fluted",
+      "dial": "slate",
+      "nickname": "Wimbledon"
+    },
+    {
+      "id": "white-fluted-mint",
+      "metal": "white-rolesor",
+      "bezel": "fluted",
+      "dial": "mint"
+    },
+    {
+      "id": "white-fluted-blue",
+      "metal": "white-rolesor",
+      "bezel": "fluted",
+      "dial": "blue"
+    },
+    {
+      "id": "white-fluted-black",
+      "metal": "white-rolesor",
+      "bezel": "fluted",
+      "dial": "black"
+    },
+    {
+      "id": "yellow-fluted-champagne",
+      "metal": "yellow-rolesor",
+      "bezel": "fluted",
+      "dial": "champagne"
+    },
+    {
+      "id": "yellow-fluted-black",
+      "metal": "yellow-rolesor",
+      "bezel": "fluted",
+      "dial": "black"
+    },
+    {
+      "id": "yellow-fluted-blue",
+      "metal": "yellow-rolesor",
+      "bezel": "fluted",
+      "dial": "blue"
+    },
+    {
+      "id": "everose-fluted-chocolate",
+      "metal": "everose-rolesor",
+      "bezel": "fluted",
+      "dial": "chocolate"
+    },
+    {
+      "id": "everose-fluted-silver",
+      "metal": "everose-rolesor",
+      "bezel": "fluted",
+      "dial": "silver"
+    },
+    {
+      "id": "gold-fluted-champagne",
+      "metal": "yellow",
+      "bezel": "fluted",
+      "dial": "champagne",
+      "sizes": [
+        36
+      ]
+    },
+    {
+      "id": "rose-fluted-sundust",
+      "metal": "everose",
+      "bezel": "fluted",
+      "dial": "sundust",
+      "sizes": [
+        36
+      ]
+    }
   ]
 }

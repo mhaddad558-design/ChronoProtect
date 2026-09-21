@@ -17,7 +17,8 @@ import {
   suggestReferences,
   type BraceletName,
 } from "@/lib/fitment";
-import { isLefty } from "@/lib/looks";
+import { DATEJUST_LOOKS, DATEJUST_SIZES, isLefty } from "@/lib/looks";
+import { datejustNote } from "./LookChip";
 import { BRACELETS, STUDIO_EMAIL } from "@/lib/site";
 import BraceletLinks from "./BraceletLinks";
 import FinishSwatch from "./FinishSwatch";
@@ -78,6 +79,7 @@ type Saved = {
   at: number;
   step: Step;
   reference: string;
+  lookNote?: string | null;
   finish: Finish | null;
   coverage: Coverage | null;
   bracelet: Bracelet | null;
@@ -119,6 +121,8 @@ export default function FindYourKit({
   const [entry, setEntry] = useState<"pick" | "type">("pick");
   /** Set when the home page already asked which watch it is. */
   const [pickedModel, setPickedModel] = useState<string | null>(null);
+  /** For a watch picked by look rather than number: what it looks like. */
+  const [lookNote, setLookNote] = useState<string | null>(null);
   const [finish, setFinish] = useState<Finish | null>(null);
   const [coverage, setCoverage] = useState<Coverage | null>(null);
   const [bracelet, setBracelet] = useState<Bracelet | null>(null);
@@ -133,6 +137,10 @@ export default function FindYourKit({
     const ref = params.get("ref");
     if (ref) {
       setReference(ref);
+      // A Datejust chosen from the catalog arrives with its look.
+      const look = DATEJUST_LOOKS.find((l) => l.id === params.get("look"));
+      const size = DATEJUST_SIZES.find((s) => s.token === ref);
+      if (look && size) setLookNote(datejustNote(look, size.label));
       if (!isBespoke(ref)) setStep(2);
       return;
     }
@@ -148,6 +156,7 @@ export default function FindYourKit({
     const saved = readSaved();
     if (!saved) return;
     setReference(saved.reference);
+    setLookNote(saved.lookNote ?? null);
     setFinish(saved.finish);
     setCoverage(saved.coverage);
     setBracelet(saved.bracelet);
@@ -160,12 +169,12 @@ export default function FindYourKit({
   useEffect(() => {
     if (step < 2 || !reference) return;
     try {
-      const saved: Saved = { at: Date.now(), step, reference, finish, coverage, bracelet, application };
+      const saved: Saved = { at: Date.now(), step, reference, lookNote, finish, coverage, bracelet, application };
       window.localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
     } catch {
       // Storage is unavailable; the flow still works, it just will not resume.
     }
-  }, [step, reference, finish, coverage, bracelet, application]);
+  }, [step, reference, lookNote, finish, coverage, bracelet, application]);
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -211,7 +220,7 @@ export default function FindYourKit({
   const identifiedOnly = reference.trim().endsWith("-");
   const orderReference =
     identifiedOnly && fitment
-      ? `${fitment.family.model} — reference to confirm`
+      ? `${fitment.family.model} — reference to confirm${lookNote ? ` (${lookNote})` : ""}`
       : reference.trim();
 
   /**
@@ -304,6 +313,7 @@ export default function FindYourKit({
                 clearSaved();
                 setResumed(false);
                 setStep(1);
+                setLookNote(null);
                 setReference("");
                 setFinish(null);
                 setCoverage(null);
@@ -323,8 +333,9 @@ export default function FindYourKit({
       {step === 1 && entry === "pick" && (
         <WatchPicker
           initialModel={pickedModel}
-          onPick={(ref) => {
+          onPick={(ref, note) => {
             setReference(ref);
+            setLookNote(note ?? null);
             setStep(2);
           }}
           onTypeInstead={() => setEntry("type")}
@@ -488,7 +499,7 @@ export default function FindYourKit({
 
           <dl>
             {identifiedOnly ? (
-              <Row label="Watch" value={fitment ? fitment.family.model : "Identified from pictures"} />
+              <Row label="Watch" value={lookNote ?? (fitment ? fitment.family.model : "Identified from pictures")} />
             ) : (
               <Row label="Reference" value={reference.toUpperCase()} mono />
             )}
@@ -548,6 +559,7 @@ export default function FindYourKit({
               clearSaved();
               setResumed(false);
               setStep(1);
+              setLookNote(null);
               setReference("");
               setFinish(null);
               setCoverage(null);

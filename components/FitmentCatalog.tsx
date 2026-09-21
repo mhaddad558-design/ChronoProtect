@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { allFamilies, type FitmentFamily } from "@/lib/fitment";
-import { lookFor } from "@/lib/looks";
+import { DATEJUST_LOOKS, DATEJUST_SIZES, lookFor } from "@/lib/looks";
 import { STUDIO_EMAIL } from "@/lib/site";
-import LookChip, { describeLook, lookDetail } from "./LookChip";
+import LookChip, { datejustDetail, describeDatejust, describeLook, lookDetail } from "./LookChip";
 import WatchDiagram, { modelForFamily } from "./WatchDiagram";
 
 function normalize(value: string): string {
@@ -143,6 +143,12 @@ export default function FitmentCatalog() {
               })}
             </ul>
 
+            {/* The Datejust has no single look per number, so it shows the looks
+                owners actually wear, each one a way into the configurator. */}
+            {family.matchType === "prefix" && !normalized ? (
+              <DatejustLooks family={family} />
+            ) : null}
+
             {family.matchType === "prefix" ? (
               <p className="cp-cat__prefix">
                 Matched on the leading digits. Rolex appends dial and bezel digits per
@@ -172,6 +178,35 @@ export default function FitmentCatalog() {
         ) : null}
       </div>
     </>
+  );
+}
+
+function DatejustLooks({ family }: { family: FitmentFamily }) {
+  const size = DATEJUST_SIZES.find((s) => family.references.some((ref) => ref === s.token));
+  if (!size) return null;
+  const looks = DATEJUST_LOOKS.filter((l) => !l.sizes || l.sizes.includes(size.size));
+
+  return (
+    <ul className="cp-cat__looks">
+      {looks.map((look) => (
+        <li key={look.id}>
+          <a
+            className="cp-cat__look"
+            href={`/find-your-kit?ref=${encodeURIComponent(size.token)}&look=${encodeURIComponent(look.id)}`}
+          >
+            <LookChip
+              metal={look.metal}
+              bezel={look.bezel}
+              dial={look.dial}
+              model="datejust"
+              id={`cat-dj-${size.size}-${look.id}`}
+            />
+            <span className="cp-cat__look-name">{describeDatejust(look)}</span>
+            <span className="cp-cat__look-detail">{datejustDetail(look)}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }
 

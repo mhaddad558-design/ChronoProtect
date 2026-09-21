@@ -1,9 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { LOOKS as ALL_LOOKS, type Look } from "@/lib/looks";
+import { DATEJUST_LOOKS, DATEJUST_SIZES, LOOKS as ALL_LOOKS, type DatejustLook, type Look } from "@/lib/looks";
 import { findFitment } from "@/lib/fitment";
-import LookChip, { ERA_ORDER, METAL_ORDER, describeLook, era, lookDetail } from "./LookChip";
+import LookChip, {
+  ERA_ORDER,
+  METAL_ORDER,
+  datejustDetail,
+  datejustNote,
+  describeDatejust,
+  describeLook,
+  era,
+  lookDetail,
+} from "./LookChip";
 import SpecialRequest from "./SpecialRequest";
 import WatchDiagram, { MODEL_NAMES, modelForFamily, type WatchModel } from "./WatchDiagram";
 
@@ -32,7 +41,8 @@ export default function WatchPicker({
   onTypeInstead,
   initialModel = null,
 }: {
-  onPick: (reference: string) => void;
+  /** The reference, and for a Datejust a description of the look chosen. */
+  onPick: (reference: string, note?: string) => void;
   onTypeInstead: () => void;
   /** A model already chosen elsewhere, e.g. on the home page. */
   initialModel?: string | null;
@@ -42,6 +52,8 @@ export default function WatchPicker({
   );
   /** The way out for anything the catalog does not list. */
   const [asking, setAsking] = useState(false);
+  /** A Datejust look chosen, waiting on its size. */
+  const [djLook, setDjLook] = useState<DatejustLook | null>(null);
 
   // The model can arrive after mount, when the page reads it from the URL.
   useEffect(() => {
@@ -103,31 +115,89 @@ export default function WatchPicker({
     );
   }
 
-  // The Datejust is catalogued by prefix rather than by individual reference,
-  // so it asks for the case size instead of showing a wall of look-alikes.
+  // The Datejust is catalogued by size, not by reference, so it is picked by
+  // look — metal, bezel, dial — and then by size. The look travels with the
+  // order so the studio knows exactly which one to expect.
   if (model === "datejust") {
+    if (!djLook) {
+      return (
+        <section>
+          <h1>Which one looks like yours?</h1>
+          <p>Go by the metal, the bezel and the colour of the dial.</p>
+
+          <div className="cp-pick__grid">
+            {DATEJUST_LOOKS.map((look) => (
+              <button
+                key={look.id}
+                type="button"
+                className="cp-pick__look"
+                onClick={() => {
+                  const sizes = DATEJUST_SIZES.filter(
+                    (s) => !look.sizes || look.sizes.includes(s.size)
+                  );
+                  // One size only: nothing left to ask.
+                  if (sizes.length === 1) {
+                    onPick(sizes[0].token, datejustNote(look, sizes[0].label));
+                    return;
+                  }
+                  setDjLook(look);
+                }}
+              >
+                <LookChip
+                  metal={look.metal}
+                  bezel={look.bezel}
+                  dial={look.dial}
+                  model="datejust"
+                  id={`dj-${look.id}`}
+                />
+                <span className="cp-pick__look-name">{describeDatejust(look)}</span>
+                <span className="cp-pick__look-detail">{datejustDetail(look)}</span>
+              </button>
+            ))}
+
+            <AskCard onClick={() => setAsking(true)} />
+          </div>
+
+          <BackLink onClick={() => setModel(null)} />
+        </section>
+      );
+    }
+
+    const sizes = DATEJUST_SIZES.filter((s) => !djLook.sizes || djLook.sizes.includes(s.size));
     return (
       <section>
         <h1>Which size is it?</h1>
         <p>
-          Measure across the dial, crown not included, or go by feel — the 41 wears noticeably
+          Measure across the dial, crown not included, or go by feel: the 41 wears noticeably
           larger.
         </p>
 
         <div className="cp-pick__grid">
-          {[
-            { ref: "126300", label: "Datejust 41", detail: "41mm, 2016 onward" },
-            { ref: "126200", label: "Datejust 36", detail: "36mm, every year" },
-          ].map((o) => (
-            <button key={o.ref} type="button" className="cp-pick__look" onClick={() => onPick(o.ref)}>
-              <LookChip metal="two-tone" bezel="engraved" model="datejust" id={`dj-${o.ref}`} />
-              <span className="cp-pick__look-name">{o.label}</span>
-              <span className="cp-pick__look-detail">{o.detail}</span>
+          {sizes.map((s) => (
+            <button
+              key={s.token}
+              type="button"
+              className="cp-pick__look"
+              onClick={() => onPick(s.token, datejustNote(djLook, s.label))}
+            >
+              <LookChip
+                metal={djLook.metal}
+                bezel={djLook.bezel}
+                dial={djLook.dial}
+                model="datejust"
+                id={`dj-size-${s.size}`}
+              />
+              <span className="cp-pick__look-name">{s.label}</span>
+              <span className="cp-pick__look-detail">{s.detail}</span>
             </button>
           ))}
         </div>
 
-        <BackLink onClick={() => setModel(null)} />
+        <p className="cp-kit__aside">
+          <button type="button" className="cp-pick__link" onClick={() => setDjLook(null)}>
+            Choose a different Datejust
+          </button>
+        </p>
       </section>
     );
   }
@@ -162,23 +232,26 @@ export default function WatchPicker({
           </button>
         ))}
 
-        <button
-          type="button"
-          className="cp-pick__look cp-pick__look--ask"
-          onClick={() => setAsking(true)}
-        >
-          <span className="cp-pick__ask-mark" aria-hidden="true">
-            ?
-          </span>
-          <span className="cp-pick__look-name">Mine is not here</span>
-          <span className="cp-pick__look-detail">
-            An unusual metal, a rare reference, something modified
-          </span>
-        </button>
+        <AskCard onClick={() => setAsking(true)} />
       </div>
 
       <BackLink onClick={() => setModel(null)} />
     </section>
+  );
+}
+
+/** The last card in every list: the way out for anything the catalog lacks. */
+function AskCard({ onClick }: { onClick: () => void }) {
+  return (
+    <button type="button" className="cp-pick__look cp-pick__look--ask" onClick={onClick}>
+      <span className="cp-pick__ask-mark" aria-hidden="true">
+        ?
+      </span>
+      <span className="cp-pick__look-name">Mine is not here</span>
+      <span className="cp-pick__look-detail">
+        An unusual metal, a rare reference, something modified
+      </span>
+    </button>
   );
 }
 
