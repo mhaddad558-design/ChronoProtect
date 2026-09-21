@@ -124,6 +124,21 @@ const DIAL_INK: Record<string, string> = {
   mop: "#ECE8EE",
 };
 
+/**
+ * A metal lit from the upper left: mixed toward white for the highlight and
+ * toward black for the shadow. Everything reflective is built from this, so a
+ * steel case and a gold one catch the light the same way.
+ */
+function shade(hex: string, amount: number): string {
+  const n = parseInt(hex.slice(1), 16);
+  const channel = (v: number) =>
+    Math.round(amount >= 0 ? v + (255 - v) * amount : v * (1 + amount));
+  const r = channel((n >> 16) & 255);
+  const g = channel((n >> 8) & 255);
+  const b = channel(n & 255);
+  return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
+}
+
 /** Dials pale enough that white hands would vanish on them. */
 const LIGHT_DIALS = new Set(["silver", "white", "mint", "champagne", "sundust", "ice", "mop", "meteorite"]);
 
@@ -205,22 +220,75 @@ export default function LookChip({
         <clipPath id={`${id}-r`}>
           <rect x="24" y="0" width="24" height="48" />
         </clipPath>
+        {/* Polished metal: a bright highlight upper left, shadow lower right,
+            and a second catch of light at the far edge. */}
+        <Polish id={`${id}-m`} ink={caseInk} />
+        {accent ? <Polish id={`${id}-a`} ink={accent} /> : null}
+        <Polish id={`${id}-bm`} ink={bezelMetalInk} />
+        {/* Ceramic: glossier and darker than metal, one bright band only. */}
+        <Gloss id={`${id}-bl`} ink={left || "#1C211F"} />
+        <Gloss id={`${id}-br`} ink={right || "#1C211F"} />
+        {/* A sunburst dial: bright at the centre, falling away to the edge. */}
+        <radialGradient id={`${id}-d`} cx="0.42" cy="0.4" r="0.7">
+          <stop offset="0" stopColor={shade(dialInk, lightDial ? 0.25 : 0.18)} />
+          <stop offset="0.6" stopColor={dialInk} />
+          <stop offset="1" stopColor={shade(dialInk, -0.35)} />
+        </radialGradient>
+        {/* Rubber is matte: a soft sheen and nothing more. */}
+        <linearGradient id={`${id}-s`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#1E2220" />
+          <stop offset="0.5" stopColor="#343936" />
+          <stop offset="1" stopColor="#1E2220" />
+        </linearGradient>
+        {/* The glare off the sapphire crystal. */}
+        <linearGradient id={`${id}-g`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.42" />
+          <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+        </linearGradient>
       </defs>
 
       {/* Bracelet stubs above and below: steel outers with precious centre
           links on a two-tone, dark on a rubber strap. */}
       {[0, 38].map((y) => (
         <g key={y}>
-          <rect x="16" y={y} width="16" height="10" rx="2" fill={strap ? "#2A2E2B" : caseInk} />
-          {centreLinks && !strap ? <rect x="21" y={y} width="6" height="10" fill={centreLinks} /> : null}
+          <rect
+            x="16"
+            y={y}
+            width="16"
+            height="10"
+            rx="2"
+            fill={strap ? `url(#${id}-s)` : `url(#${id}-m)`}
+          />
+          {centreLinks && !strap ? <rect x="21" y={y} width="6" height="10" fill={`url(#${id}-a)`} /> : null}
+          {/* The seams between links, or between the strap and its keeper */}
+          {[3.3, 6.6].map((o) => (
+            <line
+              key={o}
+              x1="16.5"
+              y1={y + o}
+              x2="31.5"
+              y2={y + o}
+              stroke="#0B110D"
+              strokeOpacity={strap ? 0.35 : 0.22}
+              strokeWidth="0.45"
+            />
+          ))}
+          {/* The outer links' edges, where the brushing meets the polish */}
+          {!strap ? (
+            <>
+              <line x1="20.8" y1={y + 0.5} x2="20.8" y2={y + 9.5} stroke="#0B110D" strokeOpacity="0.18" strokeWidth="0.4" />
+              <line x1="27.2" y1={y + 0.5} x2="27.2" y2={y + 9.5} stroke="#0B110D" strokeOpacity="0.18" strokeWidth="0.4" />
+            </>
+          ) : null}
         </g>
       ))}
 
       {/* Case */}
-      <circle cx="24" cy="24" r="20" fill={caseInk} />
+      <circle cx="24" cy="24" r="20" fill={`url(#${id}-m)`} />
       {splitCase && accent ? (
-        <circle cx="24" cy="24" r="20" fill={accent} clipPath={`url(#${id}-r)`} />
+        <circle cx="24" cy="24" r="20" fill={`url(#${id}-a)`} clipPath={`url(#${id}-r)`} />
       ) : null}
+      <circle cx="24" cy="24" r="19.7" fill="none" stroke={shade(caseInk, -0.45)} strokeOpacity="0.55" strokeWidth="0.6" />
       {/* The crown, in the precious metal on a two-tone, on the left on a destro */}
       <rect
         x={lefty ? 1 : 43}
@@ -228,16 +296,16 @@ export default function LookChip({
         width="4"
         height="6"
         rx="1"
-        fill={(splitCase || rolesor) && accent && !lefty ? accent : caseInk}
+        fill={(splitCase || rolesor) && accent && !lefty ? `url(#${id}-a)` : `url(#${id}-m)`}
       />
 
       {/* Bezel */}
       {metalBezel ? (
-        <circle cx="24" cy="24" r="16" fill="none" stroke={bezelMetalInk} strokeWidth="8" />
+        <circle cx="24" cy="24" r="16" fill="none" stroke={`url(#${id}-bm)`} strokeWidth="8" />
       ) : (
         <>
-          <circle cx="24" cy="24" r="16" fill="none" stroke={left} strokeWidth="8" clipPath={`url(#${id}-l)`} />
-          <circle cx="24" cy="24" r="16" fill="none" stroke={right} strokeWidth="8" clipPath={`url(#${id}-r)`} />
+          <circle cx="24" cy="24" r="16" fill="none" stroke={`url(#${id}-bl)`} strokeWidth="8" clipPath={`url(#${id}-l)`} />
+          <circle cx="24" cy="24" r="16" fill="none" stroke={`url(#${id}-br)`} strokeWidth="8" clipPath={`url(#${id}-r)`} />
         </>
       )}
 
@@ -277,8 +345,27 @@ export default function LookChip({
           })
         : null}
 
-      {/* Dial */}
-      <circle cx="24" cy="24" r="12" fill={dialInk} />
+      {/* Dial: a sunburst finish, rays catching the light from the centre */}
+      <circle cx="24" cy="24" r="12" fill={`url(#${id}-d)`} />
+      {dial !== "mop" && dial !== "meteorite"
+        ? Array.from({ length: 24 }, (_, i) => {
+            const [x1, y1] = point(2.5, i * 15);
+            const [x2, y2] = point(11.6, i * 15);
+            return (
+              <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFFFFF" strokeOpacity={lightDial ? 0.1 : 0.06} strokeWidth="0.35" />
+            );
+          })
+        : null}
+      {dial === "meteorite" ? (
+        // Meteorite has a crystalline cross-hatch rather than a sunburst
+        <path
+          d="M15,20 L31,26 M16,27 L30,19 M19,14 L27,34 M14,24 L33,23 M22,13 L25,35"
+          stroke="#FFFFFF"
+          strokeOpacity="0.14"
+          strokeWidth="0.35"
+        />
+      ) : null}
+      <circle cx="24" cy="24" r="11.8" fill="none" stroke="#000000" strokeOpacity="0.35" strokeWidth="0.5" />
       {dial === "mop" ? (
         <>
           <circle cx="21" cy="21" r="6" fill="#D9E6F2" fillOpacity="0.6" />
@@ -323,7 +410,34 @@ export default function LookChip({
         />
       ) : null}
       <circle cx="24" cy="24" r="1.2" fill={handInk} />
+
+      {/* The crystal, catching the light across its upper left */}
+      <path d="M13.6,21.5 A10.6,10.6 0 0 1 26.5,13.7 L25.9,16.2 A8.2,8.2 0 0 0 16,22.1 Z" fill={`url(#${id}-g)`} />
     </svg>
+  );
+}
+
+/** Polished metal in any colour, lit from the upper left. */
+function Polish({ id, ink }: { id: string; ink: string }) {
+  return (
+    <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stopColor={shade(ink, 0.55)} />
+      <stop offset="0.3" stopColor={shade(ink, 0.12)} />
+      <stop offset="0.55" stopColor={shade(ink, -0.18)} />
+      <stop offset="0.78" stopColor={ink} />
+      <stop offset="1" stopColor={shade(ink, 0.3)} />
+    </linearGradient>
+  );
+}
+
+/** Glossy ceramic: darker than metal, with a single bright band. */
+function Gloss({ id, ink }: { id: string; ink: string }) {
+  return (
+    <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stopColor={shade(ink, 0.35)} />
+      <stop offset="0.45" stopColor={ink} />
+      <stop offset="1" stopColor={shade(ink, -0.35)} />
+    </linearGradient>
   );
 }
 
