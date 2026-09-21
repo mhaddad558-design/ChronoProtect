@@ -51,7 +51,6 @@
         "116505",
         "116508",
         "116509",
-        "116518",
         "116520",
         "116523",
         "116528",
@@ -70,14 +69,16 @@
     },
     {
       "model": "Daytona",
-      "series": "Engraved & gem-set bezel, Oysterflex",
+      "series": "Engraved & gem-set bezel, leather or Oysterflex",
       "matchType": "exact",
       "references": [
+        "116518",
         "116519",
         "116589",
         "126589RBR"
       ],
       "bracelets": [
+        "Leather",
         "Oysterflex"
       ],
       "coverage": [

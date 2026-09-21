@@ -10,6 +10,7 @@ import {
 } from "@/lib/shopify/cart";
 import {
   braceletsFor,
+  braceletWords,
   coverageFor,
   findFitment,
   describeFamily,
@@ -208,7 +209,7 @@ export default function FindYourKit({
   const bespoke = useMemo(() => isBespoke(reference), [reference]);
   const coverageNote =
     coverageOptions.length === 1 && coverageOptions[0] === "chronoguard"
-      ? `This reference is on ${braceletOptions.join(" or ")}, which ChronoShield+ does not cover. ChronoGuard+ protects the case and clasp and leaves the strap alone.`
+      ? `This reference is on ${braceletWords(braceletOptions)}, which ChronoShield+ does not cover. ChronoGuard+ protects the case and clasp and leaves the strap alone.`
       : undefined;
 
 

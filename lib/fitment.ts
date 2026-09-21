@@ -6,7 +6,12 @@ import fitmentData from "@/data/fitment.json";
  * ChronoGuard+ has no Bracelet variant in Shopify, so the name never travels
  * there.
  */
-export type BraceletName = "Oyster" | "Jubilee" | "President" | "Oysterflex";
+export type BraceletName = "Oyster" | "Jubilee" | "President" | "Oysterflex" | "Leather";
+
+/** A bracelet as it reads mid-sentence: Rolex names keep their capital, leather does not. */
+export function braceletWords(names: BraceletName[]): string {
+  return names.map((n) => (n === "Leather" ? "leather" : n)).join(" or ");
+}
 
 export type CoverageName = "chronoshield" | "chronoguard";
 

@@ -290,7 +290,8 @@
     {
       "ref": "116518",
       "metal": "yellow",
-      "bezel": "engraved"
+      "bezel": "engraved",
+      "detail": "Leather or rubber strap"
     },
     {
       "ref": "116528",
@@ -316,13 +317,13 @@
       "ref": "116519",
       "metal": "white",
       "bezel": "engraved",
-      "detail": "Rubber strap"
+      "detail": "Leather or rubber strap"
     },
     {
       "ref": "116589",
       "metal": "white",
       "bezel": "diamond",
-      "detail": "Rubber strap"
+      "detail": "Leather or rubber strap"
     },
     {
       "ref": "116595RBOW",

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { allFamilies, type FitmentFamily } from "@/lib/fitment";
+import { allFamilies, braceletWords, type FitmentFamily } from "@/lib/fitment";
 import { DATEJUST_LOOKS, DATEJUST_SIZES, lookFor } from "@/lib/looks";
 import { STUDIO_EMAIL } from "@/lib/site";
 import LookChip, { datejustDetail, describeDatejust, describeLook, lookDetail } from "./LookChip";
@@ -94,7 +94,7 @@ export default function FitmentCatalog() {
               <p className="cp-cat__only">
                 <span className="cp-dot" />
                 {family.coverage[0] === "chronoguard" ? "ChronoGuard+ only" : "ChronoShield+ only"}
-                {family.bracelets?.length ? `, on ${family.bracelets.join(" or ")}` : ""}
+                {family.bracelets?.length ? `, on ${braceletWords(family.bracelets)}` : ""}
               </p>
             ) : null}
 
