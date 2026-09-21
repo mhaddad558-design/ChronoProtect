@@ -873,31 +873,65 @@
 .cp-heropick__models {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.5rem;
-  max-width: 34rem;
+  gap: 0.75rem;
+  max-width: 40rem;
 }
 
+/* Glass, matching the tiles in the configurator: the halftone behind the hero
+   shows through them, which is the point. */
 .cp-heropick__model {
+  position: relative;
   display: grid;
   justify-items: center;
-  gap: 0.35rem;
+  gap: 0.6rem;
   min-height: 44px;
-  padding: 0.85rem 0.35rem 1rem;
-  border: 1px solid var(--cp-border);
-  border-radius: 6px;
-  background: var(--cp-bg-mid);
+  padding: 1.25rem 0.5rem 1.35rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 1px 12px rgba(0, 0, 0, 0.25);
   color: var(--cp-ink);
   font-family: var(--cp-ui);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   text-align: center;
   text-decoration: none;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .cp-heropick__model {
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    backdrop-filter: blur(14px) saturate(130%);
+  }
+}
+
+.cp-heropick__model::before {
+  content: "";
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.02) 60%,
+    transparent 72%
+  );
+  transform: translateX(-18%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
 }
 
 .cp-heropick__model:hover,
 .cp-heropick__model:focus-visible {
-  border-color: var(--cp-bronze);
-  background: var(--cp-bg-deep);
+  border-color: rgba(188, 144, 108, 0.55);
+  background: rgba(255, 255, 255, 0.075);
+  transform: translateY(-2px);
+}
+
+.cp-heropick__model:hover::before,
+.cp-heropick__model:focus-visible::before {
+  transform: translateX(18%);
 }
 
 .cp-heropick__aside {
@@ -925,7 +959,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cp-heropick__model {
+  .cp-heropick__model,
+  .cp-heropick__model::before {
     transition: none;
+    transform: none;
   }
+}
+
+/* The hero's drawings scale with their tiles too. */
+.cp-heropick__model svg.cp-wd {
+  width: auto;
+  height: clamp(104px, 11vw, 150px);
 }

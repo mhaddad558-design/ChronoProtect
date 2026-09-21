@@ -277,31 +277,77 @@
 
 .cp-pick__models {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
   margin: 2rem 0 1.5rem;
 }
 
+@media (max-width: 560px) {
+  .cp-pick__models {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+ * The one place the house rules bend. These tiles are glass: the engraved
+ * line work behind them shows through, the top edge catches light, and a
+ * highlight travels across on hover. Everything else on the site stays flat —
+ * this is the surface you are meant to reach for.
+ */
 .cp-pick__model {
+  position: relative;
   display: grid;
   justify-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   min-height: 44px;
-  padding: 1rem 0.5rem 1.25rem;
-  border: 1px solid var(--cp-border);
-  border-radius: 6px;
-  background: var(--cp-bg-mid);
+  padding: 1.5rem 0.75rem 1.6rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 1px 12px rgba(0, 0, 0, 0.25);
   color: var(--cp-ink);
   font-family: var(--cp-ui);
-  font-size: 0.95rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .cp-pick__model {
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    backdrop-filter: blur(14px) saturate(130%);
+  }
+}
+
+/* The light itself: a soft band lying across the tile, which slides as the
+   pointer arrives. */
+.cp-pick__model::before {
+  content: "";
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.02) 60%,
+    transparent 72%
+  );
+  transform: translateX(-18%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
 }
 
 .cp-pick__model:hover,
 .cp-pick__model:focus-visible {
-  border-color: var(--cp-bronze);
-  background: var(--cp-bg-deep);
+  border-color: rgba(188, 144, 108, 0.55);
+  background: rgba(255, 255, 255, 0.075);
+  transform: translateY(-2px);
+}
+
+.cp-pick__model:hover::before,
+.cp-pick__model:focus-visible::before {
+  transform: translateX(18%);
 }
 
 .cp-pick__grid {
@@ -314,6 +360,7 @@
 /* One row per watch: the picture, what it is, and the number in the corner for
    anyone who does happen to know it. */
 .cp-pick__look {
+  position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: auto auto;
@@ -321,20 +368,29 @@
   gap: 0.15rem 0.85rem;
   min-height: 44px;
   padding: 0.7rem 0.85rem;
-  border: 1px solid var(--cp-border);
-  border-radius: 6px;
-  background: var(--cp-bg-mid);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   color: var(--cp-ink);
   font-family: var(--cp-ui);
   text-align: left;
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .cp-pick__look {
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    backdrop-filter: blur(10px) saturate(120%);
+  }
 }
 
 .cp-pick__look:hover,
 .cp-pick__look:focus-visible {
-  border-color: var(--cp-bronze);
-  background: var(--cp-bg-deep);
+  border-color: rgba(188, 144, 108, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-1px);
 }
 
 .cp-pick__look svg {
@@ -377,8 +433,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cp-pick__model,
+  .cp-pick__model::before,
   .cp-pick__look {
     transition: none;
+    transform: none;
   }
 }
 
@@ -524,4 +582,124 @@
   color: var(--cp-ink-faint);
   font-family: var(--cp-ui);
   font-size: 0.85rem;
+}
+
+/* The drawing inside a model tile scales with the tile rather than sitting at
+   a fixed height, so the four read large on a wide screen. */
+.cp-pick__model svg.cp-wd {
+  width: auto;
+  height: clamp(150px, 19vw, 210px);
+}
+
+/* Roomier look cards, with the thumbnail large enough to read across a table. */
+.cp-pick__grid {
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 0.75rem;
+}
+
+.cp-pick__look {
+  padding: 0.95rem 1.1rem;
+  gap: 0.2rem 1rem;
+}
+
+.cp-pick__look svg {
+  width: 68px;
+  height: 68px;
+}
+
+.cp-pick__ask-mark {
+  width: 68px;
+  height: 68px;
+}
+
+.cp-pick__look-name {
+  font-size: 1rem;
+}
+
+/* ------------------------------------------------ the flow, in the same glass */
+
+/*
+ * Every surface a visitor chooses from is the same material: the coverage and
+ * finish cards, the bracelet, the application add-on. The engraved line work
+ * behind the page carries through all of them, which is what gives the flow its
+ * depth. Panels that are read rather than chosen — the summary — stay flat.
+ */
+.cp-kit__option {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .cp-kit__option,
+  .cp-kit__addon-option {
+    -webkit-backdrop-filter: blur(12px) saturate(125%);
+    backdrop-filter: blur(12px) saturate(125%);
+  }
+}
+
+.cp-kit__option::before {
+  content: "";
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.08) 46%,
+    rgba(255, 255, 255, 0.02) 60%,
+    transparent 74%
+  );
+  transform: translateX(-18%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.cp-kit__option:hover,
+.cp-kit__option:focus-visible {
+  border-color: rgba(188, 144, 108, 0.5);
+  background: rgba(255, 255, 255, 0.065);
+  transform: translateY(-1px);
+}
+
+.cp-kit__option:hover::before,
+.cp-kit__option:focus-visible::before {
+  transform: translateX(18%);
+}
+
+/* Chosen: brighter glass and a bronze edge, not a flat fill. */
+.cp-kit__option[aria-pressed="true"] {
+  border-color: rgba(188, 144, 108, 0.75);
+  background: rgba(188, 144, 108, 0.14);
+}
+
+.cp-kit__addon-option {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.cp-kit__addon-option:has(input:checked) {
+  border-color: rgba(188, 144, 108, 0.75);
+  background: rgba(188, 144, 108, 0.14);
+}
+
+/* The summary is a receipt: it stays plain, so the figures read cleanly. */
+.cp-kit__result dl {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-kit__option,
+  .cp-kit__option::before,
+  .cp-kit__addon-option {
+    transition: none;
+    transform: none;
+  }
 }
