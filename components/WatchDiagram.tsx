@@ -219,41 +219,47 @@ const BOTTOM_END = 324;
 
 /** The shoulders either side of the crown on the sports models. */
 /**
- * Crown guards: two separate shoulders forged either side of the crown, not
- * one collar around it. Each rises out of the case flank, swells to its widest
- * where the crown sits, and falls back to the flank — the shape that protects
- * the tube on a Submariner, GMT-Master II or Daytona.
+ * Crown guards and crown, traced off a straight-on photograph of a
+ * GMT-Master II and expressed as fractions of the case half-width, so every
+ * model gets the same form:
+ *
+ *   guard tip   1.09 x  the bezel radius
+ *   crown face  1.18 x  the bezel radius
+ *   guards      from 0.39 to 0.19 of that radius above and below centre
+ *   crown       fills the gap between them exactly
+ *
+ * Each guard leaves the flank low, sweeps out, and runs parallel to the crown
+ * — a shoulder rather than a spike.
  */
 function crownGuards(model: WatchModel) {
+  // The photograph's ratios are against the bezel, the widest circle on the
+  // watch, not the case flank the guards grow out of.
+  const R = RINGS[model].bezelOut;
   const w = CX + CASE_SHAPE[model].width - 1;
-  const face = crownX(model) + CROWN_WIDTH;
-  // One shoulder, mirrored: sign -1 is the guard above the crown. The outer
-  // edge sweeps from the flank out to the crown's face, so each guard reads as
-  // a tapered fin rather than a block, and neither stands proud of the crown.
+  const tip = CX + R * 1.094;
+  const root = R * 0.39;
+  const shoulder = R * 0.19;
+
   const guard = (sign: -1 | 1) => {
-    const root = sign === -1 ? 220 : 300;
     const edge = sign === -1 ? CROWN_TOP : CROWN_BOTTOM;
     return [
-      `M${w - 2},${root}`,
-      `C${w + 9},${root + sign * -3} ${face - 4},${edge + sign * -13} ${face},${edge + sign * 2}`,
-      `Q${face},${edge} ${face - 3},${edge}`,
-      `L${w - 2},${edge} Z`,
+      `M${w},${f(CY + sign * root)}`,
+      `C${f(w + 3)},${f(CY + sign * (root - 3))} ${f(tip)},${f(CY + sign * (shoulder + 4))} ${f(tip)},${f(CY + sign * shoulder)}`,
+      `L${f(tip)},${edge}`,
+      `L${w},${edge} Z`,
     ].join(" ");
   };
   return [guard(-1), guard(1)];
 }
 
 /** The gap between the guards, where the crown seats, and the crown's reach. */
-const CROWN_TOP = 249;
-const CROWN_BOTTOM = 271;
-const CROWN_WIDTH = 20;
+const CROWN_TOP = CY - 9;
+const CROWN_BOTTOM = CY + 9;
 
-/**
- * The crown sits flush against the case flank and screws out past the guards,
- * so its inner edge is the flank itself rather than floating beyond it.
- */
-const crownX = (model: WatchModel) =>
-  CX + CASE_SHAPE[model].width + (model === "datejust" ? -2 : 2);
+/** The crown sits against the flank and screws out past the guards. */
+const crownX = (model: WatchModel) => CX + CASE_SHAPE[model].width - 2;
+const crownWidth = (model: WatchModel) =>
+  CX + RINGS[model].bezelOut * 1.179 - crownX(model);
 
 /* ----------------------------------------------------------------- bezels */
 
@@ -652,14 +658,16 @@ export default function WatchDiagram({
       <rect
         x={crownX(model)}
         y={CROWN_TOP}
-        width={CROWN_WIDTH}
+        width={f(crownWidth(model))}
         height={CROWN_BOTTOM - CROWN_TOP}
         rx={2}
         className="cp-wd__bare"
       />
       {/* Fluting on the crown, and the shoulder where it meets the case */}
       <path
-        d={[5, 9, 13, 17].map((o) => `M${crownX(model) + o},${CROWN_TOP + 4} V${CROWN_BOTTOM - 4}`).join(" ")}
+        d={[0.3, 0.5, 0.7]
+          .map((t) => `M${f(crownX(model) + crownWidth(model) * t)},${CROWN_TOP + 3} V${CROWN_BOTTOM - 3}`)
+          .join(" ")}
         className="cp-wd__detail"
       />
 
