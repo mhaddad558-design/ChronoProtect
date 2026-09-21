@@ -20,3 +20,6 @@ next-env.d.ts.timestamp
 
 # Photographs waiting to be used; not part of the site
 media-inbox/
+
+# Brand assets cut for Shopify; not part of the site
+exports/

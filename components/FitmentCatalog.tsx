@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { allFamilies, type FitmentFamily } from "@/lib/fitment";
+import { lookFor } from "@/lib/looks";
 import { STUDIO_EMAIL } from "@/lib/site";
+import LookChip, { describeLook, lookDetail } from "./LookChip";
+import WatchDiagram, { modelForFamily } from "./WatchDiagram";
 
 function normalize(value: string): string {
   return value.replace(/[\s-]/g, "").toUpperCase();
@@ -66,8 +69,18 @@ export default function FitmentCatalog() {
       <div style={{ marginTop: "3rem" }}>
         {results.map((family) => (
           <section className="cp-cat__family" key={`${family.model}-${family.series ?? "base"}`}>
-            <h3>{family.model}</h3>
-            {family.series ? <p className="cp-cat__series">{family.series}</p> : null}
+            <div className="cp-cat__head">
+              <WatchDiagram
+                line="chronoshield"
+                model={modelForFamily(family.model)}
+                id={`cat-${normalize(family.model + (family.series ?? ""))}`}
+                height={110}
+              />
+              <div>
+                <h3>{family.model}</h3>
+                {family.series ? <p className="cp-cat__series">{family.series}</p> : null}
+              </div>
+            </div>
             {/*
               Only called out when the family is restricted — saying "both lines"
               on every other row would be noise.
@@ -85,12 +98,49 @@ export default function FitmentCatalog() {
               </p>
             ) : null}
 
-            <ul className="cp-cat__refs">
-              {family.references.map((ref) => (
-                <li key={ref}>
-                  <Reference value={ref} query={normalized} prefix={family.matchType === "prefix"} />
-                </li>
-              ))}
+            <ul className={family.matchType === "prefix" ? "cp-cat__refs" : "cp-cat__looks"}>
+              {family.references.map((ref) => {
+                const prefix = family.matchType === "prefix";
+                const look = prefix ? undefined : lookFor(ref);
+                const model = modelForFamily(family.model);
+
+                // Prefix families are ranges, not watches: they stay as numbers.
+                if (prefix || !look) {
+                  return (
+                    <li key={ref}>
+                      <Reference value={ref} query={normalized} prefix={prefix} />
+                    </li>
+                  );
+                }
+
+                // A bespoke reference is quoted, not configured, so it has
+                // nowhere to link to but the studio.
+                const href =
+                  family.status === "bespoke"
+                    ? `mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent(`ChronoProtect+ bespoke enquiry — ${ref}`)}`
+                    : `/find-your-kit?ref=${encodeURIComponent(ref)}`;
+
+                return (
+                  <li key={ref}>
+                    <a className="cp-cat__look" href={href}>
+                      <LookChip
+                        metal={look.metal}
+                        bezel={look.bezel}
+                        dial={look.dial}
+                        model={model}
+                        strap={/rubber|strap/i.test(look.detail ?? "")}
+                        lefty={look.lefty}
+                        id={`cat-chip-${ref}`}
+                      />
+                      <span className="cp-cat__look-name">{describeLook(look)}</span>
+                      <span className="cp-cat__look-detail">{lookDetail(look)}</span>
+                      <span className="cp-cat__look-ref">
+                        <Reference value={ref} query={normalized} prefix={false} />
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
 
             {family.matchType === "prefix" ? (
