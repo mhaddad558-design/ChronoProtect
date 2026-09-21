@@ -58,7 +58,9 @@ type Rings = { bezelOut: number; bezelIn: number; dial: number };
 const RINGS: Record<WatchModel, Rings> = {
   submariner: { bezelOut: 66, bezelIn: 53, dial: 51 },
   gmt: { bezelOut: 66, bezelIn: 53, dial: 51 },
-  daytona: { bezelOut: 66, bezelIn: 57, dial: 55 },
+  // The tachymeter bezel is the widest of the four, so the dial opening is
+  // correspondingly smaller.
+  daytona: { bezelOut: 66, bezelIn: 50, dial: 48 },
   datejust: { bezelOut: 66, bezelIn: 55, dial: 53 },
 };
 
@@ -303,9 +305,9 @@ function DaytonaBezel({ r }: { r: Rings }) {
   // so their tops face the rim, as on the engraved insert.
   const marks = TACHY.map((v, i) => {
     const major = i % 2 === 0 || v <= 100;
-    return tick(r.bezelIn + 0.6, r.bezelIn + (major ? 2.8 : 1.8), tachyDeg(v));
+    return tick(r.bezelIn + 0.8, r.bezelIn + (major ? 3.6 : 2.4), tachyDeg(v));
   });
-  const band = r.bezelIn + 5.4;
+  const band = r.bezelIn + 8.6;
   return (
     <>
       <path d={marks.join("")} className="cp-wd__scale" />
