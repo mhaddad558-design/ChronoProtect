@@ -101,6 +101,20 @@ export function findFitment(reference: string): FitmentMatch | null {
       }
     }
   }
+
+  // Owners often give the number without Rolex's letter suffix — "126619" for
+  // 126619LB. If nothing matched exactly and they typed only digits, match the
+  // reference those digits belong to. References that share a number are sold
+  // the same way — the one pair split across families, 116519 and 116519LN, is
+  // ChronoGuard+ only on Oysterflex either way — so the suffix never changes
+  // which kit is offered.
+  if (/^[0-9]+$/.test(query)) {
+    for (const family of families) {
+      if (family.matchType !== "exact") continue;
+      const ref = family.references.find((r) => normalize(r).replace(/[^0-9]/g, "") === query);
+      if (ref) return { family, reference: ref };
+    }
+  }
   return null;
 }
 

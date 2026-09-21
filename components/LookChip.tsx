@@ -62,6 +62,8 @@ export const DIAL_WORDS: Record<string, string> = {
   chocolate: "chocolate dial",
   sundust: "sundust dial",
   ice: "ice blue dial",
+  meteorite: "meteorite dial",
+  mop: "white mother-of-pearl dial",
 };
 
 /** The colours are the watches' own, not the brand's. */
@@ -118,10 +120,12 @@ const DIAL_INK: Record<string, string> = {
   champagne: "#CDB88A",
   chocolate: "#4A3025",
   sundust: "#D7B7A6",
+  meteorite: "#8A8E90",
+  mop: "#ECE8EE",
 };
 
 /** Dials pale enough that white hands would vanish on them. */
-const LIGHT_DIALS = new Set(["silver", "white", "mint", "champagne", "sundust", "ice"]);
+const LIGHT_DIALS = new Set(["silver", "white", "mint", "champagne", "sundust", "ice", "mop", "meteorite"]);
 
 /** Gold cases carry gold hands and surrounds; steel carries white. */
 const goldish = (metal: string) =>
@@ -146,6 +150,7 @@ export default function LookChip({
   model,
   strap = false,
   lefty = false,
+  seconds,
   id,
 }: {
   metal: string;
@@ -156,6 +161,8 @@ export default function LookChip({
   strap?: boolean;
   /** Destro: the crown sits on the left. */
   lefty?: boolean;
+  /** A coloured seconds hand, drawn only where the real watch has one. */
+  seconds?: string;
   id: string;
 }) {
   const rolesor = metal.endsWith("-rolesor");
@@ -272,6 +279,12 @@ export default function LookChip({
 
       {/* Dial */}
       <circle cx="24" cy="24" r="12" fill={dialInk} />
+      {dial === "mop" ? (
+        <>
+          <circle cx="21" cy="21" r="6" fill="#D9E6F2" fillOpacity="0.6" />
+          <circle cx="27" cy="27" r="5" fill="#F2DCE6" fillOpacity="0.5" />
+        </>
+      ) : null}
 
       {/* Markers: subdials on a Daytona, batons and a date on a Datejust, plots
           on the sports models */}
@@ -298,6 +311,17 @@ export default function LookChip({
       {/* Hands, in the metal they are made of */}
       <line x1="24" y1="24" x2={point(6.5, 300)[0]} y2={point(6.5, 300)[1]} stroke={handInk} strokeWidth="2" strokeLinecap="round" />
       <line x1="24" y1="24" x2={point(9.5, 60)[0]} y2={point(9.5, 60)[1]} stroke={handInk} strokeWidth="1.6" strokeLinecap="round" />
+      {seconds ? (
+        <line
+          x1="24"
+          y1="24"
+          x2={point(11, 200)[0]}
+          y2={point(11, 200)[1]}
+          stroke={seconds === "red" ? "#C8332D" : seconds}
+          strokeWidth="0.8"
+          strokeLinecap="round"
+        />
+      ) : null}
       <circle cx="24" cy="24" r="1.2" fill={handInk} />
     </svg>
   );

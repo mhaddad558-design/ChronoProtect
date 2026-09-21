@@ -12,6 +12,8 @@ export type Look = {
    * left-handed GMT-Master II is built this way.
    */
   lefty?: boolean;
+  /** A seconds hand that breaks the metal rule, like the Le Mans's red one. */
+  seconds?: string;
 };
 
 export const LOOKS = looksData.looks as Look[];

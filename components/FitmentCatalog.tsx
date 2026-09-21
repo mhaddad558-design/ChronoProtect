@@ -130,6 +130,7 @@ export default function FitmentCatalog() {
                         model={model}
                         strap={/rubber|strap/i.test(look.detail ?? "")}
                         lefty={look.lefty}
+                        seconds={look.seconds}
                         id={`cat-chip-${ref}`}
                       />
                       <span className="cp-cat__look-name">{describeLook(look)}</span>

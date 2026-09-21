@@ -224,6 +224,7 @@ export default function WatchPicker({
               model={model}
               strap={/rubber|strap/i.test(look.detail ?? "")}
               lefty={look.lefty}
+              seconds={look.seconds}
               id={`chip-${look.ref}`}
             />
             <span className="cp-pick__look-name">{describeLook(look)}</span>

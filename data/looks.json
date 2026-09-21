@@ -28,7 +28,8 @@
       "ref": "126613LB",
       "metal": "two-tone",
       "bezel": "blue",
-      "dial": "blue"
+      "dial": "blue",
+      "nickname": "Bluesy"
     },
     {
       "ref": "126618LN",
@@ -42,11 +43,10 @@
       "dial": "blue"
     },
     {
-      "ref": "126619",
+      "ref": "126619LB",
       "metal": "white",
       "bezel": "blue",
-      "nickname": "Smurf",
-      "dial": "blue"
+      "nickname": "Cookie Monster"
     },
     {
       "ref": "14060M",
@@ -118,7 +118,7 @@
       "dial": "blue"
     },
     {
-      "ref": "116619",
+      "ref": "116619LB",
       "metal": "white",
       "bezel": "blue",
       "nickname": "Smurf",
@@ -145,12 +145,13 @@
       "ref": "126710BLNR",
       "metal": "steel",
       "bezel": "blue-black",
-      "nickname": "Batgirl"
+      "nickname": "Batman"
     },
     {
       "ref": "126710GRNR",
       "metal": "steel",
-      "bezel": "grey-black"
+      "bezel": "grey-black",
+      "nickname": "Bruce Wayne"
     },
     {
       "ref": "126720VTNR",
@@ -179,7 +180,7 @@
       "ref": "126715CHNR",
       "metal": "everose",
       "bezel": "brown-black",
-      "nickname": "Root beer"
+      "detail": "Black or tiger iron dial"
     },
     {
       "ref": "126711CHNR",
@@ -190,22 +191,30 @@
     {
       "ref": "116719BLRO",
       "metal": "white",
-      "bezel": "blue-red"
+      "bezel": "blue-red",
+      "nickname": "Pepsi"
     },
     {
       "ref": "126719BLRO",
       "metal": "white",
-      "bezel": "blue-red"
+      "bezel": "blue-red",
+      "nickname": "Pepsi"
     },
     {
       "ref": "116500LN",
       "metal": "steel",
-      "bezel": "black"
+      "bezel": "black",
+      "dial": "white",
+      "nickname": "Panda",
+      "detail": "Also with a black dial"
     },
     {
       "ref": "126500LN",
       "metal": "steel",
-      "bezel": "black"
+      "bezel": "black",
+      "dial": "white",
+      "nickname": "Panda",
+      "detail": "Also with a black dial"
     },
     {
       "ref": "116506",
@@ -224,13 +233,13 @@
     {
       "ref": "116515LN",
       "metal": "everose",
-      "bezel": "black",
+      "bezel": "brown",
       "detail": "Rubber strap"
     },
     {
       "ref": "126515LN",
       "metal": "everose",
-      "bezel": "black",
+      "bezel": "brown",
       "detail": "Rubber strap"
     },
     {
@@ -243,7 +252,10 @@
       "ref": "126529LN",
       "metal": "white",
       "bezel": "black",
-      "detail": "Rubber strap"
+      "detail": "Rubber strap",
+      "dial": "white",
+      "nickname": "Le Mans",
+      "seconds": "red"
     },
     {
       "ref": "116520",
@@ -313,10 +325,11 @@
       "detail": "Rubber strap"
     },
     {
-      "ref": "116595",
+      "ref": "116595RBOW",
       "metal": "everose",
       "bezel": "diamond",
-      "detail": "Diamond-paved"
+      "detail": "Rainbow sapphire bezel",
+      "nickname": "Rainbow"
     },
     {
       "ref": "116598",
@@ -329,6 +342,33 @@
       "metal": "white",
       "bezel": "diamond",
       "detail": "Diamond-paved"
+    },
+    {
+      "ref": "126718GRNR",
+      "metal": "yellow",
+      "bezel": "grey-black",
+      "detail": "Black or tiger iron dial"
+    },
+    {
+      "ref": "126729VTNR",
+      "metal": "white",
+      "bezel": "green-black",
+      "dial": "green",
+      "detail": "Crown on the left",
+      "lefty": true
+    },
+    {
+      "ref": "126518LN",
+      "metal": "yellow",
+      "bezel": "black",
+      "dial": "meteorite",
+      "detail": "Rubber strap"
+    },
+    {
+      "ref": "126589RBR",
+      "metal": "white",
+      "bezel": "diamond",
+      "detail": "Rubber strap"
     }
   ],
   "datejust": [
@@ -374,6 +414,12 @@
       "metal": "white-rolesor",
       "bezel": "fluted",
       "dial": "black"
+    },
+    {
+      "id": "white-fluted-mop",
+      "metal": "white-rolesor",
+      "bezel": "fluted",
+      "dial": "mop"
     },
     {
       "id": "yellow-fluted-champagne",
