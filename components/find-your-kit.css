@@ -439,3 +439,60 @@
   font-style: normal;
   line-height: 1.5;
 }
+
+/* The way out of the catalog, sitting as the last card in the list. */
+.cp-pick__look--ask {
+  border-style: dashed;
+  background: none;
+}
+
+.cp-pick__ask-mark {
+  display: grid;
+  grid-row: 1 / 3;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px dashed var(--cp-border);
+  border-radius: 50%;
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-display);
+  font-size: 1.4rem;
+}
+
+.cp-pick__look--ask:hover .cp-pick__ask-mark,
+.cp-pick__look--ask:focus-visible .cp-pick__ask-mark {
+  border-color: var(--cp-bronze);
+  color: var(--cp-bronze);
+}
+
+/* The special request form uses the same fields as the rest of the flow. */
+.cp-kit select,
+.cp-kit textarea {
+  display: block;
+  width: 100%;
+  margin: 0 0 1.5rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  background: var(--cp-bg-mid);
+  color: var(--cp-ink);
+  font-family: var(--cp-ui);
+  font-size: 1rem;
+}
+
+.cp-kit textarea {
+  font-family: var(--cp-body);
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.cp-kit select:focus-visible,
+.cp-kit textarea:focus-visible {
+  outline: 2px solid var(--cp-bronze);
+  outline-offset: 2px;
+}
+
+.cp-pick__look svg {
+  width: 58px;
+  height: 58px;
+}

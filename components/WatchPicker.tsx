@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import looksData from "@/data/looks.json";
 import { findFitment } from "@/lib/fitment";
+import SpecialRequest from "./SpecialRequest";
 import WatchDiagram, { MODEL_NAMES, modelForFamily, type WatchModel } from "./WatchDiagram";
 
 type Look = {
@@ -91,12 +92,15 @@ function LookChip({
   bezel,
   dial = "black",
   model,
+  strap = false,
   id,
 }: {
   metal: string;
   bezel: string;
   dial?: string;
   model: WatchModel;
+  /** Rubber rather than metal, so the stubs are drawn dark. */
+  strap?: boolean;
   id: string;
 }) {
   const twoToneCase = metal === "two-tone" || metal === "everose-steel";
@@ -123,17 +127,28 @@ function LookChip({
         </clipPath>
       </defs>
 
+      {/* Bracelet stubs above and below, so the metal is unmistakable: steel
+          outers with gold centre links on a two-tone, dark on a rubber strap. */}
+      {[0, 38].map((y) => (
+        <g key={y}>
+          <rect x="16" y={y} width="16" height="10" rx="2" fill={strap ? "#2A2E2B" : caseInk} />
+          {twoToneCase && !strap ? <rect x="21" y={y} width="6" height="10" fill={gold} /> : null}
+        </g>
+      ))}
+
       {/* Case */}
-      <circle cx="24" cy="24" r="23" fill={caseInk} />
-      {twoToneCase ? <circle cx="24" cy="24" r="23" fill={gold} clipPath={`url(#${id}-r)`} /> : null}
+      <circle cx="24" cy="24" r="20" fill={caseInk} />
+      {twoToneCase ? <circle cx="24" cy="24" r="20" fill={gold} clipPath={`url(#${id}-r)`} /> : null}
+      {/* The crown, on the right unless this is the left-handed one */}
+      <rect x="43" y="21" width="4" height="6" rx="1" fill={twoToneCase ? gold : caseInk} />
 
       {/* Bezel */}
       {plain ? (
-        <circle cx="24" cy="24" r="18.5" fill="none" stroke={caseInk} strokeWidth="9" />
+        <circle cx="24" cy="24" r="16" fill="none" stroke={caseInk} strokeWidth="8" />
       ) : (
         <>
-          <circle cx="24" cy="24" r="18.5" fill="none" stroke={left} strokeWidth="9" clipPath={`url(#${id}-l)`} />
-          <circle cx="24" cy="24" r="18.5" fill="none" stroke={right} strokeWidth="9" clipPath={`url(#${id}-r)`} />
+          <circle cx="24" cy="24" r="16" fill="none" stroke={left} strokeWidth="8" clipPath={`url(#${id}-l)`} />
+          <circle cx="24" cy="24" r="16" fill="none" stroke={right} strokeWidth="8" clipPath={`url(#${id}-r)`} />
         </>
       )}
 
@@ -141,8 +156,8 @@ function LookChip({
           stones on a set one. */}
       {!plain
         ? Array.from({ length: 12 }, (_, i) => {
-            const [x1, y1] = point(15.5, i * 30);
-            const [x2, y2] = point(21.5, i * 30);
+            const [x1, y1] = point(13.5, i * 30);
+            const [x2, y2] = point(19, i * 30);
             return (
               <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFFFFF" strokeOpacity={i === 0 ? 0 : 0.55} strokeWidth="1" />
             );
@@ -150,39 +165,39 @@ function LookChip({
         : null}
       {!plain ? (
         // The pip or triangle at zero, which every dive and travel bezel has
-        <circle cx={24} cy={5.5} r="1.9" fill="#FFFFFF" fillOpacity="0.9" />
+        <circle cx={24} cy={8.5} r="1.7" fill="#FFFFFF" fillOpacity="0.9" />
       ) : null}
       {bezel === "engraved"
         ? Array.from({ length: 20 }, (_, i) => {
-            const [x1, y1] = point(15, i * 18);
-            const [x2, y2] = point(22, i * 18);
+            const [x1, y1] = point(13, i * 18);
+            const [x2, y2] = point(19.5, i * 18);
             return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#0B110D" strokeOpacity="0.5" strokeWidth={i % 5 === 0 ? 1.6 : 0.9} />;
           })
         : null}
       {bezel === "diamond"
         ? Array.from({ length: 12 }, (_, i) => {
-            const [x, y] = point(18.5, i * 30);
-            return <circle key={i} cx={x} cy={y} r="2.4" fill="#FFFFFF" />;
+            const [x, y] = point(16, i * 30);
+            return <circle key={i} cx={x} cy={y} r="2.1" fill="#FFFFFF" />;
           })
         : null}
 
       {/* Dial */}
-      <circle cx="24" cy="24" r="14" fill={dialInk} />
+      <circle cx="24" cy="24" r="12" fill={dialInk} />
 
       {/* Markers: plots on a diver, batons on a Datejust, subdials on a Daytona */}
       {model === "daytona"
         ? [90, 210, 330].map((deg) => {
-            const [x, y] = point(7, deg);
-            return <circle key={deg} cx={x} cy={y} r="3.4" fill="none" stroke={markerInk} strokeOpacity="0.5" strokeWidth="0.8" />;
+            const [x, y] = point(6, deg);
+            return <circle key={deg} cx={x} cy={y} r="2.9" fill="none" stroke={markerInk} strokeOpacity="0.5" strokeWidth="0.8" />;
           })
         : Array.from({ length: 12 }, (_, i) => {
-            const [x, y] = point(11, i * 30);
-            return <circle key={i} cx={x} cy={y} r={i === 0 ? 1.5 : 1.1} fill={markerInk} fillOpacity="0.85" />;
+            const [x, y] = point(9.5, i * 30);
+            return <circle key={i} cx={x} cy={y} r={i === 0 ? 1.3 : 1} fill={markerInk} fillOpacity="0.85" />;
           })}
 
       {/* Hands, in the metal they are made of */}
-      <line x1="24" y1="24" x2={point(7.5, 300)[0]} y2={point(7.5, 300)[1]} stroke={handInk} strokeWidth="2" strokeLinecap="round" />
-      <line x1="24" y1="24" x2={point(11, 60)[0]} y2={point(11, 60)[1]} stroke={handInk} strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="24" y1="24" x2={point(6.5, 300)[0]} y2={point(6.5, 300)[1]} stroke={handInk} strokeWidth="2" strokeLinecap="round" />
+      <line x1="24" y1="24" x2={point(9.5, 60)[0]} y2={point(9.5, 60)[1]} stroke={handInk} strokeWidth="1.6" strokeLinecap="round" />
       <circle cx="24" cy="24" r="1.2" fill={handInk} />
     </svg>
   );
@@ -232,6 +247,8 @@ export default function WatchPicker({
   const [model, setModel] = useState<WatchModel | null>(
     isModel(initialModel) ? initialModel : null
   );
+  /** The way out for anything the catalog does not list. */
+  const [asking, setAsking] = useState(false);
 
   // The model can arrive after mount, when the page reads it from the URL.
   useEffect(() => {
@@ -254,6 +271,15 @@ export default function WatchPicker({
 
   const models = MODELS.filter((m) => m === "datejust" || byModel.has(m));
 
+  if (asking) {
+    return (
+      <SpecialRequest
+        model={model ? MODEL_NAMES[model] : undefined}
+        onBack={() => setAsking(false)}
+      />
+    );
+  }
+
   if (!model) {
     return (
       <section>
@@ -273,6 +299,10 @@ export default function WatchPicker({
           Know the reference number?{" "}
           <button type="button" className="cp-pick__link" onClick={onTypeInstead}>
             Type it instead
+          </button>
+          . Something else entirely?{" "}
+          <button type="button" className="cp-pick__link" onClick={() => setAsking(true)}>
+            Ask the studio
           </button>
           .
         </p>
@@ -329,6 +359,7 @@ export default function WatchPicker({
               bezel={look.bezel}
               dial={look.dial}
               model={model}
+              strap={/rubber|strap/i.test(look.detail ?? "")}
               id={`chip-${look.ref}`}
             />
             <span className="cp-pick__look-name">
@@ -340,6 +371,20 @@ export default function WatchPicker({
             <span className="cp-pick__look-ref">{look.ref}</span>
           </button>
         ))}
+
+        <button
+          type="button"
+          className="cp-pick__look cp-pick__look--ask"
+          onClick={() => setAsking(true)}
+        >
+          <span className="cp-pick__ask-mark" aria-hidden="true">
+            ?
+          </span>
+          <span className="cp-pick__look-name">Mine is not here</span>
+          <span className="cp-pick__look-detail">
+            An unusual metal, a rare reference, something modified
+          </span>
+        </button>
       </div>
 
       <BackLink onClick={() => setModel(null)} />
