@@ -58,8 +58,8 @@ type Rings = { bezelOut: number; bezelIn: number; dial: number };
 const RINGS: Record<WatchModel, Rings> = {
   // Dive and travel bezels are broad: the insert plus its knurled edge runs
   // close to a quarter of the case radius.
-  submariner: { bezelOut: 66, bezelIn: 50.5, dial: 48.5 },
-  gmt: { bezelOut: 66, bezelIn: 50.5, dial: 48.5 },
+  submariner: { bezelOut: 66, bezelIn: 48.5, dial: 46.5 },
+  gmt: { bezelOut: 66, bezelIn: 48.5, dial: 46.5 },
   // The tachymeter bezel is the widest of the four, so the dial opening is
   // correspondingly smaller.
   daytona: { bezelOut: 66, bezelIn: 50, dial: 48 },
@@ -91,8 +91,24 @@ const ringArc = (outer: number, inner: number, from: number, to: number) => {
   const [ix1, iy1] = at(inner, from);
   return `M${f(ox1)},${f(oy1)}A${outer},${outer} 0 0,1 ${f(ox2)},${f(oy2)}L${f(ix2)},${f(iy2)}A${inner},${inner} 0 0,0 ${f(ix1)},${f(iy1)}Z`;
 };
-const coinEdge = (r: number) =>
-  Array.from({ length: 120 }, (_, i) => tick(r - 0.1, r + 1.6, i * 3)).join("");
+/**
+ * The knurled rim of a rotating bezel: teeth cut all the way round, each one
+ * slightly narrower at its tip, so the edge reads as something a wet hand can
+ * grip. Only the dive and travel bezels have it; the Daytona's is smooth and
+ * the Datejust's is fluted.
+ */
+const coinEdge = (r: number, teeth = 60, depth = 2.6) => {
+  const span = 360 / teeth;
+  return Array.from({ length: teeth }, (_, i) => {
+    const a0 = i * span + span * 0.16;
+    const a1 = i * span + span * 0.84;
+    const [x0, y0] = at(r - 1.2, a0);
+    const [x1, y1] = at(r - 1.2, a1);
+    const [x2, y2] = at(r + depth, a1 - span * 0.16);
+    const [x3, y3] = at(r + depth, a0 + span * 0.16);
+    return `M${f(x0)},${f(y0)}L${f(x3)},${f(y3)}L${f(x2)},${f(y2)}L${f(x1)},${f(y1)}Z`;
+  }).join("");
+};
 
 /* ---------------------------------------------------------------- bracelets */
 
