@@ -496,3 +496,32 @@
   width: 58px;
   height: 58px;
 }
+
+/* Said plainly, so nobody wonders why they are on question three. */
+.cp-kit__resumed {
+  grid-column: 1 / -1;
+  margin: 0.5rem 0 0;
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.85rem;
+}
+
+.cp-kit__resumed button {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cp-bronze);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* The running price, carried through every step. */
+.cp-kit__price {
+  grid-column: 1 / -1;
+  margin: 0.5rem 0 0;
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.85rem;
+}

@@ -65,7 +65,54 @@ const COVERAGE_CHOICES: Array<{ value: Coverage; title: string; detail: string }
   },
 ];
 
-export default function FindYourKit() {
+/**
+ * Where an unfinished configuration is kept. Someone who leaves halfway —
+ * to go and look at the watch, or because the phone rang — comes back to the
+ * answers they already gave rather than to question one. Kept for a month,
+ * cleared when they start over or reach checkout.
+ */
+const SAVED_KEY = "chronoprotect.kit.v1";
+const SAVED_FOR = 30 * 24 * 60 * 60 * 1000;
+
+type Saved = {
+  at: number;
+  step: Step;
+  reference: string;
+  finish: Finish | null;
+  coverage: Coverage | null;
+  bracelet: Bracelet | null;
+  application: Application;
+};
+
+function readSaved(): Saved | null {
+  try {
+    const raw = window.localStorage.getItem(SAVED_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw) as Saved;
+    // Nothing worth resuming, or old enough that the watch may have changed.
+    if (!saved?.reference || saved.step < 2) return null;
+    if (Date.now() - saved.at > SAVED_FOR) return null;
+    return saved;
+  } catch {
+    // Private browsing, blocked storage, or something else wrote the key.
+    return null;
+  }
+}
+
+function clearSaved() {
+  try {
+    window.localStorage.removeItem(SAVED_KEY);
+  } catch {
+    // Nothing to do: it was never written.
+  }
+}
+
+export default function FindYourKit({
+  from,
+}: {
+  /** What each line starts at, so the price is visible from the first screen. */
+  from?: { chronoshield: string | null; chronoguard: string | null };
+}) {
   const [step, setStep] = useState<Step>(1);
   const [reference, setReference] = useState("");
   /** Step 1 opens on pictures; typing a number is the alternative, not the default. */
@@ -78,6 +125,9 @@ export default function FindYourKit() {
   /** An add-on rather than a question: it is offered on the result screen. */
   const [application, setApplication] = useState<Application>("self");
 
+  /** True when this session was restored, so the header can say so. */
+  const [resumed, setResumed] = useState(false);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("ref");
@@ -89,8 +139,33 @@ export default function FindYourKit() {
     // Arriving from the home page's picker: open step one on that watch's
     // look-alikes rather than on the four models again.
     const model = params.get("model");
-    if (model) setPickedModel(model);
+    if (model) {
+      setPickedModel(model);
+      return;
+    }
+
+    // Otherwise pick up an unfinished configuration, if there is one.
+    const saved = readSaved();
+    if (!saved) return;
+    setReference(saved.reference);
+    setFinish(saved.finish);
+    setCoverage(saved.coverage);
+    setBracelet(saved.bracelet);
+    setApplication(saved.application ?? "self");
+    setStep(saved.step);
+    setResumed(true);
   }, []);
+
+  // Keep the answers as they are given, so a tab closed mid-flow loses nothing.
+  useEffect(() => {
+    if (step < 2 || !reference) return;
+    try {
+      const saved: Saved = { at: Date.now(), step, reference, finish, coverage, bracelet, application };
+      window.localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
+    } catch {
+      // Storage is unavailable; the flow still works, it just will not resume.
+    }
+  }, [step, reference, finish, coverage, bracelet, application]);
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -188,6 +263,8 @@ export default function FindYourKit() {
         application,
       };
       const checkoutUrl = await createKitCheckout(selection);
+      // The configuration is now a cart: there is nothing left to resume.
+      clearSaved();
       window.location.href = checkoutUrl;
     } catch (err) {
       setError(
@@ -214,6 +291,29 @@ export default function FindYourKit() {
           <button type="button" onClick={back} className="cp-kit__back">
             Back
           </button>
+        )}
+        {step < RESULT && (
+          <PriceLine from={from} coverage={coverage} />
+        )}
+        {resumed && step < RESULT && (
+          <p className="cp-kit__resumed">
+            Picked up where you left off.{" "}
+            <button
+              type="button"
+              onClick={() => {
+                clearSaved();
+                setResumed(false);
+                setStep(1);
+                setReference("");
+                setFinish(null);
+                setCoverage(null);
+                setBracelet(null);
+                setApplication("self");
+              }}
+            >
+              Start fresh
+            </button>
+          </p>
         )}
         <div className="cp-kit__bar" aria-hidden="true">
           <div style={{ width: `${(stepNumber(step) / (totalSteps + 1)) * 100}%` }} />
@@ -445,6 +545,8 @@ export default function FindYourKit() {
             type="button"
             className="cp-kit__restart"
             onClick={() => {
+              clearSaved();
+              setResumed(false);
               setStep(1);
               setReference("");
               setFinish(null);
@@ -459,6 +561,41 @@ export default function FindYourKit() {
         </section>
       )}
     </div>
+  );
+}
+
+/**
+ * What it costs, from the first screen on. Always "from": ChronoShield+ is cut
+ * and priced per bracelet, so a single figure would be read as the final one.
+ */
+function PriceLine({
+  from,
+  coverage,
+}: {
+  from?: { chronoshield: string | null; chronoguard: string | null };
+  coverage: Coverage | null;
+}) {
+  if (!from) return null;
+
+  if (coverage === "chronoguard") {
+    return from.chronoguard ? (
+      <p className="cp-kit__price">ChronoGuard+, {from.chronoguard}. One price, whatever it is on.</p>
+    ) : null;
+  }
+  if (coverage === "chronoshield") {
+    return from.chronoshield ? (
+      <p className="cp-kit__price">
+        ChronoShield+, from {from.chronoshield}. The bracelet decides the rest.
+      </p>
+    ) : null;
+  }
+
+  const both = [from.chronoguard, from.chronoshield].filter(Boolean) as string[];
+  if (both.length === 0) return null;
+  return (
+    <p className="cp-kit__price">
+      Kits from {both[0]}. What you pay depends on coverage and bracelet.
+    </p>
   );
 }
 
