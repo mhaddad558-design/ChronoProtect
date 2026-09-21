@@ -56,8 +56,10 @@ type Rings = { bezelOut: number; bezelIn: number; dial: number };
 
 /** Bezel and dial proportions differ: the Daytona's tachymeter ring is narrow. */
 const RINGS: Record<WatchModel, Rings> = {
-  submariner: { bezelOut: 66, bezelIn: 53, dial: 51 },
-  gmt: { bezelOut: 66, bezelIn: 53, dial: 51 },
+  // Dive and travel bezels are broad: the insert plus its knurled edge runs
+  // close to a quarter of the case radius.
+  submariner: { bezelOut: 66, bezelIn: 50.5, dial: 48.5 },
+  gmt: { bezelOut: 66, bezelIn: 50.5, dial: 48.5 },
   // The tachymeter bezel is the widest of the four, so the dial opening is
   // correspondingly smaller.
   daytona: { bezelOut: 66, bezelIn: 50, dial: 48 },
