@@ -2,7 +2,7 @@ import Link from "next/link";
 import BandTexture from "@/components/BandTexture";
 import CoverageExplorer from "@/components/CoverageExplorer";
 import FinishSwatch from "@/components/FinishSwatch";
-import HeroReference from "@/components/HeroReference";
+import HeroPicker from "@/components/HeroPicker";
 import HeroTilt from "@/components/HeroTilt";
 import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
@@ -47,7 +47,7 @@ export default async function HomePage() {
               The case keeps its lines, the bracelet keeps its brushing, and the piece keeps its
               value.
             </p>
-            <HeroReference referenceCount={referenceCount} />
+            <HeroPicker referenceCount={referenceCount} />
           </div>
 
           {/*

@@ -30,16 +30,9 @@ import WatchPicker from "./WatchPicker";
  * is six questions for ChronoShield+ and five for ChronoGuard+, and step 5 is
  * skipped in both directions.
  */
-type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
-const RESULT: Step = 7;
-type Usage = "daily" | "occasion" | "rotation";
+type Step = 1 | 2 | 3 | 4 | 5;
+const RESULT: Step = 5;
 type Application = "self" | "professional";
-
-const USAGE_LABELS: Record<Usage, string> = {
-  daily: "Everyday wear",
-  occasion: "Special occasions",
-  rotation: "Rotation piece",
-};
 
 const COVERAGE_LABELS: Record<Coverage, string> = {
   chronoshield: "ChronoShield+",
@@ -76,17 +69,26 @@ export default function FindYourKit() {
   const [reference, setReference] = useState("");
   /** Step 1 opens on pictures; typing a number is the alternative, not the default. */
   const [entry, setEntry] = useState<"pick" | "type">("pick");
-  const [usage, setUsage] = useState<Usage | null>(null);
+  /** Set when the home page already asked which watch it is. */
+  const [pickedModel, setPickedModel] = useState<string | null>(null);
   const [finish, setFinish] = useState<Finish | null>(null);
   const [coverage, setCoverage] = useState<Coverage | null>(null);
   const [bracelet, setBracelet] = useState<Bracelet | null>(null);
-  const [application, setApplication] = useState<Application | null>(null);
+  /** An add-on rather than a question: it is offered on the result screen. */
+  const [application, setApplication] = useState<Application>("self");
 
   useEffect(() => {
-    const ref = new URLSearchParams(window.location.search).get("ref");
-    if (!ref) return;
-    setReference(ref);
-    if (!isBespoke(ref)) setStep(2);
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      setReference(ref);
+      if (!isBespoke(ref)) setStep(2);
+      return;
+    }
+    // Arriving from the home page's picker: open step one on that watch's
+    // look-alikes rather than on the four models again.
+    const model = params.get("model");
+    if (model) setPickedModel(model);
   }, []);
 
   const [submitting, setSubmitting] = useState(false);
@@ -142,18 +144,18 @@ export default function FindYourKit() {
    */
   const needsBracelet = coverage === "chronoshield";
   const asksBracelet = needsBracelet && selectableBracelets.length > 1;
-  const totalSteps = asksBracelet ? 6 : 5;
+  const totalSteps = asksBracelet ? 4 : 3;
 
   /** Where a given step sits once the skipped one is removed. */
   function stepNumber(s: Step): number {
-    return !asksBracelet && s > 5 ? s - 1 : s;
+    return s;
   }
 
   function back() {
     setError(null);
     setStep((s) => {
       const previous = s - 1;
-      if (previous === 5 && !asksBracelet) return 4;
+      if (previous === 4 && !asksBracelet) return 3;
       return Math.max(1, previous) as Step;
     });
   }
@@ -168,7 +170,7 @@ export default function FindYourKit() {
   }
 
   async function goToCheckout() {
-    if (!finish || !coverage || !application) return;
+    if (!finish || !coverage) return;
     // ChronoShield+ is cut and priced per bracelet, so it cannot go to checkout
     // without one — whether the customer chose it or the catalog filled it in.
     if (needsBracelet && !bracelet) return;
@@ -179,7 +181,6 @@ export default function FindYourKit() {
       const selection: KitSelection = {
         reference: orderReference,
         model: fitment ? `${fitment.family.model}${fitment.family.series ? ` (${fitment.family.series})` : ""}` : undefined,
-        usage: usage ? USAGE_LABELS[usage] : undefined,
         finish,
         coverage,
         bracelet: needsBracelet && bracelet ? bracelet : undefined,
@@ -220,6 +221,7 @@ export default function FindYourKit() {
 
       {step === 1 && entry === "pick" && (
         <WatchPicker
+          initialModel={pickedModel}
           onPick={(ref) => {
             setReference(ref);
             setStep(2);
@@ -305,37 +307,6 @@ export default function FindYourKit() {
 
       {step === 2 && (
         <Choice
-          heading="How do you wear it day to day?"
-          options={[
-            { value: "daily", title: "Everyday wear", detail: "On the wrist for work, travel, and everything in between." },
-            { value: "occasion", title: "Special occasions", detail: "Dinners, events, and the moments that call for it." },
-            { value: "rotation", title: "Rotation piece", detail: "Worn regularly, but shares wrist time with the collection." },
-          ]}
-          selected={usage}
-          onSelect={(v) => {
-            setUsage(v as Usage);
-            setStep(3);
-          }}
-        />
-      )}
-
-      {step === 3 && (
-        <Choice
-          heading="Which finish do you prefer?"
-          options={[
-            { value: "Gloss", title: "Gloss", detail: "Optically invisible. Reflects light like the polished metal beneath.", visual: <FinishSwatch finish="Gloss" id="kit-step-gloss" size={60} /> },
-            { value: "Stealth", title: "Stealth", detail: "A deep satin finish that quiets the whole watch.", visual: <FinishSwatch finish="Stealth" id="kit-step-stealth" size={60} /> },
-          ]}
-          selected={finish}
-          onSelect={(v) => {
-            setFinish(v as Finish);
-            setStep(4);
-          }}
-        />
-      )}
-
-      {step === 4 && (
-        <Choice
           heading="How much of the watch do you want protected?"
           note={coverageNote}
           options={COVERAGE_CHOICES.filter((c) => coverageOptions.includes(c.value)).map((c) => ({
@@ -359,22 +330,33 @@ export default function FindYourKit() {
               // ChronoGuard+ stops at the clasp. Clear any bracelet picked on an
               // earlier pass so it cannot leak into the order.
               setBracelet(null);
-              setStep(6);
-              return;
-            }
-            if (selectableBracelets.length === 1) {
+            } else if (selectableBracelets.length === 1) {
               // The catalog knows this reference came on one bracelet, so fill
               // it in rather than asking a question with a single answer.
               setBracelet(selectableBracelets[0]);
-              setStep(6);
-              return;
             }
-            setStep(5);
+            setStep(3);
           }}
         />
       )}
 
-      {step === 5 && (
+      {step === 3 && (
+        <Choice
+          heading="Which finish do you prefer?"
+          options={[
+            { value: "Gloss", title: "Gloss", detail: "Optically invisible. Reflects light like the polished metal beneath.", visual: <FinishSwatch finish="Gloss" id="kit-step-gloss" size={60} /> },
+            { value: "Stealth", title: "Stealth", detail: "A deep satin finish that quiets the whole watch.", visual: <FinishSwatch finish="Stealth" id="kit-step-stealth" size={60} /> },
+          ]}
+          selected={finish}
+          onSelect={(v) => {
+            setFinish(v as Finish);
+            // The bracelet only gets asked when it actually decides something.
+            setStep(coverage === "chronoshield" && selectableBracelets.length > 1 ? 4 : RESULT);
+          }}
+        />
+      )}
+
+      {step === 4 && (
         <Choice
           heading="Which bracelet is it on?"
           // Only the bracelets this family was sold on, so a GMT-Master II is
@@ -390,27 +372,12 @@ export default function FindYourKit() {
           selected={bracelet}
           onSelect={(v) => {
             setBracelet(v as Bracelet);
-            setStep(6);
-          }}
-        />
-      )}
-
-      {step === 6 && (
-        <Choice
-          heading="How would you like it applied?"
-          options={[
-            { value: "self", title: "I'll apply it myself", detail: "Your kit arrives pre-cut and ready to apply at home." },
-            { value: "professional", title: "Studio installation", detail: "A ChronoProtect+ studio partner fits it for you. Added as a separate line." },
-          ]}
-          selected={application}
-          onSelect={(v) => {
-            setApplication(v as Application);
             setStep(RESULT);
           }}
         />
       )}
 
-      {step === RESULT && coverage && finish && application && (
+      {step === RESULT && coverage && finish && (
         <section className="cp-kit__result">
           <h1>{COVERAGE_LABELS[coverage]}</h1>
           <p>
@@ -424,7 +391,6 @@ export default function FindYourKit() {
               <Row label="Reference" value={reference.toUpperCase()} mono />
             )}
             {fitment && <Row label="Model" value={fitment.family.model} />}
-            {usage && <Row label="Wear pattern" value={USAGE_LABELS[usage]} />}
             <Row label="Finish" value={finish} />
             <Row label="Coverage" value={COVERAGE_LABELS[coverage]} />
             {/*
@@ -437,11 +403,31 @@ export default function FindYourKit() {
                 value={asksBracelet ? bracelet : `${bracelet}, from your reference`}
               />
             )}
-            <Row
-              label="Application"
-              value={application === "professional" ? "Studio installation" : "Self-applied"}
-            />
           </dl>
+
+          {/* An add-on, offered rather than asked: the kit is the same either
+              way, and the studio line is added at checkout. */}
+          <fieldset className="cp-kit__addon">
+            <legend>How would you like it applied?</legend>
+            {[
+              { value: "self", title: "I'll apply it myself", detail: "Arrives pre-cut and ready for a careful hour at home." },
+              { value: "professional", title: "Studio installation", detail: "A studio partner fits it. Added as a separate line." },
+            ].map((o) => (
+              <label key={o.value} className="cp-kit__addon-option">
+                <input
+                  type="radio"
+                  name="application"
+                  value={o.value}
+                  checked={application === o.value}
+                  onChange={() => setApplication(o.value as Application)}
+                />
+                <span>
+                  <strong>{o.title}</strong>
+                  <em>{o.detail}</em>
+                </span>
+              </label>
+            ))}
+          </fieldset>
 
           {error && (
             <p role="alert" className="cp-kit__error">
@@ -459,11 +445,10 @@ export default function FindYourKit() {
             onClick={() => {
               setStep(1);
               setReference("");
-              setUsage(null);
               setFinish(null);
               setCoverage(null);
               setBracelet(null);
-              setApplication(null);
+              setApplication("self");
               setError(null);
             }}
           >

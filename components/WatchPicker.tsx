@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import looksData from "@/data/looks.json";
 import { findFitment } from "@/lib/fitment";
 import WatchDiagram, { MODEL_NAMES, modelForFamily, type WatchModel } from "./WatchDiagram";
@@ -201,6 +201,12 @@ function era(ref: string): string {
   return "1990s and 2000s";
 }
 
+const MODELS: WatchModel[] = ["submariner", "gmt", "daytona", "datejust"];
+
+function isModel(value: string | null): value is WatchModel {
+  return value !== null && (MODELS as string[]).includes(value);
+}
+
 function sortLooks(a: Look, b: Look) {
   const m = METAL_ORDER.indexOf(a.metal) - METAL_ORDER.indexOf(b.metal);
   if (m !== 0) return m;
@@ -216,11 +222,21 @@ function sortLooks(a: Look, b: Look) {
 export default function WatchPicker({
   onPick,
   onTypeInstead,
+  initialModel = null,
 }: {
   onPick: (reference: string) => void;
   onTypeInstead: () => void;
+  /** A model already chosen elsewhere, e.g. on the home page. */
+  initialModel?: string | null;
 }) {
-  const [model, setModel] = useState<WatchModel | null>(null);
+  const [model, setModel] = useState<WatchModel | null>(
+    isModel(initialModel) ? initialModel : null
+  );
+
+  // The model can arrive after mount, when the page reads it from the URL.
+  useEffect(() => {
+    if (isModel(initialModel)) setModel(initialModel);
+  }, [initialModel]);
 
   const byModel = useMemo(() => {
     const map = new Map<WatchModel, Look[]>();
@@ -236,9 +252,7 @@ export default function WatchPicker({
     return map;
   }, []);
 
-  const models = (["submariner", "gmt", "daytona", "datejust"] as WatchModel[]).filter(
-    (m) => m === "datejust" || byModel.has(m)
-  );
+  const models = MODELS.filter((m) => m === "datejust" || byModel.has(m));
 
   if (!model) {
     return (

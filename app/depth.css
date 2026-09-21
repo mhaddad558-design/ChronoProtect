@@ -856,3 +856,76 @@
 .cp-kit .cp-texture__far {
   opacity: 0.09;
 }
+
+/* ------------------------------------------- picking the watch in the hero */
+
+.cp-heropick {
+  margin-top: 2.5rem;
+}
+
+.cp-heropick__label {
+  margin: 0 0 1rem;
+  color: var(--cp-ink);
+  font-family: var(--cp-ui);
+  font-size: 1rem;
+}
+
+.cp-heropick__models {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+  max-width: 34rem;
+}
+
+.cp-heropick__model {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0.85rem 0.35rem 1rem;
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  background: var(--cp-bg-mid);
+  color: var(--cp-ink);
+  font-family: var(--cp-ui);
+  font-size: 0.82rem;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cp-heropick__model:hover,
+.cp-heropick__model:focus-visible {
+  border-color: var(--cp-bronze);
+  background: var(--cp-bg-deep);
+}
+
+.cp-heropick__aside {
+  margin: 1.1rem 0 0;
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.88rem;
+}
+
+.cp-heropick__aside button {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cp-bronze);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .cp-heropick__models {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-heropick__model {
+    transition: none;
+  }
+}
