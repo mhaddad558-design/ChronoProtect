@@ -218,13 +218,39 @@ const TOP_END = 196;
 const BOTTOM_END = 324;
 
 /** The shoulders either side of the crown on the sports models. */
+/**
+ * Crown guards: two separate shoulders forged either side of the crown, not
+ * one collar around it. Each rises out of the case flank, swells to its widest
+ * where the crown sits, and falls back to the flank — the shape that protects
+ * the tube on a Submariner, GMT-Master II or Daytona.
+ */
 function crownGuards(model: WatchModel) {
   const w = CX + CASE_SHAPE[model].width - 1;
-  return `M${w},230 C${w + 7},236 ${179},243 ${180},250 L180,270 C179,277 ${w + 7},284 ${w},290 Z`;
+  const tip = w + 9;
+  // One shoulder, mirrored: sign -1 is the guard above the crown.
+  const guard = (sign: -1 | 1) => {
+    const base = sign === -1 ? 231 : 289;
+    const edge = sign === -1 ? CROWN_TOP : CROWN_BOTTOM;
+    const near = base + sign * -4;
+    return [
+      `M${w - 2},${base}`,
+      `C${w + 4},${base + sign * 2} ${tip},${near + sign * 4} ${tip},${edge - sign * 2}`,
+      `Q${tip},${edge} ${tip - 3},${edge}`,
+      `L${w - 2},${edge} Z`,
+    ].join(" ");
+  };
+  return [guard(-1), guard(1)];
 }
 
-/** Crown position: out on its guards for the sports models, close in on the Datejust. */
-const crownX = (model: WatchModel) => (model === "datejust" ? CX + CASE_SHAPE.datejust.width + 1 : 180);
+/** The gap between the guards, where the crown seats. */
+const CROWN_TOP = 248;
+const CROWN_BOTTOM = 272;
+
+/**
+ * The crown sits flush against the case flank and screws out past the guards,
+ * so its inner edge is the flank itself rather than floating beyond it.
+ */
+const crownX = (model: WatchModel) => CX + CASE_SHAPE[model].width - 2;
 
 /* ----------------------------------------------------------------- bezels */
 
@@ -591,7 +617,11 @@ export default function WatchDiagram({
       {/* Case and lugs: covered by both lines, so one zone serves both */}
       <path d={caseBody(model)} {...zone("lugs", 0)} />
       <path d={lugBevels(model)} className="cp-wd__detail" />
-      {sports ? <path d={crownGuards(model)} {...zone("case", 0)} /> : null}
+      {sports
+        ? crownGuards(model).map((d, i) => (
+            <path key={i} d={d} {...zone("case", 0)} />
+          ))
+        : null}
 
       {/* Daytona pushers at 2 and 4 o'clock — never filmed */}
       {model === "daytona"
@@ -616,9 +646,17 @@ export default function WatchDiagram({
       {model === "datejust" ? <DatejustBezel r={r} /> : null}
 
       {/* Crown — never filmed */}
-      <rect x={crownX(model)} y={251} width={11} height={18} rx={2} className="cp-wd__bare" />
+      <rect
+        x={crownX(model)}
+        y={CROWN_TOP + 1}
+        width={15}
+        height={CROWN_BOTTOM - CROWN_TOP - 2}
+        rx={2}
+        className="cp-wd__bare"
+      />
+      {/* Fluting on the crown, and the shoulder where it meets the case */}
       <path
-        d={[3, 6, 9].map((o) => `M${crownX(model) + o},254 V266`).join(" ")}
+        d={[4, 7, 10, 13].map((o) => `M${crownX(model) + o},${CROWN_TOP + 4} V${CROWN_BOTTOM - 4}`).join(" ")}
         className="cp-wd__detail"
       />
 
