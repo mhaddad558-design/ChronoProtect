@@ -44,7 +44,7 @@
     },
     {
       "model": "Daytona",
-      "series": "Engraved & gem-set bezel, 2000–present",
+      "series": "Engraved bezel, 2000–present",
       "matchType": "exact",
       "references": [
         "116503",
@@ -69,13 +69,11 @@
     },
     {
       "model": "Daytona",
-      "series": "Engraved & gem-set bezel, leather or Oysterflex",
+      "series": "Engraved bezel, leather or Oysterflex",
       "matchType": "exact",
       "references": [
         "116518",
-        "116519",
-        "116589",
-        "126589RBR"
+        "116519"
       ],
       "bracelets": [
         "Leather",
@@ -88,12 +86,14 @@
     },
     {
       "model": "Daytona",
-      "series": "Diamond-paved, made to order",
+      "series": "Gem-set bezel, quoted by the studio",
       "matchType": "exact",
       "references": [
         "116595RBOW",
         "116598",
-        "116599"
+        "116599",
+        "116589",
+        "126589RBR"
       ],
       "coverage": [
         "chronoshield",

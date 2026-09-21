@@ -138,6 +138,8 @@ export default function FindYourKit({
     const ref = params.get("ref");
     if (ref) {
       setReference(ref);
+      // Arriving with a gem-set reference: land on the quote, not the picker.
+      if (isBespoke(ref)) setEntry("type");
       // A Datejust chosen from the catalog arrives with its look.
       const look = DATEJUST_LOOKS.find((l) => l.id === params.get("look"));
       const size = DATEJUST_SIZES.find((s) => s.token === ref);
@@ -156,6 +158,14 @@ export default function FindYourKit({
     // Otherwise pick up an unfinished configuration, if there is one.
     const saved = readSaved();
     if (!saved) return;
+    // A reference that has since moved to studio quotes is not resumed into
+    // the kit questions; it opens on the quote instead.
+    if (isBespoke(saved.reference)) {
+      clearSaved();
+      setReference(saved.reference);
+      setEntry("type");
+      return;
+    }
     setReference(saved.reference);
     setLookNote(saved.lookNote ?? null);
     setFinish(saved.finish);
@@ -257,6 +267,9 @@ export default function FindYourKit({
 
   async function goToCheckout() {
     if (!finish || !coverage) return;
+    // A gem-set reference is quoted per watch; it must never reach a cart,
+    // however it got this far (an old resumed session, a hand-edited URL).
+    if (isBespoke(reference)) return;
     // ChronoShield+ is cut and priced per bracelet, so it cannot go to checkout
     // without one — whether the customer chose it or the catalog filled it in.
     if (needsBracelet && !bracelet) return;
@@ -337,6 +350,12 @@ export default function FindYourKit({
           onPick={(ref, note) => {
             setReference(ref);
             setLookNote(note ?? null);
+            // A gem-set watch is quoted by the studio, not sold as a kit: show
+            // the quote rather than walking into questions that end at a cart.
+            if (isBespoke(ref)) {
+              setEntry("type");
+              return;
+            }
             setStep(2);
           }}
           onTypeInstead={() => setEntry("type")}
