@@ -226,10 +226,10 @@ const BOTTOM_END = 324;
  */
 function crownGuards(model: WatchModel) {
   const w = CX + CASE_SHAPE[model].width - 1;
-  const tip = w + 9;
+  const tip = w + 14;
   // One shoulder, mirrored: sign -1 is the guard above the crown.
   const guard = (sign: -1 | 1) => {
-    const base = sign === -1 ? 231 : 289;
+    const base = sign === -1 ? 222 : 298;
     const edge = sign === -1 ? CROWN_TOP : CROWN_BOTTOM;
     const near = base + sign * -4;
     return [
@@ -250,7 +250,8 @@ const CROWN_BOTTOM = 272;
  * The crown sits flush against the case flank and screws out past the guards,
  * so its inner edge is the flank itself rather than floating beyond it.
  */
-const crownX = (model: WatchModel) => CX + CASE_SHAPE[model].width - 2;
+const crownX = (model: WatchModel) =>
+  CX + CASE_SHAPE[model].width + (model === "datejust" ? -2 : 2);
 
 /* ----------------------------------------------------------------- bezels */
 
@@ -649,14 +650,14 @@ export default function WatchDiagram({
       <rect
         x={crownX(model)}
         y={CROWN_TOP + 1}
-        width={15}
+        width={20}
         height={CROWN_BOTTOM - CROWN_TOP - 2}
         rx={2}
         className="cp-wd__bare"
       />
       {/* Fluting on the crown, and the shoulder where it meets the case */}
       <path
-        d={[4, 7, 10, 13].map((o) => `M${crownX(model) + o},${CROWN_TOP + 4} V${CROWN_BOTTOM - 4}`).join(" ")}
+        d={[5, 9, 13, 17].map((o) => `M${crownX(model) + o},${CROWN_TOP + 4} V${CROWN_BOTTOM - 4}`).join(" ")}
         className="cp-wd__detail"
       />
 
