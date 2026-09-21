@@ -226,25 +226,27 @@ const BOTTOM_END = 324;
  */
 function crownGuards(model: WatchModel) {
   const w = CX + CASE_SHAPE[model].width - 1;
-  const tip = w + 14;
-  // One shoulder, mirrored: sign -1 is the guard above the crown.
+  const face = crownX(model) + CROWN_WIDTH;
+  // One shoulder, mirrored: sign -1 is the guard above the crown. The outer
+  // edge sweeps from the flank out to the crown's face, so each guard reads as
+  // a tapered fin rather than a block, and neither stands proud of the crown.
   const guard = (sign: -1 | 1) => {
-    const base = sign === -1 ? 222 : 298;
+    const root = sign === -1 ? 220 : 300;
     const edge = sign === -1 ? CROWN_TOP : CROWN_BOTTOM;
-    const near = base + sign * -4;
     return [
-      `M${w - 2},${base}`,
-      `C${w + 4},${base + sign * 2} ${tip},${near + sign * 4} ${tip},${edge - sign * 2}`,
-      `Q${tip},${edge} ${tip - 3},${edge}`,
+      `M${w - 2},${root}`,
+      `C${w + 9},${root + sign * -3} ${face - 4},${edge + sign * -13} ${face},${edge + sign * 2}`,
+      `Q${face},${edge} ${face - 3},${edge}`,
       `L${w - 2},${edge} Z`,
     ].join(" ");
   };
   return [guard(-1), guard(1)];
 }
 
-/** The gap between the guards, where the crown seats. */
-const CROWN_TOP = 248;
-const CROWN_BOTTOM = 272;
+/** The gap between the guards, where the crown seats, and the crown's reach. */
+const CROWN_TOP = 249;
+const CROWN_BOTTOM = 271;
+const CROWN_WIDTH = 20;
 
 /**
  * The crown sits flush against the case flank and screws out past the guards,
@@ -649,9 +651,9 @@ export default function WatchDiagram({
       {/* Crown — never filmed */}
       <rect
         x={crownX(model)}
-        y={CROWN_TOP + 1}
-        width={20}
-        height={CROWN_BOTTOM - CROWN_TOP - 2}
+        y={CROWN_TOP}
+        width={CROWN_WIDTH}
+        height={CROWN_BOTTOM - CROWN_TOP}
         rx={2}
         className="cp-wd__bare"
       />
