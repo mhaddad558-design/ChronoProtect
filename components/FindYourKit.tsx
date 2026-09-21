@@ -17,6 +17,7 @@ import {
   suggestReferences,
   type BraceletName,
 } from "@/lib/fitment";
+import { isLefty } from "@/lib/looks";
 import { BRACELETS, STUDIO_EMAIL } from "@/lib/site";
 import BraceletLinks from "./BraceletLinks";
 import FinishSwatch from "./FinishSwatch";
@@ -316,6 +317,7 @@ export default function FindYourKit() {
                 line={c.value}
                 model={fitment ? modelForFamily(fitment.family.model) : undefined}
                 bracelet={selectableBracelets.length === 1 ? selectableBracelets[0] : undefined}
+                lefty={isLefty(reference)}
                 id={`kit-step-${c.value}`}
                 height={112}
               />

@@ -390,8 +390,8 @@ function DatejustBezel({ r }: { r: Rings }) {
 const minuteTrack = (dial: number) =>
   Array.from({ length: 60 }, (_, i) => tick(dial - 3, dial - 0.8, i * 6)).join("");
 
-function DateWindow({ dial }: { dial: number }) {
-  const x = CX + dial - 21;
+function DateWindow({ dial, lefty = false }: { dial: number; lefty?: boolean }) {
+  const x = lefty ? CX - dial + 10 : CX + dial - 21;
   return (
     <>
       <rect x={x} y={CY - 5} width={11} height={10} rx={1} className="cp-wd__date" />
@@ -402,7 +402,7 @@ function DateWindow({ dial }: { dial: number }) {
 }
 
 /** Hour markers as the sports models have them: round plots, a triangle at 12, bars at 6 and 9. */
-function SportsDial({ dial }: { dial: number }) {
+function SportsDial({ dial, lefty = false }: { dial: number; lefty?: boolean }) {
   const r = dial - 12;
   const bar = (deg: number) => (
     <path key={deg} d={tick(r - 5, r + 4, deg)} className="cp-wd__bar" />
@@ -421,7 +421,7 @@ function SportsDial({ dial }: { dial: number }) {
       />
       {bar(180)}
       {bar(270)}
-      <DateWindow dial={dial} />
+      <DateWindow dial={dial} lefty={lefty} />
     </>
   );
 }
@@ -542,6 +542,7 @@ export default function WatchDiagram({
   id,
   model = "submariner",
   bracelet: braceletKind,
+  lefty = false,
   height = 420,
   title,
   reveal = false,
@@ -552,6 +553,8 @@ export default function WatchDiagram({
   model?: WatchModel;
   /** Defaults to the bracelet the model most often ships on. */
   bracelet?: DiagramBracelet;
+  /** Destro: the crown, its guards and the date sit at 9 instead of 3. */
+  lefty?: boolean;
   height?: number;
   title?: string;
   /**
@@ -626,11 +629,13 @@ export default function WatchDiagram({
       {/* Case and lugs: covered by both lines, so one zone serves both */}
       <path d={caseBody(model)} {...zone("lugs", 0)} />
       <path d={lugBevels(model)} className="cp-wd__detail" />
-      {sports
-        ? crownGuards(model).map((d, i) => (
-            <path key={i} d={d} {...zone("case", 0)} />
-          ))
-        : null}
+      {/* On a left-handed watch the whole crown assembly is mirrored about the
+          centre line, exactly as the case is forged. */}
+      <g transform={lefty ? `translate(${CX * 2} 0) scale(-1 1)` : undefined}>
+        {sports
+          ? crownGuards(model).map((d, i) => <path key={i} d={d} {...zone("case", 0)} />)
+          : null}
+      </g>
 
       {/* Daytona pushers at 2 and 4 o'clock — never filmed */}
       {model === "daytona"
@@ -654,7 +659,8 @@ export default function WatchDiagram({
       {model === "daytona" ? <DaytonaBezel r={r} /> : null}
       {model === "datejust" ? <DatejustBezel r={r} /> : null}
 
-      {/* Crown — never filmed */}
+      {/* Crown — never filmed. Mirrored with its guards on a destro. */}
+      <g transform={lefty ? `translate(${CX * 2} 0) scale(-1 1)` : undefined}>
       <rect
         x={crownX(model)}
         y={CROWN_TOP}
@@ -670,10 +676,11 @@ export default function WatchDiagram({
           .join(" ")}
         className="cp-wd__detail"
       />
+      </g>
 
       {/* Dial. The crystal is never filmed. */}
       <path d={circle(r.dial)} className="cp-wd__dial" />
-      {model === "submariner" || model === "gmt" ? <SportsDial dial={r.dial} /> : null}
+      {model === "submariner" || model === "gmt" ? <SportsDial dial={r.dial} lefty={lefty} /> : null}
       {model === "daytona" ? <DaytonaDial dial={r.dial} /> : null}
       {model === "datejust" ? <DatejustDial dial={r.dial} /> : null}
 

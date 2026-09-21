@@ -1,21 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import looksData from "@/data/looks.json";
+import { LOOKS as ALL_LOOKS, type Look } from "@/lib/looks";
 import { findFitment } from "@/lib/fitment";
 import SpecialRequest from "./SpecialRequest";
 import WatchDiagram, { MODEL_NAMES, modelForFamily, type WatchModel } from "./WatchDiagram";
 
-type Look = {
-  ref: string;
-  metal: string;
-  bezel: string;
-  dial?: string;
-  nickname?: string;
-  detail?: string;
-};
-
-const LOOKS = (looksData.looks as Look[]).filter((l) => findFitment(l.ref));
+const LOOKS = ALL_LOOKS.filter((l) => findFitment(l.ref));
 
 const ERA_ORDER = ["2020 onward", "2000s and 2010s", "1990s and 2000s"];
 
@@ -93,6 +84,7 @@ function LookChip({
   dial = "black",
   model,
   strap = false,
+  lefty = false,
   id,
 }: {
   metal: string;
@@ -101,6 +93,8 @@ function LookChip({
   model: WatchModel;
   /** Rubber rather than metal, so the stubs are drawn dark. */
   strap?: boolean;
+  /** Destro: the crown sits on the left. */
+  lefty?: boolean;
   id: string;
 }) {
   const twoToneCase = metal === "two-tone" || metal === "everose-steel";
@@ -139,8 +133,15 @@ function LookChip({
       {/* Case */}
       <circle cx="24" cy="24" r="20" fill={caseInk} />
       {twoToneCase ? <circle cx="24" cy="24" r="20" fill={gold} clipPath={`url(#${id}-r)`} /> : null}
-      {/* The crown, on the right unless this is the left-handed one */}
-      <rect x="43" y="21" width="4" height="6" rx="1" fill={twoToneCase ? gold : caseInk} />
+      {/* The crown, on the left when the watch is a destro */}
+      <rect
+        x={lefty ? 1 : 43}
+        y="21"
+        width="4"
+        height="6"
+        rx="1"
+        fill={twoToneCase && !lefty ? gold : caseInk}
+      />
 
       {/* Bezel */}
       {plain ? (
@@ -360,6 +361,7 @@ export default function WatchPicker({
               dial={look.dial}
               model={model}
               strap={/rubber|strap/i.test(look.detail ?? "")}
+              lefty={look.lefty}
               id={`chip-${look.ref}`}
             />
             <span className="cp-pick__look-name">

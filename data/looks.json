@@ -157,7 +157,8 @@
       "metal": "steel",
       "bezel": "green-black",
       "nickname": "Sprite",
-      "detail": "Crown on the left"
+      "detail": "Crown on the left",
+      "lefty": true
     },
     {
       "ref": "116713LN",
