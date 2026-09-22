@@ -356,7 +356,8 @@
       "bezel": "green-black",
       "dial": "green",
       "detail": "Crown on the left",
-      "lefty": true
+      "lefty": true,
+      "nickname": "Sprite"
     },
     {
       "ref": "126518LN",
