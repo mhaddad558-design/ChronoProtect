@@ -11,6 +11,21 @@ export const SITE_NAME = "ChronoProtect+";
 export const SITE_TAGLINE = "Protect the piece, change the presence.";
 export const STUDIO_EMAIL = "chronoshield@polsia.app";
 
+/**
+ * Postage, said wherever a price is, so nobody has to reach checkout to learn
+ * it. ChronoShield+ ships free; everything else is a flat ten dollars. The
+ * studio ships within the United States only for now.
+ */
+export const SHIPPING = {
+  flat: "$10",
+  where: "United States",
+  /** What to say beside a price, per line. */
+  line: {
+    chronoshield: "Free shipping in the United States.",
+    chronoguard: "$10 flat shipping in the United States.",
+  },
+} as const;
+
 export const FINISHES = [
   {
     name: "Gloss",

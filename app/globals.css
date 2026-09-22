@@ -683,3 +683,11 @@ svg {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Postage, said beside the price rather than saved for checkout. */
+.cp-shipping {
+  margin: 0.5rem 0 0;
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.85rem;
+}

@@ -20,7 +20,7 @@ import {
 } from "@/lib/fitment";
 import { DATEJUST_LOOKS, DATEJUST_SIZES, isLefty } from "@/lib/looks";
 import { datejustNote } from "./LookChip";
-import { BRACELETS, STUDIO_EMAIL } from "@/lib/site";
+import { BRACELETS, SHIPPING, STUDIO_EMAIL } from "@/lib/site";
 import BraceletLinks from "./BraceletLinks";
 import FinishSwatch from "./FinishSwatch";
 import BandTexture from "./BandTexture";
@@ -611,13 +611,16 @@ function PriceLine({
 
   if (coverage === "chronoguard") {
     return from.chronoguard ? (
-      <p className="cp-kit__price">ChronoGuard+, {from.chronoguard}. One price, whatever it is on.</p>
+      <p className="cp-kit__price">
+        ChronoGuard+, {from.chronoguard}. One price, whatever it is on. {SHIPPING.line.chronoguard}
+      </p>
     ) : null;
   }
   if (coverage === "chronoshield") {
     return from.chronoshield ? (
       <p className="cp-kit__price">
-        ChronoShield+, from {from.chronoshield}. The bracelet decides the rest.
+        ChronoShield+, from {from.chronoshield}. The bracelet decides the rest.{" "}
+        {SHIPPING.line.chronoshield}
       </p>
     ) : null;
   }

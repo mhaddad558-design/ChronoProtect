@@ -8,7 +8,7 @@ import WatchDiagram from "@/components/WatchDiagram";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
 import { formatMoney, getProduct, startingPrice } from "@/lib/shopify/products";
-import { BRACELETS, FINISHES, KIT_COPY } from "@/lib/site";
+import { BRACELETS, FINISHES, KIT_COPY, SHIPPING } from "@/lib/site";
 
 type KitHandle = keyof typeof KIT_COPY;
 
@@ -59,6 +59,7 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
             <div style={{ marginTop: "2.5rem" }}>
               <Price value={startingPrice(product)} lead="From" />
+              <p className="cp-shipping">{SHIPPING.line[handle]}</p>
             </div>
 
             <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>
