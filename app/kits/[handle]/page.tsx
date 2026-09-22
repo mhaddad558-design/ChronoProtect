@@ -59,7 +59,9 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
             <div style={{ marginTop: "2.5rem" }}>
               <Price value={startingPrice(product)} lead="From" />
-              <p className="cp-shipping">{SHIPPING.line[handle]}</p>
+              <p className="cp-shipping">
+                {SHIPPING.line[handle]} {SHIPPING.cut}
+              </p>
             </div>
 
             <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>

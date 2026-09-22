@@ -612,7 +612,8 @@ function PriceLine({
   if (coverage === "chronoguard") {
     return from.chronoguard ? (
       <p className="cp-kit__price">
-        ChronoGuard+, {from.chronoguard}. One price, whatever it is on. {SHIPPING.line.chronoguard}
+        ChronoGuard+, {from.chronoguard}. One price, whatever it is on. {SHIPPING.line.chronoguard}{" "}
+        {SHIPPING.cut}
       </p>
     ) : null;
   }
@@ -620,7 +621,7 @@ function PriceLine({
     return from.chronoshield ? (
       <p className="cp-kit__price">
         ChronoShield+, from {from.chronoshield}. The bracelet decides the rest.{" "}
-        {SHIPPING.line.chronoshield}
+        {SHIPPING.line.chronoshield} {SHIPPING.cut}
       </p>
     ) : null;
   }

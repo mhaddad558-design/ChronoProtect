@@ -24,6 +24,8 @@ export const SHIPPING = {
     chronoshield: "Free shipping in the United States.",
     chronoguard: "$10 flat shipping in the United States.",
   },
+  /** Nothing is stocked, so the wait starts when the order lands. */
+  cut: "Cut to order in 2 to 4 business days.",
 } as const;
 
 export const FINISHES = [
