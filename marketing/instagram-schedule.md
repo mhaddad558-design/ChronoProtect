@@ -9,18 +9,18 @@ captions are handed over for review, then posted by hand.
 
 | Day | Format | Size |
 |---|---|---|
-| Tuesday | Reel | 9:16, 5 seconds, silent (music added in Instagram) |
+| Tuesday | Reel | 9:16, 5 seconds, 720p, silent (music added in Instagram) |
 | Thursday | Image post | 4:5 |
-| Saturday | Reel | 9:16, 5 seconds, silent |
+| Saturday | Reel | 9:16, 5 seconds, 720p, silent |
 
 ## Pipeline and cost
 
 1. Three stills with `gpt_image_2_5`, `quality: high`, `resolution: 2k`: the
    image post, plus a first frame for each Reel. 2.75 credits each.
-2. Each Reel frame animated with `kling3_0`, `mode: pro`, `sound: off`,
-   5 seconds, frame passed as `start_image`. 8.75 credits each.
+2. Each Reel frame animated with `kling3_0`, `mode: std`, `sound: off`,
+   5 seconds, frame passed as `start_image`. 7.5 credits each, 720x1280.
 
-About 26 credits a week. If a second Kling job is rejected as "out of
+About 24 credits a week. If a second Kling job is rejected as "out of
 credits" while credit remains, wait for the first to finish and resubmit.
 
 ## Pillars
