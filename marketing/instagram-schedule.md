@@ -15,14 +15,13 @@ captions are handed over for review, then posted by hand.
 
 ## Pipeline and cost
 
-1. Three stills with `gpt_image_2_5`: the image post, plus a first frame for
-   each Reel. 0.25 credits each.
-2. Each Reel frame animated with `kling3_0`, `mode: std`, `sound: off`,
-   5 seconds, frame passed as `start_image`. 7.5 credits each.
+1. Three stills with `gpt_image_2_5`, `quality: high`, `resolution: 2k`: the
+   image post, plus a first frame for each Reel. 2.75 credits each.
+2. Each Reel frame animated with `kling3_0`, `mode: pro`, `sound: off`,
+   5 seconds, frame passed as `start_image`. 8.75 credits each.
 
-About 16 credits a week. Submit one Kling job at a time: the Plus plan
-rejected a second job running in parallel as "out of credits" even with
-credit left.
+About 26 credits a week. If a second Kling job is rejected as "out of
+credits" while credit remains, wait for the first to finish and resubmit.
 
 ## Pillars
 
@@ -48,6 +47,10 @@ needs two Reel pillars and one image pillar.
 - Ground is deep forest-charcoal `#0B110D` or `#141F19`. Light is one warm
   bronze key or rim light, `#BC906C`. Generous negative space.
 - No gradient washes, lens flares, people or hands (hands tend to break).
+- The film wraps around each link individually: it follows the link's
+  contour, curls around its edges and tucks into the gaps. It is never a flat
+  sheet laid over the bracelet, and the gaps between links stay open.
+- On ChronoGuard+ the film wraps the case and clasp and the links stay bare.
 - Reel motion is slow and single-shot: a glide, a push-in, a light sweep.
 
 ## Caption rules
@@ -66,24 +69,25 @@ Follow `BRAND-VOICE.md`. In short:
 
 ### Week of September 28, 2026
 
-Generated September 25 as the test batch.
+Generated September 25, then redone the same day at high quality with the
+film wrapped around each link.
 
-**Tuesday, Reel, pillar 1.** Still `f2e55af6-398d-449a-a02d-5a1b727363b9`,
-video `4e95a7f2-e6bc-4589-875d-c22fbc625b28`.
+**Tuesday, Reel, pillar 1.** Still `ed9899f1-3ce1-4034-8204-88ee6c3b8a1b`,
+video `566cda6c-0ddf-46ac-b25a-7e70fae878cd`.
 
 > Cut to the bracelet, link by link. ChronoShield+ covers the case, bezel,
 > every bracelet link and the clasp, and each piece of film is cut to the
 > reference number. The bracelet keeps its articulation, and the film disappears into
 > the brushing.
 
-**Thursday, image, pillar 2.** Still `883f9ebe-e0f4-499f-925f-49c239c2ba9a`.
+**Thursday, image, pillar 2.** Still `e8d76d45-258a-49a3-a69a-81ebc7d4822d`.
 
 > Same film, two finishes. Gloss keeps the polish exactly as it left the
 > boutique. Stealth turns it to a soft satin, a quieter presence on the same
 > piece. Both are offered on ChronoShield+ and ChronoGuard+.
 
-**Saturday, Reel, pillar 3.** Still `60bc624c-8f5e-49c0-93cc-94172b0fe244`,
-video `2d325f26-5bd0-42c9-a048-9d905da5246e`.
+**Saturday, Reel, pillar 3.** Still `1e592dfd-5e1d-4e01-adf9-e101abf192b2`,
+video `4147fda0-ba69-4adf-af75-350db06a31d6`.
 
 > Case and clasp only. ChronoGuard+ covers the two surfaces a desk scratches
 > first and leaves the bracelet bare. Two finishes, cut to the reference number.
