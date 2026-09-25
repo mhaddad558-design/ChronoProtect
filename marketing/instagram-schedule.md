@@ -155,6 +155,60 @@ Follow `BRAND-VOICE.md`. In short:
 - Any post that names a reference number carries the Rolex disclaimer.
 - Posts are AI-generated: tick Instagram's AI label when posting.
 
+## Hashtags
+
+Instagram allows at most 5 hashtags per post. Every post uses exactly 5: the
+owned tag, then four from the pool below, picked for the post. Tag volumes
+were not checked live; Instagram Insights decides what stays.
+
+**Owned, on every post.** `#ChronoProtect`. Hashtags cannot carry a `+`, so
+this is the one place the name appears without it.
+
+**Pool**
+
+| Tier | Tags |
+|---|---|
+| Viral format | `#oddlysatisfying` `#satisfying` `#satisfyingvideo` `#quietluxury` `#luxurylifestyle` `#watchreels` `#watchtok` |
+| Generic reach, Reels only, at most one | `#reels` `#reelsinstagram` `#explorepage` |
+| Watch community | `#wristcheck` `#watchesofinstagram` `#watchcollector` `#womw` `#wotd` |
+| Rolex | `#rolex` `#rolexcollector` `#rolexwatch` `#rolexlover` |
+| Rolex model | `#rolexsubmariner` `#rolexdaytona` `#rolexgmt` `#rolexdatejust` `#rolexdaydate` |
+| Intent | `#watchprotection` `#watchcare` `#wearyourwatch` `#carsandwatches` |
+
+**Starting sets**
+
+| Post | Tags |
+|---|---|
+| Reel, film placed or peeled | `#ChronoProtect #oddlysatisfying #watchprotection #wristcheck #rolexcollector` |
+| Reel, the car and the watch | `#ChronoProtect #carsandwatches #quietluxury #wearyourwatch #rolex` |
+| Reel, on the wrist | `#ChronoProtect #watchreels #wristcheck #wearyourwatch #rolexcollector` |
+| Reel, links or clasp close-up | `#ChronoProtect #satisfying #watchesofinstagram #watchcare #rolexwatch` |
+| Carousel, the collection | `#ChronoProtect #watchcollector #rolexcollector #watchesofinstagram #watchcare` |
+| Carousel, the fit | `#ChronoProtect #watchprotection #rolexwatch #watchesofinstagram #wotd` |
+| Carousel, the long game | `#ChronoProtect #rolexcollector #watchcare #rolex #watchcollector` |
+
+**Rules**
+
+- Reels take one viral-format tag. Carousels take none, and no generic
+  reach tags.
+- `#carsandwatches` only on the car-and-watch storyline.
+- Rolex model tags only on a real photo or video of that exact model, or a
+  post about that supported reference with the Rolex disclaimer. Generated
+  watches are unbranded, so they never take a model tag.
+- Never post the same five tags twice in one week. Swap at least two
+  between posts.
+- Tags go at the end of the caption, after a blank line.
+
+## Before posting
+
+Run Higgsfield's `virality_predictor` (`action: create`, the Reel's job ID
+as a `video` media) on each Reel, then open each dashboard with
+`action: preview` for review. It cost no credits on September 25. The
+dashboards are HTML on Higgsfield's CDN, which the cloud container cannot
+reach, so the scores are read in the Higgsfield viewer, not by the run.
+Use its notes on the hook, pacing and sound. A weak score is a reason to
+swap the audio or the first frame, not to skip a week.
+
 ## Log
 
 ### Week of September 28, 2026 (posts September 29 to October 3)
@@ -186,6 +240,10 @@ video `4147fda0-ba69-4adf-af75-350db06a31d6`.
 
 Captions rewritten on September 25 to follow the content guide. All three
 are thought Reels, made before the guide arrived.
+
+Virality predictor jobs, September 25: Tuesday Reel
+`fd3bfc4d-2737-47c7-9765-73909b2d41aa`, Saturday Reel
+`a3d6297d-587a-4e33-bcf1-b0ee0dc64125`.
 
 The September 28 run makes the week of October 5 (posts October 6, 8 and 10):
 storyline S1, pattern B.
