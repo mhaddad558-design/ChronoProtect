@@ -89,6 +89,37 @@ Take the storylines in order, one per week, and start over after the last.
 The week of October 5 is S1, pattern B: Tuesday carousel (emotion),
 Thursday Reel (thought), Saturday carousel (emotion).
 
+## Your media
+
+Real photos and footage beat generated ones: the film, the fit and the
+finish are exactly right, and a real photo costs nothing to post. When the
+library has something that fits the week's storyline, use it before
+generating.
+
+- **Photo in a carousel.** Use it as a slide as it is, or as an
+  `image_references` input so the generated slides match it.
+- **Photo in a Reel.** Use it as the Kling `start_image` (7.5 credits, no
+  still to generate).
+- **Video.** Cut it to a Reel as it is, or restyle it with Shorts Studio.
+
+Real photos may show the watch's own branding, since they are the real
+product. Any post that shows or names a Rolex reference carries the Rolex
+disclaimer. Generated media stays unbranded.
+
+Media reaches Higgsfield in one of three ways:
+
+1. Attach it in this conversation with one line on what it shows. It is
+   uploaded to Higgsfield and added to the table below.
+2. Upload it in the Higgsfield web app. The Monday run finds it with
+   `show_medias`, but cannot see what it shows, so it lists new files in
+   its reply and asks for a line on each. It uses a file only once it has a
+   description.
+3. Share a public link (Google Drive, Dropbox) here. It is imported with
+   `media_import_url`.
+
+| Media ID | Type | What it shows | Best for | Used |
+|---|---|---|---|---|
+
 ## Prompt rules
 
 - Watches are unbranded: blank dials, plain indices, no crown emblem, no
