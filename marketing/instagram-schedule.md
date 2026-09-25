@@ -1,6 +1,6 @@
 # Instagram schedule
 
-Two posts a week, both Reels. A Routine runs every Monday
+Three posts a week, all Reels. A Routine runs every Monday
 at 8:54am Eastern, generates the week's media in Higgsfield, and adds a new
 week to the log below. Nothing is posted automatically. Each week's files and
 captions are handed over for review, then posted by hand.
@@ -10,21 +10,22 @@ captions are handed over for review, then posted by hand.
 | Day | Format | Size |
 |---|---|---|
 | Tuesday | Reel | 9:16, 5 seconds, 720p, silent (music added in Instagram) |
+| Thursday | Reel | 9:16, 5 seconds, 720p, silent |
 | Saturday | Reel | 9:16, 5 seconds, 720p, silent |
 
 ## Pipeline and cost
 
-1. Two stills with `gpt_image_2_5`, `quality: high`, `resolution: 2k`, one
+1. Three stills with `gpt_image_2_5`, `quality: high`, `resolution: 2k`, one
    first frame for each Reel. 2.75 credits each.
 2. Each Reel frame animated with `kling3_0`, `mode: std`, `sound: off`,
    5 seconds, frame passed as `start_image`. 7.5 credits each, 720x1280.
 
-About 21 credits a week. If a second Kling job is rejected as "out of
-credits" while credit remains, wait for the first to finish and resubmit.
+About 31 credits a week. If a later Kling job is rejected as "out of
+credits" while credit remains, wait for the running one to finish and resubmit.
 
 ## Pillars
 
-Rotate in order, two per week, starting where the last week stopped. Every
+Rotate in order, three per week, starting where the last week stopped. Every
 pillar is made as a Reel.
 
 | # | Pillar |
