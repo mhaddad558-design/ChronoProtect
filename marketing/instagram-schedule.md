@@ -1,7 +1,7 @@
 # Instagram schedule
 
 Three posts a week, all Reels. A Routine runs every Monday
-at 8:54am Eastern, generates the week's media in Higgsfield, and adds a new
+at 8:54am Eastern, generates the following week's media in Higgsfield, and adds a new
 week to the log below. Nothing is posted automatically. Each week's files and
 captions are handed over for review, then posted by hand.
 
@@ -23,21 +23,58 @@ captions are handed over for review, then posted by hand.
 About 31 credits a week. If a later Kling job is rejected as "out of
 credits" while credit remains, wait for the running one to finish and resubmit.
 
-## Pillars
+## Content guide
 
-Rotate in order, three per week, starting where the last week stopped. Every
-pillar is made as a Reel.
+From the brand's content guide of September 11, 2026. It governs every Reel.
 
-| # | Pillar |
+- Emotions to hit: safety, trust, belonging.
+- Thoughts to land: the film is an extension of the watch, not an addition.
+  Serious collectors protect their pieces. What the film preserves lasts the
+  life of the watch and shows up in its resale value.
+- About 3 Reels a week, alternating emotion and thought.
+- The main story is protection, alongside "wear your fking watch": a watch
+  is protected so it can be worn, not kept in a box.
+- Allude to a Ferrari: a car and a watch are both great pieces that need
+  love and protection to be fully used.
+- Build a platform that earns trust and makes the brand recognizable.
+
+How that is applied here:
+
+- The car is an allusion only. It is an unbadged red Italian supercar, and
+  no Ferrari name, prancing horse, shield or badge appears in a prompt, a
+  frame or a caption. Paint protection film on the car mirrors the film on
+  the watch.
+- Captions say "Wear the watch." rather than the explicit line.
+- Collector trust is stated as how collectors behave. No named collector,
+  count or endorsement appears unless it is real and approved.
+
+## Themes
+
+Reels alternate emotion and thought, day by day, and the alternation carries
+across weeks: the first Reel of a week is the opposite type to the last Reel
+of the week before. For each slot, pick the least recently used theme of that
+type and vary the composition from earlier uses.
+
+**Emotion**
+
+| # | Theme |
 |---|---|
-| 1 | ChronoShield+ over the bracelet, link by link |
-| 2 | Gloss vs Stealth finish |
-| 3 | ChronoGuard+ on the case and clasp, bracelet left bare |
-| 4 | Oyster, Jubilee and President: how the template changes per bracelet |
-| 5 | Installation: pre-cut piece placed, squeegeed, gone |
-| 6 | It comes off the way it went on: film lifted from a clean case |
-| 7 | Supported references, one family per post, from `data/fitment.json` |
-| 8 | Bezel and case edge in raking light, film invisible |
+| E1 | Safety, wear the watch: the watch worn through a day (desk edge, door frame, car keys) and the film takes the mark |
+| E2 | Belonging: a collection laid out together on dark wood, every piece protected |
+| E3 | Trust in the fit: a pre-cut piece placed and smoothed with care, gone once it is on |
+| E4 | The car and the watch: an unbadged red supercar with protected paint, the watch on the wrist at the wheel |
+
+**Thought**
+
+| # | Theme |
+|---|---|
+| T1 | An extension, not an addition: ChronoShield+ wrapped link by link, film invisible |
+| T2 | Collectors protect what they keep: pieces stored and worn, all covered |
+| T3 | Resale: film lifted clean, the original finish underneath is what the watch is valued on |
+| T4 | Gloss vs Stealth finish |
+| T5 | ChronoGuard+ on the case and clasp, bracelet left bare |
+| T6 | Oyster, Jubilee and President: how the template changes per bracelet |
+| T7 | Supported references, one family per post, from `data/fitment.json` |
 
 ## Prompt rules
 
@@ -46,7 +83,9 @@ pillar is made as a Reel.
   a specific Rolex.
 - Ground is deep forest-charcoal `#0B110D` or `#141F19`. Light is one warm
   bronze key or rim light, `#BC906C`. Generous negative space.
-- No gradient washes, lens flares, people or hands (hands tend to break).
+- No gradient washes or lens flares. No faces. A wrist and forearm in a dark
+  sleeve are allowed where a theme needs the watch worn; keep hands small or
+  soft-focus, since generated hands tend to break.
 - The film wraps around each link individually: it follows the link's
   contour, curls around its edges and tucks into the gaps. It is never a flat
   sheet laid over the bracelet, and the gaps between links stay open.
@@ -61,36 +100,43 @@ Follow `BRAND-VOICE.md`. In short:
 - Sentence case, active voice, no exclamation marks, no contractions.
 - Name the line with its plus: ChronoShield+, ChronoGuard+.
 - Say what the film physically does. State limits plainly.
-- Write about the watch, not the reader.
+- Write about the watch, not the reader. "Wear the watch." is the one
+  standing imperative.
+- Hit the Reel's emotion or thought from the content guide.
 - Any post that names a reference number carries the Rolex disclaimer.
 - Posts are AI-generated: tick Instagram's AI label when posting.
 
 ## Log
 
-### Week of September 28, 2026
+### Week of September 28, 2026 (posts September 29 to October 3)
 
 Generated September 25, then redone the same day at high quality with the
 film wrapped around each link.
 
-**Tuesday, Reel, pillar 1.** Still `ed9899f1-3ce1-4034-8204-88ee6c3b8a1b`,
+**Tuesday, Reel, T1.** Still `ed9899f1-3ce1-4034-8204-88ee6c3b8a1b`,
 video `566cda6c-0ddf-46ac-b25a-7e70fae878cd`.
 
-> Cut to the bracelet, link by link. ChronoShield+ covers the case, bezel,
-> every bracelet link and the clasp, and each piece of film is cut to the
-> reference number. The bracelet keeps its articulation, and the film disappears into
-> the brushing.
+> The film becomes part of the watch. ChronoShield+ wraps every bracelet
+> link on its own, so the bracelet keeps its articulation and the film
+> disappears into the brushing. Wear the watch.
 
-**Thursday, image, pillar 2.** Made before the image post was dropped from
+**Thursday, image, T4.** Made before the image post was dropped from
 the schedule, so posting it is optional. Still `e8d76d45-258a-49a3-a69a-81ebc7d4822d`.
 
 > Same film, two finishes. Gloss keeps the polish exactly as it left the
 > boutique. Stealth turns it to a soft satin, a quieter presence on the same
-> piece. Both are offered on ChronoShield+ and ChronoGuard+.
+> piece. Underneath either one, the original finish stays untouched, and that
+> finish is what the watch is valued on.
 
-**Saturday, Reel, pillar 3.** Still `1e592dfd-5e1d-4e01-adf9-e101abf192b2`,
+**Saturday, Reel, T5.** Still `1e592dfd-5e1d-4e01-adf9-e101abf192b2`,
 video `4147fda0-ba69-4adf-af75-350db06a31d6`.
 
 > Case and clasp only. ChronoGuard+ covers the two surfaces a desk scratches
-> first and leaves the bracelet bare. Two finishes, cut to the reference number.
+> first and leaves the bracelet bare. The watch goes out every day and comes
+> back as it left. Wear the watch.
 
-Next week starts at pillar 4.
+Captions rewritten on September 25 to follow the content guide. All three
+are thought Reels, made before the guide arrived.
+
+The September 28 run makes the week of October 5 (posts October 6, 8 and 10),
+starting with an emotion Reel.
