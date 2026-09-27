@@ -44,6 +44,8 @@ interface Cart {
   id: string;
   checkoutUrl: string;
   totalQuantity: number;
+  cost: { subtotalAmount: { amount: string; currencyCode: string } };
+  lines: { nodes: Array<{ quantity: number; merchandise: { id: string } }> };
 }
 
 const CART_ID_KEY = "chronoprotect:cartId";
@@ -79,13 +81,13 @@ function findVariant(
 }
 
 /**
- * Turns a completed configurator selection into a Shopify cart and returns the
- * hosted checkout URL.
+ * Turns a completed configurator selection into a Shopify cart and returns it;
+ * the hosted checkout is at `checkoutUrl`.
  *
  * The reference number and the rest of the fitment context ride along as line
  * attributes, so they print on the order and tell the studio which template to cut.
  */
-export async function createKitCheckout(selection: KitSelection): Promise<string> {
+export async function createKitCheckout(selection: KitSelection): Promise<Cart> {
   const data = await storefront<KitProductsData>(GET_KIT_PRODUCTS, {}, { cache: "no-store" });
 
   const product = data[selection.coverage];
@@ -177,7 +179,7 @@ export async function createKitCheckout(selection: KitSelection): Promise<string
   }
 
   rememberCart(cart.id);
-  return cart.checkoutUrl;
+  return cart;
 }
 
 /* ---------- cart persistence (browser only) ---------- */

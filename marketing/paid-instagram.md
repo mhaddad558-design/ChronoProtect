@@ -9,13 +9,15 @@ spend goes behind what already works.
 These are blockers. Without them the ads cannot optimize for sales or
 retarget anyone.
 
-1. **Meta pixel on the site.** The storefront has no pixel or Conversions
-   API today. It needs `PageView`, `ViewContent` on `/kits/*`, and
-   `AddToCart` and `InitiateCheckout` from the configurator at
-   `/find-your-kit`.
-2. **Purchases from Shopify.** Checkout is Shopify-hosted, so `Purchase`
-   comes from Shopify's Facebook and Instagram sales channel, connected to
-   the same pixel and dataset.
+1. **Meta pixel on the site.** Built in: set `NEXT_PUBLIC_META_PIXEL_ID` in
+   the host's environment to the pixel ID from Events Manager and redeploy.
+   The storefront sends `PageView` on every page, `ViewContent` on
+   `/kits/*`, and `AddToCart` with the cart value when the configurator
+   hands over to checkout.
+2. **Checkout events from Shopify.** Checkout is Shopify-hosted, so
+   `InitiateCheckout` and `Purchase` come from Shopify's Facebook and
+   Instagram sales channel, connected to the same pixel. The storefront does
+   not send them itself, so nothing is counted twice.
 3. **Domain verified** in Meta Business Manager, and `Purchase` set as the
    top-priority event.
 4. **A business Instagram account** linked to the ad account.

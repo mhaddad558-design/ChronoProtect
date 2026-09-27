@@ -8,6 +8,7 @@ import {
   type Finish,
   type KitSelection,
 } from "@/lib/shopify/cart";
+import { flushPixel, trackPixel } from "@/lib/meta-pixel";
 import {
   braceletsFor,
   braceletWords,
@@ -285,10 +286,21 @@ export default function FindYourKit({
         bracelet: needsBracelet && bracelet ? bracelet : undefined,
         application,
       };
-      const checkoutUrl = await createKitCheckout(selection);
+      const cart = await createKitCheckout(selection);
       // The configuration is now a cart: there is nothing left to resume.
       clearSaved();
-      window.location.href = checkoutUrl;
+      trackPixel("AddToCart", {
+        content_ids: cart.lines.nodes.map((line) => line.merchandise.id),
+        contents: cart.lines.nodes.map((line) => ({
+          id: line.merchandise.id,
+          quantity: line.quantity,
+        })),
+        content_type: "product",
+        value: Number(cart.cost.subtotalAmount.amount),
+        currency: cart.cost.subtotalAmount.currencyCode,
+      });
+      await flushPixel();
+      window.location.href = cart.checkoutUrl;
     } catch (err) {
       setError(
         err instanceof Error

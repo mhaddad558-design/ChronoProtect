@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import BraceletLinks from "@/components/BraceletLinks";
 import FinishSwatch from "@/components/FinishSwatch";
 import Lockup from "@/components/Lockup";
+import { TrackKitView } from "@/components/MetaPixel";
 import WatchDiagram from "@/components/WatchDiagram";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
@@ -48,6 +49,7 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
   return (
     <>
+      <TrackKitView handle={handle} name={copy.title} />
       <section className="cp-shell" style={{ paddingBlock: "clamp(3.5rem, 8vw, 6rem) 4rem" }}>
         <div className="cp-pagehead">
           <div>

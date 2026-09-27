@@ -26,6 +26,9 @@ cp .env.local.example .env.local
 # paste the domain and storefront token, then restart the dev server
 ```
 
+Set `NEXT_PUBLIC_META_PIXEL_ID` as well to switch on the Meta pixel for Instagram ads. Left empty, the
+pixel stays off and nothing is sent.
+
 ## Pages
 
 | Route | What it is |
