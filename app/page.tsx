@@ -8,7 +8,7 @@ import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
 import { getKitProducts, startingPrice } from "@/lib/shopify/products";
-import { FINISHES, KIT_COPY, SHIPPING, SITE_NAME } from "@/lib/site";
+import { DISPATCH, FINISHES, KIT_COPY, SHIPPING, SITE_NAME } from "@/lib/site";
 
 const STEPS = [
   {
@@ -187,7 +187,7 @@ function KitCard({
       <div className="cp-card__foot">
         <Price value={price} lead="From" />
         <p className="cp-shipping">
-          {SHIPPING.line[handle]} {SHIPPING.cut}
+          {SHIPPING.line[handle]} {DISPATCH}
         </p>
         <p style={{ marginTop: "1.5rem", marginBottom: 0 }}>
           <Link href={`/kits/${handle}`} className="cp-btn cp-btn--ghost">

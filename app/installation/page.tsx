@@ -68,7 +68,7 @@ export default async function InstallationPage() {
             <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
               Choose studio installation in the configurator and it is added as its own line at
               checkout, priced and fulfilled separately from the kit. The studio contacts you to
-              arrange the drop-off once the order is in.
+              arrange the drop-off once the kit is ready.
             </p>
           </div>
 

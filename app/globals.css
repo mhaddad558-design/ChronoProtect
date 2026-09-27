@@ -684,6 +684,25 @@ svg {
   }
 }
 
+/* Preorder notice above the header: one quiet line, a hairline below. */
+.cp-notice {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--cp-border);
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Preorder terms, said once more beside the checkout button. */
+.cp-kit__preorder {
+  margin: 1.5rem 0 0;
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.9rem;
+}
+
 /* Postage, said beside the price rather than saved for checkout. */
 .cp-shipping {
   margin: 0.5rem 0 0;

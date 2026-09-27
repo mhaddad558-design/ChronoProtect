@@ -1,5 +1,6 @@
 import { storefront, ShopifyError } from "./client";
 import { GET_KIT_PRODUCTS, CART_CREATE, GET_CART } from "./queries";
+import { PREORDER } from "@/lib/site";
 
 export type Coverage = "chronoshield" | "chronoguard";
 export type Finish = "Gloss" | "Stealth";
@@ -132,6 +133,9 @@ export async function createKitCheckout(selection: KitSelection): Promise<Cart> 
       value: selection.application === "professional" ? "Studio installation" : "Self-applied",
     },
     selection.usage ? { key: "Wear pattern", value: selection.usage } : null,
+    // Prints on the order and shows under the line at checkout, so the
+    // customer sees the ship month again before paying.
+    PREORDER.on ? { key: "Preorder", value: `Ships ${PREORDER.ships}` } : null,
   ].filter(Boolean) as Array<{ key: string; value: string }>;
 
   const lines: Array<{
