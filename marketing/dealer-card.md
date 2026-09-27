@@ -8,8 +8,9 @@ moment the film is worth the most.
 
 - US business card, 3.5 x 2 in, two sides, 16pt uncoated stock so it reads
   as a card rather than a flyer.
-- Ground `#0B110D`. Crest and QR code in bronze `#BC906C`, text in white.
-  No gradients, no gloss laminate.
+- Ground `#0B110D`. Crest in bronze `#BC906C`, text in white. The QR code
+  is dark on a small white panel, since light-on-dark codes fail on some
+  phone cameras. No gradients, no gloss laminate.
 - Crest lockup (`components/Lockup.tsx`, "Chrono" over "PROTECT+") in Jost.
   Headlines in Red Hat Display light. Body in Red Hat Text. The reference
   line in DM Mono.
@@ -44,17 +45,33 @@ back stays the same.
 >
 > Keep the finish it has today.
 
+## Print files
+
+In `marketing/dealer-card/`:
+
+| File | What it is |
+|---|---|
+| `dealer-card-new.pdf` | New-watch card, front and back |
+| `dealer-card-preowned.pdf` | Pre-owned card, front and back |
+| `preview-*.png` | Screen previews, not for print |
+
+Each PDF page is 3.75 x 2.25 in: the 3.5 x 2 in card plus 0.125 in bleed on
+every side, with text kept a further 0.125 in inside the trim. Fonts are
+embedded. Ask the printer whether they want text outlined.
+
 ## QR code
 
-Points at the configurator, tagged per dealer so each dealer's sales can be
-counted:
+Points at the configurator, tagged so dealer sales can be counted:
 
 ```
-https://<site domain>/find-your-kit?utm_source=dealer&utm_medium=card&utm_campaign=<dealer-slug>
+https://www.chronoprotect.shop/find-your-kit?utm_source=dealer&utm_medium=card&utm_campaign=<dealer-slug>
 ```
 
-`<dealer-slug>` is lowercase with hyphens, one per dealer, for example
-`smith-jewelers`. Print a separate run per dealer.
+The current print files use the generic slug `dealer-card`, and the code was
+checked to decode to that address. For per-dealer counts, make a run per
+dealer with its own slug, lowercase with hyphens, for example
+`smith-jewelers`. The back also prints `chronoprotect.shop` for anyone who
+does not scan.
 
 A dealer with a label printer can go further and print a sticker QR per
 watch with the reference added, `&ref=126610LN` for example. The
@@ -62,7 +79,6 @@ configurator reads `ref`, fills in the reference and skips to the next step.
 
 ## Open decisions
 
-- **Site domain** for the QR code. Not set anywhere in the repo.
 - **What the dealer gets.** A commission per sale, a wholesale price on
   studio installation, or nothing. The card works either way, but a dealer
   with a stake hands it over.
