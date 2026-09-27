@@ -12,8 +12,8 @@ moment the film is worth the most.
   is dark on a small white panel, since light-on-dark codes fail on some
   phone cameras. No gradients, no gloss laminate.
 - Crest lockup (`components/Lockup.tsx`, "Chrono" over "PROTECT+") in Jost.
-  Headlines in Red Hat Display light. Body in Red Hat Text. The reference
-  line in DM Mono.
+  Headlines in Red Hat Display light. Body and the reference label in Red
+  Hat Text; the reference itself is handwritten on the line.
 - Sentence case throughout. No Rolex name, crown or reference number is
   printed, so the card needs no disclaimer.
 
