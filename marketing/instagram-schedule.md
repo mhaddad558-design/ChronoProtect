@@ -76,7 +76,12 @@ A carousel's three slides are beats of the story: a setup, a turn and a
 close. A Reel is one beat, a hook either side of the carousel or the middle
 of the week.
 
-Take the storylines in order, one per week, and start over after the last.
+Take the storylines in this order, one per week, then start over:
+
+S1, S2, S6, S3, S4, S6, S5, S6
+
+S6, Day one, speaks to new buyers, the customers most likely to buy, so it
+comes round every two or three weeks instead of once a cycle.
 
 | # | Storyline | Emotion | Thought |
 |---|---|---|---|
@@ -85,9 +90,43 @@ Take the storylines in order, one per week, and start over after the last.
 | S3 | The collection | Belonging: a collection laid out together on dark wood, every piece protected | Collectors protect what they intend to keep, and wear what they protect |
 | S4 | The fit | Trust: a pre-cut piece placed and smoothed with care, gone once it is on | Two lines, two finishes: ChronoShield+ or ChronoGuard+, Gloss or Stealth, cut to the bracelet |
 | S5 | The long game | Safety over years: the same watch worn for a decade | Resale: the film lifts clean and the original finish underneath is what the watch is valued on |
+| S6 | Day one | The first wear: the watch out of the box and straight onto the wrist, the first scratch that never reaches the steel | The finish is only perfect once, so the film goes on before the first wear. Every thought post in an S6 week is a reference-support post (below) |
 
 The week of October 5 is S1, pattern B: Tuesday carousel (emotion),
-Thursday Reel (thought), Saturday carousel (emotion).
+Thursday Reel (thought), Saturday carousel (emotion). October 12 is S2 and
+October 19 is S6.
+
+### Reference-support posts
+
+These answer a new buyer's first question: will it fit my watch. Each covers
+one family from `data/fitment.json`, taking current models in this order and
+starting over after the last:
+
+1. Submariner, 2020 to present, 41mm
+2. Datejust 41
+3. GMT-Master II
+4. Daytona, Cerachrom bezel (Oyster bracelet on ChronoShield+ and
+   ChronoGuard+, Oysterflex on ChronoGuard+ only)
+5. Datejust 36
+
+- As a carousel: slide 1 the watch family's silhouette with the film, slide
+  2 the coverage for each line, slide 3 the bracelet or strap options.
+- As a Reel: one slow move over the covered case and bracelet.
+- The caption names the family and its reference range, states plainly what
+  is not covered (Oysterflex and leather take ChronoGuard+ only; gem-set
+  bezels are quoted by the studio), and closes with: "Comment your reference
+  and we will confirm the fit."
+- Always carries the Rolex disclaimer. Rolex model tags are allowed here.
+- Check `data/fitment.json` on the day. Families whose `status` is not
+  `active` are never featured.
+
+### Timing
+
+- Authorized dealers call waitlisted buyers when an allocation arrives, and
+  pickups get posted on Fridays and Saturdays. The Saturday slot gets the
+  strongest new-buyer post of the week.
+- New-buyer volume peaks in April, after the Watches and Wonders launches,
+  and in December. In those months, move S6 up to every other week.
 
 ## Your media
 
@@ -174,6 +213,7 @@ this is the one place the name appears without it.
 | Rolex | `#rolex` `#rolexcollector` `#rolexwatch` `#rolexlover` |
 | Rolex model | `#rolexsubmariner` `#rolexdaytona` `#rolexgmt` `#rolexdatejust` `#rolexdaydate` |
 | Intent | `#watchprotection` `#watchcare` `#wearyourwatch` `#carsandwatches` |
+| New owner, S6 weeks and reference posts only | `#newwatch` `#newrolex` `#rolexunboxing` `#newwatchday` |
 
 **Starting sets**
 
@@ -186,12 +226,18 @@ this is the one place the name appears without it.
 | Carousel, the collection | `#ChronoProtect #watchcollector #rolexcollector #watchesofinstagram #watchcare` |
 | Carousel, the fit | `#ChronoProtect #watchprotection #rolexwatch #watchesofinstagram #wotd` |
 | Carousel, the long game | `#ChronoProtect #rolexcollector #watchcare #rolex #watchcollector` |
+| Reel, day one | `#ChronoProtect #rolexunboxing #newwatchday #wristcheck #rolexcollector` |
+| Carousel, day one | `#ChronoProtect #newrolex #newwatch #watchprotection #rolexcollector` |
+| Reference post, Submariner 41 | `#ChronoProtect #rolexsubmariner #newrolex #watchprotection #rolexcollector` |
 
 **Rules**
 
 - Reels take one viral-format tag. Carousels take none, and no generic
   reach tags.
 - `#carsandwatches` only on the car-and-watch storyline.
+- New-owner tags only in S6 weeks and on reference posts. Swap one watch
+  or intent tag for one of them. New-owner tag volumes were not checked;
+  Insights decides which stay.
 - Rolex model tags only on a real photo or video of that exact model, or a
   post about that supported reference with the Rolex disclaimer. Generated
   watches are unbranded, so they never take a model tag.
