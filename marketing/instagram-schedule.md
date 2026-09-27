@@ -191,6 +191,10 @@ Follow `BRAND-VOICE.md`. In short:
   week's storyline.
 - A carousel caption walks the three slides in order, one short sentence
   each, then closes. Its opening line has to make someone swipe.
+- While preorder mode is on (`PREORDER.on` in `lib/site.ts`), every caption
+  ends, before the hashtags, with its own line: "On preorder now, shipping
+  in November 2026." The month comes from `PREORDER.ships`. When preorder
+  mode is off, the line is left out.
 - Any post that names a reference number carries the Rolex disclaimer.
 - Posts are AI-generated: tick Instagram's AI label when posting.
 
@@ -269,6 +273,8 @@ video `566cda6c-0ddf-46ac-b25a-7e70fae878cd`.
 > link on its own, so the bracelet keeps its articulation and the film
 > disappears into the brushing. Wear the watch.
 >
+> On preorder now, shipping in November 2026.
+>
 > #ChronoProtect #satisfying #watchesofinstagram #wristcheck #rolexcollector
 
 **Thursday, image, thought: Gloss or Stealth.** Made before the image post was dropped from
@@ -279,6 +285,8 @@ the schedule, so posting it is optional. Still `e8d76d45-258a-49a3-a69a-81ebc7d4
 > piece. Underneath either one, the original finish stays untouched, and that
 > finish is what the watch is valued on.
 >
+> On preorder now, shipping in November 2026.
+>
 > #ChronoProtect #watchcollector #watchcare #watchesofinstagram #rolexwatch
 
 **Saturday, Reel, thought: ChronoGuard+ case and clasp.** Still `1e592dfd-5e1d-4e01-adf9-e101abf192b2`,
@@ -287,6 +295,8 @@ video `4147fda0-ba69-4adf-af75-350db06a31d6`.
 > Case and clasp only. ChronoGuard+ covers the two surfaces a desk scratches
 > first and leaves the bracelet bare. The watch goes out every day and comes
 > back as it left. Wear the watch.
+>
+> On preorder now, shipping in November 2026.
 >
 > #ChronoProtect #oddlysatisfying #watchprotection #wotd #rolexwatch
 
