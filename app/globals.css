@@ -382,10 +382,11 @@ svg {
   .cp-pagehead {
     grid-template-columns: minmax(0, 1fr);
   }
-  /* The mark leads on narrow screens, where it reads as a product badge. */
+  /* The mark leads on narrow screens, where it reads as a product badge,
+     centred so it sits on the phone's axis rather than the text's edge. */
   .cp-pagehead__mark {
     order: -1;
-    justify-self: start;
+    justify-self: center;
   }
 }
 
