@@ -20,8 +20,8 @@ const STEPS = [
     body: "Case to clasp or case and clasp, in gloss or stealth. Five questions, no account required.",
   },
   {
-    title: "We cut the kit",
-    body: "Nothing is stocked. The template for your reference is cut after the order lands, so the tolerances stay tight.",
+    title: "We cut your kit to order",
+    body: "Nothing is stocked. Every kit is cut individually after your order, to your exact reference and bracelet, so it is made for your piece and the fit is exact.",
   },
   {
     title: "Apply it, or let the studio",
