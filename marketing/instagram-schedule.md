@@ -158,6 +158,9 @@ Media reaches Higgsfield in one of three ways:
 
 | Media ID | Type | What it shows | Best for | Used |
 |---|---|---|---|---|
+| `5e77017d-d639-4103-9c9e-7711d877bc89` | image | Awaiting description | | |
+| `187fc378-28fc-4ef1-a1ae-d27b27be7093` | image | Awaiting description | | |
+| `626b69f0-9659-45d5-a2b2-c2ccb20e8238` | image | Awaiting description | | |
 
 ## Prompt rules
 
@@ -309,3 +312,62 @@ Virality predictor jobs, September 25: Tuesday Reel
 
 The September 28 run makes the week of October 5 (posts October 6, 8 and 10):
 storyline S1, pattern B.
+
+### Week of October 5, 2026 (posts October 6 to 10)
+
+Generated September 28, run by hand after the scheduled run could not reach
+Higgsfield. Storyline S1, the car and the watch, pattern B. Shot as
+close-ups and finishes rather than full watches, at the user's request.
+
+**Tuesday, carousel, emotion: great pieces are made to be used.** Slides
+`b74b54f4-859c-46d9-8b2f-5c52210833d6` (film on red paint),
+`c8b7b7bb-4082-4b35-99b2-25775b86151a` (film on the bezel edge),
+`958d5498-9a20-481e-b7b0-c9cf0d46e6aa` (clasp on the wrist at the wheel).
+
+> Great pieces are made to be used, not kept.
+>
+> The paint wears a film no one sees. The bezel wears one too, curled over
+> its edge. On the drive, the clasp meets the wheel and the steel takes
+> nothing. ChronoShield+ is cut to the reference and comes off clean. Wear
+> the watch.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #carsandwatches #wearyourwatch #rolexcollector #watchesofinstagram
+
+**Thursday, Reel, thought: the finish no one sees protected is the finish
+it is valued on.** Still `d5faf859-9805-4129-924e-6f15dddfd946`, video
+`2cce006a-72ca-48d0-a87c-0ee88e3ed5e4`, virality predictor
+`540faeeb-0d19-4e1d-b877-60fa82d47583`.
+
+> The polish and the brushing are what the watch is valued on.
+> ChronoShield+ wraps every link on its own, so the light finds steel, not
+> film. The finish stays as it left the factory. Wear the watch.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #satisfying #watchcare #wristcheck #rolexwatch
+
+**Saturday, carousel, emotion: made to be used, in either finish.** Slides
+`41cafef9-41b2-4bc0-9838-51220a6ef26a` (Gloss on the lug),
+`9d2d4192-452b-46c6-ab86-6ea59f92f75f` (Stealth on the same lug),
+`f0c45b6d-7ed0-498f-9168-814a2bfa5ac0` (on the wrist at the car door).
+
+> Same watch, two finishes, and it goes on the drive in either one.
+>
+> Gloss keeps the mirror polish exactly as it is. Stealth turns it to a soft
+> satin, the same piece in a quieter voice. Either way, the watch leaves the
+> car on the wrist, not in the box. Both finishes come on ChronoShield+ and
+> ChronoGuard+. Wear the watch.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #carsandwatches #watchcollector #watchprotection #rolex
+
+New uploads in the Higgsfield library, not yet described so not used:
+`5e77017d-d639-4103-9c9e-7711d877bc89`,
+`187fc378-28fc-4ef1-a1ae-d27b27be7093`,
+`626b69f0-9659-45d5-a2b2-c2ccb20e8238`.
+
+The October 5 run makes the week of October 12 (posts October 13, 15 and
+17): storyline S2, pattern A.
