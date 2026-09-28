@@ -1,6 +1,6 @@
 import { storefront, ShopifyError } from "./client";
 import { GET_KIT_PRODUCTS, CART_CREATE, GET_CART } from "./queries";
-import { PREORDER } from "@/lib/site";
+import { PARTNER_INSTALL, PREORDER } from "@/lib/site";
 
 export type Coverage = "chronoshield" | "chronoguard";
 export type Finish = "Gloss" | "Stealth";
@@ -146,7 +146,7 @@ export async function createKitCheckout(selection: KitSelection): Promise<Cart> 
 
   // Studio installation is a separate line item so it can be priced and
   // fulfilled independently of the film kit itself.
-  if (selection.application === "professional" && data.installation) {
+  if (PARTNER_INSTALL && selection.application === "professional" && data.installation) {
     const installVariant = data.installation.variants.nodes[0];
     if (installVariant?.availableForSale) {
       lines.push({

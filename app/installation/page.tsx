@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Price from "@/components/Price";
 import { getKitProducts, startingPrice } from "@/lib/shopify/products";
-import { STUDIO_EMAIL } from "@/lib/site";
+import { PARTNER_INSTALL, STUDIO_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Installation",
-  description:
-    "Apply a ChronoProtect+ kit yourself in about an hour, or add studio installation as a separate line at checkout.",
+  description: PARTNER_INSTALL
+    ? "Apply a ChronoProtect+ kit yourself in about an hour, or add studio installation as a separate line at checkout."
+    : "Apply a ChronoProtect+ kit yourself in about an hour. Professional installation is coming soon.",
 };
 
 export default async function InstallationPage() {
@@ -19,11 +20,15 @@ export default async function InstallationPage() {
         <div className="cp-measure">
           <p className="cp-eyebrow">Installation</p>
           <h1 style={{ fontSize: "clamp(2.2rem, 6vw, 3.4rem)" }}>
-            An hour at the kitchen table, or an afternoon at the studio.
+            {PARTNER_INSTALL
+              ? "An hour at the kitchen table, or an afternoon at the studio."
+              : "An hour at the kitchen table."}
           </h1>
           <p className="cp-lede" style={{ marginTop: "1.5rem" }}>
-            Kits arrive pre-cut, so the work is placement and patience rather than trimming. If you
-            would rather not do it over your own watch, a studio partner will.
+            Kits arrive pre-cut, so the work is placement and patience rather than trimming.
+            {PARTNER_INSTALL
+              ? " If you would rather not do it over your own watch, a studio partner will."
+              : " Professional installation is coming soon."}
           </p>
         </div>
       </section>
@@ -58,6 +63,7 @@ export default async function InstallationPage() {
         </div>
       </section>
 
+      {PARTNER_INSTALL ? (
       <section className="cp-band">
         <div className="cp-shell">
           <div className="cp-measure">
@@ -86,6 +92,34 @@ export default async function InstallationPage() {
           </div>
         </div>
       </section>
+      ) : (
+        <section className="cp-band">
+          <div className="cp-shell">
+            <div className="cp-measure">
+              <p className="cp-eyebrow">Professional installation</p>
+              <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
+                Professional fitting is on its way.
+              </h2>
+              <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
+                Installation partners are being chosen now. Until they are in place, every kit is
+                made to be applied at home in about an hour, with the steps above.
+              </p>
+            </div>
+
+            <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>
+              <Link href="/find-your-kit" className="cp-btn">
+                Find your kit
+              </Link>
+              <a
+                href={`mailto:${STUDIO_EMAIL}?subject=Professional%20installation`}
+                className="cp-btn cp-btn--ghost"
+              >
+                Ask to be told when it opens
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="cp-band cp-band--mid" id="care">
         <div className="cp-shell">

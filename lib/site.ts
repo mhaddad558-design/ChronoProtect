@@ -42,6 +42,14 @@ export const PREORDER = {
   ships: "November 2026",
 } as const;
 
+/**
+ * Professional installation. Off until installation partners are signed: the
+ * site then says fitting is coming soon, the configurator does not offer it,
+ * and no installation line can reach a cart. Set to true once partners are
+ * in place and the installation product in Shopify is ready to sell.
+ */
+export const PARTNER_INSTALL = false;
+
 /** When a kit arrives, said beside every price. */
 export const DISPATCH = PREORDER.on
   ? `Preorder, ships in ${PREORDER.ships}.`

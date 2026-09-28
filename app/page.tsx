@@ -8,7 +8,7 @@ import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
 import { getKitProducts, startingPrice } from "@/lib/shopify/products";
-import { DISPATCH, FINISHES, KIT_COPY, SHIPPING, SITE_NAME } from "@/lib/site";
+import { DISPATCH, FINISHES, KIT_COPY, PARTNER_INSTALL, SHIPPING, SITE_NAME } from "@/lib/site";
 
 const STEPS = [
   {
@@ -24,8 +24,10 @@ const STEPS = [
     body: "Nothing is stocked. Every kit is cut individually after your order, to your exact reference and bracelet, so it is made for your piece and the fit is exact.",
   },
   {
-    title: "Apply it, or have it fitted",
-    body: "Kits arrive pre-cut and go on in as little as an hour at home. Or one of our trusted installation partners can fit it for you.",
+    title: PARTNER_INSTALL ? "Apply it, or have it fitted" : "Apply it at home",
+    body: PARTNER_INSTALL
+      ? "Kits arrive pre-cut and go on in as little as an hour at home. Or one of our trusted installation partners can fit it for you."
+      : "Kits arrive pre-cut and go on in as little as an hour at home. Professional installation is coming soon.",
   },
 ];
 

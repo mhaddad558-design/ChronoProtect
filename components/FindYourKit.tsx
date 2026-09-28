@@ -21,7 +21,7 @@ import {
 } from "@/lib/fitment";
 import { DATEJUST_LOOKS, DATEJUST_SIZES, isLefty } from "@/lib/looks";
 import { datejustNote } from "./LookChip";
-import { BRACELETS, DISPATCH, PREORDER, SHIPPING, STUDIO_EMAIL } from "@/lib/site";
+import { BRACELETS, DISPATCH, PARTNER_INSTALL, PREORDER, SHIPPING, STUDIO_EMAIL } from "@/lib/site";
 import BraceletLinks from "./BraceletLinks";
 import FinishSwatch from "./FinishSwatch";
 import BandTexture from "./BandTexture";
@@ -284,7 +284,9 @@ export default function FindYourKit({
         finish,
         coverage,
         bracelet: needsBracelet && bracelet ? bracelet : undefined,
-        application,
+        // A resumed session may still carry "professional" from before
+        // installation was switched off; it must not reach the cart.
+        application: PARTNER_INSTALL ? application : "self",
       };
       const cart = await createKitCheckout(selection);
       // The configuration is now a cart: there is nothing left to resume.
@@ -551,7 +553,9 @@ export default function FindYourKit({
           </dl>
 
           {/* An add-on, offered rather than asked: the kit is the same either
-              way, and the studio line is added at checkout. */}
+              way, and the studio line is added at checkout. Hidden until
+              installation partners are in place. */}
+          {PARTNER_INSTALL && (
           <fieldset className="cp-kit__addon">
             <legend>How would you like it applied?</legend>
             {[
@@ -573,6 +577,7 @@ export default function FindYourKit({
               </label>
             ))}
           </fieldset>
+          )}
 
           {error && (
             <p role="alert" className="cp-kit__error">
