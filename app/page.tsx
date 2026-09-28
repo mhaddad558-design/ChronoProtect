@@ -24,8 +24,8 @@ const STEPS = [
     body: "Nothing is stocked. Every kit is cut individually after your order, to your exact reference and bracelet, so it is made for your piece and the fit is exact.",
   },
   {
-    title: "Apply it, or let the studio",
-    body: "Kits arrive pre-cut and ready for a careful hour at home. A studio partner can fit it instead.",
+    title: "Apply it, or have it fitted",
+    body: "Kits arrive pre-cut and go on in as little as an hour at home. Or one of our trusted installation partners can fit it for you.",
   },
 ];
 
