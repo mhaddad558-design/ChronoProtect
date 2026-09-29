@@ -178,6 +178,7 @@ car stays unbranded: no Ferrari name, badge or other carmaker's mark in any
 slide, the owner's decision to keep clear of trademark trouble. The
 reference slides show the style to match, not copy to reuse, and slide 1's
 wording is not used as it stands. Contractions stay out, as in captions.
+Headlines speak to the reader: "your car", "your watch", not "the car".
 
 | Element | Size | Line spacing | Where |
 |---|---|---|---|
@@ -212,9 +213,12 @@ from `PREORDER.ships`. Separate its parts with a comma, not a dash.
 
 | File | Layout | Headline |
 |---|---|---|
-| `slide-1-statement.webp` | Statement, top 51 | Style reference only: its wording names a carmaker, which the copy rule above rules out. A compliant version: YOU PROTECT THE / PAINT ON THE CAR. / WHY NOT THE WATCH / YOU WEAR DAILY? |
-| `slide-2-statement.webp` | Statement, top 278 | CHANCES ARE, YOU / WEAR YOUR WATCH / MORE THAN YOU / DRIVE YOUR CAR. |
+| `slide-1-statement.webp` | Statement, top 51 | Style reference only: its wording names a carmaker, which the copy rule above rules out. The version in use: YOU PROTECT THE / PAINT ON YOUR CAR. / WHY NOT THE WATCH / YOU WEAR DAILY? |
+| `slide-2-statement.webp` | Statement, top 278 | Reference: CHANCES ARE, YOU / WEAR YOUR WATCH / MORE THAN YOU / DRIVE YOUR CAR. The version in use: YOUR WATCH IS / WORN MORE OFTEN / THAN YOUR CAR / IS DRIVEN. |
 | `slide-3-close.webp` | Close, top 358 | GET PROTECTED. |
+
+The Canva template uses the photos in `carousel-reference/photos/`, in
+order: the rose gold lug, the red car, the bronze car.
 
 ## Prompt rules
 
