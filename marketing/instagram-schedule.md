@@ -186,7 +186,9 @@ Headlines speak to the reader: "your car", "your watch", not "the car".
 | Sub-line | 22px (capitals 16px tall) | single line | 190px below the headline's last line |
 
 A headline runs two to four lines of about 18 characters, broken by sense,
-not by width. Each line is centred on the slide's text axis.
+not by width. A longer, gentler line can run to six lines of up to 20
+characters at 49px instead of 56px. Invite rather than instruct: "let us
+protect", not "protect". Each line is centred on the slide's text axis.
 
 **Layouts.**
 
@@ -214,7 +216,7 @@ from `PREORDER.ships`. Separate its parts with a comma, not a dash.
 | File | Layout | Headline |
 |---|---|---|
 | `slide-1-statement.webp` | Statement, top 51 | Style reference only: its wording names a carmaker, which the copy rule above rules out. The version in use: YOU PROTECT THE / PAINT ON YOUR CAR. / WHY NOT THE WATCH / YOU WEAR DAILY? |
-| `slide-2-statement.webp` | Statement, top 278 | Reference: CHANCES ARE, YOU / WEAR YOUR WATCH / MORE THAN YOU / DRIVE YOUR CAR. The version in use: YOUR WATCH IS / WORN MORE OFTEN / THAN YOUR CAR / IS DRIVEN. |
+| `slide-2-statement.webp` | Statement, top 278 | Reference: CHANCES ARE, YOU / WEAR YOUR WATCH / MORE THAN YOU / DRIVE YOUR CAR. The version in use, at 49px: YOUR WATCH IS LIKELY / WORN MORE OFTEN THAN / YOUR CAR IS DRIVEN, / SO LET US PROTECT / YOUR MOST-USED / INVESTMENT. |
 | `slide-3-close.webp` | Close, top 358 | GET PROTECTED. |
 
 The Canva template uses the photos in `carousel-reference/photos/`, in
