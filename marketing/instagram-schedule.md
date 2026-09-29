@@ -170,8 +170,14 @@ are in pixels on the 1080 x 1350 slide, measured from the references.
 
 **Type.** Red Hat Display, regular (400), white `#FFFFFF`, set in capitals
 with wide tracking, letter-spacing about 0.18em. This is the one place the
-brand sets words in capitals: an exception for carousel overlays only.
-Captions, the site and everything else stay in sentence case.
+brand sets words in capitals: an exception the owner approved for carousel
+overlays only. Captions, the site and everything else stay in sentence case.
+
+**Copy.** Overlay text follows the voice rules apart from the capitals. The
+car stays unbranded: no Ferrari name, badge or other carmaker's mark in any
+slide, the owner's decision to keep clear of trademark trouble. The
+reference slides show the style to match, not copy to reuse, and slide 1's
+wording is not used as it stands. Contractions stay out, as in captions.
 
 | Element | Size | Line spacing | Where |
 |---|---|---|---|
@@ -206,7 +212,7 @@ from `PREORDER.ships`. Separate its parts with a comma, not a dash.
 
 | File | Layout | Headline |
 |---|---|---|
-| `slide-1-statement.webp` | Statement, top 51 | YOU'D PROTECT YOUR / FERRARI, WHY NOT DO / THE SAME WITH YOUR / TIMEPIECE? |
+| `slide-1-statement.webp` | Statement, top 51 | Style reference only: its wording names a carmaker, which the copy rule above rules out. A compliant version: YOU PROTECT THE / PAINT ON THE CAR. / WHY NOT THE WATCH / YOU WEAR DAILY? |
 | `slide-2-statement.webp` | Statement, top 278 | CHANCES ARE, YOU / WEAR YOUR WATCH / MORE THAN YOU / DRIVE YOUR CAR. |
 | `slide-3-close.webp` | Close, top 358 | GET PROTECTED. |
 
