@@ -971,3 +971,100 @@
   width: auto;
   height: clamp(104px, 11vw, 150px);
 }
+
+/* ---------- product photographs ---------- */
+
+/*
+ * One frame for every product photo, 4:5 like the Instagram posts, so a
+ * grid holds its rhythm whether a slot has a photograph or the drawing.
+ */
+.cp-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--cp-bg-deep);
+  border: 1px solid var(--cp-border);
+  /* So the default logo can size itself to the slot, whatever the grid. */
+  container-type: inline-size;
+}
+
+.cp-photo__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+/* ---------- shop all ---------- */
+
+.cp-shop__group + .cp-shop__group {
+  margin-top: clamp(3.5rem, 8vw, 5.5rem);
+}
+
+.cp-shop__card {
+  padding: 1rem 1rem 1.5rem;
+}
+
+.cp-shop__card .cp-photo {
+  margin-bottom: 1.25rem;
+}
+
+.cp-shop__card h3 {
+  font-size: 1.3rem;
+  margin: 0 0.5rem 0.25rem;
+}
+
+.cp-shop__card p {
+  margin: 0 0.5rem 1rem;
+}
+
+.cp-shop__foot {
+  margin: auto 0.5rem 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cp-shop__foot .cp-price,
+.cp-shop__foot .cp-price--pending {
+  margin: 0;
+}
+
+/* The default in an empty photo slot: the horizontal logo, in bronze. */
+.cp-photo__default {
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.cp-photo__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--cp-bronze);
+  font-family: var(--cp-display);
+  font-weight: 300;
+  /* Wordmark and crest together run about 10em, so 8cqi fits any slot. */
+  font-size: min(8cqi, 1.9rem);
+  letter-spacing: -0.01em;
+}
+
+.cp-photo__logo img {
+  height: 2.2em;
+  width: auto;
+}
+
+.cp-photo__note {
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.85rem;
+}
+
+.cp-shop__foot .cp-btn {
+  justify-content: center;
+  text-align: center;
+}

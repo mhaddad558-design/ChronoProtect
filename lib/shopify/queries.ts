@@ -27,11 +27,25 @@ export const PRODUCT_FRAGMENT = /* GraphQL */ `
         currencyCode
       }
     }
+    # Photographs are managed in the Shopify admin. The shop grid shows each
+    # variant's image, then the product's featured image, then the logo.
+    featuredImage {
+      url
+      altText
+      width
+      height
+    }
     variants(first: 10) {
       nodes {
         id
         title
         availableForSale
+        image {
+          url
+          altText
+          width
+          height
+        }
         selectedOptions {
           name
           value

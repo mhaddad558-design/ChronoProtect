@@ -9,6 +9,7 @@ import { PREORDER, SITE_NAME } from "@/lib/site";
 const LINKS = [
   { href: "/kits/chronoshield", label: "ChronoShield+" },
   { href: "/kits/chronoguard", label: "ChronoGuard+" },
+  { href: "/shop", label: "Shop all" },
   { href: "/catalog", label: "Fitment" },
   { href: "/installation", label: "Installation" },
 ];

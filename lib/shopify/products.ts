@@ -6,10 +6,19 @@ export interface Money {
   currencyCode: string;
 }
 
+/** A photograph uploaded in the Shopify admin. */
+export interface ShopifyImage {
+  url: string;
+  altText: string | null;
+  width: number | null;
+  height: number | null;
+}
+
 export interface ProductVariant {
   id: string;
   title: string;
   availableForSale: boolean;
+  image: ShopifyImage | null;
   selectedOptions: Array<{ name: string; value: string }>;
   price: Money;
 }
@@ -21,6 +30,7 @@ export interface ShopifyProduct {
   description: string;
   options: Array<{ name: string; optionValues: Array<{ name: string }> }>;
   priceRange: { minVariantPrice: Money };
+  featuredImage: ShopifyImage | null;
   variants: { nodes: ProductVariant[] };
 }
 
@@ -78,6 +88,29 @@ export function formatMoney(money: Money | undefined | null): string | null {
     currency: money.currencyCode,
     maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
   }).format(amount);
+}
+
+/**
+ * The variant matching every option given. Options left undefined are
+ * ignored, so ChronoGuard+ (Finish only) resolves with the same call.
+ */
+export function variantFor(
+  product: ShopifyProduct | null,
+  wanted: Record<string, string | undefined>
+): ProductVariant | null {
+  if (!product) return null;
+  const required = Object.entries(wanted).filter(([, v]) => v != null) as Array<[string, string]>;
+  return (
+    product.variants.nodes.find((variant) =>
+      required.every(([name, value]) =>
+        variant.selectedOptions.some(
+          (o) =>
+            o.name.toLowerCase() === name.toLowerCase() &&
+            o.value.toLowerCase() === value.toLowerCase()
+        )
+      )
+    ) ?? null
+  );
 }
 
 /** The lowest price across a product's variants, formatted, or null. */

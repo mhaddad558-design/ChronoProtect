@@ -27,6 +27,9 @@ export default function SiteFooter() {
                 <Link href="/kits/chronoguard">ChronoGuard+</Link>
               </li>
               <li>
+                <Link href="/shop">Shop all kits</Link>
+              </li>
+              <li>
                 <Link href="/installation">{PARTNER_INSTALL ? "Studio installation" : "Installation"}</Link>
               </li>
             </ul>

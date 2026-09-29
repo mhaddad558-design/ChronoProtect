@@ -37,6 +37,7 @@ pixel stays off and nothing is sent.
 | `/kits` | The two lines side by side |
 | `/kits/chronoshield` | ChronoShield+ — whole-watch coverage: case, bezel, bracelet, clasp |
 | `/kits/chronoguard` | ChronoGuard+ — case and clasp coverage |
+| `/shop` | Shop all: every kit in a grid, each opening the configurator with that kit chosen |
 | `/find-your-kit` | The five-step configurator, from the drop |
 | `/catalog` | Searchable fitment catalog, read from `data/fitment.json` |
 | `/installation` | Self-application, studio installation, care and removal |

@@ -103,6 +103,25 @@ function readSaved(): Saved | null {
   }
 }
 
+type Preset = { coverage: Coverage; finish: Finish; bracelet: Bracelet | null };
+
+/** Reads a kit chosen on the shop page from the URL, ignoring anything invalid. */
+function readPreset(params: URLSearchParams): Preset | null {
+  const coverage = params.get("coverage");
+  const finish = params.get("finish");
+  const bracelet = params.get("bracelet");
+  if (coverage !== "chronoshield" && coverage !== "chronoguard") return null;
+  if (finish !== "Gloss" && finish !== "Stealth") return null;
+  return {
+    coverage,
+    finish,
+    bracelet:
+      coverage === "chronoshield" && bracelet && (CUTTABLE as string[]).includes(bracelet)
+        ? (bracelet as Bracelet)
+        : null,
+  };
+}
+
 function clearSaved() {
   try {
     window.localStorage.removeItem(SAVED_KEY);
@@ -134,8 +153,19 @@ export default function FindYourKit({
   /** True when this session was restored, so the header can say so. */
   const [resumed, setResumed] = useState(false);
 
+  /**
+   * A kit chosen on the shop page. It is held until the watch is known, then
+   * applied if it fits that reference, so the customer skips the questions
+   * they already answered by choosing it.
+   */
+  const [preset, setPreset] = useState<Preset | null>(null);
+  /** Said when the chosen kit had to change to fit the watch. */
+  const [presetNote, setPresetNote] = useState<string | null>(null);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const chosen = readPreset(params);
+    if (chosen) setPreset(chosen);
     const ref = params.get("ref");
     if (ref) {
       setReference(ref);
@@ -155,6 +185,10 @@ export default function FindYourKit({
       setPickedModel(model);
       return;
     }
+
+    // A kit chosen on the shop page starts a new configuration rather than
+    // resuming an old one.
+    if (chosen) return;
 
     // Otherwise pick up an unfinished configuration, if there is one.
     const saved = readSaved();
@@ -242,6 +276,50 @@ export default function FindYourKit({
   const needsBracelet = coverage === "chronoshield";
   const asksBracelet = needsBracelet && selectableBracelets.length > 1;
   const totalSteps = asksBracelet ? 4 : 3;
+
+  // Once the watch is known, apply a kit chosen on the shop page. Each part
+  // is checked against the reference: a coverage it cannot take, or a
+  // bracelet it was never sold on, falls back to asking.
+  useEffect(() => {
+    if (step !== 2 || !preset) return;
+    const chosen = preset;
+    setPreset(null);
+
+    if (!coverageOptions.includes(chosen.coverage)) {
+      setPresetNote(
+        `${COVERAGE_LABELS[chosen.coverage]} does not fit this watch, so choose the coverage below.`
+      );
+      return;
+    }
+    setCoverage(chosen.coverage);
+    setFinish(chosen.finish);
+
+    if (chosen.coverage !== "chronoshield") {
+      setBracelet(null);
+      setStep(RESULT);
+      return;
+    }
+    if (selectableBracelets.length === 1) {
+      const only = selectableBracelets[0];
+      setBracelet(only);
+      if (chosen.bracelet && chosen.bracelet !== only) {
+        setPresetNote(`This watch is on ${only}, so the kit is cut for ${only}.`);
+      }
+      setStep(RESULT);
+      return;
+    }
+    if (chosen.bracelet && selectableBracelets.includes(chosen.bracelet)) {
+      setBracelet(chosen.bracelet);
+      setStep(RESULT);
+      return;
+    }
+    setPresetNote(
+      chosen.bracelet
+        ? `This watch was not sold on ${chosen.bracelet}, so choose its bracelet below.`
+        : null
+    );
+    setStep(4);
+  }, [step, preset, coverageOptions, selectableBracelets]);
 
   /** Where a given step sits once the skipped one is removed. */
   function stepNumber(s: Step): number {
@@ -332,6 +410,13 @@ export default function FindYourKit({
         {step < RESULT && (
           <PriceLine from={from} coverage={coverage} />
         )}
+        {preset && step === 1 && (
+          <p className="cp-kit__resumed">
+            Your kit: {COVERAGE_LABELS[preset.coverage]}, {preset.finish}
+            {preset.bracelet ? `, ${preset.bracelet}` : ""}. Now the watch it is for.
+          </p>
+        )}
+        {presetNote && step > 1 && <p className="cp-kit__resumed">{presetNote}</p>}
         {resumed && step < RESULT && (
           <p className="cp-kit__resumed">
             Picked up where you left off.{" "}
@@ -614,6 +699,8 @@ export default function FindYourKit({
               setBracelet(null);
               setApplication("self");
               setError(null);
+              setPreset(null);
+              setPresetNote(null);
             }}
           >
             Start over

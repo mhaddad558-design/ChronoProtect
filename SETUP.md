@@ -35,6 +35,8 @@ Eight kit variants total. **Do not create a variant per reference number.** Ther
 
 Set each product's "Requires shipping" on, and inventory tracking off (or to a made-to-order policy) since kits are cut per order rather than stocked.
 
+**Product photos.** The Shop all page (`/shop`) shows one card per kit: six ChronoShield+ (each finish on each bracelet) and two ChronoGuard+ (each finish). Each card uses the photo on its variant, then the product's featured image, then the default: the ChronoProtect+ logo with "Photo coming soon". To give a kit its own photo, open the product in the Shopify admin, add the photo to the product's media, then open the variant (for example Gloss / Jubilee) and choose it as the variant image. Photos appear within about five minutes. A 4:5 portrait crop fills the card without being trimmed.
+
 **Preorder mode.** While `PREORDER.on` is true in `lib/site.ts`, the site sells kits as preorders shipping in the month it names. Inventory tracking must stay off, or Shopify marks the variants unavailable and the configurator refuses checkout. Each order carries a `Preorder` line attribute ("Ships November 2026"), which shows under the line at checkout and prints on the order. Add the ship month to the order confirmation too: **Settings → Notifications → Order confirmation**.
 
 ### 3. Generate a Storefront access token
