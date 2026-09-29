@@ -28,6 +28,33 @@ export const SHIPPING = {
   cut: "Cut to order in 2 to 4 business days.",
 } as const;
 
+/**
+ * Preorder mode, for while kits are not yet in production. Orders are paid in
+ * full at checkout and ship in the stated month. Every line that says when a
+ * kit arrives reads DISPATCH, so leaving preorder is one change here: set `on`
+ * to false.
+ *
+ * US mail-order rules apply: ship by the stated month, or tell the customer
+ * and offer a full refund before it passes.
+ */
+export const PREORDER = {
+  on: true,
+  ships: "November 2026",
+} as const;
+
+/**
+ * Professional installation. Off until installation partners are signed: the
+ * site then says fitting is coming soon, the configurator does not offer it,
+ * and no installation line can reach a cart. Set to true once partners are
+ * in place and the installation product in Shopify is ready to sell.
+ */
+export const PARTNER_INSTALL = false;
+
+/** When a kit arrives, said beside every price. */
+export const DISPATCH = PREORDER.on
+  ? `Preorder, ships in ${PREORDER.ships}.`
+  : SHIPPING.cut;
+
 export const FINISHES = [
   {
     name: "Gloss",

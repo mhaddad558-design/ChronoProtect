@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Crest from "./Crest";
-import { SITE_NAME, SITE_TAGLINE, STUDIO_EMAIL } from "@/lib/site";
+import { PARTNER_INSTALL, SITE_NAME, SITE_TAGLINE, STUDIO_EMAIL } from "@/lib/site";
 
 export default function SiteFooter() {
   return (
@@ -27,7 +27,7 @@ export default function SiteFooter() {
                 <Link href="/kits/chronoguard">ChronoGuard+</Link>
               </li>
               <li>
-                <Link href="/installation">Studio installation</Link>
+                <Link href="/installation">{PARTNER_INSTALL ? "Studio installation" : "Installation"}</Link>
               </li>
             </ul>
           </div>

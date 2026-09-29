@@ -4,11 +4,12 @@ import { notFound } from "next/navigation";
 import BraceletLinks from "@/components/BraceletLinks";
 import FinishSwatch from "@/components/FinishSwatch";
 import Lockup from "@/components/Lockup";
+import { TrackKitView } from "@/components/MetaPixel";
 import WatchDiagram from "@/components/WatchDiagram";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
 import { formatMoney, getProduct, startingPrice } from "@/lib/shopify/products";
-import { BRACELETS, FINISHES, KIT_COPY, SHIPPING } from "@/lib/site";
+import { BRACELETS, DISPATCH, FINISHES, KIT_COPY, SHIPPING } from "@/lib/site";
 
 type KitHandle = keyof typeof KIT_COPY;
 
@@ -48,6 +49,7 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
 
   return (
     <>
+      <TrackKitView handle={handle} name={copy.title} />
       <section className="cp-shell" style={{ paddingBlock: "clamp(3.5rem, 8vw, 6rem) 4rem" }}>
         <div className="cp-pagehead">
           <div>
@@ -60,7 +62,7 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
             <div style={{ marginTop: "2.5rem" }}>
               <Price value={startingPrice(product)} lead="From" />
               <p className="cp-shipping">
-                {SHIPPING.line[handle]} {SHIPPING.cut}
+                {SHIPPING.line[handle]} {DISPATCH}
               </p>
             </div>
 

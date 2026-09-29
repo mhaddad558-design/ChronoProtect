@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Crest from "./Crest";
-import { SITE_NAME } from "@/lib/site";
+import { PREORDER, SITE_NAME } from "@/lib/site";
 
 const LINKS = [
   { href: "/kits/chronoshield", label: "ChronoShield+" },
@@ -32,6 +32,9 @@ export default function SiteHeader() {
 
   return (
     <header className="cp-header">
+      {PREORDER.on && (
+        <p className="cp-notice">Kits are on preorder and ship in {PREORDER.ships}.</p>
+      )}
       <div className="cp-shell cp-header__inner">
         <Link href="/" className="cp-wordmark">
           <Crest size={32} />

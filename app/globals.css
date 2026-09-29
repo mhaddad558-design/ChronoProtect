@@ -382,10 +382,11 @@ svg {
   .cp-pagehead {
     grid-template-columns: minmax(0, 1fr);
   }
-  /* The mark leads on narrow screens, where it reads as a product badge. */
+  /* The mark leads on narrow screens, where it reads as a product badge,
+     centred so it sits on the phone's axis rather than the text's edge. */
   .cp-pagehead__mark {
     order: -1;
-    justify-self: start;
+    justify-self: center;
   }
 }
 
@@ -682,6 +683,25 @@ svg {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Preorder notice above the header: one quiet line, a hairline below. */
+.cp-notice {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--cp-border);
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Preorder terms, said once more beside the checkout button. */
+.cp-kit__preorder {
+  margin: 1.5rem 0 0;
+  color: var(--cp-ink-faint);
+  font-family: var(--cp-ui);
+  font-size: 0.9rem;
 }
 
 /* Postage, said beside the price rather than saved for checkout. */

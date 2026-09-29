@@ -8,6 +8,7 @@ import {
   type Finish,
   type KitSelection,
 } from "@/lib/shopify/cart";
+import { flushPixel, trackPixel } from "@/lib/meta-pixel";
 import {
   braceletsFor,
   braceletWords,
@@ -20,7 +21,7 @@ import {
 } from "@/lib/fitment";
 import { DATEJUST_LOOKS, DATEJUST_SIZES, isLefty } from "@/lib/looks";
 import { datejustNote } from "./LookChip";
-import { BRACELETS, SHIPPING, STUDIO_EMAIL } from "@/lib/site";
+import { BRACELETS, DISPATCH, PARTNER_INSTALL, PREORDER, SHIPPING, STUDIO_EMAIL } from "@/lib/site";
 import BraceletLinks from "./BraceletLinks";
 import FinishSwatch from "./FinishSwatch";
 import BandTexture from "./BandTexture";
@@ -283,12 +284,25 @@ export default function FindYourKit({
         finish,
         coverage,
         bracelet: needsBracelet && bracelet ? bracelet : undefined,
-        application,
+        // A resumed session may still carry "professional" from before
+        // installation was switched off; it must not reach the cart.
+        application: PARTNER_INSTALL ? application : "self",
       };
-      const checkoutUrl = await createKitCheckout(selection);
+      const cart = await createKitCheckout(selection);
       // The configuration is now a cart: there is nothing left to resume.
       clearSaved();
-      window.location.href = checkoutUrl;
+      trackPixel("AddToCart", {
+        content_ids: cart.lines.nodes.map((line) => line.merchandise.id),
+        contents: cart.lines.nodes.map((line) => ({
+          id: line.merchandise.id,
+          quantity: line.quantity,
+        })),
+        content_type: "product",
+        value: Number(cart.cost.subtotalAmount.amount),
+        currency: cart.cost.subtotalAmount.currencyCode,
+      });
+      await flushPixel();
+      window.location.href = cart.checkoutUrl;
     } catch (err) {
       setError(
         err instanceof Error
@@ -539,7 +553,9 @@ export default function FindYourKit({
           </dl>
 
           {/* An add-on, offered rather than asked: the kit is the same either
-              way, and the studio line is added at checkout. */}
+              way, and the studio line is added at checkout. Hidden until
+              installation partners are in place. */}
+          {PARTNER_INSTALL && (
           <fieldset className="cp-kit__addon">
             <legend>How would you like it applied?</legend>
             {[
@@ -561,6 +577,7 @@ export default function FindYourKit({
               </label>
             ))}
           </fieldset>
+          )}
 
           {error && (
             <p role="alert" className="cp-kit__error">
@@ -568,8 +585,19 @@ export default function FindYourKit({
             </p>
           )}
 
+          {PREORDER.on && (
+            <p className="cp-kit__preorder">
+              A preorder, paid in full at checkout and shipped in {PREORDER.ships}. If that
+              date moves, the order can be cancelled for a full refund.
+            </p>
+          )}
+
           <button type="button" onClick={goToCheckout} disabled={submitting}>
-            {submitting ? "Preparing checkout…" : "Add to cart and check out"}
+            {submitting
+              ? "Preparing checkout…"
+              : PREORDER.on
+                ? "Preorder and check out"
+                : "Add to cart and check out"}
           </button>
 
           <button
@@ -613,7 +641,7 @@ function PriceLine({
     return from.chronoguard ? (
       <p className="cp-kit__price">
         ChronoGuard+, {from.chronoguard}. One price, whatever it is on. {SHIPPING.line.chronoguard}{" "}
-        {SHIPPING.cut}
+        {DISPATCH}
       </p>
     ) : null;
   }
@@ -621,7 +649,7 @@ function PriceLine({
     return from.chronoshield ? (
       <p className="cp-kit__price">
         ChronoShield+, from {from.chronoshield}. The bracelet decides the rest.{" "}
-        {SHIPPING.line.chronoshield} {SHIPPING.cut}
+        {SHIPPING.line.chronoshield} {DISPATCH}
       </p>
     ) : null;
   }

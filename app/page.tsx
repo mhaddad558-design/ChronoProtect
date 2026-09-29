@@ -8,7 +8,7 @@ import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
 import { getKitProducts, startingPrice } from "@/lib/shopify/products";
-import { FINISHES, KIT_COPY, SHIPPING, SITE_NAME } from "@/lib/site";
+import { DISPATCH, FINISHES, KIT_COPY, PARTNER_INSTALL, SHIPPING, SITE_NAME } from "@/lib/site";
 
 const STEPS = [
   {
@@ -20,12 +20,14 @@ const STEPS = [
     body: "Case to clasp or case and clasp, in gloss or stealth. Five questions, no account required.",
   },
   {
-    title: "We cut the kit",
-    body: "Nothing is stocked. The template for your reference is cut after the order lands, so the tolerances stay tight.",
+    title: "We cut your kit to order",
+    body: "Nothing is stocked. Every kit is cut individually after your order, to your exact reference and bracelet, so it is made for your piece and the fit is exact.",
   },
   {
-    title: "Apply it, or let the studio",
-    body: "Kits arrive pre-cut and ready for a careful hour at home. A studio partner can fit it instead.",
+    title: PARTNER_INSTALL ? "Apply it, or have it fitted" : "Apply it at home",
+    body: PARTNER_INSTALL
+      ? "Kits arrive pre-cut and go on in as little as an hour at home. Or one of our trusted installation partners can fit it for you."
+      : "Kits arrive pre-cut and go on in as little as an hour at home. Professional installation is coming soon.",
   },
 ];
 
@@ -187,7 +189,7 @@ function KitCard({
       <div className="cp-card__foot">
         <Price value={price} lead="From" />
         <p className="cp-shipping">
-          {SHIPPING.line[handle]} {SHIPPING.cut}
+          {SHIPPING.line[handle]} {DISPATCH}
         </p>
         <p style={{ marginTop: "1.5rem", marginBottom: 0 }}>
           <Link href={`/kits/${handle}`} className="cp-btn cp-btn--ghost">
