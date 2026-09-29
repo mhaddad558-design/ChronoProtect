@@ -23,7 +23,7 @@ week of October 12 is A, and so on.
 | Format | Size |
 |---|---|
 | Reel | 9:16, 5 seconds, 720p, silent (music added in Instagram) |
-| Carousel | 3 slides, 4:5, no text in frame |
+| Carousel | 3 slides, 1080 x 1350, text and crest per the carousel design below |
 
 ## Pipeline and cost
 
@@ -162,6 +162,54 @@ Media reaches Higgsfield in one of three ways:
 | `187fc378-28fc-4ef1-a1ae-d27b27be7093` | image | Awaiting description | | |
 | `626b69f0-9659-45d5-a2b2-c2ccb20e8238` | image | Awaiting description | | |
 
+## Carousel design
+
+Set by the owner on September 29, 2026, from three reference slides kept in
+`marketing/carousel-reference/`. Every carousel slide follows it. Positions
+are in pixels on the 1080 x 1350 slide, measured from the references.
+
+**Type.** Red Hat Display, regular (400), white `#FFFFFF`, set in capitals
+with wide tracking, letter-spacing about 0.18em. This is the one place the
+brand sets words in capitals: an exception for carousel overlays only.
+Captions, the site and everything else stay in sentence case.
+
+| Element | Size | Line spacing | Where |
+|---|---|---|---|
+| Headline | 56px (capitals 39px tall) | 78px baseline to baseline | See layouts below |
+| Sub-line | 22px (capitals 16px tall) | single line | 190px below the headline's last line |
+
+A headline runs two to four lines of about 18 characters, broken by sense,
+not by width. Each line is centred on the slide's text axis.
+
+**Layouts.**
+
+| Slide | Text axis (centre line) | Headline top | Use |
+|---|---|---|---|
+| Statement | x = 440, text within x 50 to 830 | In the dark space above the subject, 50 to 280 | Slides 1 and 2: the setup and the turn |
+| Close | x = 540, centred on the slide | About 360 | Slide 3: a short line, then the sub-line |
+
+On a statement slide the text sits left of centre so the subject can take
+the right side. The headline top moves with the image: as high as 50 when
+the subject fills the lower two thirds, down to about 280 when the upper
+third is empty.
+
+**Crest.** The crest from `public/crest.svg`, alone, no wordmark, in
+bronze `#BC906C`, bottom left on every slide: 220px wide (about 280px
+tall), 70px from the left edge, 52px from the bottom. It sits directly on
+the image, with no panel or shadow behind it.
+
+**Close slide sub-line.** The call to action, in capitals: while preorder
+mode is on, "PREORDER FOR NOVEMBER OPEN NOW, LINK IN BIO", with the month
+from `PREORDER.ships`. Separate its parts with a comma, not a dash.
+
+**Reference slides**
+
+| File | Layout | Headline |
+|---|---|---|
+| `slide-1-statement.webp` | Statement, top 51 | YOU'D PROTECT YOUR / FERRARI, WHY NOT DO / THE SAME WITH YOUR / TIMEPIECE? |
+| `slide-2-statement.webp` | Statement, top 278 | CHANCES ARE, YOU / WEAR YOUR WATCH / MORE THAN YOU / DRIVE YOUR CAR. |
+| `slide-3-close.webp` | Close, top 358 | GET PROTECTED. |
+
 ## Prompt rules
 
 - Watches are unbranded: blank dials, plain indices, no crown emblem, no
@@ -174,6 +222,10 @@ Media reaches Higgsfield in one of three ways:
   soft-focus, since generated hands tend to break.
 - A carousel's three slides share one set, one light and one watch, and
   each slide shows a different moment or angle.
+- Carousel slides leave the space the carousel design needs: the headline
+  area dark and empty, the subject kept to the right and lower half, and the
+  bottom-left corner clear for the crest. The image itself carries no text;
+  the words and the crest are laid on afterwards.
 - The film wraps around each link individually: it follows the link's
   contour, curls around its edges and tucks into the gaps. It is never a flat
   sheet laid over the bracelet, and the gaps between links stay open.
