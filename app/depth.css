@@ -1005,6 +1005,24 @@
   margin-top: clamp(3.5rem, 8vw, 5.5rem);
 }
 
+/* Three across, so six ChronoShield+ kits make two even rows and the two
+   ChronoGuard+ kits keep the same card size instead of stretching. */
+.cp-shop__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 56rem) {
+  .cp-shop__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 36rem) {
+  .cp-shop__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .cp-shop__card {
   padding: 1rem 1rem 1.5rem;
 }

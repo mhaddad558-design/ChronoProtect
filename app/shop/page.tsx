@@ -98,7 +98,7 @@ export default async function ShopPage() {
             {KIT_COPY[line].coverage}.{" "}
             <Link href={`/kits/${line}`}>What it covers</Link>
           </p>
-          <div className="cp-grid cp-grid--3">
+          <div className="cp-grid cp-shop__grid">
             {KITS[line].map((kit) => (
               <KitCard kit={kit} product={products[line]} key={`${kit.finish}-${kit.bracelet ?? ""}`} />
             ))}
