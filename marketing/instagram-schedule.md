@@ -219,8 +219,14 @@ from `PREORDER.ships`. Separate its parts with a comma, not a dash.
 | `slide-2-statement.webp` | Statement, top 278 | Reference: CHANCES ARE, YOU / WEAR YOUR WATCH / MORE THAN YOU / DRIVE YOUR CAR. The version in use, at 49px: YOUR WATCH IS LIKELY / WORN MORE OFTEN THAN / YOUR CAR IS DRIVEN, / SO LET US PROTECT / YOUR MOST-USED / INVESTMENT. |
 | `slide-3-close.webp` | Close, top 358 | GET PROTECTED. |
 
-The Canva template uses the photos in `carousel-reference/photos/`, in
-order: the rose gold lug, the red car, the bronze car.
+**Canva brand template.** "ChronoProtect+ Instagram carousel", brand
+template `EAHWmLk3xss` (source design `DAHWmF28wS0`), 4:5, three pages.
+Autofill fields: `photo_1`, `photo_2`, `photo_3`, `headline_1`,
+`headline_2`, `headline_3`, `subline_3`. The crest is fixed on every page.
+Its sample photos are the ones in `carousel-reference/photos/`, in order:
+the rose gold lug, the red car, the bronze car. Canva's API cannot set the
+font or tracking, so the template's text was set to Red Hat Display and
+about 180 letter-spacing by hand in the editor.
 
 ## Prompt rules
 
