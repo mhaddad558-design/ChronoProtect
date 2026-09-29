@@ -225,8 +225,8 @@ Autofill fields: `photo_1`, `photo_2`, `photo_3`, `headline_1`,
 `headline_2`, `headline_3`, `subline_3`. The crest is fixed on every page.
 Its sample photos are the ones in `carousel-reference/photos/`, in order:
 the rose gold lug, the red car, the bronze car. Canva's API cannot set the
-font or tracking, so the template's text was set to Red Hat Display and
-about 180 letter-spacing by hand in the editor.
+font or tracking, so the template's text is set to Red Hat Display and
+about 180 letter-spacing by hand in the editor, in the brand template itself so every copy inherits it.
 
 ## Prompt rules
 
