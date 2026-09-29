@@ -426,14 +426,20 @@ function SportsDial({ dial, lefty = false }: { dial: number; lefty?: boolean }) 
   );
 }
 
+/**
+ * Sub-dial radius. Large enough to read as the Daytona's defining feature,
+ * and still clear of the hour markers either side of each one.
+ */
+const SUBDIAL = 13.5;
+
 function DaytonaDial({ dial }: { dial: number }) {
   const sub = (cx: number, cy: number, key: string, handDeg: number) => {
-    const [hx, hy] = at(8, handDeg, cx, cy);
+    const [hx, hy] = at(SUBDIAL - 3.5, handDeg, cx, cy);
     return (
       <g key={key}>
-        <circle cx={cx} cy={cy} r={11} className="cp-wd__subdial" />
+        <circle cx={cx} cy={cy} r={SUBDIAL} className="cp-wd__subdial" />
         <path
-          d={Array.from({ length: 12 }, (_, i) => tick(8.5, 11, i * 30, cx, cy)).join("")}
+          d={Array.from({ length: 12 }, (_, i) => tick(SUBDIAL - 3, SUBDIAL, i * 30, cx, cy)).join("")}
           className="cp-wd__track"
         />
         <line x1={cx} y1={cy} x2={f(hx)} y2={f(hy)} className="cp-wd__subhand" />
@@ -448,7 +454,7 @@ function DaytonaDial({ dial }: { dial: number }) {
         className="cp-wd__track"
       />
       {[0, 1, 2, 4, 5, 7, 8, 10, 11].map((h) => (
-        <path key={h} d={tick(dial - 15, dial - 7, h * 30)} className="cp-wd__bar" />
+        <path key={h} d={tick(dial - 15, dial - 7, h * 30)} className="cp-wd__bar cp-wd__bar--quiet" />
       ))}
       {sub(CX + 22, CY, "s3", 120)}
       {sub(CX, CY + 23, "s6", 200)}
