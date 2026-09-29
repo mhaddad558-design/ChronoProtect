@@ -437,7 +437,9 @@ function DaytonaDial({ dial }: { dial: number }) {
     const [hx, hy] = at(SUBDIAL - 3.5, handDeg, cx, cy);
     return (
       <g key={key}>
-        <circle cx={cx} cy={cy} r={SUBDIAL} className="cp-wd__subdial" />
+        {/* Two rings, as on the watch: a bold outer edge and a softer inner one */}
+        <circle cx={cx} cy={cy} r={SUBDIAL} className="cp-wd__subdial cp-wd__subdial--outer" />
+        <circle cx={cx} cy={cy} r={SUBDIAL - 3} className="cp-wd__subdial cp-wd__subdial--inner" />
         <path
           d={Array.from({ length: 12 }, (_, i) => tick(SUBDIAL - 3, SUBDIAL, i * 30, cx, cy)).join("")}
           className="cp-wd__track"

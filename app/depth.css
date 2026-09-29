@@ -181,6 +181,17 @@
   stroke-width: 0.9;
 }
 
+/* Daytona registers: the outer ring leads, the inner ring sits back. */
+.cp-wd__subdial--outer {
+  stroke: rgba(255, 255, 255, 0.78);
+  stroke-width: 1.4;
+}
+
+.cp-wd__subdial--inner {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 0.6;
+}
+
 .cp-wd__subhand {
   stroke: var(--cp-ink-soft);
   stroke-width: 1;
