@@ -35,6 +35,9 @@ week of October 12 is A, and so on.
   `resolution: 2k`, 2.75 credits each. Generate slide 1 first, then pass its
   job ID as `image_references` to slides 2 and 3 so the set, the light and
   the watch stay the same across the swipe. About 8.25 credits.
+- **Carousel finishing.** The three slides go into the Canva brand template
+  (see Carousel design) by autofill, which lays on the headlines, the
+  sub-line and the crest. No Higgsfield credits.
 
 If a Kling job is rejected as "out of credits" while credit remains, wait for
 the running one to finish and resubmit.
@@ -227,6 +230,23 @@ Its sample photos are the ones in `carousel-reference/photos/`, in order:
 the rose gold lug, the red car, the bronze car. Canva's API cannot set the
 font or tracking, so the template's text is set to Red Hat Display and
 about 180 letter-spacing by hand in the editor, in the brand template itself so every copy inherits it.
+
+**Weekly autofill.** Each carousel becomes its own Canva design:
+
+1. Import each slide into Canva with `upload-asset-from-url`, from the
+   generation's image URL (Canva fetches Higgsfield's CDN itself) or, for a
+   real photo, its media URL.
+2. `autofill-design` with brand template `EAHWmLk3xss`, titled
+   "ChronoProtect+ carousel, <posting date>, <storyline>". `photo_1` to
+   `photo_3` take the three asset IDs in order; `headline_1` to
+   `headline_3` take the headlines with a line break between lines;
+   `subline_3` takes the close sub-line.
+3. Read the new design's thumbnails. The text positions are fixed by the
+   template, so check each headline sits in dark space and clear of the
+   subject. If one does not, say which slide, and nudge it in Canva before
+   posting rather than regenerating.
+4. Export the design as PNG, one file per slide, and give the download
+   links with the Canva edit link.
 
 ## Prompt rules
 
