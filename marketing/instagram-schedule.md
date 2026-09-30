@@ -63,6 +63,9 @@ How that is applied here:
   no Ferrari name, prancing horse, shield or badge appears in a prompt, a
   frame or a caption. Paint protection film on the car mirrors the film on
   the watch.
+- The same allusion extends to other worlds with their own protection
+  rituals, a yacht, a private aircraft, a stable, one per week (see
+  Worlds).
 - Captions say "Wear the watch." rather than the explicit line.
 - Collector trust is stated as how collectors behave. No named collector,
   count or endorsement appears unless it is real and approved.
@@ -98,6 +101,54 @@ comes round every two or three weeks instead of once a cycle.
 The week of October 5 is S1, pattern B: Tuesday carousel (emotion),
 Thursday Reel (thought), Saturday carousel (emotion). October 12 is S2 and
 October 19 is S6.
+
+### Worlds
+
+The car is the first of several worlds: pursuits where people with the
+means already protect what they own, as a matter of course. Each week one
+carousel takes the next world, shows its protection ritual, and turns it to
+the watch. The argument is the same every time, in a different setting: you
+already protect the things you love to use, so why not the one you wear
+every day.
+
+Take them in this order, one per week, then start over. The week of
+October 5 was the supercar, so October 12 is the yacht.
+
+| # | World | The ritual (slide 1) | The turn (slide 2) |
+|---|---|---|---|
+| W1 | Supercar | Paint protection film on the bodywork, invisible until the light catches its edge | The film on the car and the film on the watch are the same idea |
+| W2 | Yacht | The hull waxed and polished by hand before the season, teak oiled, covers on at the berth | Salt, sun and sand reach the watch on the wrist before they reach the hull |
+| W3 | Private aviation | Covers on the engines on the ramp, protective tape on the leading edges | The aircraft is covered between flights; the watch is on the wrist for every one |
+| W4 | Polo and the stable | Saddle leather conditioned, the pony's legs wrapped before the chukka | The rider protects the horse and the tack; the watch takes every knock of the game |
+| W5 | Golf | Headcovers on the woods, forged irons wiped between shots | The clubs are covered in the bag; the watch swings with every one |
+| W6 | The wine cellar | Bottles laid down in the dark at a steady temperature, for decades | What is meant to last is protected from the day it arrives (pairs with S5) |
+| W7 | Fine art | Museum glass, cotton gloves, a fitted crate | A collector protects the canvas on the wall; the watch is the piece they carry |
+| W8 | Bespoke shoes | Cedar trees in every pair, polish worked in by hand | The same care, for the thing worn every day |
+
+**Where it goes.** The world takes the week's first carousel, whose three
+slides become the ritual, the turn and the watch. The carousel still
+carries the week's storyline's emotion or thought, seen through that world.
+If that carousel must be a reference-support post, the world moves to the
+week's other carousel. If there is no other, the world waits and the
+rotation does not advance. In an S1 week the whole week, Reel included,
+takes that week's world.
+
+**Rules for every world.**
+
+- Low light, so the brand ground holds: a marina at dusk, a hangar at night,
+  a stable at first light, a cellar, a gallery after hours. Deep
+  forest-charcoal shadows, one warm bronze light, no bright daylight scenes.
+- Nothing identifiable: no maker's name, badge or logo on a boat, aircraft,
+  club, saddle, bottle or shoe; no hull names, tail numbers or club crests;
+  no real artworks; no faces. Hands and forearms in dark sleeves may do the
+  work.
+- Slide 1 shows the ritual in the act (the wax going on, the cover going
+  over), not the object at rest. Slide 3 is the watch, protected, in the
+  same light as the world.
+- Captions name the ritual plainly and never claim that owners of the world
+  use ChronoProtect+.
+- Pick worlds that belong to the people who buy the watches. Leave out
+  anything that reads as a stunt or as danger (no racing crashes, no storms).
 
 ### Reference-support posts
 
@@ -332,6 +383,10 @@ this is the one place the name appears without it.
 - Reels take one viral-format tag. Carousels take none, and no generic
   reach tags.
 - `#carsandwatches` only on the car-and-watch storyline.
+- A world carousel may swap one pool tag for one world tag: `#yachtlife`
+  (yacht), `#privateaviation` (aviation), `#polo` (polo), `#golflife`
+  (golf), `#winecellar` (wine), `#artcollector` (art), `#bespokeshoes`
+  (shoes). `#carsandwatches` stays the car's.
 - New-owner tags only in S6 weeks and on reference posts. Swap one watch
   or intent tag for one of them. New-owner tag volumes were not checked;
   Insights decides which stay.

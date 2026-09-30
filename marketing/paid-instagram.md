@@ -66,7 +66,11 @@ car allusion.
   protection film, AND (must also match) Rolex or luxury watches.**
   Targeting by car-brand interest is fine; the ads themselves never name or
   show Ferrari.
-- **Creative:** the car and the watch (S1).
+- **Creative:** the car and the watch (S1), and the car world carousels.
+- **Other worlds:** once a world carousel has proven itself organically,
+  test it as its own ad set with that world's interests (yachting, private
+  aviation, polo, golf, wine collecting, art collecting, bespoke tailoring),
+  AND Rolex or luxury watches, landing on `/kits/chronoshield`.
 - **Landing page:** `/kits/chronoshield`.
 
 ### 4. Retargeting
