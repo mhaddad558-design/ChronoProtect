@@ -529,6 +529,12 @@ Overlay text: YOU WAX THE HULL / BEFORE EVERY / SEASON. Then YOUR WATCH
 MEETS / THE SALT AND SUN / FIRST, SO LET US / PROTECT IT TOO. Then GET
 PROTECTED. with the preorder sub-line.
 
+Built in Canva on October 2 from the brand template: design
+`DAHW5OsanXU`, "ChronoProtect+ carousel, October 15, the yacht",
+https://www.canva.com/d/s7h6eol96FaeoRf (assets `MAHW5FamrWM`,
+`MAHW5CL4s1k`, `MAHW5CHVW5M`). The October 5 run skips the Canva step for
+this carousel and only writes its caption.
+
 - Slide 1, the ritual, option A (approved): wax buffed onto the grey hull at dusk,
   `a7767ba1-124f-4fe2-ac73-c07cd323cb7d`.
 - Slide 1, the ritual, option B (not used): the grey bow at night with salt spray,
