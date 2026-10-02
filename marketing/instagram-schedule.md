@@ -520,13 +520,18 @@ The October 5 run makes the week of October 12 (posts October 13, 15 and
 ### Early renditions: the yacht world (W2), for October 15
 
 Drafted October 2, ahead of the October 5 run, at the owner's request:
-superyachts with gunmetal grey hulls as the main design feature. Not yet
-approved. If the owner approves them, the October 5 run uses these for the
-Thursday, October 15 carousel instead of generating new slides.
+superyachts with gunmetal grey hulls as the main design feature.
+**Approved October 2, slide 1 option A.** The October 5 run uses option A,
+slide 2 and slide 3 for the Thursday, October 15 carousel as they are, and
+generates no new slides for it. Option B stays unused.
 
-- Slide 1, the ritual, option A: wax buffed onto the grey hull at dusk,
+Overlay text: YOU WAX THE HULL / BEFORE EVERY / SEASON. Then YOUR WATCH
+MEETS / THE SALT AND SUN / FIRST, SO LET US / PROTECT IT TOO. Then GET
+PROTECTED. with the preorder sub-line.
+
+- Slide 1, the ritual, option A (approved): wax buffed onto the grey hull at dusk,
   `a7767ba1-124f-4fe2-ac73-c07cd323cb7d`.
-- Slide 1, the ritual, option B: the grey bow at night with salt spray,
+- Slide 1, the ritual, option B (not used): the grey bow at night with salt spray,
   `d340c44e-c849-40f4-b065-5932e9bfc36c`.
 - Slide 2, the turn: the watch on the wrist at the deck rail, salt on the
   film-wrapped links, `66d29f7f-000b-4f8a-99c9-43d301c9b894`.
