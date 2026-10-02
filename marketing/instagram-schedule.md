@@ -516,3 +516,19 @@ New uploads in the Higgsfield library, not yet described so not used:
 
 The October 5 run makes the week of October 12 (posts October 13, 15 and
 17): storyline S2, pattern A.
+
+### Early renditions: the yacht world (W2), for October 15
+
+Drafted October 2, ahead of the October 5 run, at the owner's request:
+superyachts with gunmetal grey hulls as the main design feature. Not yet
+approved. If the owner approves them, the October 5 run uses these for the
+Thursday, October 15 carousel instead of generating new slides.
+
+- Slide 1, the ritual, option A: wax buffed onto the grey hull at dusk,
+  `a7767ba1-124f-4fe2-ac73-c07cd323cb7d`.
+- Slide 1, the ritual, option B: the grey bow at night with salt spray,
+  `d340c44e-c849-40f4-b065-5932e9bfc36c`.
+- Slide 2, the turn: the watch on the wrist at the deck rail, salt on the
+  film-wrapped links, `66d29f7f-000b-4f8a-99c9-43d301c9b894`.
+- Slide 3, the close: the protected watch on a cloth on the teak deck, the
+  grey hull behind, `b7c63b2a-808e-41bc-8c35-9a8575b570d7`.
