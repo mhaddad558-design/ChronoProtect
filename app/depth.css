@@ -1103,3 +1103,52 @@
   justify-content: center;
   text-align: center;
 }
+
+/* ---------- hero video ---------- */
+
+/*
+ * The blurred water clip sits behind the hero, full bleed. A flat veil of the
+ * deep ground keeps the headline and the picker readable, and the bottom edge
+ * fades into the page so the section has no hard line.
+ */
+.cp-hero--video {
+  position: relative;
+  isolation: isolate;
+}
+
+.cp-hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--cp-bg-deep) url("/hero/hero-water.jpg") center / cover no-repeat;
+}
+
+.cp-hero__video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cp-hero__video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 17, 13, 0.66);
+}
+
+.cp-hero__video::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 30%;
+  z-index: 1;
+  background: linear-gradient(transparent, var(--cp-bg-deep));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-hero__video video {
+    display: none;
+  }
+}

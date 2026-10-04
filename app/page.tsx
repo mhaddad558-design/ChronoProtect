@@ -4,6 +4,7 @@ import CoverageExplorer from "@/components/CoverageExplorer";
 import FinishSwatch from "@/components/FinishSwatch";
 import HeroPicker from "@/components/HeroPicker";
 import HeroTilt from "@/components/HeroTilt";
+import HeroVideo from "@/components/HeroVideo";
 import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
@@ -39,8 +40,9 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="cp-shell cp-hero">
-        <div className="cp-pagehead">
+      <section className="cp-hero cp-hero--video">
+        <HeroVideo />
+        <div className="cp-shell cp-pagehead">
           <div>
             <p className="cp-eyebrow">Precision-cut protective film</p>
             <h1>A watch you wear should not be a watch you worry about.</h1>
