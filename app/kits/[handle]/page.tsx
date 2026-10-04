@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BackgroundVideo from "@/components/BackgroundVideo";
 import BraceletLinks from "@/components/BraceletLinks";
 import FinishSwatch from "@/components/FinishSwatch";
 import Lockup from "@/components/Lockup";
@@ -50,8 +51,9 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
   return (
     <>
       <TrackKitView handle={handle} name={copy.title} />
-      <section className="cp-shell" style={{ paddingBlock: "clamp(3.5rem, 8vw, 6rem) 4rem" }}>
-        <div className="cp-pagehead">
+      <section className="cp-has-video" style={{ paddingBlock: "clamp(3.5rem, 8vw, 6rem) 4rem" }}>
+        <BackgroundVideo name="kit-desert" />
+        <div className="cp-shell cp-pagehead">
           <div>
             <p className="cp-eyebrow">{copy.coverage}</p>
             <h1 style={{ fontSize: "clamp(2.4rem, 6.5vw, 3.8rem)" }}>{copy.title}</h1>
