@@ -1104,51 +1104,54 @@
   text-align: center;
 }
 
-/* ---------- hero video ---------- */
+/* ---------- background video ---------- */
 
 /*
- * The blurred water clip sits behind the hero, full bleed. A flat veil of the
- * deep ground keeps the headline and the picker readable, and the bottom edge
- * fades into the page so the section has no hard line.
+ * Blurred footage behind a section, full bleed (components/BackgroundVideo).
+ * A flat veil of the deep ground keeps the words readable, and the edges fade
+ * into the section's own ground through a mask, so there is no hard line.
  */
-.cp-hero--video {
+.cp-has-video {
   position: relative;
   isolation: isolate;
 }
 
-.cp-hero__video {
+.cp-bgvideo {
   position: absolute;
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  background: var(--cp-bg-deep) url("/hero/hero-water.jpg") center / cover no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.cp-hero__video video {
+.cp-bgvideo--bottom {
+  -webkit-mask-image: linear-gradient(#000 70%, transparent);
+  mask-image: linear-gradient(#000 70%, transparent);
+}
+
+.cp-bgvideo--both {
+  -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+}
+
+.cp-bgvideo video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.cp-hero__video::after {
+.cp-bgvideo::after {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(11, 17, 13, 0.66);
 }
 
-.cp-hero__video::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 30%;
-  z-index: 1;
-  background: linear-gradient(transparent, var(--cp-bg-deep));
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .cp-hero__video video {
+  .cp-bgvideo video {
     display: none;
   }
 }

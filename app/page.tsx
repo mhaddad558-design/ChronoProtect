@@ -1,10 +1,10 @@
 import Link from "next/link";
+import BackgroundVideo from "@/components/BackgroundVideo";
 import BandTexture from "@/components/BandTexture";
 import CoverageExplorer from "@/components/CoverageExplorer";
 import FinishSwatch from "@/components/FinishSwatch";
 import HeroPicker from "@/components/HeroPicker";
 import HeroTilt from "@/components/HeroTilt";
-import HeroVideo from "@/components/HeroVideo";
 import Lockup from "@/components/Lockup";
 import Price from "@/components/Price";
 import { allFamilies } from "@/lib/fitment";
@@ -40,8 +40,8 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="cp-hero cp-hero--video">
-        <HeroVideo />
+      <section className="cp-hero cp-has-video">
+        <BackgroundVideo name="hero-water" />
         <div className="cp-shell cp-pagehead">
           <div>
             <p className="cp-eyebrow">Precision-cut protective film</p>
@@ -101,8 +101,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="cp-band cp-band--mid">
-        <BandTexture kind="moire" id="home-finishes-bg" />
+      <section className="cp-band cp-band--mid cp-has-video">
+        <BackgroundVideo name="finishes-shore" edges="both" />
         <div className="cp-shell">
           <div className="cp-measure">
             <p className="cp-eyebrow">Finishes</p>
