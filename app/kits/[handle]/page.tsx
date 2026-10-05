@@ -16,6 +16,12 @@ type KitHandle = keyof typeof KIT_COPY;
 
 const HANDLES = Object.keys(KIT_COPY) as KitHandle[];
 
+/** The blurred clip behind each kit's hero, from public/video. */
+const HERO_VIDEO: Record<KitHandle, string> = {
+  chronoshield: "kit-gold",
+  chronoguard: "kit-guard",
+};
+
 function isKitHandle(value: string): value is KitHandle {
   return (HANDLES as string[]).includes(value);
 }
@@ -52,7 +58,7 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
     <>
       <TrackKitView handle={handle} name={copy.title} />
       <section className="cp-has-video" style={{ paddingBlock: "clamp(3.5rem, 8vw, 6rem) 4rem" }}>
-        <BackgroundVideo name="kit-gold" />
+        <BackgroundVideo name={HERO_VIDEO[handle]} />
         <div className="cp-shell cp-pagehead">
           <div>
             <p className="cp-eyebrow">{copy.coverage}</p>
