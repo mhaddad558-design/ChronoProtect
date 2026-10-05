@@ -102,7 +102,7 @@ export default async function HomePage() {
       </section>
 
       <section className="cp-band cp-band--mid cp-has-video">
-        <BackgroundVideo name="finishes-shore" edges="both" scrub />
+        <BackgroundVideo name="finishes-desert" edges="both" scrub />
         <div className="cp-shell">
           <div className="cp-measure">
             <p className="cp-eyebrow">Finishes</p>
