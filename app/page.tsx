@@ -154,8 +154,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="cp-band cp-band--mid cp-watermark">
-        <BandTexture kind="engine" id="home-close-bg" />
+      <section className="cp-band cp-band--mid cp-watermark cp-has-video">
+        <BackgroundVideo name="close-pool" edges="both" />
         <div className="cp-shell cp-measure">
           <h2 style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}>
             Start with the number on the case.
