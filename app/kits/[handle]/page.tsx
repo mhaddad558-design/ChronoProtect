@@ -52,7 +52,7 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
     <>
       <TrackKitView handle={handle} name={copy.title} />
       <section className="cp-has-video" style={{ paddingBlock: "clamp(3.5rem, 8vw, 6rem) 4rem" }}>
-        <BackgroundVideo name="kit-desert" />
+        <BackgroundVideo name="kit-gold" />
         <div className="cp-shell cp-pagehead">
           <div>
             <p className="cp-eyebrow">{copy.coverage}</p>
