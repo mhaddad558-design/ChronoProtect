@@ -12,8 +12,9 @@ import { useEffect, useRef } from "react";
  * <name>.jpg poster. The parent section takes the `cp-has-video` class.
  *
  * Two modes:
- * - loop (default): plays on its own, silent. Loop clips are encoded forward
- *   then reversed, so the loop has no jump.
+ * - loop (default): plays on its own, silent, and restarts from the top.
+ *   Only the homepage hero clip is encoded forward then reversed, so its
+ *   loop has no jump; the others play straight through, which reads cleaner.
  * - scrub: the footage follows the scroll. It runs from the first frame as
  *   the section enters the viewport to the last as it leaves, and rewinds on
  *   the way back up. Scrub clips are encoded with every frame a keyframe, so
