@@ -64,13 +64,13 @@ embedded. Ask the printer whether they want text outlined.
 Points at the configurator, tagged so dealer sales can be counted:
 
 ```
-https://www.chronoprotect.shop/find-your-kit?utm_source=dealer&utm_medium=card&utm_campaign=<dealer-slug>
+https://www.chronoprotect.store/find-your-kit?utm_source=dealer&utm_medium=card&utm_campaign=<dealer-slug>
 ```
 
 The current print files use the generic slug `dealer-card`, and the code was
 checked to decode to that address. For per-dealer counts, make a run per
 dealer with its own slug, lowercase with hyphens, for example
-`smith-jewelers`. The back also prints `chronoprotect.shop` for anyone who
+`smith-jewelers`. The back also prints `chronoprotect.store` for anyone who
 does not scan.
 
 A dealer with a label printer can go further and print a sticker QR per
