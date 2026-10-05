@@ -517,6 +517,63 @@ New uploads in the Higgsfield library, not yet described so not used:
 The October 5 run makes the week of October 12 (posts October 13, 15 and
 17): storyline S2, pattern A.
 
+### Week of October 12, 2026 (posts October 13 to 17)
+
+Generated October 5 by the Monday run. Storyline S2, a day on the wrist,
+pattern A. World W2, the yacht, carried by the Thursday carousel (built
+October 2, below). The week opens on a thought, after the emotion that
+closed October 10. The image library could not be listed this run
+(`show_medias` failed on Higgsfield's side), so no new uploads were
+checked or used.
+
+**Tuesday, Reel, thought: an extension, not an addition.** Still
+`ec0b771b-4a15-4fcd-b0ad-53d66d586b35`, video
+`5e31bd39-9cd9-4cda-a5ca-87676e09dfd8`, virality predictor
+`5acf16da-4592-42da-928d-fe9471e28706`.
+
+> The film is part of the watch, not something added to it.
+>
+> ChronoShield+ wraps every link on its own, so the bracelet keeps its
+> articulation and the brushing reads as bare steel. The desk edge meets
+> the film, not the finish. Wear the watch.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #satisfying #watchesofinstagram #watchcare #rolexwatch
+
+**Thursday, carousel, emotion: safe at sea. World W2, the yacht.** The
+approved early renditions, built in Canva as `DAHW5OsanXU`,
+https://www.canva.com/d/s7h6eol96FaeoRf. Overlay text as logged below.
+
+> You already protect the hull. Swipe for the piece that sees more salt.
+>
+> The hull is waxed by hand before every season. Your watch meets the salt
+> and sun first, at the rail, every day aboard. ChronoShield+ keeps its
+> finish as it left the factory, so it stays on the wrist. Wear the watch.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #yachtlife #watchprotection #watchesofinstagram #rolexcollector
+
+**Saturday, Reel, thought: worn from the first morning.** The week's
+new-buyer post. Still `4c1ad754-c000-46d4-9438-925d7fccbf98`, video
+`7569c463-5d9c-4fd5-8475-4f898312097e`, virality predictor
+`d30e5c31-e5ca-481e-9ba5-15c29f3cfcdf`.
+
+> A new watch should be worn from the first morning.
+>
+> ChronoShield+ is cut to the reference and wraps the clasp and every
+> link, so the side that meets the desk and the table every day keeps its
+> factory finish. The film moves with the clasp and never shows. Wear the
+> watch.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #watchreels #wristcheck #wearyourwatch #rolexcollector
+
+The October 12 run makes the week of October 19: storyline S6, pattern B,
+world W3, private aviation.
+
 ### Early renditions: the yacht world (W2), for October 15
 
 Drafted October 2, ahead of the October 5 run, at the owner's request:
