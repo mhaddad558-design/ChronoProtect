@@ -20,6 +20,14 @@ two patterns:
 The week of September 28 was pattern A, so the week of October 5 is B, the
 week of October 12 is A, and so on.
 
+**Daily AI Reels.** From the week of October 26, the Monday run also makes
+two AI Reels for every day of the week: 14 a week, for the 7:30 am and
+6:00 pm slots in `views-plan.md`. Where the pattern puts a Reel on Tuesday,
+Thursday or Saturday, that Reel is one of the day's two. Each day's Reels
+follow the day's theme in `views-plan.md`; the schedule Reels still carry
+the week's storyline. Carousels are on top of the 14. The four other daily
+slots are made without credits and are not part of the run.
+
 | Format | Size |
 |---|---|
 | Reel | 9:16, 5 seconds, 720p, silent (music added in Instagram) |
@@ -38,6 +46,13 @@ week of October 12 is A, and so on.
 - **Carousel finishing.** The three slides go into the Canva brand template
   (see Carousel design) by autofill, which lays on the headlines, the
   sub-line and the crest. No Higgsfield credits.
+
+- **Shared first frames.** The 14 daily Reels share first frames: one
+  still animated up to three ways (a slow glide, a push-in, a light sweep),
+  so 14 Reels need 5 stills. Reels from the same still go on different
+  days. A reference-support Reel gets its own still. A week is about 119
+  credits of Reels (5 stills at 2.75, 14 animations at 7.5) plus 8 to 17 for
+  carousels, about 127 to 136 in all, or about 560 a month of the 1,000.
 
 If a Kling job is rejected as "out of credits" while credit remains, wait for
 the running one to finish and resubmit.
