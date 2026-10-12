@@ -215,6 +215,15 @@ Media reaches Higgsfield in one of three ways:
 | `5e77017d-d639-4103-9c9e-7711d877bc89` | image | Awaiting description | | |
 | `187fc378-28fc-4ef1-a1ae-d27b27be7093` | image | Awaiting description | | |
 | `626b69f0-9659-45d5-a2b2-c2ccb20e8238` | image | Awaiting description | | |
+| `68b20240-90f6-4093-9071-56a215b8aeef` | image | Awaiting description | | |
+| `d5c66e56-e565-4602-a35a-48095f33f580` | image | Awaiting description | | |
+| `099729d1-a4e3-4db1-a174-5643af96e308` | image | Awaiting description | | |
+| `64f20bbe-15d8-4168-b84a-cf55c168bb08` | image | Awaiting description | | |
+| `51393953-e574-412e-bb23-659645fb1882` | image | Awaiting description | | |
+| `61230b19-9437-4fba-a27e-5214bad38009` | image | Awaiting description | | |
+| `bfd7872a-53d0-4411-a154-3a09a607d8bb` | image | Awaiting description | | |
+| `dcf0f749-e67d-4a17-8d28-b7488c61bd36` | image | Awaiting description | | |
+| `b6604843-f4e3-4334-bcd6-cb77c1786287` | video | Awaiting description | | |
 
 ## Carousel design
 
@@ -573,6 +582,86 @@ new-buyer post. Still `4c1ad754-c000-46d4-9438-925d7fccbf98`, video
 
 The October 12 run makes the week of October 19: storyline S6, pattern B,
 world W3, private aviation.
+
+### Week of October 19, 2026 (posts October 20 to 24)
+
+Generated October 12 by the Monday run. Storyline S6, day one, pattern B.
+World W3, private aviation, carried by the Tuesday carousel. The week opens
+on an emotion, after the thought that closed October 17, so Thursday is the
+week's thought post and therefore a reference-support post: family 1,
+Submariner 2020 to present, 41mm (status active). Nine new uploads were
+found in the library and added to Your media as awaiting description; none
+were used.
+
+**Tuesday, carousel, emotion: covered from the first night. World W3,
+private aviation.** Slides `2772fd5e-e676-48b5-a545-b66c573d2730` (cover
+drawn over the engine intake in the hangar),
+`fcd40d37-5b68-4ee4-ac06-a9f7aac59b26` (the new watch on the wrist at the
+airstair rail), `93a6d19e-e676-46e2-8c07-c96b7942abd1` (the watch on a
+cloth on the hangar bench). Canva `DAHX0AnMA_0`,
+https://www.canva.com/d/fkX6iLrxBLUIe4w.
+
+- Slide 1, statement: YOU COVER THE / ENGINES FROM THE / FIRST NIGHT.
+- Slide 2, statement: YOUR WATCH FLIES / WITH YOU FROM / DAY ONE. LET US / PROTECT IT TOO.
+- Slide 3, close: GET PROTECTED. / PREORDER FOR NOVEMBER OPEN NOW, LINK IN BIO
+- Nudge: slide 3's sub-line crosses the bright engine edge; move it up.
+
+> The engines are covered from the first night in the hangar. Swipe for the piece that flies with you.
+>
+> The cover goes on the night the aircraft arrives. The watch is on the
+> wrist from its first day, at every stair and every rail. ChronoShield+
+> goes on before the first wear, so the finish stays as it left the box.
+> Wear the watch.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #privateaviation #newwatch #watchprotection #rolexcollector
+
+**Thursday, Reel, thought: reference support, Submariner 41.** Still
+`51378629-98a0-4ce2-af03-f24edb6d62b1` (an unbranded 41mm dive watch),
+video `0eb1fb8b-7e7f-41a5-9fff-17179ba6b06f`, virality predictor
+`019af44e-ede9-4f61-aa43-64e5abe26784`.
+
+> The 41mm Submariner is fully covered.
+>
+> ChronoShield+ is cut for the Submariner from 2020 to present: 126610LN,
+> 126610LV, 126618LN, 126618LB, 126613LN, 126613LB, 126619LB and 124060.
+> It wraps the case, the bezel edge, every Oyster link and the clasp.
+> ChronoGuard+ covers the case and clasp only and leaves the bracelet bare.
+> The earlier 40mm Submariner takes its own cut. Comment your reference and
+> we will confirm the fit.
+>
+> Not affiliated with, endorsed by, or sponsored by Rolex SA. Reference
+> numbers are used only to describe fitment.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #rolexsubmariner #newrolex #satisfying #rolexcollector
+
+**Saturday, carousel, emotion: the box opens once.** The week's new-buyer
+post. Slides `e41fda12-a795-4df9-9174-2ebf32e0a5a6` (the open box, the
+film's backing card beside it), `8683b5e7-f461-4930-ad67-dea3ea7ecb4a`
+(fingers settling the watch in the box), `c3557f10-8bf0-4412-8a26-5df749eb8dfe`
+(first time on the wrist). Canva `DAHX0EJPktw`,
+https://www.canva.com/d/YFUQfjRnzlTrwnO.
+
+- Slide 1, statement: THE BOX OPENS / ONCE.
+- Slide 2, statement: THE FILM GOES ON / BEFORE THE / FIRST WEAR.
+- Slide 3, close: GET PROTECTED. / PREORDER FOR NOVEMBER OPEN NOW, LINK IN BIO
+
+> The finish is only this perfect once. Swipe for how it stays that way.
+>
+> The box opens on a finish no one has touched. The film goes on before
+> the first wear, cut to the reference. Then the watch goes on the wrist
+> and stays there. Wear the watch.
+>
+> On preorder now, shipping in November 2026.
+>
+> #ChronoProtect #newrolex #newwatchday #watchprotection #watchcollector
+
+The October 19 run makes the week of October 26: storyline S3, the
+collection, pattern A, world W4, polo and the stable. Reference support
+moves on to family 2, Datejust 41, in the next S6 week.
 
 ### Early renditions: the yacht world (W2), for October 15
 
