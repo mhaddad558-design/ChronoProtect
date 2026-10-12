@@ -9,7 +9,7 @@
  */
 export const SITE_NAME = "ChronoProtect+";
 export const SITE_TAGLINE = "Protect the piece, change the presence.";
-export const STUDIO_EMAIL = "chronoshield@polsia.app";
+export const STUDIO_EMAIL = "store@chronoprotect.co";
 
 /**
  * Postage, said wherever a price is, so nobody has to reach checkout to learn

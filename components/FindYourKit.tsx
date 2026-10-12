@@ -528,7 +528,7 @@ export default function FindYourKit({
           </p>
           <p className="cp-kit__aside">
             Reference not listed? <a href="/catalog">Search the fitment catalog</a> or{" "}
-            <a href="mailto:chronoshield@polsia.app?subject=ChronoShield%2B%20fit%20guide">
+            <a href={`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent("ChronoShield+ fit guide")}`}>
               request a fit guide
             </a>
             .
