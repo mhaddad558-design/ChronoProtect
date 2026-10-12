@@ -282,6 +282,18 @@ Media reaches Higgsfield in one of three ways:
 | `dcf0f749-e67d-4a17-8d28-b7488c61bd36` | image | Awaiting description | | |
 | `b6604843-f4e3-4334-bcd6-cb77c1786287` | video | Awaiting description | | |
 
+**Brand assets in Higgsfield.** The crest is imported for image references
+and as a reusable element:
+
+| Asset | ID | Use |
+|---|---|---|
+| Crest on forest ground (`brand/crest-bronze-on-forest.png`) | media `b2724733-a603-4f6a-adef-e252dd0fe750` | `image_references` for `gpt_image_2_5` when a box, card or print should carry the crest |
+| Crest, transparent (`brand/crest-bronze.png`) | media `2f017306-fbe1-42b7-9dee-d2975f18956f` | Spare; models read a solid ground more reliably |
+| Element `chronoprotect-crest` | `62a40d4f-0b7a-489c-b25f-f4badb260c93` | `<<<62a40d4f-0b7a-489c-b25f-f4badb260c93>>>` in the prompt, for models that take elements (GPT Image 2, Nano Banana, Seedream, Seedance, Kling 3.0 with a start image) |
+
+The crest appears only on ChronoProtect+'s own packaging and print in
+generated media, never on a watch.
+
 ## Carousel design
 
 Set by the owner on September 29, 2026, from three reference slides kept in
