@@ -20,7 +20,7 @@ two patterns:
 The week of September 28 was pattern A, so the week of October 5 is B, the
 week of October 12 is A, and so on.
 
-**Daily AI Reels.** From the week of October 26, the Monday run also makes
+**Daily AI Reels.** From the week of October 19, the Monday run also makes
 two AI Reels for every day of the week: 14 a week, for the 7:30 am and
 6:00 pm slots in `views-plan.md`. Where the pattern puts a Reel on Tuesday,
 Thursday or Saturday, that Reel is one of the day's two. Each day's Reels
@@ -32,6 +32,48 @@ slots are made without credits and are not part of the run.
 |---|---|
 | Reel | 9:16, 5 seconds, 720p, silent (music added in Instagram) |
 | Carousel | 3 slides, 1080 x 1350, text and crest per the carousel design below |
+
+## Six a day
+
+From the week of October 19, every day carries six Reels (see
+`views-plan.md` for the reasoning and view targets):
+
+| Time (ET) | Slot | Made by |
+|---|---|---|
+| 7:30 am | AI Reel on the day's theme | The Monday run, in Higgsfield |
+| 10:00 am | Re-cut of an existing unbranded Reel | You, from the run's brief |
+| 12:30 pm | Phone POV with on-screen text | You, from the run's brief |
+| 3:00 pm | Explainer: a screen recording of the site | You, from the run's brief |
+| 6:00 pm | AI Reel, the day's strongest; the schedule Reel where there is one | The Monday run, in Higgsfield |
+| 9:00 pm | Trend or world Reel from licensed stock | You, from the run's brief |
+
+Tuesday and Saturday carousels (pattern B) or the Thursday carousel
+(pattern A) post at 11:00 am on top.
+
+Each week gets its own file, `marketing/weeks/<Monday's date>.md`: every
+day's six Reels with the AI Reel IDs and captions, and for each free slot a
+full brief.
+
+**A free-slot brief has:** the source (a Reel ID to re-cut, what to film,
+the page to record, or the Canva stock search terms), the length, the first
+line on screen, the beats with timings and on-screen text, the audio
+direction, and the caption with its hashtags.
+
+**Rules for free slots.**
+
+- On-screen text in sentence case (capitals are for carousels only), white,
+  in the middle third so Instagram's buttons do not cover it.
+- Re-cuts use only unbranded ChronoProtect+ Reels. The website background
+  clips show the Rolex name on generated watches and are never re-cut for
+  Instagram.
+- Phone footage of a real watch is real media: if a dial or reference
+  shows, the caption carries the Rolex disclaimer. Serial numbers and
+  warranty-card details stay out of frame.
+- Stock footage must be licensed for commercial use, with badges, hull
+  names and tail numbers cropped out.
+- Until kits ship, phone Reels show the risk and the caption gives the
+  answer; there is no film on a real watch to film yet.
+- Every Reel takes exactly one viral-format tag.
 
 ## Pipeline and cost
 
@@ -600,6 +642,10 @@ world W3, private aviation.
 
 ### Week of October 19, 2026 (posts October 20 to 24)
 
+The first six-a-day week: all 42 Reels, with the 13 daily AI Reels
+made October 12 and the 28 free-slot briefs, are in
+`marketing/weeks/2026-10-19.md`. The schedule posts are below.
+
 Generated October 12 by the Monday run. Storyline S6, day one, pattern B.
 World W3, private aviation, carried by the Tuesday carousel. The week opens
 on an emotion, after the thought that closed October 17, so Thursday is the
@@ -675,8 +721,9 @@ https://www.canva.com/d/YFUQfjRnzlTrwnO.
 > #ChronoProtect #newrolex #newwatchday #watchprotection #watchcollector
 
 The October 19 run makes the week of October 26: storyline S3, the
-collection, pattern A, world W4, polo and the stable. Reference support
-moves on to family 2, Datejust 41, in the next S6 week.
+collection, pattern A, world W4, polo and the stable. The daily Reels
+covered families 2 and 3 (Datejust 41, GMT-Master II) on October 21, so
+reference support moves on to family 4, Daytona Cerachrom, next.
 
 ### Early renditions: the yacht world (W2), for October 15
 
