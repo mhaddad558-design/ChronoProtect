@@ -1,10 +1,58 @@
 # Instagram schedule
 
 Three posts a week, alternating Reels and 3-slide carousels, all telling one
-storyline per week. A Routine runs every Monday at 8:54am Eastern, generates
+storyline per week. A Routine runs every Monday at 8:54am Eastern (paused
+from October 13, see Higgsfield rules), generates
 the following week's media in Higgsfield, and adds a new week to the log
 below. Nothing is posted automatically. Each week's files and captions are
 handed over for review, then posted by hand.
+
+## Higgsfield rules
+
+Set by the owner on October 13, 2026. They override anything below that
+says otherwise, and apply to every Higgsfield generation: images, Reels,
+carousels and longer videos.
+
+**Generation is paused.** The Monday Routine is disabled from October 13
+and makes nothing until there are enough credits and the owner approves a
+restart in so many words. Until then, nothing is generated on a schedule.
+The four free slots a day can still be made by hand from earlier briefs.
+
+**Products: ChronoShield+ and ChronoGuard+ only.** The only products that
+may appear in a generation are the two ChronoProtect+ kits, from their
+Higgsfield elements:
+
+| Product | Element | Reference image (job) |
+|---|---|---|
+| ChronoShield+ | `ChronoShield-`, `46b1ff5a-cda3-403f-b85e-e0bc14521f64` | `eaea12cd-2fbf-44f3-9a58-25dc5ab72d42` |
+| ChronoGuard+ | `ChronoGuard-`, `d8a4cf2f-8dd2-4531-9570-5d46845a2a65` | `fcdde5ad-1519-4a49-8a2f-f33b71062491` |
+
+No other product, kit, packaging or brand appears: no competitor kits or
+generic stand-ins for them, no other brands' goods. The crest element
+(`62a40d4f-0b7a-489c-b25f-f4badb260c93`) stays allowed, on our own
+packaging and print only. The watch that wears the film is not a product
+for this rule; it stays unbranded with a blank dial, as in Prompt rules.
+Settings (a hangar, a yacht's deck, a car's bodywork) stay allowed as
+unbranded backdrops, not as featured products.
+
+**People: Greg only.** The only person in any generation is Greg, from his
+element:
+
+| Character | Element | Reference image (job) |
+|---|---|---|
+| Greg | `char_greg`, `67162f7a-0a44-4570-ae81-472de51dbe01` | `2ce44794-a18f-442c-a5c5-96f2b6ebc840` |
+
+Every face, hand, wrist and forearm in a generation is Greg's, and no one
+else appears, in the background or out of focus. Shots without a person
+stay as they are.
+
+**How to reference them.** Models that take elements (GPT Image 2, Nano
+Banana, Seedream, Seedance 2.0, Kling 3.0 with a start image) get the
+element in the prompt as `<<<element id>>>`. Models that do not (GPT Image
+2.5, Seedance 2.5) get the element's reference image as an
+`image_references` input. Every generation that shows a product or a
+person must carry its reference; a kit or a man described in words alone
+does not count.
 
 ## Cadence
 
@@ -197,8 +245,8 @@ takes that week's world.
   forest-charcoal shadows, one warm bronze light, no bright daylight scenes.
 - Nothing identifiable: no maker's name, badge or logo on a boat, aircraft,
   club, saddle, bottle or shoe; no hull names, tail numbers or club crests;
-  no real artworks; no faces. Hands and forearms in dark sleeves may do the
-  work.
+  no real artworks; no one but Greg (see Higgsfield rules), whose hands and
+  forearms may do the work.
 - Slide 1 shows the ritual in the act (the wax going on, the cover going
   over), not the object at rest. Slide 3 is the watch, protected, in the
   same light as the world.
@@ -384,9 +432,11 @@ about 180 letter-spacing by hand in the editor, in the brand template itself so 
   a specific Rolex.
 - Ground is deep forest-charcoal `#0B110D` or `#141F19`. Light is one warm
   bronze key or rim light, `#BC906C`. Generous negative space.
-- No gradient washes or lens flares. No faces. A wrist and forearm in a dark
-  sleeve are allowed where a theme needs the watch worn; keep hands small or
-  soft-focus, since generated hands tend to break.
+- No gradient washes or lens flares. The only person is Greg (see
+  Higgsfield rules), from his reference: his face where a scene calls for
+  him, or his wrist and forearm where only the watch needs wearing. Keep
+  hands small or soft-focus in close-ups, since generated hands tend to
+  break.
 - A carousel's three slides share one set, one light and one watch, and
   each slide shows a different moment or angle.
 - Carousel slides leave the space the carousel design needs: the headline
