@@ -33,7 +33,7 @@ const KIT_BOX: Record<KitHandle, { image: string | null; alt: string; contents: 
     ],
   },
   chronoguard: {
-    image: null,
+    image: "/kits/chronoguard-kit.webp",
     alt: "The ChronoGuard+ kit: a green box with the bronze crest, the pre-cut film for the case, bezel and clasp on a numbered guide sheet, a felt-edge squeegee, tweezers, a microfibre cloth, two wipes and two instruction cards.",
     contents: [
       "The film, pre-cut, on a guide sheet numbered by part: case, bezel, then clasp",
