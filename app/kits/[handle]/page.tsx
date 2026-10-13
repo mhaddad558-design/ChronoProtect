@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BackgroundVideo from "@/components/BackgroundVideo";
@@ -15,6 +16,33 @@ import { BRACELETS, DISPATCH, FINISHES, KIT_COPY, SHIPPING } from "@/lib/site";
 type KitHandle = keyof typeof KIT_COPY;
 
 const HANDLES = Object.keys(KIT_COPY) as KitHandle[];
+
+/**
+ * What ships in each kit, with its picture in public/kits. A kit without an
+ * image yet skips the section rather than showing an empty frame.
+ */
+const KIT_BOX: Record<KitHandle, { image: string | null; alt: string; contents: string[] }> = {
+  chronoshield: {
+    image: "/kits/chronoshield-kit.webp",
+    alt: "The ChronoShield+ kit: a green box with the bronze crest, the pre-cut film on a numbered guide sheet, a felt-edge squeegee, tweezers, a microfibre cloth, two wipes and two instruction cards.",
+    contents: [
+      "The film, pre-cut, on a guide sheet numbered by part: case, bezel, clasp, then every link",
+      "A felt-edge squeegee and fine-tipped tweezers",
+      "A microfibre cloth and two cleaning wipes",
+      "A step-by-step card and a care card",
+    ],
+  },
+  chronoguard: {
+    image: null,
+    alt: "The ChronoGuard+ kit: a green box with the bronze crest, the pre-cut film for the case, bezel and clasp on a numbered guide sheet, a felt-edge squeegee, tweezers, a microfibre cloth, two wipes and two instruction cards.",
+    contents: [
+      "The film, pre-cut, on a guide sheet numbered by part: case, bezel, then clasp",
+      "A felt-edge squeegee and fine-tipped tweezers",
+      "A microfibre cloth and two cleaning wipes",
+      "A step-by-step card and a care card",
+    ],
+  },
+};
 
 /** The blurred clip behind each kit's hero, from public/video. */
 const HERO_VIDEO: Record<KitHandle, string> = {
@@ -136,6 +164,34 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
           )}
         </div>
       </section>
+
+      {KIT_BOX[handle].image ? (
+        <section className="cp-band">
+          <div className="cp-shell cp-kitbox">
+            <figure className="cp-kitbox__figure">
+              <Image
+                src={KIT_BOX[handle].image as string}
+                alt={KIT_BOX[handle].alt}
+                width={1600}
+                height={1600}
+                sizes="(max-width: 56rem) 100vw, 50vw"
+              />
+              <figcaption>Shown as a render. Final packaging may differ.</figcaption>
+            </figure>
+            <div>
+              <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>In the box.</h2>
+              <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
+                Every piece is cut for your reference and laid out in the order it goes on.
+              </p>
+              <ul className="cp-kitbox__list">
+                {KIT_BOX[handle].contents.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="cp-band">
         <div className="cp-shell">
