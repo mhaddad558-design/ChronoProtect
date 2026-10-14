@@ -30,10 +30,28 @@ Higgsfield elements:
 No other product, kit, packaging or brand appears: no competitor kits or
 generic stand-ins for them, no other brands' goods. The crest element
 (`62a40d4f-0b7a-489c-b25f-f4badb260c93`) stays allowed, on our own
-packaging and print only. The watch that wears the film is not a product
-for this rule; it stays unbranded with a blank dial, as in Prompt rules.
+packaging and print only. The watch that wears the film is covered by
+its own rule below.
 Settings (a hangar, a yacht's deck, a car's bodywork) stay allowed as
 unbranded backdrops, not as featured products.
+
+**Watch: GMTII-Sprite only.** Added by the owner on October 14. It is the
+one other approved element, and the only watch in any image or video that
+goes out:
+
+| Watch | Element | Reference image (job) |
+|---|---|---|
+| Left-handed GMT, green and black bezel, Oyster bracelet | `GMTII-Sprite`, `8a109d2b-bc68-4ef8-8e9e-b6d89d8c1fbe` | `5a3603d4-c1a4-4b17-987d-5f9a4df70463` |
+
+The reference sheet was generated with the Rolex name and logos taken off
+the dial, so the watch carries no maker's name, crown emblem or logo, and
+every generation keeps it that way. Reproduce it as the reference shows it:
+crown at 9 o'clock, black upper and green lower bezel, black dial, green
+24-hour hand, date at 9 under the cyclops. Do not describe it differently
+in words, add a second watch, or swap in another model. Any frame with a
+watch in it carries this reference; ChronoShield+ and ChronoGuard+ are
+shown fitted to it. The `Authentic-Sprite` element
+(`60a8ecb1-ef32-42bb-8aa4-668106c430fc`) is not approved for use.
 
 **People: Greg only.** The only person in any generation is Greg, from his
 element:
@@ -50,9 +68,9 @@ stay as they are.
 Banana, Seedream, Seedance 2.0, Kling 3.0 with a start image) get the
 element in the prompt as `<<<element id>>>`. Models that do not (GPT Image
 2.5, Seedance 2.5) get the element's reference image as an
-`image_references` input. Every generation that shows a product or a
-person must carry its reference; a kit or a man described in words alone
-does not count.
+`image_references` input. Every generation that shows a product, the
+watch or a person must carry its reference; a kit, a watch or a man
+described in words alone does not count.
 
 ## Cadence
 
@@ -427,9 +445,10 @@ about 180 letter-spacing by hand in the editor, in the brand template itself so 
 
 ## Prompt rules
 
-- Watches are unbranded: blank dials, plain indices, no crown emblem, no
-  logos, no engravings, no text in frame. Generated watches must not pass for
-  a specific Rolex.
+- The only watch is `GMTII-Sprite` (see Higgsfield rules), from its
+  reference and as it appears there: no maker's name, crown emblem, logos
+  or engravings, and no text in frame. Never put a Rolex name, model name or
+  reference number in a prompt.
 - Ground is deep forest-charcoal `#0B110D` or `#141F19`. Light is one warm
   bronze key or rim light, `#BC906C`. Generous negative space.
 - No gradient washes or lens flares. The only person is Greg (see
@@ -520,7 +539,8 @@ this is the one place the name appears without it.
   Insights decides which stay.
 - Rolex model tags only on a real photo or video of that exact model, or a
   post about that supported reference with the Rolex disclaimer. Generated
-  watches are unbranded, so they never take a model tag.
+  watches carry no branding, so they never take a model tag, the
+  `GMTII-Sprite` watch included.
 - Never post the same five tags twice in one week. Swap at least two
   between posts.
 - Tags go at the end of the caption, after a blank line.
