@@ -35,23 +35,29 @@ its own rule below.
 Settings (a hangar, a yacht's deck, a car's bodywork) stay allowed as
 unbranded backdrops, not as featured products.
 
-**Watch: GMTII-Sprite only.** Added by the owner on October 14. It is the
-one other approved element, and the only watch in any image or video that
-goes out:
+**Watches: approved elements only.** Set by the owner on October 14. These
+are the only watches in any image or video that goes out, one per frame:
 
-| Watch | Element | Reference image (job) |
-|---|---|---|
-| Left-handed GMT, green and black bezel, Oyster bracelet | `GMTII-Sprite`, `8a109d2b-bc68-4ef8-8e9e-b6d89d8c1fbe` | `5a3603d4-c1a4-4b17-987d-5f9a4df70463` |
+| Watch | Element | Reference image (job) | Kit it wears |
+|---|---|---|---|
+| Left-handed GMT, green and black bezel, Oyster bracelet | `GMTII-Sprite`, `8a109d2b-bc68-4ef8-8e9e-b6d89d8c1fbe` | `5a3603d4-c1a4-4b17-987d-5f9a4df70463` | ChronoShield+ or ChronoGuard+ |
+| Yellow gold chronograph, champagne dial, black subdials and bezel, rubber strap | `Daytona-YG`, `de53fa55-be52-4568-aa3d-d6da6cc25c73` | `4fad0b11-74c6-4e6f-9387-26b87e0570e7` | ChronoGuard+ only |
 
-The reference sheet was generated with the Rolex name and logos taken off
-the dial, so the watch carries no maker's name, crown emblem or logo, and
-every generation keeps it that way. Reproduce it as the reference shows it:
-crown at 9 o'clock, black upper and green lower bezel, black dial, green
-24-hour hand, date at 9 under the cyclops. Do not describe it differently
-in words, add a second watch, or swap in another model. Any frame with a
-watch in it carries this reference; ChronoShield+ and ChronoGuard+ are
-shown fitted to it. The `Authentic-Sprite` element
-(`60a8ecb1-ef32-42bb-8aa4-668106c430fc`) is not approved for use.
+Both reference sheets were generated with the maker's name and logos taken
+off, so neither watch carries a maker's name, crown emblem or logo, and
+every generation keeps it that way. The Daytona-YG dial reads "Chronograph"
+where the model name was; that word stays, and nothing else is added.
+Reproduce each watch exactly as its reference shows it, and do not describe
+it differently in words or swap in another model. Any frame with a watch in
+it carries that watch's reference, and a carousel or Reel keeps one watch
+throughout.
+
+The kit has to match what the watch can wear. ChronoShield+ covers the
+bracelet, so it is shown only on GMTII-Sprite. Daytona-YG is on a rubber
+strap, which fitment lists as ChronoGuard+ only (case and clasp), so it is
+never shown with ChronoShield+ or with film on the strap. The
+`Authentic-Sprite` element (`60a8ecb1-ef32-42bb-8aa4-668106c430fc`) is not
+approved for use.
 
 **People: Greg only.** The only person in any generation is Greg, from his
 element:
@@ -68,7 +74,7 @@ stay as they are.
 Banana, Seedream, Seedance 2.0, Kling 3.0 with a start image) get the
 element in the prompt as `<<<element id>>>`. Models that do not (GPT Image
 2.5, Seedance 2.5) get the element's reference image as an
-`image_references` input. Every generation that shows a product, the
+`image_references` input. Every generation that shows a product, a
 watch or a person must carry its reference; a kit, a watch or a man
 described in words alone does not count.
 
@@ -445,9 +451,10 @@ about 180 letter-spacing by hand in the editor, in the brand template itself so 
 
 ## Prompt rules
 
-- The only watch is `GMTII-Sprite` (see Higgsfield rules), from its
-  reference and as it appears there: no maker's name, crown emblem, logos
-  or engravings, and no text in frame. Never put a Rolex name, model name or
+- The only watches are `GMTII-Sprite` and `Daytona-YG` (see Higgsfield
+  rules), each from its reference and as it appears there: no maker's name,
+  crown emblem, logos or engravings, and no text in frame beyond what the
+  reference dial already shows. Never put a Rolex name, model name or
   reference number in a prompt.
 - Ground is deep forest-charcoal `#0B110D` or `#141F19`. Light is one warm
   bronze key or rim light, `#BC906C`. Generous negative space.
@@ -539,8 +546,8 @@ this is the one place the name appears without it.
   Insights decides which stay.
 - Rolex model tags only on a real photo or video of that exact model, or a
   post about that supported reference with the Rolex disclaimer. Generated
-  watches carry no branding, so they never take a model tag, the
-  `GMTII-Sprite` watch included.
+  watches carry no branding, so they never take a model tag,
+  `GMTII-Sprite` and `Daytona-YG` included.
 - Never post the same five tags twice in one week. Swap at least two
   between posts.
 - Tags go at the end of the caption, after a blank line.
