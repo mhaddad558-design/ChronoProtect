@@ -42,10 +42,10 @@ are the only watches in any image or video that goes out, one per frame:
 |---|---|---|---|
 | Left-handed GMT, green and black bezel, Oyster bracelet | `GMTII-Sprite`, `8a109d2b-bc68-4ef8-8e9e-b6d89d8c1fbe` | `5a3603d4-c1a4-4b17-987d-5f9a4df70463` | ChronoShield+ or ChronoGuard+ |
 | Yellow gold chronograph, champagne dial, black subdials and bezel, rubber strap | `Daytona-YG`, `de53fa55-be52-4568-aa3d-d6da6cc25c73` | `4fad0b11-74c6-4e6f-9387-26b87e0570e7` | ChronoGuard+ only |
-| 41 mm steel, green ombré dial, fluted white gold bezel, jubilee bracelet | Pending: the element is not made yet | Pending | ChronoShield+ or ChronoGuard+ |
+| 41 mm steel, green ombré dial, fluted white gold bezel, jubilee bracelet | `Datejust-Green`, `fb5e424e-20a5-4049-aeeb-bfd807b3cd7d` | `6093e8c2-8d01-4cfb-a4cf-8130b4a0c07c` | ChronoShield+ or ChronoGuard+ |
 
-Both reference sheets were generated with the maker's name and logos taken
-off, so neither watch carries a maker's name, crown emblem or logo, and
+All three reference sheets were generated with the maker's name and logos
+taken off, so no watch carries a maker's name, crown emblem or logo, and
 every generation keeps it that way. The Daytona-YG dial reads "Chronograph"
 where the model name was; that word stays, and nothing else is added.
 Reproduce each watch exactly as its reference shows it, and do not describe
@@ -53,14 +53,10 @@ it differently in words or swap in another model. Any frame with a watch in
 it carries that watch's reference, and a carousel or Reel keeps one watch
 throughout.
 
-The Datejust is approved but cannot be used until its element exists and
-its ID is filled in above; until then it does not appear in any generation.
-
 The kit has to match what the watch can wear. ChronoShield+ covers the
 bracelet, so it is shown only on the two bracelet watches, GMTII-Sprite
-and the Datejust. Daytona-YG is on a rubber
-strap, which fitment lists as ChronoGuard+ only (case and clasp), so it is
-never shown with ChronoShield+ or with film on the strap. The
+and Datejust-Green. Daytona-YG is on a rubber strap, which fitment lists as
+ChronoGuard+ only (case and clasp), so it is never shown with ChronoShield+ or with film on the strap. The
 `Authentic-Sprite` element (`60a8ecb1-ef32-42bb-8aa4-668106c430fc`) is not
 approved for use.
 
@@ -457,7 +453,7 @@ about 180 letter-spacing by hand in the editor, in the brand template itself so 
 ## Prompt rules
 
 - The only watches are the approved ones in Higgsfield rules
-  (`GMTII-Sprite`, `Daytona-YG`, and the Datejust once its element exists), each from its reference and as it appears there: no maker's name,
+  (`GMTII-Sprite`, `Daytona-YG` and `Datejust-Green`), each from its reference and as it appears there: no maker's name,
   crown emblem, logos or engravings, and no text in frame beyond what the
   reference dial already shows. Never put a Rolex name, model name or
   reference number in a prompt.
@@ -552,7 +548,7 @@ this is the one place the name appears without it.
 - Rolex model tags only on a real photo or video of that exact model, or a
   post about that supported reference with the Rolex disclaimer. Generated
   watches carry no branding, so they never take a model tag,
-  `GMTII-Sprite` and `Daytona-YG` included.
+  `GMTII-Sprite`, `Daytona-YG` and `Datejust-Green` included.
 - Never post the same five tags twice in one week. Swap at least two
   between posts.
 - Tags go at the end of the caption, after a blank line.
