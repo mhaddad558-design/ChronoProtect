@@ -456,10 +456,12 @@ about 180 letter-spacing by hand in the editor, in the brand template itself so 
 ## Prompt rules
 
 - The only watches are the approved ones in Higgsfield rules
-  (`GMTII-Sprite`, `Daytona-YG`, `Datejust-Green` and `Submariner-Hulk`), each from its reference and as it appears there: no maker's name,
-  crown emblem, logos or engravings, and no text in frame beyond what the
-  reference dial already shows. Never put a Rolex name, model name or
-  reference number in a prompt.
+  (`GMTII-Sprite`, `Daytona-YG`, `Datejust-Green` and `Submariner-Hulk`),
+  each from its reference. No maker's name, crown emblem, logos or
+  engravings on the dial, winding crown, bezel ring or clasp, even where a
+  reference sheet still shows one. No dial text beyond the bezel and
+  minute-track numerals, the date and Daytona-YG's "Chronograph". Never put
+  a Rolex name, model name or reference number in a prompt.
 - Ground is deep forest-charcoal `#0B110D` or `#141F19`. Light is one warm
   bronze key or rim light, `#BC906C`. Generous negative space.
 - No gradient washes or lens flares. The only person is Greg (see
