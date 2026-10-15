@@ -1018,6 +1018,40 @@
 
 /* ---------- shop all ---------- */
 
+/* All finishes, Gloss, Stealth: plain links, the current one underlined. */
+.cp-shop__filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin-top: 2.25rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--cp-border);
+  font-family: var(--cp-ui);
+  font-size: 0.95rem;
+}
+
+.cp-shop__filter a {
+  color: var(--cp-ink-faint);
+  padding-block: 0.25rem;
+}
+
+.cp-shop__filter a:hover {
+  color: var(--cp-ink);
+}
+
+.cp-shop__filter a[aria-current="page"] {
+  color: var(--cp-bronze);
+  text-decoration: underline;
+  text-underline-offset: 0.55em;
+  text-decoration-thickness: 1px;
+}
+
+/* Clear the sticky header and preorder bar when a kit page links straight
+   to a line. */
+.cp-shop__group {
+  scroll-margin-top: 9.5rem;
+}
+
 .cp-shop__group + .cp-shop__group {
   margin-top: clamp(3.5rem, 8vw, 5.5rem);
 }

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import BackgroundVideo from "@/components/BackgroundVideo";
 import BraceletLinks from "@/components/BraceletLinks";
 import FinishSwatch from "@/components/FinishSwatch";
+import { finishSlug } from "@/components/ShopAll";
 import Lockup from "@/components/Lockup";
 import { TrackKitView } from "@/components/MetaPixel";
 import WatchDiagram from "@/components/WatchDiagram";
@@ -238,6 +239,15 @@ export default async function KitPage({ params }: { params: Promise<{ handle: st
                         Currently unavailable
                       </p>
                     ) : null}
+                    <Link
+                      // ChronoShield+ is the first group on the page, so it opens at
+                      // the top; ChronoGuard+ jumps down to its own group.
+                      href={`/shop/${finishSlug(finish.name)}${handle === "chronoguard" ? "#chronoguard" : ""}`}
+                      className="cp-btn cp-btn--ghost"
+                      style={{ marginTop: "1.25rem" }}
+                    >
+                      Shop {finish.name} kits
+                    </Link>
                   </div>
                 </article>
               );
