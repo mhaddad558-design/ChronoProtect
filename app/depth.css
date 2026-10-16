@@ -1234,3 +1234,120 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ---------- cookie consent ---------- */
+
+/* Opt-in bar along the bottom of every page until a choice is made
+   (components/ConsentBar). A panel on the forest ground, no shadow. */
+.cp-consent {
+  position: fixed;
+  z-index: 30;
+  inset-inline: 1rem;
+  bottom: 1rem;
+  max-width: 56rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 1.1rem 1.25rem 1.1rem 1.5rem;
+  background: var(--cp-bg-panel);
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+}
+
+.cp-consent:focus-visible {
+  outline: 2px solid var(--cp-bronze);
+  outline-offset: 3px;
+}
+
+.cp-consent__text {
+  margin: 0;
+  color: var(--cp-ink-faint);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.cp-consent__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.cp-consent__actions .cp-btn {
+  padding: 0.65rem 1.4rem;
+}
+
+@media (max-width: 40rem) {
+  .cp-consent {
+    flex-direction: column;
+    align-items: stretch;
+    inset-inline: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .cp-consent__actions .cp-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* A button that reads as a link: the footer's cookie settings. */
+.cp-linkbutton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.cp-linkbutton:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* ---------- privacy policy ---------- */
+
+/* The policy body comes from the Shopify admin as HTML, so style its
+   elements rather than classes. */
+.cp-policy {
+  margin-top: 2.5rem;
+  color: var(--cp-ink-faint);
+  line-height: 1.7;
+}
+
+.cp-policy h2,
+.cp-policy h3 {
+  color: var(--cp-ink);
+  margin: 2.25rem 0 0.75rem;
+}
+
+.cp-policy h2 {
+  font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+}
+
+.cp-policy h3 {
+  font-size: 1.2rem;
+}
+
+.cp-policy p,
+.cp-policy ul,
+.cp-policy ol {
+  margin: 0 0 1rem;
+}
+
+.cp-policy ul,
+.cp-policy ol {
+  padding-left: 1.25rem;
+}
+
+.cp-policy .cp-linkbutton {
+  color: var(--cp-bronze);
+}
+
+#cookies {
+  scroll-margin-top: 9.5rem;
+  border-top: 1px solid var(--cp-border);
+  padding-top: 0.5rem;
+}

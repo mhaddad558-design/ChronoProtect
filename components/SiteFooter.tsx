@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Crest from "./Crest";
+import { CookieSettingsLink } from "./ConsentBar";
 import { PARTNER_INSTALL, SITE_NAME, SITE_TAGLINE, STUDIO_EMAIL } from "@/lib/site";
 
 export default function SiteFooter() {
@@ -65,6 +66,12 @@ export default function SiteFooter() {
               </li>
               <li>
                 <Link href="/installation#care">Care and removal</Link>
+              </li>
+              <li>
+                <Link href="/privacy">Privacy policy</Link>
+              </li>
+              <li>
+                <CookieSettingsLink />
               </li>
             </ul>
           </div>

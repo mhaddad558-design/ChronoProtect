@@ -2,11 +2,14 @@
  * Meta pixel, for Instagram and Facebook ads.
  *
  * Off unless NEXT_PUBLIC_META_PIXEL_ID is set, so local development and
- * previews send nothing. The storefront reports PageView, ViewContent and
+ * previews send nothing, and off until the visitor accepts cookies in the
+ * consent bar (lib/consent.ts): the script is not even loaded before then. The storefront reports PageView, ViewContent and
  * AddToCart. InitiateCheckout and Purchase happen on Shopify's hosted
  * checkout, so they come from Shopify's Facebook and Instagram channel on the
  * same pixel; firing them here as well would count every sale twice.
  */
+
+import { hasConsent } from "./consent";
 
 export const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";
 
@@ -33,7 +36,7 @@ let initialised = false;
  * is never lost to a race with the script tag.
  */
 function ensurePixel(): Fbq | null {
-  if (!META_PIXEL_ID || typeof window === "undefined") return null;
+  if (!META_PIXEL_ID || typeof window === "undefined" || !hasConsent()) return null;
 
   if (!window.fbq) {
     const fbq = function (...args: unknown[]) {
@@ -60,7 +63,7 @@ function ensurePixel(): Fbq | null {
   return window.fbq;
 }
 
-/** Sends a standard pixel event. A no-op when the pixel is off. */
+/** Sends a standard pixel event. A no-op when the pixel is off or not consented to. */
 export function trackPixel(event: string, params?: Record<string, unknown>): void {
   ensurePixel()?.("track", event, params);
 }
@@ -71,6 +74,15 @@ export function trackPixel(event: string, params?: Record<string, unknown>): voi
  * when the pixel is off.
  */
 export function flushPixel(ms = 300): Promise<void> {
-  if (!META_PIXEL_ID) return Promise.resolve();
+  if (!META_PIXEL_ID || !hasConsent()) return Promise.resolve();
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Tells an already-loaded pixel to stop, for a visitor who accepted and then
+ * declined from cookie settings. Later events are not sent either way, since
+ * trackPixel checks the choice each time.
+ */
+export function revokePixel(): void {
+  if (typeof window !== "undefined") window.fbq?.("consent", "revoke");
 }

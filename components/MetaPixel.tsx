@@ -2,12 +2,16 @@
 
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { trackPixel } from "@/lib/meta-pixel";
+import { onConsentChange } from "@/lib/consent";
+import { revokePixel, trackPixel } from "@/lib/meta-pixel";
 
 /**
  * Sends a PageView on first load and on every client-side navigation. The
  * App Router swaps pages without a reload, so the pixel's own load-time
  * PageView would only ever see the first page.
+ *
+ * Nothing is sent until the visitor accepts cookies. Accepting part-way
+ * through a visit sends the PageView for the page they are on.
  */
 export default function MetaPixel() {
   const pathname = usePathname();
@@ -17,6 +21,15 @@ export default function MetaPixel() {
   useEffect(() => {
     trackPixel("PageView");
   }, [pathname, search]);
+
+  useEffect(
+    () =>
+      onConsentChange((choice) => {
+        if (choice === "granted") trackPixel("PageView");
+        else revokePixel();
+      }),
+    []
+  );
 
   return null;
 }

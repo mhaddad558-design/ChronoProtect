@@ -155,3 +155,16 @@ export const GET_CART = /* GraphQL */ `
     }
   }
 `;
+
+/** The privacy policy written in the Shopify admin (Settings, Policies). */
+export const GET_PRIVACY_POLICY = /* GraphQL */ `
+  query PrivacyPolicy {
+    shop {
+      privacyPolicy {
+        title
+        body
+        url
+      }
+    }
+  }
+`;

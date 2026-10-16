@@ -637,11 +637,13 @@ svg {
   font-size: 0.9rem;
 }
 
-.cp-footer ul a {
+.cp-footer ul a,
+.cp-footer ul .cp-linkbutton {
   color: var(--cp-ink-soft);
 }
 
-.cp-footer ul a:hover {
+.cp-footer ul a:hover,
+.cp-footer ul .cp-linkbutton:hover {
   color: var(--cp-bronze);
 }
 
