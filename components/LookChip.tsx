@@ -153,6 +153,10 @@ const BEZEL_MID = 17.2;
 const BEZEL_W = 4.2;
 const DIAL_R = 14.4;
 
+/** The coin-edge grip ring round a rotating bezel, inner and outer radius. */
+const GRIP_INNER = 18.5;
+const GRIP_OUTER = 20.1;
+
 /** Lume on markers and hands: a warm off-white, never pure white. */
 const LUME = "#F1EEE2";
 
@@ -261,6 +265,14 @@ export default function LookChip({
   // Tachymeter numerals: the case metal on ceramic, dark in an engraved bezel.
   const numeralInk = metalBezel ? "#0B110D" : goldHands ? (metal.startsWith("everose") ? ROSE : GOLD) : "#E9ECEE";
   const sports = model === "submariner" || model === "gmt";
+  // A rotating bezel (Submariner, GMT) sits in a metal ring with a coin-edge
+  // grip, so its coloured insert is narrower; fixed bezels run to the edge.
+  const insertInner = BEZEL_MID - BEZEL_W / 2;
+  const insertOuter = sports ? GRIP_INNER : BEZEL_MID + BEZEL_W / 2;
+  const insertMid = (insertInner + insertOuter) / 2;
+  const insertW = insertOuter - insertInner;
+  // The grip is the bezel's own metal: gold on a two-tone, as on the watch.
+  const gripFill = accent && (splitCase || rolesor) ? `url(#${id}-a)` : `url(#${id}-m)`;
   // The 3 and 9 markers swap on a destro, where the date sits at 9.
   const batons = sports ? [180, lefty ? 90 : 270] : [];
 
@@ -360,18 +372,39 @@ export default function LookChip({
         fill={(splitCase || rolesor) && accent && !lefty ? `url(#${id}-a)` : `url(#${id}-m)`}
       />
 
+      {/* Rotating bezel: the metal ring around the insert, its outer edge
+          cut into a coin-edge grip and its inner edge bevelled down to the
+          insert. */}
+      {sports ? (
+        <>
+          <circle cx="24" cy="24" r={(GRIP_INNER + GRIP_OUTER) / 2} fill="none" stroke={gripFill} strokeWidth={GRIP_OUTER - GRIP_INNER} />
+          {Array.from({ length: 72 }, (_, i) => (
+            <g key={i}>
+              {/* The grooves, and the polished ridge between each pair */}
+              <line {...tick(GRIP_INNER + 0.55, GRIP_OUTER, i * 5)} stroke="#0B110D" strokeOpacity="0.5" strokeWidth="0.42" />
+              <line {...tick(GRIP_INNER + 0.75, GRIP_OUTER - 0.15, i * 5 + 2.5)} stroke="#FFFFFF" strokeOpacity="0.32" strokeWidth="0.3" />
+            </g>
+          ))}
+          {/* The scalloped rim: the grip stands slightly proud of the case */}
+          <circle cx="24" cy="24" r={GRIP_OUTER} fill="none" stroke="#0B110D" strokeOpacity="0.35" strokeWidth="0.3" strokeDasharray="0.55 0.5" />
+          {/* The bevel: lit along its upper left, in shadow lower right */}
+          <circle cx="24" cy="24" r={GRIP_INNER + 0.3} fill="none" stroke="#FFFFFF" strokeOpacity="0.55" strokeWidth="0.45" clipPath={`url(#${id}-t)`} />
+          <circle cx="24" cy="24" r={GRIP_INNER + 0.3} fill="none" stroke="#0B110D" strokeOpacity="0.35" strokeWidth="0.45" clipPath={`url(#${id}-b)`} />
+        </>
+      ) : null}
+
       {/* Bezel: a slim ring, so the dial has the room. */}
       {metalBezel ? (
-        <circle cx="24" cy="24" r={BEZEL_MID} fill="none" stroke={`url(#${id}-bm)`} strokeWidth={BEZEL_W} />
+        <circle cx="24" cy="24" r={insertMid} fill="none" stroke={`url(#${id}-bm)`} strokeWidth={insertW} />
       ) : (
         <>
-          <circle cx="24" cy="24" r={BEZEL_MID} fill="none" stroke={`url(#${id}-bt)`} strokeWidth={BEZEL_W} clipPath={`url(#${id}-t)`} />
-          <circle cx="24" cy="24" r={BEZEL_MID} fill="none" stroke={`url(#${id}-bb)`} strokeWidth={BEZEL_W} clipPath={`url(#${id}-b)`} />
+          <circle cx="24" cy="24" r={insertMid} fill="none" stroke={`url(#${id}-bt)`} strokeWidth={insertW} clipPath={`url(#${id}-t)`} />
+          <circle cx="24" cy="24" r={insertMid} fill="none" stroke={`url(#${id}-bb)`} strokeWidth={insertW} clipPath={`url(#${id}-b)`} />
         </>
       )}
       {/* Its edges, where it steps down to the case and to the crystal */}
-      <circle cx="24" cy="24" r={BEZEL_MID + BEZEL_W / 2} fill="none" stroke="#0B110D" strokeOpacity="0.3" strokeWidth="0.35" />
-      <circle cx="24" cy="24" r={BEZEL_MID - BEZEL_W / 2} fill="none" stroke="#0B110D" strokeOpacity="0.4" strokeWidth="0.35" />
+      <circle cx="24" cy="24" r={insertOuter} fill="none" stroke="#0B110D" strokeOpacity="0.3" strokeWidth="0.35" />
+      <circle cx="24" cy="24" r={insertInner} fill="none" stroke="#0B110D" strokeOpacity="0.4" strokeWidth="0.35" />
 
       {/* Bezel markings: the tachymeter on a Daytona, the scale and the
           triangle on a dive or travel bezel, ridges on a fluted one, stones on
@@ -399,13 +432,17 @@ export default function LookChip({
       {!metalBezel && model !== "daytona"
         ? Array.from({ length: 12 }, (_, i) =>
             i === 0 ? null : (
-              <line key={i} {...tick(15.7, 18.7, i * 30)} stroke="#FFFFFF" strokeOpacity="0.7" strokeWidth="0.75" />
+              <line key={i} {...tick(insertInner + 0.6, insertOuter - 0.45, i * 30)} stroke="#FFFFFF" strokeOpacity="0.7" strokeWidth="0.75" />
             )
           )
         : null}
       {!metalBezel && model !== "daytona" ? (
         // The triangle at zero, which every dive and travel bezel has
-        <path d="M22.3,5.4 L25.7,5.4 L24,8.5 Z" fill="#FFFFFF" fillOpacity="0.92" />
+        <path
+          d={`M22.45,${24 - insertOuter + 0.4} L25.55,${24 - insertOuter + 0.4} L24,${24 - insertInner - 0.4} Z`}
+          fill="#FFFFFF"
+          fillOpacity="0.92"
+        />
       ) : null}
       {bezel === "fluted"
         ? Array.from({ length: 48 }, (_, i) => (
