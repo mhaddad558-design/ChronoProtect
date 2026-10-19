@@ -180,6 +180,18 @@ const TACHYMETER: Array<[number, number]> = [
   [60, 360],
 ];
 
+/** A Submariner's dive scale: 10 to 50, the triangle standing for 60. */
+const DIVE_SCALE: Array<[number, number]> = [10, 20, 30, 40, 50].map((m) => [m, m * 6]);
+
+/**
+ * A GMT-Master II's 24-hour scale: the even hours, 2 to 22, the triangle
+ * standing for 24. Each hour is 15 degrees, so 6 sits at 3 o'clock.
+ */
+const GMT_SCALE: Array<[number, number]> = Array.from({ length: 11 }, (_, i) => {
+  const hour = (i + 1) * 2;
+  return [hour, hour * 15];
+});
+
 /** Dials pale enough that white hands would vanish on them. */
 const LIGHT_DIALS = new Set(["silver", "white", "mint", "champagne", "sundust", "ice", "mop", "meteorite"]);
 
@@ -262,7 +274,8 @@ export default function LookChip({
   const trackInk = lightDial ? "#1E2325" : "#FFFFFF";
   // Applied markers carry lume on a dark dial; on a pale one the metal alone reads.
   const markerFill = lightDial ? markerInk : LUME;
-  // Tachymeter numerals: the case metal on ceramic, dark in an engraved bezel.
+  // Bezel numerals: platinum-white, or gold on a gold or two-tone watch; dark
+  // when engraved in a metal bezel.
   const numeralInk = metalBezel ? "#0B110D" : goldHands ? (metal.startsWith("everose") ? ROSE : GOLD) : "#E9ECEE";
   const sports = model === "submariner" || model === "gmt";
   // A rotating bezel (Submariner, GMT) sits in a metal ring with a coin-edge
@@ -271,6 +284,10 @@ export default function LookChip({
   const insertOuter = sports ? GRIP_INNER : BEZEL_MID + BEZEL_W / 2;
   const insertMid = (insertInner + insertOuter) / 2;
   const insertW = insertOuter - insertInner;
+  // The numbers round the bezel, as [value, angle], tops facing outward.
+  const numerals: Array<[number, number]> =
+    model === "daytona" ? TACHYMETER : model === "submariner" ? DIVE_SCALE : model === "gmt" ? GMT_SCALE : [];
+  const numeralSize = model === "gmt" ? 2.05 : model === "submariner" ? 2.4 : 2.35;
   // The grip is the bezel's own metal: gold on a two-tone, as on the watch.
   const gripFill = accent && (splitCase || rolesor) ? `url(#${id}-a)` : `url(#${id}-m)`;
   // The 3 and 9 markers swap on a destro, where the date sits at 9.
@@ -409,17 +426,17 @@ export default function LookChip({
       {/* Bezel markings: the tachymeter on a Daytona, the scale and the
           triangle on a dive or travel bezel, ridges on a fluted one, stones on
           a set one. */}
-      {model === "daytona" && bezel !== "diamond"
-        ? TACHYMETER.map(([value, deg]) => (
+      {bezel !== "diamond"
+        ? numerals.map(([value, deg]) => (
             <text
               key={value}
               x="24"
-              y={24 - BEZEL_MID}
+              y={24 - insertMid}
               transform={`rotate(${deg} 24 24)`}
               textAnchor="middle"
               dominantBaseline="central"
               fontFamily="'Red Hat Text', system-ui, sans-serif"
-              fontSize="2.35"
+              fontSize={numeralSize}
               fontWeight="600"
               letterSpacing="-0.08"
               fill={numeralInk}
@@ -429,20 +446,39 @@ export default function LookChip({
             </text>
           ))
         : null}
-      {!metalBezel && model !== "daytona"
-        ? Array.from({ length: 12 }, (_, i) =>
-            i === 0 ? null : (
-              <line key={i} {...tick(insertInner + 0.6, insertOuter - 0.45, i * 30)} stroke="#FFFFFF" strokeOpacity="0.7" strokeWidth="0.75" />
-            )
-          )
+      {model === "submariner" ? (
+        <>
+          {/* Bars at the five-minute marks that carry no numeral */}
+          {[30, 90, 150, 210, 270, 330].map((deg) => (
+            <line key={deg} {...tick(insertInner + 0.7, insertOuter - 0.5, deg)} stroke={numeralInk} strokeOpacity="0.9" strokeWidth="0.7" />
+          ))}
+          {/* Single minutes across the first fifteen, for timing a dive;
+              9 and 11 are left out so the 10 has room at this size */}
+          {Array.from({ length: 14 }, (_, i) => i + 1)
+            .filter((m) => m % 5 !== 0 && m !== 9 && m !== 11)
+            .map((m) => (
+              <line key={m} {...tick(insertOuter - 1.15, insertOuter - 0.45, m * 6)} stroke={numeralInk} strokeOpacity="0.85" strokeWidth="0.3" />
+            ))}
+        </>
+      ) : null}
+      {model === "gmt"
+        ? // A dot at each odd hour between the numerals
+          Array.from({ length: 12 }, (_, i) => {
+            const [x, y] = point(insertMid, (i * 2 + 1) * 15);
+            return <circle key={i} cx={x} cy={y} r="0.42" fill={numeralInk} fillOpacity="0.9" />;
+          })
         : null}
-      {!metalBezel && model !== "daytona" ? (
+      {sports ? (
         // The triangle at zero, which every dive and travel bezel has
         <path
           d={`M22.45,${24 - insertOuter + 0.4} L25.55,${24 - insertOuter + 0.4} L24,${24 - insertInner - 0.4} Z`}
           fill="#FFFFFF"
           fillOpacity="0.92"
         />
+      ) : null}
+      {model === "submariner" ? (
+        // The Submariner's lume pip, in its metal cup inside the triangle
+        <circle cx="24" cy={round(24 - insertMid - 0.35)} r="0.62" fill={LUME} stroke="#7C8285" strokeWidth="0.22" />
       ) : null}
       {bezel === "fluted"
         ? Array.from({ length: 48 }, (_, i) => (
