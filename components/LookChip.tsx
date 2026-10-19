@@ -287,7 +287,7 @@ export default function LookChip({
   // The numbers round the bezel, as [value, angle], tops facing outward.
   const numerals: Array<[number, number]> =
     model === "daytona" ? TACHYMETER : model === "submariner" ? DIVE_SCALE : model === "gmt" ? GMT_SCALE : [];
-  const numeralSize = model === "gmt" ? 2.05 : model === "submariner" ? 2.4 : 2.35;
+  const numeralSize = model === "gmt" ? 2.55 : model === "submariner" ? 2.95 : 2.35;
   // The grip is the bezel's own metal: gold on a two-tone, as on the watch.
   const gripFill = accent && (splitCase || rolesor) ? `url(#${id}-a)` : `url(#${id}-m)`;
   // The 3 and 9 markers swap on a destro, where the date sits at 9.
