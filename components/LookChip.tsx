@@ -96,16 +96,21 @@ function accentFor(metal: string): string | null {
   return null;
 }
 
+/**
+ * A bezel's colours as [upper half, lower half]. A two-colour GMT bezel splits
+ * at 3 and 9, with the night hours (18 to 6) across the top in the darker
+ * colour: black over green on the Sprite, blue over red on the Pepsi.
+ */
 const BEZEL_INK: Record<string, [string, string]> = {
   black: ["#1C211F", "#1C211F"],
   green: ["#1C5237", "#1C5237"],
   blue: ["#1B3A68", "#1B3A68"],
   brown: ["#4A3227", "#4A3227"],
   "blue-red": ["#1B3A68", "#8E2230"],
-  "blue-black": ["#1B3A68", "#1C211F"],
-  "grey-black": ["#5A6165", "#1C211F"],
-  "brown-black": ["#4A3227", "#1C211F"],
-  "green-black": ["#1C5237", "#1C211F"],
+  "blue-black": ["#1C211F", "#1B3A68"],
+  "grey-black": ["#1C211F", "#5A6165"],
+  "brown-black": ["#1C211F", "#4A3227"],
+  "green-black": ["#1C211F", "#1C5237"],
 };
 
 const DIAL_INK: Record<string, string> = {
@@ -138,6 +143,38 @@ function shade(hex: string, amount: number): string {
   const b = channel(n & 255);
   return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
 }
+
+/**
+ * The face, in the 48-unit drawing. The bezel is a slim ring and the dial
+ * takes the room inside it, as on the watch: a wide bezel crowds the dial and
+ * hides the detail an owner recognises.
+ */
+const BEZEL_MID = 17.2;
+const BEZEL_W = 4.2;
+const DIAL_R = 14.4;
+
+/** Lume on markers and hands: a warm off-white, never pure white. */
+const LUME = "#F1EEE2";
+
+/**
+ * A Daytona's tachymeter, as [value, angle]. The scale reads speed from
+ * elapsed seconds, so each value sits at 3600 / value seconds round the
+ * bezel: 60 at 12, 120 at 6, 400 just past 1. The numerals' tops face
+ * outward, so the lower half reads upside down, as on the watch.
+ */
+const TACHYMETER: Array<[number, number]> = [
+  [400, 54],
+  [300, 72],
+  [240, 90],
+  [200, 108],
+  [160, 135],
+  [120, 180],
+  [100, 216],
+  [90, 240],
+  [80, 270],
+  [70, 309],
+  [60, 360],
+];
 
 /** Dials pale enough that white hands would vanish on them. */
 const LIGHT_DIALS = new Set(["silver", "white", "mint", "champagne", "sundust", "ice", "mop", "meteorite"]);
@@ -187,7 +224,7 @@ export default function LookChip({
   const metalBezel = bezel === "engraved" || bezel === "diamond" || bezel === "fluted" || bezel === "smooth";
   // A metal bezel is the case metal, or the precious metal on a Rolesor.
   const bezelMetalInk = rolesor && accent ? accent : caseInk;
-  const [left, right] = BEZEL_INK[bezel] ?? BEZEL_INK.black;
+  const [upper, lower] = BEZEL_INK[bezel] ?? BEZEL_INK.black;
   const dialInk = DIAL_INK[dial] ?? DIAL_INK.black;
   const lightDial = LIGHT_DIALS.has(dial);
   const goldHands = goldish(metal);
@@ -210,15 +247,34 @@ export default function LookChip({
   ];
 
   const centreLinks = rolesor || splitCase ? accent : null;
+  const tick = (r1: number, r2: number, deg: number) => {
+    const [x1, y1] = point(r1, deg);
+    const [x2, y2] = point(r2, deg);
+    return { x1, y1, x2, y2 };
+  };
+
+  // The minute track and printing on the dial: white on a dark dial, dark on
+  // a pale one.
+  const trackInk = lightDial ? "#1E2325" : "#FFFFFF";
+  // Applied markers carry lume on a dark dial; on a pale one the metal alone reads.
+  const markerFill = lightDial ? markerInk : LUME;
+  // Tachymeter numerals: the case metal on ceramic, dark in an engraved bezel.
+  const numeralInk = metalBezel ? "#0B110D" : goldHands ? (metal.startsWith("everose") ? ROSE : GOLD) : "#E9ECEE";
+  const sports = model === "submariner" || model === "gmt";
+  // The 3 and 9 markers swap on a destro, where the date sits at 9.
+  const batons = sports ? [180, lefty ? 90 : 270] : [];
 
   return (
     <svg viewBox="0 0 48 48" width={48} height={48} aria-hidden="true" focusable="false">
       <defs>
-        <clipPath id={`${id}-l`}>
-          <rect x="0" y="0" width="24" height="48" />
-        </clipPath>
         <clipPath id={`${id}-r`}>
           <rect x="24" y="0" width="24" height="48" />
+        </clipPath>
+        <clipPath id={`${id}-t`}>
+          <rect x="0" y="0" width="48" height="24" />
+        </clipPath>
+        <clipPath id={`${id}-b`}>
+          <rect x="0" y="24" width="48" height="24" />
         </clipPath>
         {/* Polished metal: a bright highlight upper left, shadow lower right,
             and a second catch of light at the far edge. */}
@@ -226,13 +282,18 @@ export default function LookChip({
         {accent ? <Polish id={`${id}-a`} ink={accent} /> : null}
         <Polish id={`${id}-bm`} ink={bezelMetalInk} />
         {/* Ceramic: glossier and darker than metal, one bright band only. */}
-        <Gloss id={`${id}-bl`} ink={left || "#1C211F"} />
-        <Gloss id={`${id}-br`} ink={right || "#1C211F"} />
+        <Gloss id={`${id}-bt`} ink={upper} />
+        <Gloss id={`${id}-bb`} ink={lower} />
         {/* A sunburst dial: bright at the centre, falling away to the edge. */}
-        <radialGradient id={`${id}-d`} cx="0.42" cy="0.4" r="0.7">
-          <stop offset="0" stopColor={shade(dialInk, lightDial ? 0.25 : 0.18)} />
-          <stop offset="0.6" stopColor={dialInk} />
-          <stop offset="1" stopColor={shade(dialInk, -0.35)} />
+        <radialGradient id={`${id}-d`} cx="0.42" cy="0.4" r="0.72">
+          <stop offset="0" stopColor={shade(dialInk, lightDial ? 0.3 : 0.24)} />
+          <stop offset="0.55" stopColor={dialInk} />
+          <stop offset="1" stopColor={shade(dialInk, -0.42)} />
+        </radialGradient>
+        {/* The bow-tie of light a sunburst throws across its centre. */}
+        <radialGradient id={`${id}-sb`} cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#FFFFFF" stopOpacity={lightDial ? 0.38 : 0.3} />
+          <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
         </radialGradient>
         {/* Rubber is matte: a soft sheen and nothing more. */}
         <linearGradient id={`${id}-s`} x1="0" y1="0" x2="1" y2="0">
@@ -242,7 +303,7 @@ export default function LookChip({
         </linearGradient>
         {/* The glare off the sapphire crystal. */}
         <linearGradient id={`${id}-g`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.42" />
+          <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.5" />
           <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
         </linearGradient>
       </defs>
@@ -299,120 +360,241 @@ export default function LookChip({
         fill={(splitCase || rolesor) && accent && !lefty ? `url(#${id}-a)` : `url(#${id}-m)`}
       />
 
-      {/* Bezel */}
+      {/* Bezel: a slim ring, so the dial has the room. */}
       {metalBezel ? (
-        <circle cx="24" cy="24" r="16" fill="none" stroke={`url(#${id}-bm)`} strokeWidth="8" />
+        <circle cx="24" cy="24" r={BEZEL_MID} fill="none" stroke={`url(#${id}-bm)`} strokeWidth={BEZEL_W} />
       ) : (
         <>
-          <circle cx="24" cy="24" r="16" fill="none" stroke={`url(#${id}-bl)`} strokeWidth="8" clipPath={`url(#${id}-l)`} />
-          <circle cx="24" cy="24" r="16" fill="none" stroke={`url(#${id}-br)`} strokeWidth="8" clipPath={`url(#${id}-r)`} />
+          <circle cx="24" cy="24" r={BEZEL_MID} fill="none" stroke={`url(#${id}-bt)`} strokeWidth={BEZEL_W} clipPath={`url(#${id}-t)`} />
+          <circle cx="24" cy="24" r={BEZEL_MID} fill="none" stroke={`url(#${id}-bb)`} strokeWidth={BEZEL_W} clipPath={`url(#${id}-b)`} />
         </>
       )}
+      {/* Its edges, where it steps down to the case and to the crystal */}
+      <circle cx="24" cy="24" r={BEZEL_MID + BEZEL_W / 2} fill="none" stroke="#0B110D" strokeOpacity="0.3" strokeWidth="0.35" />
+      <circle cx="24" cy="24" r={BEZEL_MID - BEZEL_W / 2} fill="none" stroke="#0B110D" strokeOpacity="0.4" strokeWidth="0.35" />
 
-      {/* Bezel markings: the scale on a rotating bezel, numbers on a Daytona's,
-          stones on a set one, ridges on a fluted one. */}
-      {!metalBezel
-        ? Array.from({ length: 12 }, (_, i) => {
-            const [x1, y1] = point(13.5, i * 30);
-            const [x2, y2] = point(19, i * 30);
-            return (
-              <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFFFFF" strokeOpacity={i === 0 ? 0 : 0.55} strokeWidth="1" />
-            );
-          })
+      {/* Bezel markings: the tachymeter on a Daytona, the scale and the
+          triangle on a dive or travel bezel, ridges on a fluted one, stones on
+          a set one. */}
+      {model === "daytona" && bezel !== "diamond"
+        ? TACHYMETER.map(([value, deg]) => (
+            <text
+              key={value}
+              x="24"
+              y={24 - BEZEL_MID}
+              transform={`rotate(${deg} 24 24)`}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fontFamily="'Red Hat Text', system-ui, sans-serif"
+              fontSize="2.35"
+              fontWeight="600"
+              letterSpacing="-0.08"
+              fill={numeralInk}
+              fillOpacity={metalBezel ? 0.62 : 0.92}
+            >
+              {value}
+            </text>
+          ))
         : null}
-      {!metalBezel ? (
-        // The pip or triangle at zero, which every dive and travel bezel has
-        <circle cx={24} cy={8.5} r="1.7" fill="#FFFFFF" fillOpacity="0.9" />
+      {!metalBezel && model !== "daytona"
+        ? Array.from({ length: 12 }, (_, i) =>
+            i === 0 ? null : (
+              <line key={i} {...tick(15.7, 18.7, i * 30)} stroke="#FFFFFF" strokeOpacity="0.7" strokeWidth="0.75" />
+            )
+          )
+        : null}
+      {!metalBezel && model !== "daytona" ? (
+        // The triangle at zero, which every dive and travel bezel has
+        <path d="M22.3,5.4 L25.7,5.4 L24,8.5 Z" fill="#FFFFFF" fillOpacity="0.92" />
       ) : null}
-      {bezel === "engraved"
-        ? Array.from({ length: 20 }, (_, i) => {
-            const [x1, y1] = point(13, i * 18);
-            const [x2, y2] = point(19.5, i * 18);
-            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#0B110D" strokeOpacity="0.5" strokeWidth={i % 5 === 0 ? 1.6 : 0.9} />;
-          })
-        : null}
       {bezel === "fluted"
-        ? Array.from({ length: 36 }, (_, i) => {
-            const [x1, y1] = point(12.5, i * 10);
-            const [x2, y2] = point(19.8, i * 10);
-            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#0B110D" strokeOpacity="0.32" strokeWidth="0.7" />;
-          })
+        ? Array.from({ length: 48 }, (_, i) => (
+            <line
+              key={i}
+              {...tick(15.4, 19.0, i * 7.5)}
+              stroke={i % 2 ? "#FFFFFF" : "#0B110D"}
+              strokeOpacity={i % 2 ? 0.22 : 0.34}
+              strokeWidth="0.55"
+            />
+          ))
         : null}
       {bezel === "diamond"
-        ? Array.from({ length: 12 }, (_, i) => {
-            const [x, y] = point(16, i * 30);
-            return <circle key={i} cx={x} cy={y} r="2.1" fill="#FFFFFF" />;
-          })
-        : null}
-
-      {/* Dial: a sunburst finish, rays catching the light from the centre */}
-      <circle cx="24" cy="24" r="12" fill={`url(#${id}-d)`} />
-      {dial !== "mop" && dial !== "meteorite"
         ? Array.from({ length: 24 }, (_, i) => {
-            const [x1, y1] = point(2.5, i * 15);
-            const [x2, y2] = point(11.6, i * 15);
+            const [x, y] = point(BEZEL_MID, i * 15);
             return (
-              <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFFFFF" strokeOpacity={lightDial ? 0.1 : 0.06} strokeWidth="0.35" />
+              <g key={i}>
+                <circle cx={x} cy={y} r="1.15" fill="#F4F7FA" />
+                <circle cx={x - 0.35} cy={y - 0.35} r="0.4" fill="#FFFFFF" />
+              </g>
             );
           })
         : null}
+
+      {/* The flange between bezel and dial */}
+      <circle cx="24" cy="24" r={DIAL_R + 0.35} fill="none" stroke={shade(dialInk, -0.55)} strokeWidth="0.7" />
+
+      {/* Dial */}
+      <circle cx="24" cy="24" r={DIAL_R} fill={`url(#${id}-d)`} />
+      {dial !== "mop" && dial !== "meteorite" ? (
+        <>
+          {/* Sunburst rays, alternately catching and losing the light */}
+          {Array.from({ length: 48 }, (_, i) => (
+            <line
+              key={i}
+              {...tick(1.8, DIAL_R - 0.3, i * 7.5)}
+              stroke="#FFFFFF"
+              strokeOpacity={(lightDial ? 0.1 : 0.07) * (i % 2 ? 0.5 : 1)}
+              strokeWidth="0.3"
+            />
+          ))}
+          {/* The bow-tie of reflected light, upper left to lower right */}
+          {[315, 135].map((deg) => {
+            const [ax, ay] = point(DIAL_R, deg - 16);
+            const [bx, by] = point(DIAL_R, deg + 16);
+            return (
+              <path
+                key={deg}
+                d={`M24,24 L${ax},${ay} A${DIAL_R},${DIAL_R} 0 0 1 ${bx},${by} Z`}
+                fill={`url(#${id}-sb)`}
+                fillOpacity={deg === 315 ? 1 : 0.55}
+              />
+            );
+          })}
+        </>
+      ) : null}
       {dial === "meteorite" ? (
         // Meteorite has a crystalline cross-hatch rather than a sunburst
         <path
-          d="M15,20 L31,26 M16,27 L30,19 M19,14 L27,34 M14,24 L33,23 M22,13 L25,35"
+          d="M13,19 L34,27 M14,28 L33,18 M18,12 L28,36 M12,24 L36,23 M21,11 L25,37 M15,15 L31,33"
           stroke="#FFFFFF"
-          strokeOpacity="0.14"
+          strokeOpacity="0.16"
           strokeWidth="0.35"
         />
       ) : null}
-      <circle cx="24" cy="24" r="11.8" fill="none" stroke="#000000" strokeOpacity="0.35" strokeWidth="0.5" />
       {dial === "mop" ? (
         <>
-          <circle cx="21" cy="21" r="6" fill="#D9E6F2" fillOpacity="0.6" />
-          <circle cx="27" cy="27" r="5" fill="#F2DCE6" fillOpacity="0.5" />
+          <circle cx="20.5" cy="20.5" r="7" fill="#D9E6F2" fillOpacity="0.6" />
+          <circle cx="27.5" cy="27.5" r="6" fill="#F2DCE6" fillOpacity="0.5" />
         </>
       ) : null}
 
-      {/* Markers: subdials on a Daytona, batons and a date on a Datejust, plots
-          on the sports models */}
-      {model === "daytona"
-        ? [90, 210, 330].map((deg) => {
-            const [x, y] = point(6, deg);
-            return <circle key={deg} cx={x} cy={y} r="2.9" fill="none" stroke={markerInk} strokeOpacity="0.5" strokeWidth="0.8" />;
-          })
-        : model === "datejust"
-          ? Array.from({ length: 12 }, (_, i) => {
-              if (i === 3) return null; // the date window takes 3 o'clock
-              const [x1, y1] = point(7.8, i * 30);
-              const [x2, y2] = point(10.6, i * 30);
-              return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={markerInk} strokeWidth={i === 0 ? 1.6 : 1.1} strokeLinecap="round" />;
-            })
-          : Array.from({ length: 12 }, (_, i) => {
-              const [x, y] = point(9.5, i * 30);
-              return <circle key={i} cx={x} cy={y} r={i === 0 ? 1.3 : 1} fill={markerInk} fillOpacity="0.85" />;
-            })}
-      {model === "datejust" ? (
-        <rect x={lefty ? 13.2 : 31.2} y="22.4" width="3.6" height="3.2" rx="0.4" fill="#F4F4F0" stroke="#0B110D" strokeOpacity="0.25" strokeWidth="0.3" />
-      ) : null}
-
-      {/* Hands, in the metal they are made of */}
-      <line x1="24" y1="24" x2={point(6.5, 300)[0]} y2={point(6.5, 300)[1]} stroke={handInk} strokeWidth="2" strokeLinecap="round" />
-      <line x1="24" y1="24" x2={point(9.5, 60)[0]} y2={point(9.5, 60)[1]} stroke={handInk} strokeWidth="1.6" strokeLinecap="round" />
-      {seconds ? (
+      {/* Minute track: sixty marks, every fifth one longer */}
+      {Array.from({ length: 60 }, (_, i) => (
         <line
-          x1="24"
-          y1="24"
-          x2={point(11, 200)[0]}
-          y2={point(11, 200)[1]}
-          stroke={seconds === "red" ? "#C8332D" : seconds}
-          strokeWidth="0.8"
-          strokeLinecap="round"
+          key={i}
+          {...tick(i % 5 ? DIAL_R - 0.9 : DIAL_R - 1.5, DIAL_R - 0.25, i * 6)}
+          stroke={trackInk}
+          strokeOpacity={i % 5 ? 0.4 : 0.6}
+          strokeWidth={i % 5 ? 0.18 : 0.3}
         />
-      ) : null}
-      <circle cx="24" cy="24" r="1.2" fill={handInk} />
+      ))}
 
-      {/* The crystal, catching the light across its upper left */}
-      <path d="M13.6,21.5 A10.6,10.6 0 0 1 26.5,13.7 L25.9,16.2 A8.2,8.2 0 0 0 16,22.1 Z" fill={`url(#${id}-g)`} />
+      {/* Markers: sub-dials and batons on a Daytona, batons and a date on a
+          Datejust; dots, a triangle and batons on the sports models. All are
+          applied metal, filled with lume on a dark dial. */}
+      {model === "daytona" ? (
+        <>
+          {[90, 180, 270].map((deg) => {
+            const [x, y] = point(6.4, deg);
+            const [hx, hy] = [x + Math.sin(((deg + 140) * Math.PI) / 180) * 2.4, y - Math.cos(((deg + 140) * Math.PI) / 180) * 2.4];
+            return (
+              <g key={deg}>
+                <circle cx={x} cy={y} r="3.6" fill={shade(dialInk, lightDial ? -0.62 : 0.14)} />
+                <circle cx={x} cy={y} r="3.6" fill="none" stroke={markerInk} strokeOpacity="0.85" strokeWidth="0.4" />
+                <circle cx={x} cy={y} r="2.9" fill="none" stroke="#FFFFFF" strokeOpacity="0.16" strokeWidth="0.25" />
+                <circle cx={x} cy={y} r="2.3" fill="none" stroke="#FFFFFF" strokeOpacity="0.1" strokeWidth="0.25" />
+                <line x1={x} y1={y} x2={round(hx)} y2={round(hy)} stroke={handInk} strokeWidth="0.4" strokeLinecap="round" />
+              </g>
+            );
+          })}
+          {Array.from({ length: 12 }, (_, i) =>
+            i % 3 === 0 && i !== 0 ? null : (
+              <line key={i} {...tick(10.8, 12.9, i * 30)} stroke={markerFill} strokeWidth="1.15" strokeLinecap="round" />
+            )
+          )}
+        </>
+      ) : model === "datejust" ? (
+        Array.from({ length: 12 }, (_, i) => {
+          if (i === (lefty ? 9 : 3)) return null; // the date window takes 3 o'clock
+          if (i === 0) {
+            // Doubled at 12
+            return (
+              <g key={i}>
+                <line x1="23.1" y1={24 - 12.9} x2="23.1" y2={24 - 9.8} stroke={markerInk} strokeWidth="1.2" strokeLinecap="round" />
+                <line x1="24.9" y1={24 - 12.9} x2="24.9" y2={24 - 9.8} stroke={markerInk} strokeWidth="1.2" strokeLinecap="round" />
+              </g>
+            );
+          }
+          return (
+            <g key={i}>
+              <line {...tick(9.8, 12.9, i * 30)} stroke={markerInk} strokeWidth="1.3" strokeLinecap="round" />
+              {/* The polished facet catching the light */}
+              <line {...tick(10.1, 12.6, i * 30)} stroke="#FFFFFF" strokeOpacity="0.45" strokeWidth="0.35" strokeLinecap="round" />
+            </g>
+          );
+        })
+      ) : (
+        Array.from({ length: 12 }, (_, i) => {
+          const deg = i * 30;
+          if (i === 0) {
+            // The inverted triangle at 12
+            return (
+              <path
+                key={i}
+                d={`M22,${24 - 13} L26,${24 - 13} L24,${24 - 9.6} Z`}
+                fill={markerFill}
+                stroke={markerInk}
+                strokeWidth="0.4"
+                strokeLinejoin="round"
+              />
+            );
+          }
+          if (batons.includes(deg)) {
+            return <line key={i} {...tick(9.9, 12.9, deg)} stroke={markerInk} strokeWidth="1.9" strokeLinecap="round" />;
+          }
+          const [x, y] = point(11.4, deg);
+          return <circle key={i} cx={x} cy={y} r="1.35" fill={markerFill} stroke={markerInk} strokeWidth="0.4" />;
+        })
+      )}
+      {model === "datejust" ? (
+        <>
+          <rect x={lefty ? 11.6 : 32.2} y="22.2" width="4.2" height="3.6" rx="0.4" fill="#F4F4F0" stroke={markerInk} strokeOpacity="0.7" strokeWidth="0.35" />
+          {/* The cyclops lens over the date */}
+          <circle cx={lefty ? 13.7 : 34.3} cy="24" r="3.1" fill="#FFFFFF" fillOpacity="0.07" stroke="#FFFFFF" strokeOpacity="0.3" strokeWidth="0.3" />
+        </>
+      ) : null}
+
+      {/* Hands, in the metal they are made of, lume down the centre */}
+      <line x1="24" y1="24" {...{ x2: point(8, 300)[0], y2: point(8, 300)[1] }} stroke={handInk} strokeWidth="2.1" strokeLinecap="round" />
+      <line x1="24" y1="24" {...{ x2: point(12.4, 60)[0], y2: point(12.4, 60)[1] }} stroke={handInk} strokeWidth="1.5" strokeLinecap="round" />
+      {!lightDial ? (
+        <>
+          <line {...tick(2.4, 7.2, 300)} stroke={LUME} strokeWidth="0.9" strokeLinecap="round" />
+          <line {...tick(2.6, 11.6, 60)} stroke={LUME} strokeWidth="0.6" strokeLinecap="round" />
+        </>
+      ) : null}
+      {sports ? (
+        // The ring near the tip of the Mercedes hour hand
+        <circle cx={point(5.4, 300)[0]} cy={point(5.4, 300)[1]} r="1.25" fill={lightDial ? dialInk : LUME} stroke={handInk} strokeWidth="0.5" />
+      ) : null}
+      <line
+        x1={point(3, 20)[0]}
+        y1={point(3, 20)[1]}
+        x2={point(13.2, 200)[0]}
+        y2={point(13.2, 200)[1]}
+        stroke={seconds ? (seconds === "red" ? "#C8332D" : seconds) : handInk}
+        strokeWidth="0.45"
+        strokeLinecap="round"
+      />
+      <circle cx="24" cy="24" r="1.3" fill={handInk} />
+
+      {/* The crystal, catching the light across its upper left, with one
+          bright point of glare */}
+      <path
+        d={`M${point(13.6, 250).join(",")} A13.6,13.6 0 0 1 ${point(13.6, 342).join(",")} L${point(11.2, 336).join(",")} A11.2,11.2 0 0 0 ${point(11.2, 256).join(",")} Z`}
+        fill={`url(#${id}-g)`}
+      />
+      <ellipse cx="17.6" cy="16.2" rx="1.5" ry="0.7" transform="rotate(-42 17.6 16.2)" fill="#FFFFFF" fillOpacity="0.55" />
     </svg>
   );
 }
