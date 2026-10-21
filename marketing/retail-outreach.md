@@ -28,24 +28,26 @@ say no for reasons of their own; the rest of the plan does not depend on
 them.
 
 From week 3, the visits move to Austin's pre-owned Rolex dealers (Bernard
-Watch, for one, has an Austin office by appointment), then service shops,
-jewelers with a pre-owned case and film studios.
+Watch, for one, has an Austin office by appointment), then watch service
+shops and jewelers with a watch business. The full list of 30 is in
+`austin-prospects.md`, with a tracker in `austin-prospects.csv`.
 
 ## Who to approach
 
-Kits fit Rolex references only, so every target sells Rolex, new or
-pre-owned. In order of how likely they are to say yes:
+Watch stores only, as the owner decided on October 21: shops that sell or
+service watches. Kits fit Rolex references only, so the best targets sell
+Rolex, new or pre-owned. In order of how likely they are to say yes:
 
 | Tier | Who | Why they say yes | Why they might not |
 |---|---|---|---|
 | A | Independent pre-owned and resale dealers | Every sale is a handover moment; film protects stock they sell on later | Small counters, owner decides alone |
 | A | Watch service and repair shops | They see scratched cases daily and can apply the film after a service | Not retail-minded; sell on the service ticket |
-| B | Independent jewelers with a pre-owned watch case | Footfall, gift buyers in December | Watches are a side line |
-| B | Watch-focused car and detailing studios (paint protection film shops) | Already sell film to the same buyer; the car-and-watch storyline | Need a reason to add a watch product |
+| B | Jewelers with a watch business (pre-owned case, watch brands or watch repair) | Footfall, gift buyers in December | Watches are a side line |
 | C | Rolex authorized dealers | Highest volume | Their agreements with Rolex usually bar third-party accessories on the counter. Pitch only the dealer card, and only where a manager is open to it |
-| C | Watch manufacturers | Credibility | Long buying cycles; Rolex fitment does not suit other brands' watches. Not a three-month target |
+| C | Watch manufacturers and brand boutiques | Credibility | Long buying cycles; Rolex fitment does not suit other brands' watches. Not a three-month target |
 
-Plan on tiers A and B. Treat tier C as a bonus, not a target.
+The owner's call is to visit the two Rolex stores first. Beyond them, plan
+on tiers A and B, and treat tier C as a bonus.
 
 ## What a shop signs up for
 
@@ -96,11 +98,11 @@ planning assumptions; replace them with your own numbers after week 4.
 
 | Step | Count | What it means |
 |---|---|---|
-| Prospects on the list | 50 | Tiers A and B, within driving range |
-| First contact | 40 | A visit, a mailer or an email reached the decision maker |
-| Conversations | 24 | Real time with the owner or buyer, in person or on the phone |
-| Demos | 12 | The film shown on a watch, theirs or yours |
-| Proposals | 7 | A level and terms on paper |
+| Prospects on the list | 30 | Every watch store in the Austin area (`austin-prospects.md`) |
+| First contact | 28 | A visit, a mailer or an email reached the decision maker |
+| Conversations | 18 | Real time with the owner or buyer, in person or on the phone |
+| Demos | 10 | The film shown on a watch, theirs or yours |
+| Proposals | 6 | A level and terms on paper |
 | Signed | 4 | An agreement and either cards in boxes, a stand on the counter or an order |
 
 ## Week by week
@@ -113,10 +115,9 @@ close. Group visits by area so one day covers four to six shops.
 
 **Week 1, October 26 to November 1: list and materials**
 
-- Build the prospect list: 50 shops, with tier, area, owner's name,
-  Instagram handle, email and phone. Google Maps ("pre-owned Rolex",
-  "watch repair"), Chrono24 dealer listings and Instagram dealer accounts
-  are the fastest sources.
+- Finish the prospect list (`austin-prospects.csv`, 30 watch stores):
+  confirm each address and add the owner's name, email and Instagram
+  handle.
 - Decide the partner terms above. Create the first dealer codes in Shopify.
 - Order the stands. Write the sell sheet and the partner agreement.
 - Follow every prospect's Instagram account. Like and comment on two or
@@ -124,7 +125,7 @@ close. Group visits by area so one day covers four to six shops.
 
 **Week 2, November 2 to 8: first touches**
 
-- Email batch 1: 20 tier A shops (template 1).
+- Email batch 1: the tier A shops marked "email wk2" (template 1).
 - Mailer batch 1: 10 tier A shops you cannot reach easily in person: a
   letter, five dealer cards and a handwritten note naming a watch in their
   current listings.
@@ -145,7 +146,7 @@ close. Group visits by area so one day covers four to six shops.
 
 **Week 4, November 16 to 22: demos and first proposals**
 
-- Visits: 8 return visits for demos, and 4 new tier B shops.
+- Visits: 8 return visits for demos, and the shops marked "visit wk4".
 - Proposals: put a level and terms in front of the 3 warmest shops.
 - Holiday angle for every pitch: "December is when pre-owned watches are
   bought as gifts. A card in the box reaches the owner on the first day."
@@ -170,7 +171,7 @@ work.
   cards with its code.
 - Visits: 6 short drop-ins to warm prospects, 10 minutes each. Leave cards
   and a sample to try.
-- Email batch 2: 20 tier B shops.
+- Email batch 2: the tier B and C shops.
 
 **Week 7, December 7 to 13: close store 2**
 
