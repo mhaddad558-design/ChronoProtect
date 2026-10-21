@@ -29,7 +29,7 @@ them.
 
 From week 3, the visits move to Austin's pre-owned Rolex dealers (Bernard
 Watch, for one, has an Austin office by appointment), then watch service
-shops and jewelers with a watch business. The full list of 30 is in
+shops and jewelers with a watch business. The full list of 29 is in
 `austin-prospects.md`, with a tracker in `austin-prospects.csv`.
 
 ## Who to approach
@@ -98,7 +98,7 @@ planning assumptions; replace them with your own numbers after week 4.
 
 | Step | Count | What it means |
 |---|---|---|
-| Prospects on the list | 30 | Every watch store in the Austin area (`austin-prospects.md`) |
+| Prospects on the list | 29 | Every watch store in the Austin area (`austin-prospects.md`) |
 | First contact | 28 | A visit, a mailer or an email reached the decision maker |
 | Conversations | 18 | Real time with the owner or buyer, in person or on the phone |
 | Demos | 10 | The film shown on a watch, theirs or yours |
@@ -115,7 +115,7 @@ close. Group visits by area so one day covers four to six shops.
 
 **Week 1, October 26 to November 1: list and materials**
 
-- Finish the prospect list (`austin-prospects.csv`, 30 watch stores):
+- Finish the prospect list (`austin-prospects.csv`, 29 watch stores):
   confirm each address and add the owner's name, email and Instagram
   handle.
 - Decide the partner terms above. Create the first dealer codes in Shopify.
