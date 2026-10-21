@@ -7,6 +7,30 @@ channels: visits in person, mail, and online (email, Instagram, phone).
 Visits do the closing. Mail and online open doors and keep them open between
 visits.
 
+The territory is Austin, Texas. Visit days are on Google Calendar in Central
+time.
+
+## Austin: Rolex stores first
+
+The two official Rolex retailers in Austin come first, in week 2. Confirm
+each address by phone before going; the listings disagree.
+
+| Date | Store | Address (Rolex's listing) | Notes |
+|---|---|---|---|
+| Tue, Nov 3, 10:30 | Zadok Jewelers | 11501 Century Oak Terrace, Suite 141 (the Domain) | (512) 522-2934 |
+| Wed, Nov 4, 10:30 | Korman Fine Jewelry | 2901 North Lamar Boulevard | Also Rolex Certified Pre-Owned; older listings give 5011 Burnet Rd |
+
+Authorized dealers usually cannot put a third-party accessory on the
+counter, so pitch the card partner level: cards in the box at handover,
+nothing on the shelf. Korman's certified pre-owned counter is the stronger
+fit, since a pre-owned buyer wears the watch home that day. Both may still
+say no for reasons of their own; the rest of the plan does not depend on
+them.
+
+From week 3, the visits move to Austin's pre-owned Rolex dealers (Bernard
+Watch, for one, has an Austin office by appointment), then service shops,
+jewelers with a pre-owned case and film studios.
+
 ## Who to approach
 
 Kits fit Rolex references only, so every target sells Rolex, new or
@@ -104,8 +128,8 @@ close. Group visits by area so one day covers four to six shops.
 - Mailer batch 1: 10 tier A shops you cannot reach easily in person: a
   letter, five dealer cards and a handwritten note naming a watch in their
   current listings.
-- Visits: 5 practice walk-ins at your lowest-priority shops, to tune the
-  opener before the ones that matter.
+- Visits: the two Rolex stores, Zadok on Tuesday and Korman on Wednesday
+  (see Austin, above).
 - Target: 10 first contacts.
 
 ### Phase 2: visits and demos. November 9 to 25
