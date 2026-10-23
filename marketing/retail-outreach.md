@@ -44,9 +44,14 @@ agree to a meeting.
 |---|---|
 | Week 2 (Nov 2 to 8) | Call the Rolex stores and groups: Lee Michaels, Deutsch, deBoulle, Thomas Markle, Bachendorf's, Eiseman. Ask for the person who decides, then email them (template 1). Pitch Zadok Houston together with Zadok Austin |
 | Week 3 (Nov 9 to 15) | Email and mail the pre-owned dealers and service shops in all three cities: a letter, five dealer cards and a note |
-| Week 4 (Nov 16 to 22) | San Antonio day trip, about 80 miles each way, for every shop that has agreed to meet |
+| Saturday, Nov 21 | San Antonio day trip, about 80 miles each way, for every shop that has agreed to meet |
 | Weeks 5 to 8 | Phone follow-ups between holiday visits in Austin; no trips |
-| Weeks 11 and 12 (Jan 4 to 17) | Houston and Dallas-Fort Worth day trips, about three hours each way, for the meetings booked by phone |
+| Saturdays, Jan 9 and Jan 16 | Houston, then Dallas-Fort Worth: day trips, about three hours each way, for the meetings booked by phone |
+
+Trips are on Saturdays, as the owner chose, and are on Google Calendar.
+Most of these stores close on Sundays. Saturday is also their busiest day,
+so every meeting is booked by phone beforehand and timed for opening, before
+the rush.
 
 Groups count once: a yes from Bachendorf's head office puts cards in four
 Rolex stores, and that is still one store landed for the goal, though worth
