@@ -95,10 +95,8 @@ Group visits by area so one day covers four to six shops.
   Whitestone, Q&T, Quenan's, WatchmakerTM, Moises. Mail first; visit in
   January if they respond.
 
-## If this is not enough
+## Beyond Austin
 
-The plan's funnel assumed 50 prospects. With about 30 watch stores, each one
-counts for more: four signed is about one in seven, so every shop gets a
-visit or a call, not just an email. If January starts with fewer than two
-signed, add the watch stores of San Antonio by mail and phone.
-
+San Antonio, Houston and Dallas-Fort Worth have their own list of 33 watch
+stores in `texas-prospects.md`, reached by phone, email and mail, with one
+day trip per city (see `retail-outreach.md`).

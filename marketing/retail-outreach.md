@@ -32,6 +32,26 @@ Watch, for one, has an Austin office by appointment), then watch service
 shops and jewelers with a watch business. The full list of 29 is in
 `austin-prospects.md`, with a tracker in `austin-prospects.csv`.
 
+## San Antonio, Houston and Dallas-Fort Worth
+
+Added on October 23: the watch stores of the three other big Texas cities,
+33 in all, Rolex stores first again (`texas-prospects.md`, tracker in
+`texas-prospects.csv`). They are too far for weekly visits, so the order is
+phone and email, then mail, then one day trip per city for the shops that
+agree to a meeting.
+
+| When | What |
+|---|---|
+| Week 2 (Nov 2 to 8) | Call the Rolex stores and groups: Lee Michaels, Deutsch, deBoulle, Thomas Markle, Bachendorf's, Eiseman. Ask for the person who decides, then email them (template 1). Pitch Zadok Houston together with Zadok Austin |
+| Week 3 (Nov 9 to 15) | Email and mail the pre-owned dealers and service shops in all three cities: a letter, five dealer cards and a note |
+| Week 4 (Nov 16 to 22) | San Antonio day trip, about 80 miles each way, for every shop that has agreed to meet |
+| Weeks 5 to 8 | Phone follow-ups between holiday visits in Austin; no trips |
+| Weeks 11 and 12 (Jan 4 to 17) | Houston and Dallas-Fort Worth day trips, about three hours each way, for the meetings booked by phone |
+
+Groups count once: a yes from Bachendorf's head office puts cards in four
+Rolex stores, and that is still one store landed for the goal, though worth
+far more than one.
+
 ## Who to approach
 
 Watch stores only, as the owner decided on October 21: shops that sell or
@@ -98,11 +118,11 @@ planning assumptions; replace them with your own numbers after week 4.
 
 | Step | Count | What it means |
 |---|---|---|
-| Prospects on the list | 29 | Every watch store in the Austin area (`austin-prospects.md`) |
-| First contact | 28 | A visit, a mailer or an email reached the decision maker |
-| Conversations | 18 | Real time with the owner or buyer, in person or on the phone |
-| Demos | 10 | The film shown on a watch, theirs or yours |
-| Proposals | 6 | A level and terms on paper |
+| Prospects on the list | 62 | 29 Austin watch stores (`austin-prospects.md`) and 33 in San Antonio, Houston and Dallas-Fort Worth (`texas-prospects.md`) |
+| First contact | 55 | A visit, a call, a mailer or an email reached the decision maker |
+| Conversations | 30 | Real time with the owner or buyer, in person or on the phone |
+| Demos | 14 | The film shown on a watch, theirs or yours |
+| Proposals | 8 | A level and terms on paper |
 | Signed | 4 | An agreement and either cards in boxes, a stand on the counter or an order |
 
 ## Week by week
