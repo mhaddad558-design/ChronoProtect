@@ -289,6 +289,55 @@ fitment."
 > [name]
 > chronoprotect.store
 
+**Template 1R: first email to a Rolex store**
+
+For the official Rolex retailers. It asks for nothing on the counter, only a
+card in the box, because their agreements with Rolex usually rule out
+third-party accessories on display. Send from store@chronoprotect.co, after
+the phone call that found the right name.
+
+> Subject: A card for the box at handover
+>
+> Hello [name],
+>
+> I run ChronoProtect+, a studio in Austin that cuts protective film to each
+> Rolex reference. ChronoShield+ covers the case, bezel, every bracelet link
+> and the clasp; ChronoGuard+ covers the case and clasp. It goes on in about
+> an hour at home and comes off clean, with no residue.
+>
+> I am not asking for space on your counter. Many of your clients wear the
+> watch out of the store, and the clasp meets its first desk edge that same
+> day. What I would like to offer [store] is a card for the box at handover,
+> with a line for the reference. Your team writes it in, the client scans
+> the card and orders the kit cut for that watch, and every order through
+> it carries [store]'s own code and earns the store a commission. There is
+> nothing to stock and nothing to display.
+>
+> Kits ship in November. I would be glad to bring a sample on [day] and
+> show it on a display piece, or to post a few cards with a sample kit if
+> that suits you better.
+>
+> Thank you for your time.
+>
+> [your name]
+> ChronoProtect+, Austin
+> [phone], store@chronoprotect.co
+> chronoprotect.store
+>
+> ChronoProtect+ is not affiliated with, endorsed by, or sponsored by Rolex
+> SA. Reference numbers are used only to describe fitment.
+
+Add one line, after "nothing to display", where it fits:
+
+- **Certified pre-owned counter** (Korman, Eiseman): "It suits a Certified
+  Pre-Owned handover in particular: the watch has just been serviced, and
+  the card helps the client keep it that way."
+- **A group** (Bachendorf's, Lee Michaels, Deutsch): "The same card works
+  in all [number] of your stores, each with its own code, so you can see
+  which store every order came from."
+- **Zadok:** "We are visiting your Austin store on November 3, and the same
+  card would work in Houston."
+
 **Template 2: after a visit**
 
 > Subject: The sample from today
