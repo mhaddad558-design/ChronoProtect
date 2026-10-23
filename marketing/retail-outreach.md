@@ -35,7 +35,7 @@ shops and jewelers with a watch business. The full list of 29 is in
 ## San Antonio, Houston and Dallas-Fort Worth
 
 Added on October 23: the watch stores of the three other big Texas cities,
-33 in all, Rolex stores first again (`texas-prospects.md`, tracker in
+32 in all, Rolex stores first again (`texas-prospects.md`, tracker in
 `texas-prospects.csv`). They are too far for weekly visits, so the order is
 phone and email, then mail, then one day trip per city for the shops that
 agree to a meeting.
@@ -118,7 +118,7 @@ planning assumptions; replace them with your own numbers after week 4.
 
 | Step | Count | What it means |
 |---|---|---|
-| Prospects on the list | 62 | 29 Austin watch stores (`austin-prospects.md`) and 33 in San Antonio, Houston and Dallas-Fort Worth (`texas-prospects.md`) |
+| Prospects on the list | 61 | 29 Austin watch stores (`austin-prospects.md`) and 32 in San Antonio, Houston and Dallas-Fort Worth (`texas-prospects.md`) |
 | First contact | 55 | A visit, a call, a mailer or an email reached the decision maker |
 | Conversations | 30 | Real time with the owner or buyer, in person or on the phone |
 | Demos | 14 | The film shown on a watch, theirs or yours |
