@@ -277,11 +277,14 @@ fitment."
 > Hello [name],
 >
 > I run ChronoProtect+, a studio that cuts protective film to each Rolex
-> reference: the case, bezel, every bracelet link and the clasp. It goes on
-> in about an hour and comes off clean.
+> reference: the case, bezel, every bracelet link and the clasp. We are
+> independent of Rolex, so we work with the stores that sell the watches.
+> It goes on in about an hour and comes off clean.
 >
-> I noticed the [reference] in your listings this week. A buyer who wears it
-> home has nothing between the clasp and a desk edge on day one.
+> I noticed the [reference] in your listings this week. Whoever buys it
+> will wear it home with nothing between the clasp and a desk edge on day
+> one. A kit cut for that reference is an easy thing to offer at the sale,
+> and it keeps the watch in the condition your client paid for.
 >
 > I would like to stop by on [day] and show you a sample, or send a few of
 > our dealer cards for your boxes. Which suits you better?
@@ -301,7 +304,9 @@ the phone call that found the right name.
 > Hello [name],
 >
 > I run ChronoProtect+, a studio in Austin that cuts protective film to each
-> Rolex reference. ChronoShield+ covers the case, bezel, every bracelet link
+> Rolex reference. We are independent of Rolex, so we work with the stores
+> that sell the watches: a client hears about us from you, as they take the
+> watch home. ChronoShield+ covers the case, bezel, every bracelet link
 > and the clasp; ChronoGuard+ covers the case and clasp. It goes on in about
 > an hour at home and comes off clean, with no residue.
 >
