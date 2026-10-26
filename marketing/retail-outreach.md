@@ -21,8 +21,10 @@ each address by phone before going; the listings disagree.
 | Wed, Nov 4, 10:30 | Korman Fine Jewelry | 2901 North Lamar Boulevard | Also Rolex Certified Pre-Owned; older listings give 5011 Burnet Rd |
 
 Authorized dealers usually cannot put a third-party accessory on the
-counter, so pitch the card partner level: cards in the box at handover,
-nothing on the shelf. Korman's certified pre-owned counter is the stronger
+counter, so pitch fitting at handover from a few kits kept out of sight,
+with nothing on display. Ask whether their agreement allows the team to fit
+film on a watch they have just sold; if it does not, fall back to the card
+in the box, which books a fitting elsewhere. Korman's certified pre-owned counter is the stronger
 fit, since a pre-owned buyer wears the watch home that day. Both may still
 say no for reasons of their own; the rest of the plan does not depend on
 them.
@@ -68,7 +70,7 @@ Rolex, new or pre-owned. In order of how likely they are to say yes:
 | A | Independent pre-owned and resale dealers | Every sale is a handover moment; film protects stock they sell on later | Small counters, owner decides alone |
 | A | Watch service and repair shops | They see scratched cases daily and can apply the film after a service | Not retail-minded; sell on the service ticket |
 | B | Jewelers with a watch business (pre-owned case, watch brands or watch repair) | Footfall, gift buyers in December | Watches are a side line |
-| C | Rolex authorized dealers | Highest volume | Their agreements with Rolex usually bar third-party accessories on the counter. Pitch only the dealer card, and only where a manager is open to it |
+| C | Rolex authorized dealers | Highest volume | Their agreements with Rolex usually bar third-party accessories on the counter. Pitch fitting at handover with nothing on display, and the card where even that is ruled out |
 | C | Watch manufacturers and brand boutiques | Credibility | Long buying cycles; Rolex fitment does not suit other brands' watches. Not a three-month target |
 
 The owner's call is to visit the two Rolex stores first. Beyond them, plan
@@ -76,42 +78,59 @@ on tiers A and B, and treat tier C as a bonus.
 
 ## What a shop signs up for
 
+**The pitch is fitting in the store.** Film for watches has mostly stalled
+because the owner has to fit it at home, and someone with several watches
+will not spend evenings at the kitchen table. They will leave a watch at the
+store for an hour. So the best outcome is a shop that keeps kits and fits
+them: when the client collects the watch, or by appointment the next day.
+That turns the film from a chore into part of the service, and it is the
+one thing an online seller cannot offer.
+
 A shop cannot shelve 64 references in two finishes, so offer three levels
-and let the shop pick. Any of them counts as a store landed.
+and let the shop pick. Lead with the first. Any of them counts as a store
+landed.
 
 | Level | The shop gets | The shop does | The shop earns |
 |---|---|---|---|
-| Card partner | Pre-owned dealer cards printed with its own code | Puts a card in the box at every handover | A commission on every sale through its code |
-| Counter partner | Countertop stand, two demo kits, dealer cards | Shows the demo and takes the order on a tablet or by QR at the counter | A margin on counter orders |
-| Stock partner | Kits for its best-selling references at wholesale, plus the stand | Sells from the shelf | Retail minus wholesale |
+| Stock and fit | Kits for its best-selling references at wholesale, fitting cards, and the first fitting done alongside its team | Fits the film at collection or by appointment the next day | Retail minus wholesale, plus the fitting fee it sets |
+| Order and fit | Kits ordered one at a time at wholesale, cut for the client's reference and posted to the shop | Takes the order at the sale, fits the kit when the client comes back | Retail minus wholesale, plus the fitting fee |
+| Card partner | Dealer cards printed with its own code | Puts a card in the box at every handover | A commission on every sale through its code |
+
+The card partner level is the fallback, for a shop that will not fit film
+on a client's watch. Rolex stores whose agreements rule out fitting are the
+likeliest case.
 
 **Decide before week 2.** These are proposals, not commitments. Set the
 numbers in Shopify, never on a printed page (CLAUDE.md: prices come from
 Shopify).
 
+- **Wholesale for stock and order-and-fit shops:** 40% off retail. Opening
+  stock order of six kits. Exchange any unsold reference within 60 days,
+  because a kit cut for one reference cannot be sold for another.
+- **Fitting fee:** the shop sets and keeps it. Suggest a figure once a few
+  shops have tried it.
+- **Training:** the first fitting at each shop is done with its team on a
+  display piece. Leave the printed steps from the installation page.
 - **Commission for card partners:** 15% of the sale, paid monthly.
 - **Buyer discount on the dealer code:** 10%. It lifts scans and counts each
   sale back to the shop.
-- **Counter partner margin:** 25%.
-- **Stock partner wholesale:** 40% off retail, opening order of six kits.
-  Exchange any unsold reference within 60 days, because a kit cut for one
-  reference cannot be sold for another.
 
 **How it works in Shopify, without Plus:**
 
-- **Card and counter partners:** each gets a discount code named for the
-  shop (`SMITH10`). The code tracks the sale and gives the buyer the
-  discount.
-- **Stock orders:** go through draft orders with the wholesale discount
-  applied, and are invoiced from Shopify.
+- **Stock and order-and-fit shops:** orders go through draft orders with the
+  wholesale discount applied, and are invoiced from Shopify. The client's
+  reference goes on the line as an attribute, as on every order.
+- **Card partners:** each gets a discount code named for the shop
+  (`SMITH10`). The code tracks the sale and gives the buyer the discount.
 
 ## The kit for every visit
 
 | Item | Status | Notes |
 |---|---|---|
-| Pre-owned dealer cards | Print files ready (`marketing/dealer-card/`) | Generic run for walk-ins; a run per shop once signed, with its own slug |
+| Dealer cards | Print files ready (`marketing/dealer-card/`) | Fitting cards: lines for the reference and the fitting appointment. Generic run for walk-ins |
 | Sample kits | Kits ship in November | Two in the bag from week 3: a ChronoShield+ for a Submariner or GMT, a ChronoGuard+ for a Datejust |
 | Sell sheet | To make, week 1 | One page: what it covers, the three levels, contact. No prices, no Rolex crown or name in the design; carries the Rolex disclaimer |
+| Fitting demo | Ready when samples land | A display watch or a spare bracelet to fit a sample on in front of the team, plus the printed steps |
 | Countertop stand | To order, week 1 | Small acrylic stand, crest in bronze, holding cards and one demo kit |
 | Partner agreement | To write, week 1 | One page: level, commission or wholesale terms, exchange window, either side can end it with 30 days' notice |
 | Tablet or phone | Ready | The configurator at chronoprotect.store/find-your-kit, to show a shop how a buyer orders |
@@ -128,7 +147,7 @@ planning assumptions; replace them with your own numbers after week 4.
 | Conversations | 30 | Real time with the owner or buyer, in person or on the phone |
 | Demos | 14 | The film shown on a watch, theirs or yours |
 | Proposals | 8 | A level and terms on paper |
-| Signed | 4 | An agreement and either cards in boxes, a stand on the counter or an order |
+| Signed | 4 | An agreement and either a stock order, a first order-and-fit order or cards in boxes |
 
 ## Week by week
 
@@ -174,14 +193,15 @@ close. Group visits by area so one day covers four to six shops.
 - Visits: 8 return visits for demos, and the shops marked "visit wk4".
 - Proposals: put a level and terms in front of the 3 warmest shops.
 - Holiday angle for every pitch: "December is when pre-owned watches are
-  bought as gifts. A card in the box reaches the owner on the first day."
+  bought as gifts. Fit the film before it is wrapped, and it reaches the
+  owner protected on the first day."
 - Target: 5 demos, 3 proposals.
 
 **Week 5, November 23 to 25: close store 1**
 
 - Monday and Tuesday only. Thanksgiving is Thursday, November 26, and shops
   are busy from Black Friday on.
-- Phone the 3 proposals. Sign the first shop, even at card-partner level.
+- Phone the 3 proposals. Sign the first shop, even at order-and-fit or card-partner level.
 - **Milestone: store 1 signed by Wednesday, November 25.**
 
 ### Phase 3: holiday. November 30 to January 3
@@ -191,9 +211,9 @@ work.
 
 **Week 6, November 30 to December 6: onboard store 1, second round**
 
-- Onboard store 1: stand set up, a 15-minute staff walk-through (what each
-  kit covers, how to find a reference, how the buyer orders), and dealer
-  cards with its code.
+- Onboard store 1: its opening kits, the first fitting done with its team
+  on a display piece (what each kit covers, how to find a reference, the
+  fitting steps), and fitting cards for its boxes.
 - Visits: 6 short drop-ins to warm prospects, 10 minutes each. Leave cards
   and a sample to try.
 - Email batch 2: the tier B and C shops.
@@ -209,7 +229,7 @@ work.
 
 - Mailer batch 2 to every prospect who has not said no: a holiday card,
   dealer cards and the line "We will call in January."
-- Check in with stores 1 and 2: cards running low, questions from staff.
+- Check in with stores 1 and 2: kits running low, fittings booked, questions from staff.
 
 **Weeks 9 and 10, December 21 to January 3: pause**
 
@@ -254,15 +274,17 @@ fitment."
 
 > Hello, I am [name] from ChronoProtect+. We make protective film cut to
 > each Rolex reference, so it covers the case, bezel and every bracelet
-> link, and comes off clean when the owner wants it gone. Most of your
-> buyers wear the watch the day they buy it. Could I show you a sample on
-> one of your pieces? It takes two minutes.
+> link, and comes off clean when the owner wants it gone. Most film like
+> this asks the owner to fit it at home, and most owners never do. We want
+> it fitted here, by your team, when the client collects the watch. Could I
+> show you a sample on one of your pieces? It takes two minutes.
 
 **When they say "we do not sell accessories"**
 
-> That is why most of our partners start with the cards. A card goes in the
-> box, the buyer orders online, and you earn on every sale with nothing on
-> the shelf.
+> Then start without a shelf. Order a kit when you sell a watch, cut for
+> that reference, and fit it when the client comes back for it. If fitting
+> is not for you, a card goes in the box and you earn on every order
+> through it.
 
 **When they ask "does it damage the watch"**
 
@@ -272,55 +294,75 @@ fitment."
 
 **Template 1: first email**
 
-> Subject: Film cut for the watches you sell
->
-> Hello [name],
->
-> I run ChronoProtect+, a studio that cuts protective film to each Rolex
-> reference: the case, bezel, every bracelet link and the clasp. We are
-> independent of Rolex, so we work with the stores that sell the watches.
-> It goes on in about an hour and comes off clean.
->
-> I noticed the [reference] in your listings this week. Whoever buys it
-> will wear it home with nothing between the clasp and a desk edge on day
-> one. A kit cut for that reference is an easy thing to offer at the sale,
-> and it keeps the watch in the condition your client paid for.
->
-> I would like to stop by on [day] and show you a sample, or send a few of
-> our dealer cards for your boxes. Which suits you better?
->
-> [name]
-> chronoprotect.store
+The HTML version, with the crest, the kit and the dealer card, is
+`marketing/email/preowned-outreach.html`.
 
-**Template 1R: first email to a Rolex store**
-
-For the official Rolex retailers. It asks for nothing on the counter, only a
-card in the box, because their agreements with Rolex usually rule out
-third-party accessories on display. Send from store@chronoprotect.co, after
-the phone call that found the right name.
-
-> Subject: A card for the box at handover
+> Subject: Kits your team can fit at the counter
 >
 > Hello [name],
 >
 > I run ChronoProtect+, a studio in Austin that cuts protective film to each
 > Rolex reference. We are independent of Rolex, so we work with the stores
-> that sell the watches: a client hears about us from you, as they take the
-> watch home. ChronoShield+ covers the case, bezel, every bracelet link
-> and the clasp; ChronoGuard+ covers the case and clasp. It goes on in about
-> an hour at home and comes off clean, with no residue.
+> that sell the watches. ChronoShield+ covers the case, bezel, every
+> bracelet link and the clasp; ChronoGuard+ covers the case and clasp. It
+> goes on in about an hour and comes off clean, with no residue.
 >
-> I am not asking for space on your counter. Many of your clients wear the
-> watch out of the store, and the clasp meets its first desk edge that same
-> day. What I would like to offer [store] is a card for the box at handover,
-> with a line for the reference. Your team writes it in, the client scans
-> the card and orders the kit cut for that watch, and every order through
-> it carries [store]'s own code and earns the store a commission. There is
-> nothing to stock and nothing to display.
+> I noticed the [reference] in your listings this week. Whoever buys it
+> will wear it home with nothing between the clasp and a desk edge on day
+> one.
 >
-> Kits ship in November. I would be glad to bring a sample on [day] and
-> show it on a display piece, or to post a few cards with a sample kit if
-> that suits you better.
+> Film for watches is not new, and most of it stalls for the same reason:
+> the owner has to fit it at home. Someone with several watches will not
+> spend an evening at the kitchen table, but will gladly leave a watch with
+> you for an hour. Only a store can offer that, which is why I would like
+> ChronoProtect+ on your shelf.
+>
+> Keep kits for the references you sell most, at a trade price, and your
+> team fits the film when the client collects the watch, or by appointment
+> the next day. For a reference you do not keep, order the kit cut for that
+> watch and fit it when the client comes back. I fit the first one
+> alongside your team on a display piece.
+>
+> Kits ship in November. I would be glad to bring a sample on [day] and fit
+> it on one of your display pieces, so your team can see the whole process.
+> Which day suits you?
+>
+> [your name]
+> chronoprotect.store
+
+**Template 1R: first email to a Rolex store**
+
+For the official Rolex retailers. It asks for nothing on display: a few
+kits out of sight and fitting at handover, with the card as the lighter
+start, because their agreements with Rolex usually rule out third-party
+accessories on the counter. Send from store@chronoprotect.co, after the
+phone call that found the right name. The HTML version is
+`marketing/email/rolex-store-outreach.html`.
+
+> Subject: Film fitted at handover
+>
+> Hello [name],
+>
+> I run ChronoProtect+, a studio in Austin that cuts protective film to each
+> Rolex reference. We are independent of Rolex, so we work with the stores
+> that sell the watches. ChronoShield+ covers the case, bezel, every
+> bracelet link and the clasp; ChronoGuard+ covers the case and clasp. It
+> goes on in about an hour and comes off clean, with no residue.
+>
+> Many of your clients wear the watch out of the store, and the clasp meets
+> its first desk edge that same day. Film for watches usually asks the
+> owner to fit it at home, and few owners with several watches ever will.
+> Fitted by your team at handover, or by appointment the next day, it
+> becomes part of the service rather than another job for the client.
+>
+> [Store] could keep a few kits out of sight for the references you sell
+> most, at a trade price, or order one cut for a client's watch. Nothing
+> goes on display. If you would rather start smaller, a card in the box at
+> handover carries lines for the reference and a fitting appointment.
+>
+> Kits ship in November. I would be glad to bring a sample on [day] and fit
+> it on a display piece with your team, or to post a sample kit and a few
+> cards if that suits you better.
 >
 > Thank you for your time.
 >
@@ -332,33 +374,34 @@ the phone call that found the right name.
 > ChronoProtect+ is not affiliated with, endorsed by, or sponsored by Rolex
 > SA. Reference numbers are used only to describe fitment.
 
-Add one line, after "nothing to display", where it fits:
+Add one line, after "nothing goes on display", where it fits:
 
 - **Certified pre-owned counter** (Korman, Eiseman): "It suits a Certified
   Pre-Owned handover in particular: the watch has just been serviced, and
-  the card helps the client keep it that way."
-- **A group** (Bachendorf's, Lee Michaels, Deutsch): "The same card works
-  in all [number] of your stores, each with its own code, so you can see
-  which store every order came from."
+  fitting the film before it goes home keeps it that way."
+- **A group** (Bachendorf's, Lee Michaels, Deutsch): "The same setup works
+  in all [number] of your stores, and I would train each team on its first
+  fitting."
 - **Zadok:** "We are visiting your Austin store on November 3, and the same
-  card would work in Houston."
+  setup would work in Houston."
 
 **Template 2: after a visit**
 
 > Subject: The sample from today
 >
 > Thank you for the time today, [name]. As promised, here is a summary of
-> the three ways shops work with us, and the cards for your boxes.
+> the three ways shops work with us: stock and fit, order and fit, or the
+> cards for your boxes.
 > [One line on the level they leaned towards.] I will call on [day] to see
 > whether you would like to start.
 
 **Template 3: January**
 
-> Subject: Starting the year with cards in the box
+> Subject: Starting the year with film fitted in store
 >
 > Hello [name], we spoke in [month] about ChronoProtect+. [Store count] shops
-> now hand our cards over with every watch. Could I come by in the next two
-> weeks to set you up the same way?
+> now fit our film when a client collects a watch. Could I come by in the
+> next two weeks to set you up the same way?
 
 **Instagram DM (after a few weeks of genuine engagement, never cold)**
 
@@ -377,7 +420,7 @@ Keep one row per shop. A spreadsheet is enough.
 | Contacts | Email, Instagram, phone |
 | Stage | Listed, contacted, conversation, demo, proposal, signed, no |
 | Last touch, next touch | Nov 12 visit, Nov 19 demo |
-| Level and code | Card partner, `SMITH10` |
+| Level and code | Stock and fit; card partner, `SMITH10` |
 | Notes | Asked about two-tone; owner in on Wednesdays |
 
 Every Friday:
@@ -386,16 +429,19 @@ Every Friday:
 - **Below target:** if a step is short, send more mail and email the next
   week, not fewer visits.
 
-**After signing**, each store's sales come in through its discount code in
-Shopify and its UTM slug in Vercel Analytics (`utm_campaign=<shop-slug>`;
-see `dealer-card.md`).
+**After signing**, stock and order-and-fit sales show as each shop's draft
+orders in Shopify. Card partner sales come in through the shop's discount
+code.
 
 ## Risks
 
 - **Samples arrive late.** Kits ship in November. Until they do, demo with
   photos and the configurator, and book demos for the week the samples land.
-- **Shops want stock you cannot predict.** The 60-day exchange and the card
-  partner level both remove the risk of a shelf of wrong references.
+- **Shops want stock you cannot predict.** The 60-day exchange and the
+  order-and-fit level both remove the risk of a shelf of wrong references.
+- **A shop is nervous about fitting over a client's watch.** Do the first
+  fitting with the team on a display piece, and leave the printed steps.
+  Pieces are pre-cut and numbered, so nothing is trimmed on the watch.
 - **The holiday squeeze.** If store 1 is not signed by November 25, do not
   push through December. Keep the shop warm by mail and close in January.
 - **Trademark.** Nothing printed or posted uses the Rolex name, crown or

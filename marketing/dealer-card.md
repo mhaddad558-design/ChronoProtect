@@ -21,29 +21,31 @@ moment the film is worth the most.
 
 > [Crest lockup: Chrono / PROTECT+]
 >
-> The finish is only perfect once.
+> Fitted before the first wear.
 
 ## Back
 
 > ChronoShield+ covers the case, bezel, every link and the clasp.
-> ChronoGuard+ covers the case and clasp. Both are cut to the reference and
-> come off clean.
+> ChronoGuard+ covers the case and clasp. Both are cut to the reference,
+> fitted here in the store, and come off clean.
 >
 > Reference ______________
+> Fitting ______________
 >
-> [QR code] Scan for the kit cut to this watch.
+> [QR code] Scan for care and removal.
 
-The dealer writes the reference on the line at handover, so the buyer has it
-in hand when the configurator asks for it.
+The store fits the film, at collection or by appointment the next day. The
+team writes the reference and the fitting appointment on the lines, so the
+card doubles as the appointment card. Once fitted, the code takes the owner
+to care and removal.
 
 ## Pre-owned variant
 
-For pre-owned dealers and service shops, where the watch is not new. The
-back stays the same.
+For pre-owned dealers and service shops. The back stays the same.
 
 > [Crest lockup: Chrono / PROTECT+]
 >
-> Keep the finish it has today.
+> Fitted here, the day you collect it.
 
 ## Print files
 
@@ -61,27 +63,26 @@ embedded. Ask the printer whether they want text outlined.
 
 ## QR code
 
-Points at the configurator, tagged so dealer sales can be counted:
+Points at care and removal on the installation page, tagged so card scans
+can be counted:
 
 ```
-https://www.chronoprotect.store/find-your-kit?utm_source=dealer&utm_medium=card&utm_campaign=<dealer-slug>
+https://www.chronoprotect.store/installation?utm_source=dealer-card#care
 ```
 
-The current print files use the generic slug `dealer-card`, and the code was
-checked to decode to that address. For per-dealer counts, make a run per
-dealer with its own slug, lowercase with hyphens, for example
-`smith-jewelers`. The back also prints `chronoprotect.store` for anyone who
-does not scan.
+The code was checked to decode to that address. The back also prints
+`chronoprotect.store` for anyone who does not scan.
 
-A dealer with a label printer can go further and print a sticker QR per
-watch with the reference added, `&ref=126610LN` for example. The
-configurator reads `ref`, fills in the reference and skips to the next step.
+For a card partner, a shop that sells through the card rather than fitting,
+make a run whose code points at the configurator with the shop's own slug
+instead:
+`https://www.chronoprotect.store/find-your-kit?utm_source=dealer&utm_medium=card&utm_campaign=<shop-slug>`.
 
 ## Open decisions
 
-- **What the dealer gets.** A commission per sale, a wholesale price on
-  studio installation, or nothing. The card works either way, but a dealer
-  with a stake hands it over.
+- **What the dealer gets.** Settled in `retail-outreach.md`: stocking shops
+  earn the retail margin and set their own fitting fee; card partners earn a
+  commission.
 - **Buyer offer.** A discount code on the card would lift scans and lets
   sales be counted without the UTM tags. Prices come from Shopify, so any
   code is created there.
