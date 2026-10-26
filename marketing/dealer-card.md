@@ -21,21 +21,22 @@ moment the film is worth the most.
 
 > [Crest lockup: Chrono / PROTECT+]
 >
-> Fitted before the first wear.
+> Fitted here, by appointment.
 
 ## Back
 
 > ChronoShield+ covers the case, bezel, every link and the clasp.
 > ChronoGuard+ covers the case and clasp. Both are cut to the reference,
-> fitted here in the store, and come off clean.
+> fitted here by appointment in about an hour, and come off clean.
 >
 > Reference ______________
 > Fitting ______________
 >
 > [QR code] Scan for care and removal.
 
-The store fits the film, at collection or by appointment the next day. The
-team writes the reference and the fitting appointment on the lines, so the
+The store sells the kit with the watch and fits it by appointment, the next
+day, the next week, or while it holds the watch for a day or two. The team
+writes the reference and the fitting appointment on the lines, so the
 card doubles as the appointment card. Once fitted, the code takes the owner
 to care and removal.
 
@@ -45,7 +46,7 @@ For pre-owned dealers and service shops. The back stays the same.
 
 > [Crest lockup: Chrono / PROTECT+]
 >
-> Fitted here, the day you collect it.
+> Fitted here, whenever suits you.
 
 ## Print files
 
