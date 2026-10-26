@@ -90,7 +90,8 @@ it is never done on the spot at the counter, and never left to the owner.
 
 **Stress the margin.** Every Datejust, Submariner, GMT-Master II and Daytona
 the store sells, the models most Rolex sales come from, can leave with a
-kit sold at retail and a fitting fee, on a kit bought at a trade price. In
+kit sold at retail and a fitting fee, on a kit bought wholesale at 40% off
+retail. In
 a slow market it lifts the margin on each sale the store does make; in a
 busy one it adds to every watch that goes out the door. Do not claim every
 Rolex: the Day-Date, Explorer, Oyster Perpetual and others are not cut yet.
@@ -109,11 +110,12 @@ The card partner level is the fallback, for a shop that will not fit film
 on a client's watch. Rolex stores whose agreements rule out fitting are the
 likeliest case.
 
-**Decide before week 2.** These are proposals, not commitments. Set the
-numbers in Shopify, never on a printed page (CLAUDE.md: prices come from
-Shopify).
+**Decided, October 26:** shops buy wholesale kits at 40% off retail. There
+are no free or gifted kits. The rest are proposals; decide them before week
+2. Set the numbers in Shopify, never as dollar amounts on a printed page
+(CLAUDE.md: prices come from Shopify).
 
-- **Wholesale for stock and order-and-fit shops:** 40% off retail. Opening
+- **Wholesale for stock and order-and-fit shops (decided):** 40% off retail. Opening
   stock order of six kits. Exchange any unsold reference within 60 days,
   because a kit cut for one reference cannot be sold for another.
 - **Fitting fee:** the shop sets and keeps it. Suggest a figure once a few
@@ -331,8 +333,9 @@ The HTML version, with the crest, the kit and the dealer card, is
 > fitted by your team, it becomes part of the purchase.
 >
 > It also adds margin to the Rolex models you sell most. We cut for the
-> Datejust, Submariner, GMT-Master II and Daytona. You buy each kit at a
-> trade price, sell it at retail as an add-on, and charge for the fitting.
+> Datejust, Submariner, GMT-Master II and Daytona. You buy each kit
+> wholesale, at 40% off retail, sell it at retail as an add-on, and charge
+> for the fitting.
 > When the market is slow, that lifts the margin on each sale you do make;
 > when it is busy, it adds to every watch that goes out the door.
 >
@@ -375,8 +378,8 @@ phone call that found the right name. The HTML version is
 > service rather than another job for the client.
 >
 > It also adds margin to the Rolex models you sell most: the Datejust,
-> Submariner, GMT-Master II and Daytona. You buy each kit at a trade price,
-> sell it at retail with the watch, and charge for the fitting. When the
+> Submariner, GMT-Master II and Daytona. You buy each kit wholesale, at 40%
+> off retail, sell it at retail with the watch, and charge for the fitting. When the
 > market is slow, that lifts the margin on each sale you do make; when it
 > is busy, it adds to every watch that goes out the door.
 >
