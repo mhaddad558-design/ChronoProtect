@@ -111,7 +111,9 @@ on a client's watch. Rolex stores whose agreements rule out fitting are the
 likeliest case.
 
 **Decided, October 26:** shops buy wholesale kits at 40% off retail. There
-are no free or gifted kits. The rest are proposals; decide them before week
+are no free or gifted kits. Do not name the discount in emails, letters or
+anything printed: say "wholesale" and give the figure in person, or in the
+partner agreement. The rest are proposals; decide them before week
 2. Set the numbers in Shopify, never as dollar amounts on a printed page
 (CLAUDE.md: prices come from Shopify).
 
@@ -334,8 +336,7 @@ The HTML version, with the crest, the kit and the dealer card, is
 >
 > It also adds margin to the Rolex models you sell most. We cut for the
 > Datejust, Submariner, GMT-Master II and Daytona. You buy each kit
-> wholesale, at 40% off retail, sell it at retail as an add-on, and charge
-> for the fitting.
+> wholesale, sell it at retail as an add-on, and charge for the fitting.
 > When the market is slow, that lifts the margin on each sale you do make;
 > when it is busy, it adds to every watch that goes out the door.
 >
@@ -378,8 +379,8 @@ phone call that found the right name. The HTML version is
 > service rather than another job for the client.
 >
 > It also adds margin to the Rolex models you sell most: the Datejust,
-> Submariner, GMT-Master II and Daytona. You buy each kit wholesale, at 40%
-> off retail, sell it at retail with the watch, and charge for the fitting. When the
+> Submariner, GMT-Master II and Daytona. You buy each kit wholesale, sell
+> it at retail with the watch, and charge for the fitting. When the
 > market is slow, that lifts the margin on each sale you do make; when it
 > is busy, it adds to every watch that goes out the door.
 >
