@@ -7,10 +7,16 @@ import { PARTNER_INSTALL, STUDIO_EMAIL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Installation",
   description: PARTNER_INSTALL
-    ? "Apply a ChronoProtect+ kit yourself in about an hour, or add studio installation as a separate line at checkout."
-    : "Apply a ChronoProtect+ kit yourself in about an hour. Professional installation is coming soon.",
+    ? "ChronoProtect+ is fitted by appointment, like paint protection film on a car: a trained fitter puts it on in about an hour. Or apply the kit yourself."
+    : "ChronoProtect+ is made to be fitted by appointment, like paint protection film on a car. Fitting partners are being signed now; until then, every kit can be applied at home.",
 };
 
+/**
+ * Installation, told the way car paint protection film is sold: offered with
+ * the watch, fitted by a trained hand at a time the owner books. Applying the
+ * kit at home is the fallback, and care and removal stays last, where the
+ * dealer card's QR code points (#care).
+ */
 export default async function InstallationPage() {
   const products = await getKitProducts();
 
@@ -20,28 +26,133 @@ export default async function InstallationPage() {
         <div className="cp-measure">
           <p className="cp-eyebrow">Installation</p>
           <h1 style={{ fontSize: "clamp(2.2rem, 6vw, 3.4rem)" }}>
-            {PARTNER_INSTALL
-              ? "An hour at the kitchen table, or an afternoon at the studio."
-              : "An hour at the kitchen table."}
+            Fitted by appointment, like paint protection film.
           </h1>
           <p className="cp-lede" style={{ marginTop: "1.5rem" }}>
-            Kits arrive pre-cut, so the work is placement and patience rather than trimming.
+            Almost no one fits paint protection film to their own car. The dealer offers it with the
+            car, and a fitter puts it on at a time the owner books. ChronoProtect+ works the same way:
+            the film is offered with the watch, and a trained fitter puts it on in about an hour.
             {PARTNER_INSTALL
-              ? " If you would rather not do it over your own watch, a studio partner will."
-              : " Professional installation is coming soon."}
+              ? ""
+              : " Fitting partners are being signed now. Until they are in place, every kit can be applied at home, with the steps below."}
           </p>
         </div>
       </section>
 
       <section className="cp-band cp-band--mid">
         <div className="cp-shell">
+          <p className="cp-eyebrow">How a fitting works</p>
+          <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>Book it when it suits you.</h2>
+
+          <dl className="cp-spec cp-spec--steps" style={{ marginTop: "2.5rem" }}>
+            <Row label="Choose the kit">
+              With the watch, from the store that sells it, or here online. Each kit is cut to your
+              reference.
+            </Row>
+            <Row label="Book a time">
+              The next day, the next week, or whenever suits you. Or leave the watch with the store for
+              a day or two.
+            </Row>
+            <Row label="The fitting">
+              About an hour with a trained fitter. Every piece is pre-cut and numbered, so nothing is
+              trimmed over your watch.
+            </Row>
+            <Row label="Afterwards">
+              Leave the watch off the wrist for a few hours, and keep it away from water for the first
+              day.
+            </Row>
+          </dl>
+        </div>
+      </section>
+
+      {PARTNER_INSTALL ? (
+        <section className="cp-band">
+          <div className="cp-shell">
+            <div className="cp-measure">
+              <p className="cp-eyebrow">Studio installation</p>
+              <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
+                Book a fitting with your kit.
+              </h2>
+              <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
+                Choose studio installation in the configurator and it is added as its own line at
+                checkout, priced and fulfilled separately from the kit. The studio contacts you to
+                book the fitting once the kit is ready.
+              </p>
+            </div>
+
+            <div style={{ marginTop: "2.5rem" }}>
+              <Price value={startingPrice(products.installation)} lead="From" />
+            </div>
+
+            <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>
+              <Link href="/find-your-kit" className="cp-btn">
+                Find your kit
+              </Link>
+              <a href={`mailto:${STUDIO_EMAIL}?subject=Studio%20installation`} className="cp-btn cp-btn--ghost">
+                Ask the studio
+              </a>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="cp-band">
+          <div className="cp-shell">
+            <div className="cp-measure">
+              <p className="cp-eyebrow">Fitting partners</p>
+              <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
+                Partner stores are being signed now.
+              </h2>
+              <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
+                We are signing watch stores to offer the film with the watches they sell and fit it by
+                appointment. Until fittings open, every kit is made to be applied at home in about an
+                hour.
+              </p>
+            </div>
+
+            <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>
+              <Link href="/find-your-kit" className="cp-btn">
+                Find your kit
+              </Link>
+              <a
+                href={`mailto:${STUDIO_EMAIL}?subject=Fitting%20by%20appointment`}
+                className="cp-btn cp-btn--ghost"
+              >
+                Ask to be told when fittings open
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="cp-band cp-band--mid">
+        <div className="cp-shell">
+          <div className="cp-measure">
+            <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)" }}>Run a watch store?</h2>
+            <p className="cp-lede" style={{ marginTop: "1rem" }}>
+              Offer ChronoProtect+ as an add-on with every Datejust, Submariner, GMT-Master II and
+              Daytona you sell, and fit it by appointment. Kits come to you wholesale, and we train
+              your fitter on a display piece.
+            </p>
+            <p style={{ marginTop: "1.5rem" }}>
+              <a href={`mailto:${STUDIO_EMAIL}?subject=Fitting%20partner`}>Become a fitting partner</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="cp-band">
+        <div className="cp-shell">
           <p className="cp-eyebrow">Applying it yourself</p>
-          <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>What the hour looks like.</h2>
+          <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>If you would rather do it yourself.</h2>
+          <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
+            Kits arrive pre-cut, so the work is placement and patience rather than trimming. Allow
+            about an hour.
+          </p>
 
           <dl className="cp-spec cp-spec--steps" style={{ marginTop: "2.5rem" }}>
             <Row label="Before you start">
               Work on a clean, lint-free surface in good light, with the bracelet off the wrist. Take
-              spring bars out only if you are comfortable doing so — the kit does not require it.
+              spring bars out only if you are comfortable doing so; the kit does not require it.
             </Row>
             <Row label="Clean">
               Wipe every surface with the supplied alcohol pad and let it flash off. Anything left
@@ -62,64 +173,6 @@ export default async function InstallationPage() {
           </dl>
         </div>
       </section>
-
-      {PARTNER_INSTALL ? (
-      <section className="cp-band">
-        <div className="cp-shell">
-          <div className="cp-measure">
-            <p className="cp-eyebrow">Studio installation</p>
-            <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
-              Let a partner fit it instead.
-            </h2>
-            <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
-              Choose studio installation in the configurator and it is added as its own line at
-              checkout, priced and fulfilled separately from the kit. The studio contacts you to
-              arrange the drop-off once the kit is ready.
-            </p>
-          </div>
-
-          <div style={{ marginTop: "2.5rem" }}>
-            <Price value={startingPrice(products.installation)} lead="From" />
-          </div>
-
-          <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>
-            <Link href="/find-your-kit" className="cp-btn">
-              Find your kit
-            </Link>
-            <a href={`mailto:${STUDIO_EMAIL}?subject=Studio%20installation`} className="cp-btn cp-btn--ghost">
-              Ask the studio
-            </a>
-          </div>
-        </div>
-      </section>
-      ) : (
-        <section className="cp-band">
-          <div className="cp-shell">
-            <div className="cp-measure">
-              <p className="cp-eyebrow">Professional installation</p>
-              <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
-                Professional fitting is on its way.
-              </h2>
-              <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
-                Installation partners are being chosen now. Until they are in place, every kit is
-                made to be applied at home in about an hour, with the steps above.
-              </p>
-            </div>
-
-            <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>
-              <Link href="/find-your-kit" className="cp-btn">
-                Find your kit
-              </Link>
-              <a
-                href={`mailto:${STUDIO_EMAIL}?subject=Professional%20installation`}
-                className="cp-btn cp-btn--ghost"
-              >
-                Ask to be told when it opens
-              </a>
-            </div>
-          </div>
-        </section>
-      )}
 
       <section className="cp-band cp-band--mid" id="care">
         <div className="cp-shell">
