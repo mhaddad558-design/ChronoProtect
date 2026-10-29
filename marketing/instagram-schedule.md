@@ -44,10 +44,15 @@ are the only watches in any image or video that goes out, one per frame:
 | Yellow gold chronograph, champagne dial, black subdials and bezel, rubber strap | `Daytona-YG`, `de53fa55-be52-4568-aa3d-d6da6cc25c73` | `4fad0b11-74c6-4e6f-9387-26b87e0570e7` | ChronoGuard+ only |
 | 41 mm steel, green ombré dial, fluted white gold bezel, jubilee bracelet | `Datejust-Green`, `fb5e424e-20a5-4049-aeeb-bfd807b3cd7d` | `6093e8c2-8d01-4cfb-a4cf-8130b4a0c07c` | ChronoShield+ or ChronoGuard+ |
 | 40 mm steel dive watch, green bezel and green dial, Oyster bracelet | `Submariner-Hulk`, `6cd546eb-eb17-4a88-b114-a90575a3f085` | `cce3d33a-9b37-4a6c-a7e3-a959d2b6725f` | ChronoShield+ or ChronoGuard+ |
+| Left-handed GMT, green and black bezel, black dial, Oyster bracelet, with the maker's dial markings | `Authentic-Sprite`, `60a8ecb1-ef32-42bb-8aa4-668106c430fc` | `32b892dc-5a88-4c2e-a28b-01ad96af95f6` | ChronoShield+ or ChronoGuard+ |
 
 The reference sheets were generated with the maker's name taken off. No
 watch carries a maker's name, crown emblem or logo in any generation, even
-where a reference sheet still shows one, so every prompt says so. The
+where a reference sheet still shows one, so every prompt says so. The one
+exception is `Authentic-Sprite`, approved by the owner on October 29: it is
+reproduced exactly as its reference, dial markings included, so its prompts
+leave out the unbranding line, which would fight the reference. Any post
+showing it carries the Rolex disclaimer. The
 Daytona-YG dial reads "Chronograph" where the model name was; that word
 stays, and nothing else is added. Reproduce each watch exactly as its
 reference shows it, and do not describe it differently in words or swap in
@@ -55,13 +60,12 @@ another model. Any frame with a watch in it carries that watch's
 reference, and a carousel or Reel keeps one watch throughout.
 
 The kit has to match what the watch can wear. ChronoShield+ covers the
-bracelet, so it is shown only on the three bracelet watches, GMTII-Sprite,
-Datejust-Green and Submariner-Hulk, which can also wear ChronoGuard+.
+bracelet, so it is shown only on the bracelet watches, GMTII-Sprite,
+Authentic-Sprite, Datejust-Green and Submariner-Hulk, which can also wear
+ChronoGuard+.
 Daytona-YG is on a rubber strap, which fitment lists as ChronoGuard+ only
 (case and clasp), so it is never shown with ChronoShield+ or with film on
-the strap. The
-`Authentic-Sprite` element (`60a8ecb1-ef32-42bb-8aa4-668106c430fc`) is not
-approved for use.
+the strap.
 
 **People: Greg only.** The only person in any generation is Greg, from his
 element:
@@ -456,10 +460,12 @@ about 180 letter-spacing by hand in the editor, in the brand template itself so 
 ## Prompt rules
 
 - The only watches are the approved ones in Higgsfield rules
-  (`GMTII-Sprite`, `Daytona-YG`, `Datejust-Green` and `Submariner-Hulk`),
-  each from its reference. No maker's name, crown emblem, logos or
-  engravings on the dial, winding crown, bezel ring or clasp, even where a
-  reference sheet still shows one. No dial text beyond the bezel and
+  (`GMTII-Sprite`, `Authentic-Sprite`, `Daytona-YG`, `Datejust-Green` and
+  `Submariner-Hulk`), each from its reference. No maker's name, crown
+  emblem, logos or engravings on the dial, winding crown, bezel ring or
+  clasp, even where a reference sheet still shows one, except on
+  `Authentic-Sprite`, which keeps its reference's markings. No dial text
+  beyond the bezel and
   minute-track numerals, the date and Daytona-YG's "Chronograph". Never put
   a Rolex name, model name or reference number in a prompt.
 - Ground is deep forest-charcoal `#0B110D` or `#141F19`. Light is one warm
