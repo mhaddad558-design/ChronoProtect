@@ -22,13 +22,15 @@ const STEPS = [
   },
   {
     title: "We cut your kit to order",
-    body: "Nothing is stocked. Every kit is cut individually after your order, to your exact reference and bracelet, so it is made for your piece and the fit is exact.",
+    body: "Every kit is cut individually to your exact reference and bracelet, so it is made for your piece and the fit is exact.",
   },
   {
-    title: PARTNER_INSTALL ? "Apply it, or have it fitted" : "Apply it at home",
+    // Fitted the way car paint protection film is: by a trained hand, at a
+    // time the owner books. Home application stays as the fallback.
+    title: "Have it fitted by appointment",
     body: PARTNER_INSTALL
-      ? "Kits arrive pre-cut and go on in as little as an hour at home. Or one of our trusted installation partners can fit it for you."
-      : "Kits arrive pre-cut and go on in as little as an hour at home. Professional installation is coming soon.",
+      ? "Like paint protection film on a car, a trained fitter puts it on in about an hour, at a time you book. Or apply the pre-cut kit yourself."
+      : "Like paint protection film on a car, a trained fitter puts it on in about an hour, at a time you book. Fitting partners are being signed now; until then, the pre-cut kit goes on at home.",
   },
 ];
 
