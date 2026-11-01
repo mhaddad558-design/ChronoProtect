@@ -101,16 +101,28 @@ step.
 
 **The scheduled task.** "Store follow-ups" runs on Monday, Thursday and
 Saturday at 7:43 am Central, the mornings after the visit evenings and the
-Saturday rounds. It lists what is due, drafts each email from the
-templates in `retail-outreach.md` (named, with the reference or watch they
-stock where known) into `marketing/followups/<date>.md`, lists the calls
-with their numbers and what to ask, and replies with a short summary.
-Nothing is sent automatically: you send the emails, then say which went.
+Saturday rounds. With Gmail connected, it:
 
-**Telling it what happened.** After a visit or call, one line is enough:
-"Korman, met Kat, wants a demo next week". The tracker is updated with the
-touch, the step and the next date. A store with no news stays due, and
-comes back in each run until it is done or parked.
+1. Checks Gmail's Sent folder for anything sent to a tracked store since
+   the last touch, and logs it, so a sent draft needs no note.
+2. Reads replies from those stores and lists each with the step it would
+   clear. A reply never moves a store on its own; you confirm.
+3. Creates a Gmail draft for every email that is due and has an address.
+   First emails use the branded HTML template; follow-ups are short plain
+   text with your Gmail signature, replying in the earlier thread. A draft
+   still unsent from an earlier run is updated rather than doubled.
+4. Writes the call sheets, visit notes and mailers to
+   `marketing/followups/<date>.md`, and replies with a short summary and
+   the draft links.
+
+Nothing is ever sent automatically: you open each draft, read it and send
+it. Drafts come from the Gmail account you connected, so a reply comes back
+there rather than to store@chronoprotect.co.
+
+**Telling it what happened.** Calls and visits need one line: "Korman, met
+Kat, wants a demo next week". The tracker is updated with the touch, the
+step, the next date and any new name or email address. A store with no
+news stays due, and comes back in each run until it is done or parked.
 
 ## Where the stores start
 
