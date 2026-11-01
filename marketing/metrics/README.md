@@ -24,15 +24,23 @@ From Instagram Insights (professional dashboard, last 7 days):
 - **Followers**: the total at the end of the week.
 
 From Vercel Analytics, nothing to do: the Monday run of the "Store follow-ups"
-scheduled task reads it through the Vercel connector and fills **Website
-visitors**, **From Instagram** (the instagram.com and l.instagram.com
-referrers) and **Search and direct** (everything else). Vercel's Hobby plan
-keeps only 31 days of analytics, which is why the task pulls every week.
+scheduled task reads it through the Vercel connector and fills:
 
-**From outreach email** and **From dealer card** stay blank for now: Vercel
-reports visits by UTM source only on its Enterprise plan or with the Web
-Analytics Plus add-on. Without paying, they can be counted by page instead,
-if the email button and the card's QR code each land on a page of their own.
+- **Website visitors**: every visitor that week.
+- **From Instagram**: the instagram.com and l.instagram.com referrers.
+- **From outreach email**: visitors to `/partners`, the page the email's
+  "See how it works" button opens.
+- **From dealer card**: visitors to `/care`, the page the card's QR code
+  opens.
+- **Search and direct**: everything else.
+
+The two pages are counted only when the visit did not come from another page
+on chronoprotect.store, so someone clicking through from the footer is not
+counted as an email or a card. Vercel's Hobby plan keeps only 31 days of
+analytics, which is why the task pulls every week. Campaign tags (UTM) stay
+on the email link but are not read: Vercel reports them only on its paid
+plans. Weeks before November 2026 have no email or card figures, because the
+pages did not exist yet.
 
 From Shopify: **Orders** placed that week.
 

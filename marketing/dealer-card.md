@@ -64,11 +64,11 @@ embedded. Ask the printer whether they want text outlined.
 
 ## QR code
 
-Points at care and removal on the installation page, tagged so card scans
-can be counted:
+Points at the care page, which has its own address so Vercel Web Analytics
+counts card scans by page (campaign tags need a paid plan to read):
 
 ```
-https://www.chronoprotect.store/installation?utm_source=dealer-card#care
+https://www.chronoprotect.store/care
 ```
 
 The code was checked to decode to that address. The back also prints

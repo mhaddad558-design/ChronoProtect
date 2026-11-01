@@ -597,6 +597,13 @@
   }
 }
 
+/* A spec list inside the panel (the partners page) needs a narrower label column. */
+@media (min-width: 40.01rem) {
+  .cp-wall__panel .cp-spec__row {
+    grid-template-columns: 8rem 1fr;
+  }
+}
+
 /* ---------- closing band: the crest, cropped, behind the call to action ---------- */
 
 .cp-watermark {

@@ -65,7 +65,10 @@ export default function SiteFooter() {
                 <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>
               </li>
               <li>
-                <Link href="/installation#care">Care and removal</Link>
+                <Link href="/care">Care and removal</Link>
+              </li>
+              <li>
+                <Link href="/partners">For watch stores</Link>
               </li>
               <li>
                 <Link href="/privacy">Privacy policy</Link>

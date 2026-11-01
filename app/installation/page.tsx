@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CareAndRemoval from "@/components/CareAndRemoval";
 import Price from "@/components/Price";
 import { getKitProducts, startingPrice } from "@/lib/shopify/products";
 import { PARTNER_INSTALL, STUDIO_EMAIL } from "@/lib/site";
@@ -14,8 +15,8 @@ export const metadata: Metadata = {
 /**
  * Installation, told the way car paint protection film is sold: offered with
  * the watch, fitted by a trained hand at a time the owner books. Applying the
- * kit at home is the fallback, and care and removal stays last, where the
- * dealer card's QR code points (#care).
+ * kit at home is the fallback, and care and removal stays last (#care). The
+ * dealer card's QR code opens /care, which shows the same section.
  */
 export default async function InstallationPage() {
   const products = await getKitProducts();
@@ -134,7 +135,7 @@ export default async function InstallationPage() {
               your fitter on a display piece.
             </p>
             <p style={{ marginTop: "1.5rem" }}>
-              <a href={`mailto:${STUDIO_EMAIL}?subject=Fitting%20partner`}>Become a fitting partner</a>
+              <Link href="/partners">How it works for watch stores</Link>
             </p>
           </div>
         </div>
@@ -181,24 +182,7 @@ export default async function InstallationPage() {
             It comes off the way it went on.
           </h2>
 
-          <dl className="cp-spec" style={{ marginTop: "2.5rem" }}>
-            <Row label="Everyday">
-              Wash and wipe the watch as you always have. The film takes soap and water without
-              complaint.
-            </Row>
-            <Row label="Avoid">
-              Solvents, abrasive polish, and ultrasonic cleaners. They will haze the surface long
-              before they trouble the adhesive.
-            </Row>
-            <Row label="Removal">
-              Warm the piece gently, lift a corner with a fingernail, and pull back on itself at a
-              shallow angle. The adhesive releases clean and leaves no residue.
-            </Row>
-            <Row label="Replacement">
-              Film is a wear item. Most owners re-cover a daily-wear piece every year or two, and a
-              rotation piece far less often.
-            </Row>
-          </dl>
+          <CareAndRemoval />
         </div>
       </section>
     </>
