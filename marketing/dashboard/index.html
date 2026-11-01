@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ChronoProtect+ prospects</title>
+<title>ChronoProtect+ dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400&family=Red+Hat+Text:wght@400;500&family=DM+Mono&display=swap" rel="stylesheet">
 <style>
@@ -97,17 +97,48 @@
   .toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--bg-panel); border: 1px solid var(--bronze); color: var(--ink); padding: 10px 16px; border-radius: 6px; opacity: 0; transition: opacity 0.2s; z-index: 20; pointer-events: none; }
   .toast.show { opacity: 1; }
   @media (max-width: 600px) { dl { grid-template-columns: 1fr; gap: 2px; } dd { margin-bottom: 8px; } }
+
+  .tabs { display: flex; gap: 4px; }
+  .tabs a { padding: 6px 14px; border: 1px solid transparent; border-radius: 999px; color: var(--soft); }
+  .tabs a:hover { text-decoration: none; border-color: var(--border); }
+  .tabs a[aria-current="page"] { border-color: var(--bronze); color: var(--ink); }
+  [hidden] { display: none !important; }
+
+  section.block { margin: 34px 0; }
+  section.block > h2 { margin: 0 0 4px; font: 300 22px/1.25 var(--display); color: var(--ink); }
+  section.block > p.lede { margin: 0 0 16px; color: var(--faint); font-size: 13px; max-width: 70ch; }
+  .goals { display: grid; gap: 10px; }
+  .goal { display: grid; grid-template-columns: minmax(150px, 220px) 1fr minmax(120px, auto); gap: 14px; align-items: center; }
+  .goal .name { color: var(--soft); }
+  .goal .track { height: 8px; background: var(--bg-panel); border-radius: 4px; overflow: hidden; }
+  .goal .fill { height: 100%; background: var(--bronze); border-radius: 0 4px 4px 0; }
+  .goal .nums { font-family: var(--mono); color: var(--ink); font-size: 13px; text-align: right; white-space: nowrap; }
+  .goal .nums span { color: var(--faint); }
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .chart { background: var(--bg-mid); border: 1px solid var(--hair); border-radius: 6px; padding: 14px 14px 8px; }
+  .chart h3 { margin: 0 0 2px; font: 400 15px/1.3 var(--display); color: var(--ink); }
+  .chart .sub { margin: 0 0 8px; color: var(--faint); font-size: 12px; }
+  .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .chart svg text { fill: var(--faint); font: 400 10px var(--text); }
+  .legend { display: flex; gap: 16px; color: var(--soft); font-size: 12px; margin: 6px 0 2px; }
+  .legend i { display: inline-block; width: 12px; height: 8px; border-radius: 2px; background: var(--bronze); margin-right: 6px; vertical-align: middle; }
+  .legend i.tick { height: 0; border-top: 2px dashed var(--soft); background: none; border-radius: 0; }
+  .tip { position: fixed; pointer-events: none; background: var(--bg-panel); border: 1px solid var(--border); color: var(--ink); padding: 6px 10px; border-radius: 4px; font-size: 12px; z-index: 30; opacity: 0; transition: opacity 0.1s; white-space: nowrap; }
+  .tip.show { opacity: 1; }
+  .inline-bar { display: inline-block; height: 6px; background: var(--bronze); border-radius: 0 3px 3px 0; vertical-align: middle; margin-right: 8px; }
+  .note { color: var(--faint); font-size: 13px; }
 </style>
 </head>
 <body>
 <header>
   <div class="shell">
-    <h1>ChronoProtect+ prospects</h1>
+    <h1>ChronoProtect+</h1>
+    <nav class="tabs" aria-label="Views"><a href="#prospects" id="tab-prospects" aria-current="page">Prospects</a><a href="#marketing" id="tab-marketing">Marketing</a></nav>
     <div class="meta"><span id="today"></span><span id="files"></span></div>
   </div>
 </header>
 
-<main class="shell">
+<main class="shell" id="view-prospects">
   <section class="summary" id="summary" aria-label="Summary"></section>
   <nav class="funnel" id="funnel" aria-label="Filter by step"></nav>
 
@@ -142,8 +173,61 @@
   </div>
 </main>
 
+<main class="shell" id="view-marketing" hidden>
+  <section class="filters" aria-label="Marketing filters" style="margin-top:24px">
+    <select id="mPeriod" aria-label="Period"><option value="1">This month</option><option value="3">Last 3 months</option><option value="6">Six-month plan</option><option value="all" selected>Everything logged</option></select>
+    <select id="mBreak" aria-label="Group content by"><option>Format</option><option>Storyline</option><option>World</option><option>Angle</option><option>Day theme</option></select>
+    <span class="count" id="mRange"></span>
+  </section>
+  <section class="summary" id="mTiles" aria-label="Marketing summary"></section>
+
+  <section class="block">
+    <h2 id="mGoalTitle">Goals this month</h2>
+    <p class="lede">The six-month plan reaches 500,000 Instagram views a month by April 2027, on the way to the long-term goal of 2,000,000. Each line is this month's actual against its goal.</p>
+    <div class="goals" id="mGoals"></div>
+  </section>
+
+  <section class="block">
+    <h2>Instagram views against the plan</h2>
+    <p class="lede">Monthly views from the weekly numbers, with each month's goal as a dashed mark. A week counts toward the month its Thursday falls in.</p>
+    <div class="chart" style="max-width:980px"><div class="legend"><span><i></i>Views</span><span><i class="tick"></i>Goal</span></div><div id="mRamp"></div></div>
+  </section>
+
+  <section class="block">
+    <h2>Website visits by source</h2>
+    <p class="lede">Weekly visitors from each source, on one scale so the sources compare. Instagram counts the instagram.com referrer; outreach email and the dealer card count their utm_source tags.</p>
+    <div class="charts" id="mSources"></div>
+  </section>
+
+  <section class="block">
+    <h2>Instagram, week by week</h2>
+    <div class="charts" id="mInsta"></div>
+  </section>
+
+  <section class="block">
+    <h2>What content works</h2>
+    <p class="lede">Posts with numbers entered, grouped by the category above. Engagement is likes, comments, saves and shares over reach.</p>
+    <div class="table-wrap"><table style="min-width:720px"><thead id="mGroupHead"></thead><tbody id="mGroups"></tbody></table></div>
+    <div class="row" style="justify-content:space-between;align-items:center;margin:18px 0 10px"><h3 style="margin:0;font:400 17px var(--display);color:var(--ink);flex:0 1 auto">Posts</h3><button class="btn ghost" id="mAddPost" style="flex:0 0 auto">Add a post</button></div>
+    <div class="table-wrap"><table style="min-width:900px"><thead><tr><th>Date</th><th>Post</th><th>Format</th><th>Storyline</th><th>Angle</th><th>Views</th><th>Reach</th><th>Engagement</th><th>Profile visits</th><th>Link clicks</th></tr></thead><tbody id="mPosts"></tbody></table></div>
+  </section>
+
+  <section class="block">
+    <h2>Outreach</h2>
+    <p class="lede">From the touch log: every email, call, visit, reply and step change recorded in the dashboard or by the follow-up task.</p>
+    <div class="charts" id="mOutreach"></div>
+  </section>
+
+  <section class="block">
+    <h2>Weekly numbers</h2>
+    <p class="lede">Once a week, enter the account totals from Instagram Insights and the website visits from Vercel Analytics. Click a week to fill it in.</p>
+    <div class="table-wrap"><table style="min-width:1100px"><thead id="mWeekHead"></thead><tbody id="mWeeks"></tbody></table></div>
+  </section>
+</main>
+
 <aside id="panel" aria-label="Store details" aria-hidden="true"><div class="inner" id="panelInner"></div></aside>
 <div class="toast" id="toast" role="status"></div>
+<div class="tip" id="tip" role="tooltip"></div>
 
 <script>
 const state = { data: null, sort: { key: "next", dir: 1 }, step: "", selected: null };
@@ -151,7 +235,7 @@ const $ = (id) => document.getElementById(id);
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const stepKey = (s) => (s || "0").split(" ")[0].toLowerCase();
 const STEP_ORDER = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "out"];
-const KINDS = ["call", "email", "visit", "mail", "dm", "demo", "proposal"];
+let KINDS = ["call", "email", "visit", "mail", "dm", "demo", "proposal", "reply"];
 
 function toast(text) {
   const t = $("toast"); t.textContent = text; t.classList.add("show");
@@ -161,6 +245,7 @@ function toast(text) {
 async function load() {
   const res = await fetch("/api/prospects");
   state.data = await res.json();
+  if (state.data.kinds) KINDS = ["call", ...state.data.kinds.filter((k) => k !== "call")];
   $("today").textContent = "Today, " + new Date(state.data.today + "T12:00").toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
   $("files").innerHTML = state.data.followups.length
     ? ", follow-ups:" + state.data.followups.map((f) => ` <a href="/followups/${esc(f)}" target="_blank">${esc(f.replace(".md", ""))}</a>`).join("")
@@ -366,9 +451,226 @@ document.addEventListener("click", (e) => {
   const pill = e.target.closest(".funnel button");
   if (pill) { state.step = pill.dataset.step; render(); }
 });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape" && state.selected) closePanel(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && $("panel").classList.contains("open")) closePanel(); });
 ["q", "list", "city", "tier", "dueOnly", "hideOut"].forEach((id) => $(id).addEventListener("input", render));
 load();
+
+/* ---------- Marketing tab ---------- */
+const m = { data: null };
+const num = (v) => Number(String(v ?? "").replace(/,/g, "")) || 0;
+const has = (v) => String(v ?? "").trim() !== "";
+const fmt = (n) => Math.round(n).toLocaleString("en-US");
+const short = (n) => n >= 1e6 ? `${+(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${+(n / 1e3).toFixed(n >= 1e4 ? 0 : 1)}K` : `${Math.round(n)}`;
+const monthOf = (week) => { const d = new Date(week + "T12:00"); d.setDate(d.getDate() + 3); return d.toISOString().slice(0, 7); };
+const monthName = (ym, long) => new Date(ym + "-15T12:00").toLocaleDateString("en-US", { month: long ? "long" : "short", year: long ? "numeric" : undefined });
+const SHEET_KEYS = { weekly: "Week", posts: "ID", goals: "Month" };
+const TEXT_FIELDS = new Set(["Date", "Format", "Storyline", "World", "Angle", "Day theme", "Post", "Posted"]);
+
+async function loadMarketing() {
+  const res = await fetch("/api/metrics");
+  m.data = await res.json();
+  renderMarketing();
+}
+
+function months() {
+  const plan = m.data.goals.map((g) => g.Month);
+  const current = m.data.today.slice(0, 7);
+  const p = $("mPeriod").value;
+  if (p === "6") return plan;
+  if (p === "all") {
+    const seen = new Set([...m.data.weekly.filter((w) => has(w["Instagram views"]) || has(w["Website visitors"])).map((w) => monthOf(w.Week)),
+      ...m.data.posts.map((x) => x.Date.slice(0, 7)), ...m.data.touches.map((t) => t.Date.slice(0, 7)), ...plan]);
+    return [...seen].sort();
+  }
+  const out = [], d = new Date(current + "-15T12:00");
+  for (let i = Number(p) - 1; i >= 0; i--) { const x = new Date(d); x.setMonth(d.getMonth() - i); out.push(x.toISOString().slice(0, 7)); }
+  return out;
+}
+
+function monthly(ms) {
+  const by = Object.fromEntries(ms.map((k) => [k, { views: 0, reels: 0, reach: 0, profile: 0, clicks: 0, visitors: 0, insta: 0, email: 0, card: 0, other: 0, orders: 0, filled: 0,
+    emails: 0, calls: 0, visits: 0, demos: 0, proposals: 0, replies: 0, moves: 0, breakouts: 0 }]));
+  for (const w of m.data.weekly) {
+    const b = by[monthOf(w.Week)]; if (!b) continue;
+    if (has(w["Instagram views"]) || has(w["Website visitors"])) b.filled++;
+    b.views += num(w["Instagram views"]); b.reels += num(w["Reels posted"]); b.reach += num(w["Instagram reach"]);
+    b.profile += num(w["Profile visits"]); b.clicks += num(w["Link clicks"]); b.visitors += num(w["Website visitors"]);
+    b.insta += num(w["From Instagram"]); b.email += num(w["From outreach email"]); b.card += num(w["From dealer card"]);
+    b.other += num(w["Search and direct"]); b.orders += num(w.Orders);
+  }
+  const KIND = { email: "emails", call: "calls", visit: "visits", demo: "demos", proposal: "proposals", reply: "replies", step: "moves" };
+  for (const t of m.data.touches) { const b = by[t.Date.slice(0, 7)]; if (b && KIND[t.Kind]) b[KIND[t.Kind]]++; }
+  for (const p of m.data.posts) { const b = by[p.Date.slice(0, 7)]; if (b && p.Format === "Reel" && num(p.Views) >= 10000) b.breakouts++; }
+  return by;
+}
+
+function sum(by, key) { return Object.values(by).reduce((n, b) => n + b[key], 0); }
+
+/* A bar chart: one bronze series, an optional dashed goal mark per bar, hover tips. */
+function bars(items, { height = 150, width = 320, max, goals = false } = {}) {
+  const W = width, L = 34, B = 20, T = 8, plotW = W - L - 4, plotH = height - B - T;
+  const raw = Math.max(1, max ?? Math.max(...items.map((i) => Math.max(i.value, goals ? i.goal || 0 : 0))));
+  // Round the top of the scale up to 1, 2, 2.5 or 5 times a power of ten, so the ticks read cleanly.
+  const mag = 10 ** Math.floor(Math.log10(raw)), top = [1, 2, 2.5, 5, 10].map((k) => k * mag).find((v) => v >= raw);
+  const step = plotW / Math.max(items.length, 1), bw = Math.max(4, Math.min(width > 600 ? 56 : 28, step - 6));
+  const y = (v) => T + plotH - (v / top) * plotH;
+  let svg = `<svg viewBox="0 0 ${W} ${height}" role="img">`;
+  for (const f of [0, 0.5, 1]) svg += `<line x1="${L}" x2="${W - 4}" y1="${y(top * f)}" y2="${y(top * f)}" stroke="rgba(255,255,255,${f ? 0.06 : 0.18})"/><text x="${L - 6}" y="${y(top * f) + 3}" text-anchor="end">${short(top * f)}</text>`;
+  const every = Math.ceil(items.length / 8);
+  items.forEach((it, i) => {
+    const cx = L + step * i + step / 2, x = cx - bw / 2, h = Math.max(0, y(0) - y(it.value)), r = Math.min(4, h);
+    if (h > 0) svg += `<path d="M${x},${y(0)} V${y(it.value) + r} Q${x},${y(it.value)} ${x + r},${y(it.value)} H${x + bw - r} Q${x + bw},${y(it.value)} ${x + bw},${y(it.value) + r} V${y(0)} Z" fill="var(--bronze)"/>`;
+    if (goals && it.goal) svg += `<line x1="${x - 4}" x2="${x + bw + 4}" y1="${y(it.goal)}" y2="${y(it.goal)}" stroke="var(--soft)" stroke-width="2" stroke-dasharray="4 3"/>`;
+    if (i % every === 0) svg += `<text x="${cx}" y="${height - 6}" text-anchor="middle">${esc(it.label)}</text>`;
+    svg += `<rect x="${L + step * i}" y="${T}" width="${step}" height="${plotH}" fill="transparent" data-tip="${esc(it.tip)}"/>`;
+  });
+  return svg + "</svg>";
+}
+
+function chartCard(title, sub, svg) {
+  return `<div class="chart"><h3>${esc(title)}</h3>${sub ? `<p class="sub">${esc(sub)}</p>` : ""}${svg}</div>`;
+}
+
+function renderMarketing() {
+  const ms = months(), by = monthly(ms), goals = Object.fromEntries(m.data.goals.map((g) => [g.Month, g]));
+  $("mRange").textContent = `${monthName(ms[0], true)} to ${monthName(ms[ms.length - 1], true)}`;
+
+  const emails = sum(by, "emails"), replies = sum(by, "replies");
+  $("mTiles").innerHTML = [
+    ["Instagram views", fmt(sum(by, "views"))],
+    ["Profile visits and link clicks", fmt(sum(by, "profile") + sum(by, "clicks"))],
+    ["Website visitors", fmt(sum(by, "visitors"))],
+    ["Visits from Instagram", fmt(sum(by, "insta"))],
+    ["Visits from outreach and cards", fmt(sum(by, "email") + sum(by, "card"))],
+    ["Outreach emails sent", fmt(emails)],
+    ["Reply rate", emails ? `${Math.round((replies / emails) * 100)}%` : "None yet"],
+    ["Store visits", fmt(sum(by, "visits"))],
+  ].map(([label, n]) => `<div class="tile"><b>${n}</b><span>${label}</span></div>`).join("");
+
+  // Goals for the current month of the plan, or the nearest one.
+  const plan = m.data.goals.map((g) => g.Month), now = m.data.today.slice(0, 7);
+  const gm = plan.includes(now) ? now : now < plan[0] ? plan[0] : plan[plan.length - 1];
+  const g = goals[gm], mb = monthly([gm])[gm], steps = m.data.steps;
+  $("mGoalTitle").textContent = `Goals for ${monthName(gm, true)}`;
+  const rows = [
+    ["Instagram views", mb.views, g["Instagram views"]],
+    ["Reels posted", mb.reels, g["Reels posted"]],
+    ["Views per Reel", mb.reels ? mb.views / mb.reels : 0, g["Views per Reel"]],
+    ["Breakout Reels (10,000 views and up)", mb.breakouts, g["Breakout Reels"]],
+    ["Website visits from Instagram", mb.insta, g["Visits from Instagram"]],
+    ["Outreach emails sent", mb.emails, g["Emails sent"]],
+    ["Calls", mb.calls, g.Calls],
+    ["Store visits", mb.visits, g["Store visits"]],
+    ["Demos", mb.demos, g.Demos],
+    ["Proposals", mb.proposals, g.Proposals],
+    ["Stores in conversation or further, now", steps.filter((k) => ["3", "4", "5", "6", "7", "8"].includes(k)).length, g["Stores in conversation"]],
+    ["Stores signed, now", steps.filter((k) => ["7", "8"].includes(k)).length, g["Stores signed"]],
+  ];
+  $("mGoals").innerHTML = rows.map(([name, actual, goal]) => {
+    const pct = num(goal) ? Math.min(100, (actual / num(goal)) * 100) : 0;
+    return `<div class="goal" data-tip="${esc(`${name}: ${fmt(actual)} of ${fmt(num(goal))} (${Math.round(pct)}%)`)}"><span class="name">${esc(name)}</span><div class="track"><div class="fill" style="width:${pct}%"></div></div><span class="nums">${fmt(actual)} <span>of ${fmt(num(goal))}</span></span></div>`;
+  }).join("");
+
+  // Monthly views against the goal ramp, always the whole plan.
+  const planBy = monthly(plan);
+  $("mRamp").innerHTML = bars(plan.map((k) => ({ label: monthName(k), value: planBy[k].views, goal: num(goals[k]["Instagram views"]),
+    tip: `${monthName(k, true)}: ${fmt(planBy[k].views)} views, goal ${fmt(num(goals[k]["Instagram views"]))}` })), { height: 220, width: 960, goals: true });
+
+  // Weekly series for the chosen months.
+  const weeks = m.data.weekly.filter((w) => ms.includes(monthOf(w.Week)) && w.Week <= m.data.today);
+  const wk = (w) => new Date(w.Week + "T12:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const series = (col) => weeks.map((w) => ({ label: wk(w), value: num(w[col]), tip: `Week of ${wk(w)}: ${has(w[col]) ? fmt(num(w[col])) : "not entered"}` }));
+  const SOURCES = ["From Instagram", "From outreach email", "From dealer card", "Search and direct"];
+  const shared = Math.max(1, ...weeks.flatMap((w) => SOURCES.map((c) => num(w[c]))));
+  const SRC_TITLE = { "From Instagram": "Instagram", "From outreach email": "Outreach email", "From dealer card": "Dealer card", "Search and direct": "Search and direct" };
+  $("mSources").innerHTML = weeks.length ? SOURCES.map((c) => chartCard(SRC_TITLE[c], `${fmt(weeks.reduce((n, w) => n + num(w[c]), 0))} visitors`, bars(series(c), { max: shared }))).join("")
+    : `<p class="note">No weeks in this period yet.</p>`;
+  $("mInsta").innerHTML = weeks.length ? ["Instagram views", "Instagram reach", "Profile visits", "Link clicks"].map((c) =>
+    chartCard(c, `${fmt(weeks.reduce((n, w) => n + num(w[c]), 0))} in the period`, bars(series(c)))).join("") : `<p class="note">No weeks in this period yet.</p>`;
+
+  // What content works.
+  const key = $("mBreak").value;
+  const posts = m.data.posts.filter((p) => ms.includes(p.Date.slice(0, 7)));
+  const scored = posts.filter((p) => has(p.Views) || has(p.Reach));
+  const eng = (p) => num(p.Reach) ? (num(p.Likes) + num(p.Comments) + num(p.Saves) + num(p.Shares)) / num(p.Reach) : 0;
+  const groups = {};
+  for (const p of scored) (groups[p[key] || "Not set"] ||= []).push(p);
+  const avg = (list, f) => list.reduce((n, p) => n + f(p), 0) / list.length;
+  const gRows = Object.entries(groups).map(([name, list]) => ({ name, n: list.length, views: avg(list, (p) => num(p.Views)), reach: avg(list, (p) => num(p.Reach)),
+    eng: avg(list, eng), profile: list.reduce((n, p) => n + num(p["Profile visits"]), 0), clicks: list.reduce((n, p) => n + num(p["Link clicks"]), 0) })).sort((a, b) => b.views - a.views);
+  const maxV = Math.max(1, ...gRows.map((r) => r.views));
+  $("mGroupHead").innerHTML = `<tr><th>${esc(key)}</th><th>Posts</th><th>Average views</th><th>Average reach</th><th>Engagement</th><th>Profile visits</th><th>Link clicks</th></tr>`;
+  $("mGroups").innerHTML = gRows.length ? gRows.map((r) => `<tr><td class="shop">${esc(r.name)}</td><td class="prio">${r.n}</td><td class="prio"><span class="inline-bar" style="width:${(r.views / maxV) * 120}px"></span>${fmt(r.views)}</td><td class="prio">${fmt(r.reach)}</td><td class="prio">${(r.eng * 100).toFixed(1)}%</td><td class="prio">${fmt(r.profile)}</td><td class="prio">${fmt(r.clicks)}</td></tr>`).join("")
+    : `<tr><td colspan="7" class="empty">No post numbers in this period yet. Click a post below to enter its Insights.</td></tr>`;
+  $("mPosts").innerHTML = posts.length ? [...posts].reverse().map((p) => `<tr data-sheet="posts" data-key="${esc(p.ID)}"><td class="due">${esc(p.Date)}</td><td class="shop">${esc(p.Post)}</td><td>${esc(p.Format)}</td><td>${esc(p.Storyline)}</td><td>${esc(p.Angle)}</td>
+    <td class="prio">${has(p.Views) ? fmt(num(p.Views)) : ""}</td><td class="prio">${has(p.Reach) ? fmt(num(p.Reach)) : ""}</td><td class="prio">${num(p.Reach) ? (eng(p) * 100).toFixed(1) + "%" : ""}</td><td class="prio">${has(p["Profile visits"]) ? fmt(num(p["Profile visits"])) : ""}</td><td class="prio">${has(p["Link clicks"]) ? fmt(num(p["Link clicks"])) : ""}</td></tr>`).join("")
+    : `<tr><td colspan="10" class="empty">No posts in this period.</td></tr>`;
+
+  // Outreach by month.
+  const out = (col, title) => chartCard(title, `${fmt(sum(by, col))} in the period`, bars(ms.map((k) => ({ label: monthName(k), value: by[k][col],
+    goal: num((goals[k] || {})[{ emails: "Emails sent", calls: "Calls", visits: "Store visits", demos: "Demos" }[col]]),
+    tip: `${monthName(k, true)}: ${fmt(by[k][col])}${goals[k] ? `, goal ${fmt(num(goals[k][{ emails: "Emails sent", calls: "Calls", visits: "Store visits", demos: "Demos" }[col]]))}` : ""}` })), { goals: true }));
+  $("mOutreach").innerHTML = out("emails", "Emails sent") + out("calls", "Calls") + out("visits", "Store visits") + out("demos", "Demos") +
+    chartCard("Replies", `${fmt(replies)} in the period`, bars(ms.map((k) => ({ label: monthName(k), value: by[k].replies, tip: `${monthName(k, true)}: ${fmt(by[k].replies)} replies` }))));
+
+  // Weekly numbers table.
+  const cols = Object.keys(m.data.weekly[0] || {}).filter((c) => c !== "Week");
+  $("mWeekHead").innerHTML = `<tr><th>Week of</th>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr>`;
+  $("mWeeks").innerHTML = [...m.data.weekly].filter((w) => w.Week <= m.data.today).reverse().map((w) =>
+    `<tr data-sheet="weekly" data-key="${esc(w.Week)}"><td class="due">${esc(w.Week)}</td>${cols.map((c) => `<td class="prio">${has(w[c]) ? fmt(num(w[c])) : ""}</td>`).join("")}</tr>`).join("");
+}
+
+function openSheetPanel(sheet, key, isNew) {
+  const rows = m.data[sheet];
+  const fields = Object.keys(rows[0]);
+  const row = isNew ? Object.fromEntries(fields.map((f) => [f, ""])) : rows.find((r) => r[SHEET_KEYS[sheet]] === key);
+  if (!row) return;
+  if (isNew) { row.ID = key; row.Date = m.data.today; row.Format = "Reel"; row.Posted = "yes"; }
+  const title = sheet === "weekly" ? `Week of ${key}` : sheet === "posts" ? (row.Post || "New post") : key;
+  $("panelInner").innerHTML = `<button class="close" id="close" aria-label="Close">Close</button><h2>${esc(title)}</h2>
+    <p class="note">${sheet === "weekly" ? "Account totals for the week from Instagram Insights, and visitors by source from Vercel Analytics." : "From the post's Insights. Views and reach after 7 days compare fairly."}</p>
+    <div class="form">${fields.filter((f) => f !== SHEET_KEYS[sheet]).map((f) =>
+      `<label>${esc(f)}<input data-field="${esc(f)}" value="${esc(row[f])}" ${TEXT_FIELDS.has(f) ? "" : 'inputmode="numeric"'}></label>`).join("")}
+      <div class="row"><button class="btn" id="saveSheet">Save</button></div></div>`;
+  $("panel").classList.add("open"); $("panel").setAttribute("aria-hidden", "false");
+  $("close").onclick = closePanel;
+  $("saveSheet").onclick = async () => {
+    const changes = {};
+    $("panelInner").querySelectorAll("[data-field]").forEach((el) => { changes[el.dataset.field] = el.value; });
+    const res = await fetch(`/api/metrics/${sheet}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ key, changes, add: !!isNew }) });
+    const data = await res.json();
+    if (!res.ok) { toast(data.error || "Something went wrong"); return; }
+    toast("Saved"); closePanel(); await loadMarketing();
+  };
+}
+
+function nextPostId() {
+  const n = Math.max(0, ...m.data.posts.map((p) => Number(p.ID.slice(1)) || 0)) + 1;
+  return "P" + String(n).padStart(3, "0");
+}
+
+function showView() {
+  const marketing = location.hash === "#marketing";
+  $("view-prospects").hidden = marketing; $("view-marketing").hidden = !marketing;
+  $("tab-prospects").toggleAttribute("aria-current", !marketing); $("tab-marketing").toggleAttribute("aria-current", marketing);
+  if (marketing) { $("tab-marketing").setAttribute("aria-current", "page"); loadMarketing(); } else $("tab-prospects").setAttribute("aria-current", "page");
+}
+
+document.addEventListener("click", (e) => {
+  const tr = e.target.closest("tbody tr[data-sheet]");
+  if (tr) openSheetPanel(tr.dataset.sheet, tr.dataset.key);
+  if (e.target.id === "mAddPost") openSheetPanel("posts", nextPostId(), true);
+});
+document.addEventListener("mousemove", (e) => {
+  const t = e.target.closest("[data-tip]"), tip = $("tip");
+  if (!t) { tip.classList.remove("show"); return; }
+  tip.textContent = t.dataset.tip; tip.classList.add("show");
+  const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + "px"; tip.style.top = (e.clientY + 14) + "px";
+});
+["mPeriod", "mBreak"].forEach((id) => $(id).addEventListener("input", renderMarketing));
+window.addEventListener("hashchange", showView);
+showView();
 </script>
 </body>
 </html>

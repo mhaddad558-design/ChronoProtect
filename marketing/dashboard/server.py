@@ -10,6 +10,7 @@ library only: nothing to install.
 """
 
 import argparse
+import csv
 import datetime as dt
 import json
 import sys
@@ -22,6 +23,64 @@ import followups  # noqa: E402
 
 PAGE = HERE / "index.html"
 FOLLOWUPS = HERE.parent / "followups"
+METRICS = HERE.parent / "metrics"
+# Each metrics sheet, the column that identifies a row, and the columns that are text.
+SHEETS = {
+    "weekly": ("weekly.csv", "Week", set()),
+    "posts": ("posts.csv", "ID", {"Date", "Format", "Storyline", "World", "Angle", "Day theme", "Post", "Posted"}),
+    "goals": ("goals.csv", "Month", set()),
+}
+
+
+def read_sheet(name: str):
+    path = METRICS / SHEETS[name][0]
+    with open(path, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        return reader.fieldnames, list(reader)
+
+
+def write_sheet(name: str, fields, rows) -> None:
+    with open(METRICS / SHEETS[name][0], "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def update_sheet(name: str, key: str, changes: dict, add: bool = False) -> dict:
+    """Edits one row of a metrics sheet, or adds it. Numbers stay numbers."""
+    fields, rows = read_sheet(name)
+    key_col, text_cols = SHEETS[name][1], SHEETS[name][2]
+    row = next((r for r in rows if r[key_col] == key), None)
+    if row is None:
+        if not add:
+            raise KeyError(f"No {key_col.lower()} {key}")
+        row = {field: "" for field in fields}
+        row[key_col] = key
+        rows.append(row)
+    for col, value in changes.items():
+        if col not in fields or col == key_col:
+            continue
+        value = str(value).strip()
+        if col not in text_cols and value:
+            value = value.replace(",", "")
+            if not value.isdigit():
+                raise ValueError(f"{col} must be a whole number")
+        row[col] = value
+    if name == "posts":
+        rows.sort(key=lambda r: (r["Date"], r["ID"]))
+    write_sheet(name, fields, rows)
+    return row
+
+
+def metrics() -> dict:
+    sheets = {name: read_sheet(name)[1] for name in SHEETS}
+    touches = []
+    if followups.TOUCHES.exists():
+        with open(followups.TOUCHES, newline="", encoding="utf-8") as f:
+            touches = list(csv.DictReader(f))
+    prospects = [row for name in followups.FILES for row in followups.load(name)[1]]
+    return {"today": dt.date.today().isoformat(), **sheets, "touches": touches,
+            "steps": [followups.step_key(r["Step"]) for r in prospects]}
 
 
 def snapshot() -> dict:
@@ -35,6 +94,7 @@ def snapshot() -> dict:
         "lists": lists,
         "steps": followups.STEPS,
         "editable": sorted(followups.EDITABLE),
+        "kinds": followups.KINDS,
         "followups": files[-5:],
     }
 
@@ -55,6 +115,8 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, PAGE.read_bytes(), "text/html; charset=utf-8")
         elif self.path == "/api/prospects":
             self._json(200, snapshot())
+        elif self.path == "/api/metrics":
+            self._json(200, metrics())
         elif self.path.startswith("/followups/"):
             name = Path(self.path).name
             target = FOLLOWUPS / name
@@ -69,6 +131,13 @@ class Handler(BaseHTTPRequestHandler):
         try:
             length = int(self.headers.get("Content-Length") or 0)
             body = json.loads(self.rfile.read(length) or b"{}")
+            if self.path.startswith("/api/metrics/"):
+                sheet = self.path.rsplit("/", 1)[1]
+                if sheet not in SHEETS:
+                    raise KeyError(f"Unknown sheet {sheet}")
+                row = update_sheet(sheet, str(body["key"]), body.get("changes", {}), bool(body.get("add")))
+                self._json(200, {"row": row})
+                return
             name, number = body["list"], str(body["number"])
             if name not in followups.FILES:
                 raise KeyError(f"Unknown list {name}")

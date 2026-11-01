@@ -21,6 +21,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 FILES = {"austin": HERE / "austin-prospects.csv", "texas": HERE / "texas-prospects.csv"}
+# Every touch and step change, oldest first, for the outreach metrics.
+TOUCHES = HERE / "touches.csv"
+KINDS = ["email", "call", "visit", "mail", "dm", "demo", "proposal", "reply"]
 
 STEPS = {
     "0": "Confirm",
@@ -173,16 +176,28 @@ def cmd_due(args) -> None:
               f"{row['Priority']} | {row['Next action']} | {contact} |")
 
 
+def log_touch(name: str, row: dict, kind: str, day: dt.date, note: str = "") -> None:
+    """Appends one line to the touch log."""
+    with open(TOUCHES, "a", newline="", encoding="utf-8") as f:
+        csv.writer(f, lineterminator="\n").writerow([day.isoformat(), name, row["#"], row["Shop"], kind, row["Step"], note])
+
+
 def record_touch(name: str, number: str, kind: str, day: dt.date, note: str = "") -> dict:
-    """Records a touch at the store's current step and schedules the next one."""
+    """Records a touch at the store's current step and schedules the next one.
+
+    A reply is logged but leaves the cadence alone: what the store said decides
+    the next step, so move it with move_step.
+    """
     fields, rows = load(name)
     row = find(rows, number)
     row["Last touch"], row["Last touch type"] = day.isoformat(), kind
-    row["Touches"] = str(int(row.get("Touches") or 0) + 1)
     if note:
         row["Notes"] = f"{day.isoformat()}: {note}. {row['Notes']}".strip()
-    plan_next(row, day, name == "austin")
+    if kind != "reply":
+        row["Touches"] = str(int(row.get("Touches") or 0) + 1)
+        plan_next(row, day, name == "austin")
     save(name, fields, rows)
+    log_touch(name, row, kind, day, note)
     return row
 
 
@@ -194,6 +209,7 @@ def move_step(name: str, number: str, step: str, day: dt.date) -> dict:
     row["Step"], row["Touches"] = step_label(key), "0"
     plan_next(row, day, name == "austin")
     save(name, fields, rows)
+    log_touch(name, row, "step", day)
     return row
 
 
@@ -233,7 +249,7 @@ def main() -> None:
     touch = sub.add_parser("touch")
     touch.add_argument("list", choices=FILES)
     touch.add_argument("number")
-    touch.add_argument("kind", choices=["email", "call", "visit", "mail", "dm", "demo", "proposal"])
+    touch.add_argument("kind", choices=KINDS)
     touch.add_argument("--date", default=today)
     touch.add_argument("--note")
     touch.set_defaults(run=cmd_touch)

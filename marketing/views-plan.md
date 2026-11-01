@@ -27,16 +27,36 @@ realistic month at target looks more like this:
 So the job of six a day is to find the five breakouts a month, then put
 paid spend and re-cuts behind them (see `paid-instagram.md`).
 
-## Likely ramp
+## Six-month ramp
 
-A new account rarely starts at 2 million. This is a planning assumption,
-not a forecast; Insights replaces it after the first month.
+2,000,000 a month stays the long-term goal. The owner set a nearer one on
+November 1: 500,000 a month within six months, by April 2027. The monthly
+goals below build to it, and the dashboard's Marketing tab tracks each
+month against them (`metrics/goals.csv`). At the same pace, about 1.4 times
+a month, 2,000,000 arrives around August 2027; that is a projection, not a
+commitment, and Insights replaces it as the months come in.
 
-| Month | Target views | Per day | Per week |
-|---|---|---|---|
-| 1 | 400,000 | 13,300 | 93,300 |
-| 2 | 1,000,000 | 33,300 | 233,300 |
-| 3 onward | 2,000,000 | 66,700 | 466,700 |
+| Month | Views | Reels posted | Views per Reel | Breakout Reels (10,000+) | Website visits from Instagram |
+|---|---|---|---|---|---|
+| November 2026 | 60,000 | 90 (3 a day) | 667 | 1 | 180 |
+| December 2026 | 100,000 | 120 (4 a day) | 833 | 2 | 300 |
+| January 2027 | 160,000 | 180 (6 a day) | 889 | 3 | 480 |
+| February 2027 | 250,000 | 180 | 1,389 | 5 | 750 |
+| March 2027 | 360,000 | 180 | 2,000 | 7 | 1,080 |
+| April 2027 | 500,000 | 180 | 2,778 | 10 | 1,500 |
+
+The steps that move views, in order of weight:
+
+- **Volume first.** Three Reels a day in November, four in December, six from
+  January. Generation is paused, so the free slots (re-cuts, phone POV,
+  site recordings, licensed stock) carry November.
+- **Breakouts carry the month.** By April, ten Reels a month past 10,000
+  views make about half the total. Every winner gets three re-cuts the next
+  week and goes into the paid plan (see How to sample).
+- **Lift the typical Reel.** Views per Reel roughly quadruple over the six
+  months through hook tests: one variable at a time, same footage.
+- **Turn views into visits.** About 0.3% of views should reach the site; the
+  bio link carries `?utm_source=instagram` so they are counted.
 
 ## The six daily slots
 
@@ -113,5 +133,5 @@ fits.
   to the best-performing format.
 - **Hooks**: test one variable at a time. Same footage, different first
   line, is the cleanest test.
-- **Monthly check**: compare views against the ramp table above and move the
-  following month's target if needed.
+- **Monthly check**: compare views against the six-month ramp in the
+  dashboard's Marketing tab and move the following month's goal if needed.

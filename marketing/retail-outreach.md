@@ -481,6 +481,26 @@ Add one line, after "nothing goes on display", where it fits:
 > each reference and would like to show you a sample next time I am in
 > [area]. Would [day] work?
 
+## Six-month outreach goals
+
+The quarter's goal stays four stores by January 24. The plan then carries on
+to April 2027, when Instagram should reach 500,000 views a month (see
+`views-plan.md`). The dashboard's Marketing tab tracks each month against
+these (`metrics/goals.csv`).
+
+| Month | Emails | Calls | Store visits | Demos | Proposals | Stores in conversation or further | Stores signed |
+|---|---|---|---|---|---|---|---|
+| November 2026 | 40 | 40 | 24 | 6 | 4 | 8 | 1 |
+| December 2026 | 20 | 20 | 12 | 3 | 2 | 10 | 2 |
+| January 2027 | 40 | 40 | 24 | 6 | 4 | 14 | 4 |
+| February 2027 | 50 | 40 | 24 | 6 | 4 | 18 | 6 |
+| March 2027 | 50 | 40 | 24 | 6 | 4 | 22 | 8 |
+| April 2027 | 50 | 40 | 24 | 6 | 4 | 26 | 10 |
+
+Store visits run at six a week on the Wednesday and Friday evenings and
+Saturdays, half that over the holidays. The last two columns count stores at
+that step or further at month end, and they are cumulative.
+
 ## Tracking
 
 One row per shop in `austin-prospects.csv` and `texas-prospects.csv`. Each
