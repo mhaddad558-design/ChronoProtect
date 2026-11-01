@@ -390,7 +390,7 @@ The HTML version, with the crest, the kit and the dealer card, is
 > it on one of your display pieces, so your team can see the whole process.
 > Which day suits you?
 >
-> [your name]
+> Mark
 > chronoprotect.store
 
 **Template 1R: first email to a Rolex store**
@@ -437,9 +437,9 @@ phone call that found the right name. The HTML version is
 >
 > Thank you for your time.
 >
-> [your name]
+> Mark
 > ChronoProtect+, Austin
-> [phone], store@chronoprotect.co
+> 512-831-1410, store@chronoprotect.co
 > chronoprotect.store
 >
 > ChronoProtect+ is not affiliated with, endorsed by, or sponsored by Rolex
