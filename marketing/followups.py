@@ -133,13 +133,13 @@ def plan_next(row: dict, today: dt.date, in_austin: bool) -> None:
 
 
 def load(name: str):
-    with open(FILES[name], newline="") as f:
+    with open(FILES[name], newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         return reader.fieldnames, list(reader)
 
 
 def save(name: str, fields, rows) -> None:
-    with open(FILES[name], "w", newline="") as f:
+    with open(FILES[name], "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
