@@ -6,7 +6,7 @@ there, or here, and commit after.
 
 | File | What it holds | Who fills it |
 |---|---|---|
-| `weekly.csv` | Account totals per week, Monday's date first | You, once a week |
+| `weekly.csv` | Account totals per week, Monday's date first | You for Instagram and orders; the website columns fill themselves from Vercel |
 | `posts.csv` | One row per post, seeded from the schedule log | You, for the posts worth comparing |
 | `goals.csv` | The six-month goals, November 2026 to April 2027 | Set; change only on purpose |
 | `../touches.csv` | Every email, call, visit, reply and step change | Automatic, from the dashboard and the follow-up task |
@@ -23,15 +23,16 @@ From Instagram Insights (professional dashboard, last 7 days):
 - **Profile visits** and **Link clicks** (external link taps).
 - **Followers**: the total at the end of the week.
 
-From Vercel Analytics (chronoprotect.store, last 7 days):
+From Vercel Analytics, nothing to do: the Monday run of the "Store follow-ups"
+scheduled task reads it through the Vercel connector and fills **Website
+visitors**, **From Instagram** (the instagram.com and l.instagram.com
+referrers) and **Search and direct** (everything else). Vercel's Hobby plan
+keeps only 31 days of analytics, which is why the task pulls every week.
 
-- **Website visitors**: Visitors.
-- **From Instagram**: the instagram.com and l.instagram.com referrers. The bio
-  link should end in `?utm_source=instagram` so it is counted even when the
-  referrer is lost.
-- **From outreach email**: `utm_source=outreach`. The email buttons carry it.
-- **From dealer card**: `utm_source=dealer-card`. The card's QR code carries it.
-- **Search and direct**: everything else.
+**From outreach email** and **From dealer card** stay blank for now: Vercel
+reports visits by UTM source only on its Enterprise plan or with the Web
+Analytics Plus add-on. Without paying, they can be counted by page instead,
+if the email button and the card's QR code each land on a page of their own.
 
 From Shopify: **Orders** placed that week.
 
