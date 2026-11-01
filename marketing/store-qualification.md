@@ -116,8 +116,8 @@ Saturday rounds. With Gmail connected, it:
    the draft links.
 
 Nothing is ever sent automatically: you open each draft, read it and send
-it. Drafts come from the Gmail account you connected, so a reply comes back
-there rather than to store@chronoprotect.co.
+it. Drafts are in store@chronoprotect.co, the connected Gmail account, so
+replies come back there.
 
 **Telling it what happened.** Calls and visits need one line: "Korman, met
 Kat, wants a demo next week". The tracker is updated with the touch, the
