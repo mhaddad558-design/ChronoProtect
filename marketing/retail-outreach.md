@@ -17,16 +17,16 @@ each address by phone before going; the listings disagree.
 
 | Date | Store | Address (Rolex's listing) | Notes |
 |---|---|---|---|
-| Tue, Nov 3, 10:30 | Zadok Jewelers | 11501 Century Oak Terrace, Suite 141 (the Domain) | (512) 522-2934 |
-| Wed, Nov 4, 10:30 | Korman Fine Jewelry | 2901 North Lamar Boulevard | Also Rolex Certified Pre-Owned; older listings give 5011 Burnet Rd |
+| Wed, Nov 4, 5:30 pm | Zadok Jewelers | 11501 Century Oak Terrace, Suite 141 (the Domain) | (512) 522-2934. Open to 7 midweek, 8 on Fridays, 12 to 6 on Sundays; fallback Fri Nov 6 evening or Sun Nov 8 |
+| Fri, Nov 6, 5:00 pm | Korman Fine Jewelry | 2901 North Lamar Boulevard | Closes at 6, so arrive at 5. Also Rolex Certified Pre-Owned; older listings give 5011 Burnet Rd. Fallback Sat Nov 7 at 10 |
 
 Authorized dealers usually cannot put a third-party accessory on the
 counter, so pitch the add-on with nothing on display: a few kits kept out
 of sight, offered with the watch, fitted by appointment. Ask whether their
 agreement allows the team to fit film on a watch they have sold; if it does
 not, fall back to the card in the box. Korman's certified pre-owned counter
-is the stronger fit, since a pre-owned buyer wears the watch home that day. Both may still
-say no for reasons of their own; the rest of the plan does not depend on
+is the stronger fit, since a pre-owned buyer wears the watch home that
+day. Both may still say no for reasons of their own; the rest of the plan does not depend on
 them.
 
 From week 3, the visits move to Austin's pre-owned Rolex dealers (Bernard
@@ -165,9 +165,41 @@ planning assumptions; replace them with your own numbers after week 4.
 
 ## Week by week
 
-Visit days are Tuesday to Thursday, 10:00 to 11:30 am or 2:00 to 4:00 pm.
-Avoid Saturdays, the busiest retail day, and Mondays, when many jewelers
-close. Group visits by area so one day covers four to six shops.
+Visits are on Wednesday and Friday evenings after 5 pm, at stores still open
+then, and on weekends, as the owner set on November 1. They are on Google
+Calendar.
+
+- **Wednesday and Friday, 5:00 to 7:00 pm.** Most independent stores close
+  at 6, so arrive at 5:00 and plan one or two stores per evening, grouped
+  by area. Zadok at the Domain stays open later. Stores that work by
+  appointment get a 5:00 booking.
+- **Saturday, from opening (10:00).** The stores' busiest day: arrive at
+  opening, keep visits short, and step back when a customer is buying. Three
+  to four stores per Saturday. No Austin Saturday on the city-trip weekends.
+- **Sunday.** Almost every Austin watch store is closed. Only Zadok (12 to
+  6) and the Domain's brand boutiques open, so Sunday is for a Zadok return
+  visit, follow-up emails and the tracker.
+
+That gives six to eight visits a week rather than ten, so the visit targets
+below are lower and email and mail carry a little more. Hours below come
+from directories and listings, which disagree; call before every visit.
+
+| Store | Weekday close | Saturday | Sunday | Best slot |
+|---|---|---|---|---|
+| Zadok Jewelers (Rolex) | 7 pm, Fri 8 pm (some listings 6, 7) | 10 to 8 | 12 to 6 | Any evening, Sunday |
+| Korman Fine Jewelry (Rolex) | 6 pm | 10 to 5 | Closed | Evening at 5, Saturday |
+| ATX Watches | 6 pm | Not confirmed | Not confirmed | Evening at 5 |
+| DJP Jewelers & Luxury Buyers | 6 pm | Closed | Closed | Evening only |
+| Regard Jewelry | 6 pm, closed Mondays | Not found | Not found | Evening at 5 |
+| Diamonds Above | Tue to Fri, by appointment | Closed | Closed | Evening appointment |
+| Bernard Watch Co. | By appointment | By appointment | By appointment | Appointment |
+| Hilderbrand Jewelers | 6 pm | 10 to 6 | Closed | Evening at 5, Saturday |
+| Benold's Jewelers | 5 or 6 pm | 10 or 11 to 5 | Closed | Saturday |
+| Time Masters | 5 pm, Tue to Fri from noon | 10 to 5 | Closed | Saturday |
+| Copeland Jewelers | 5 pm | Not found | Not found | Saturday, call first |
+| Martinez & Hood | Varies | Varies | Varies | Call first |
+| Rees Watch Repair | Not found | Not found | Not found | Call first |
+| Twelve Tables Jewelers | Not found | Not found | Not found | Call first |
 
 ### Phase 1: groundwork. October 26 to November 8
 
@@ -187,24 +219,29 @@ close. Group visits by area so one day covers four to six shops.
 - Mailer batch 1: 10 tier A shops you cannot reach easily in person: a
   letter, five dealer cards and a handwritten note naming a watch in their
   current listings.
-- Visits: the two Rolex stores, Zadok on Tuesday and Korman on Wednesday
-  (see Austin, above).
+- Visits: the two Rolex stores, Zadok on Wednesday evening and Korman on
+  Friday evening, with Saturday morning as Korman's fallback (see Austin,
+  above).
 - Target: 10 first contacts.
 
 ### Phase 2: visits and demos. November 9 to 25
 
 **Week 3, November 9 to 15: tier A visits**
 
-- Visits: 10 tier A shops, including everyone who opened or answered the
-  email.
+- Visits: 7 tier A shops, including everyone who opened or answered the
+  email. Wednesday and Friday evenings for the stores open past 5 (ATX
+  Watches, Regard, DJP, Hilderbrand, and Diamonds Above and Bernard by
+  appointment); Saturday for Hilderbrand, Benold's, Time Masters and the
+  service shops.
 - Sample kits arrive this month: bring them from the first day they are in
   hand.
 - Follow-up email (template 2) to every visit within 24 hours.
-- Target: 8 conversations, 3 demos.
+- Target: 6 conversations, 3 demos.
 
 **Week 4, November 16 to 22: demos and first proposals**
 
-- Visits: 8 return visits for demos, and the shops marked "visit wk4".
+- Visits: 6 return visits for demos on Wednesday and Friday evenings, and
+  the shops marked "visit wk4". Saturday is the San Antonio trip.
 - Proposals: put a level and terms in front of the 3 warmest shops.
 - Holiday angle for every pitch: "December is when pre-owned watches are
   bought as gifts. Sell the kit with the gift and put the fitting card in
@@ -213,8 +250,9 @@ close. Group visits by area so one day covers four to six shops.
 
 **Week 5, November 23 to 25: close store 1**
 
-- Monday and Tuesday only. Thanksgiving is Thursday, November 26, and shops
-  are busy from Black Friday on.
+- Wednesday evening only, and call first: it is the eve of Thanksgiving.
+  No Friday or Saturday visits, since Black Friday and Small Business
+  Saturday are the busiest days of the year.
 - Phone the 3 proposals. Sign the first shop, even at order-and-fit or card-partner level.
 - **Milestone: store 1 signed by Wednesday, November 25.**
 
@@ -229,8 +267,9 @@ work.
   (what each kit covers, how to find a reference, the fitting steps), how
   to offer the add-on at the sale and book the fitting, and fitting cards
   for its boxes.
-- Visits: 6 short drop-ins to warm prospects, 10 minutes each. Leave cards
-  and a sample to try.
+- Visits: 6 short drop-ins to warm prospects, 10 minutes each, on the
+  Wednesday and Friday evenings and at Saturday opening. Many stores keep
+  longer hours in December. Leave cards and a sample to try.
 - Email batch 2: the tier B and C shops.
 
 **Week 7, December 7 to 13: close store 2**
@@ -259,19 +298,21 @@ January is when owners plan the year and have time to talk.
 **Week 11, January 4 to 10: re-engage**
 
 - New-year email (template 3) to every "maybe" and "after the holidays."
-- Visits: 10, starting with the shops that asked you to come back in
-  January.
+- Visits: 6 on Wednesday and Friday evenings, starting with the shops that
+  asked you to come back in January. Saturday is the Houston trip.
 - Show stores 1 and 2's first sales (counts, not names) as proof.
 
 **Week 12, January 11 to 17: close store 3**
 
-- Proposals to every shop that has seen a demo and not said no.
+- Proposals to every shop that has seen a demo and not said no, on
+  Wednesday and Friday evenings. Saturday is the Dallas-Fort Worth trip.
 - **Milestone: store 3 signed by Friday, January 15.**
 - Onboard stores 2 and 3 if not done.
 
 **Week 13, January 18 to 24: close store 4 and review**
 
-- Final calls and visits on open proposals.
+- Final calls and visits on open proposals: Wednesday and Friday evenings,
+  and Saturday, January 23, from opening.
 - **Milestone: store 4 signed by Sunday, January 24.**
 - Review the quarter: sales per store and per level, and which shops to add
   next quarter.
@@ -413,7 +454,7 @@ Add one line, after "nothing goes on display", where it fits:
   in all [number] of your stores, with more margin on every Datejust,
   Submariner, GMT-Master II and Daytona each one sells. I would train a
   fitter at each."
-- **Zadok:** "We are visiting your Austin store on November 3, and the same
+- **Zadok:** "We are visiting your Austin store on November 4, and the same
   setup would work in Houston."
 
 **Template 2: after a visit**

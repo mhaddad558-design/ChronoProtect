@@ -21,8 +21,8 @@ one reads as spam.
 
 | # | Shop | Area | Address | Owner or manager | Phone, email | First touch |
 |---|---|---|---|---|---|---|
-| 1 | Zadok Jewelers | North (the Domain) | 11501 Century Oak Terrace, Suite 141 | Zadok family (Houston); Betty Guerra, director of operations, Austin (named Sept 2024) | (512) 522-2934 | Visit Tue Nov 3 |
-| 2 | Korman Fine Jewelry | Central (N Lamar) | 2901 N Lamar Blvd (older listings: 5011 Burnet Rd) | Kat and Larry Stokes, owners since 2018 | Ask in store | Visit Wed Nov 4 |
+| 1 | Zadok Jewelers | North (the Domain) | 11501 Century Oak Terrace, Suite 141 | Zadok family (Houston); Betty Guerra, director of operations, Austin (named Sept 2024) | (512) 522-2934 | Visit Wed Nov 4, 5:30 pm |
+| 2 | Korman Fine Jewelry | Central (N Lamar) | 2901 N Lamar Blvd (older listings: 5011 Burnet Rd) | Kat and Larry Stokes, owners since 2018 | Ask in store | Visit Fri Nov 6, 5:00 pm |
 
 ## Tier A: pre-owned Rolex dealers and Rolex service
 
