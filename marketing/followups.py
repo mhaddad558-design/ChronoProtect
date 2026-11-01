@@ -149,7 +149,7 @@ def find(rows, number: str) -> dict:
     for row in rows:
         if row["#"] == number:
             return row
-    raise SystemExit(f"No store #{number}")
+    raise KeyError(f"No store #{number}")
 
 
 def cmd_due(args) -> None:
@@ -173,27 +173,51 @@ def cmd_due(args) -> None:
               f"{row['Priority']} | {row['Next action']} | {contact} |")
 
 
-def cmd_touch(args) -> None:
-    fields, rows = load(args.list)
-    row = find(rows, args.number)
-    today = dt.date.fromisoformat(args.date)
-    row["Last touch"], row["Last touch type"] = today.isoformat(), args.kind
+def record_touch(name: str, number: str, kind: str, day: dt.date, note: str = "") -> dict:
+    """Records a touch at the store's current step and schedules the next one."""
+    fields, rows = load(name)
+    row = find(rows, number)
+    row["Last touch"], row["Last touch type"] = day.isoformat(), kind
     row["Touches"] = str(int(row.get("Touches") or 0) + 1)
-    if args.note:
-        row["Notes"] = f"{today.isoformat()}: {args.note}. {row['Notes']}".strip()
-    plan_next(row, today, args.list == "austin")
-    save(args.list, fields, rows)
+    if note:
+        row["Notes"] = f"{day.isoformat()}: {note}. {row['Notes']}".strip()
+    plan_next(row, day, name == "austin")
+    save(name, fields, rows)
+    return row
+
+
+def move_step(name: str, number: str, step: str, day: dt.date) -> dict:
+    """Moves a store to a new step and schedules that step's first action."""
+    fields, rows = load(name)
+    row = find(rows, number)
+    key = step_key(step)
+    row["Step"], row["Touches"] = step_label(key), "0"
+    plan_next(row, day, name == "austin")
+    save(name, fields, rows)
+    return row
+
+
+EDITABLE = {"Decision maker", "Phone", "Email", "Instagram", "Notes", "Level and code", "Next touch", "Next action"}
+
+
+def update_fields(name: str, number: str, changes: dict) -> dict:
+    """Edits the contact and note fields of one store."""
+    fields, rows = load(name)
+    row = find(rows, number)
+    for key, value in changes.items():
+        if key in EDITABLE:
+            row[key] = str(value).strip()
+    save(name, fields, rows)
+    return row
+
+
+def cmd_touch(args) -> None:
+    row = record_touch(args.list, args.number, args.kind, dt.date.fromisoformat(args.date), args.note or "")
     print(f"{row['Shop']}: next {row['Next touch']}, {row['Next action']}")
 
 
 def cmd_step(args) -> None:
-    fields, rows = load(args.list)
-    row = find(rows, args.number)
-    today = dt.date.fromisoformat(args.date)
-    key = step_key(args.step)
-    row["Step"], row["Touches"] = step_label(key), "0"
-    plan_next(row, today, args.list == "austin")
-    save(args.list, fields, rows)
+    row = move_step(args.list, args.number, args.step, dt.date.fromisoformat(args.date))
     print(f"{row['Shop']}: {row['Step']}, next {row['Next touch']}, {row['Next action']}")
 
 

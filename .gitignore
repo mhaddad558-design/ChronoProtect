@@ -23,3 +23,4 @@ media-inbox/
 
 # Brand assets cut for Shopify; not part of the site
 exports/
+__pycache__/

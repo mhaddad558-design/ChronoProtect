@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChronoProtect+ prospects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400&family=Red+Hat+Text:wght@400;500&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0B110D;
+    --bg-mid: #141F19;
+    --bg-panel: #182821;
+    --bronze: #BC906C;
+    --sage: #7A9483;
+    --ink: #FFFFFF;
+    --soft: #BDC0BF;
+    --faint: #858A87;
+    --border: rgba(188, 144, 108, 0.22);
+    --hair: rgba(255, 255, 255, 0.07);
+    --late: #D98C6C;
+    --display: "Red Hat Display", Helvetica, Arial, sans-serif;
+    --text: "Red Hat Text", Helvetica, Arial, sans-serif;
+    --mono: "DM Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg-deep); color: var(--soft); font: 400 14px/1.5 var(--text); }
+  a { color: var(--bronze); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  button, input, select, textarea { font: inherit; color: var(--ink); }
+  .shell { max-width: 1400px; margin: 0 auto; padding: 0 16px; }
+
+  header { border-bottom: 1px solid var(--border); }
+  header .shell { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; padding-block: 22px 18px; }
+  h1 { margin: 0; font: 300 26px/1.2 var(--display); color: var(--ink); letter-spacing: -0.01em; }
+  .meta { color: var(--faint); font-size: 13px; }
+  .meta a { margin-left: 10px; }
+
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 24px 0 16px; }
+  .tile { background: var(--bg-mid); border: 1px solid var(--hair); border-radius: 6px; padding: 14px 16px; }
+  .tile b { display: block; font: 300 30px/1.1 var(--display); color: var(--ink); }
+  .tile span { color: var(--faint); font-size: 13px; }
+  .tile.alert b { color: var(--bronze); }
+
+  .funnel { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .funnel button { display: flex; align-items: baseline; gap: 8px; background: var(--bg-mid); border: 1px solid var(--hair); border-radius: 999px; padding: 6px 12px; cursor: pointer; color: var(--soft); }
+  .funnel button b { font-weight: 500; color: var(--ink); }
+  .funnel button[aria-pressed="true"] { border-color: var(--bronze); color: var(--ink); }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+  .filters input[type="search"] { flex: 1 1 220px; }
+  input, select, textarea { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 4px; padding: 8px 10px; }
+  input:focus, select:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--bronze); outline-offset: 1px; }
+  label.check { display: flex; align-items: center; gap: 6px; color: var(--soft); }
+  .count { color: var(--faint); font-size: 13px; margin-left: auto; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--hair); border-radius: 6px; margin-bottom: 40px; }
+  table { width: 100%; border-collapse: collapse; min-width: 980px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  th { position: sticky; top: 0; background: var(--bg-mid); color: var(--faint); font-weight: 500; font-size: 12px; cursor: pointer; white-space: nowrap; }
+  th[aria-sort] { color: var(--ink); }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover, tbody tr.active { background: var(--bg-mid); }
+  td.shop { color: var(--ink); }
+  td .sub { display: block; color: var(--faint); font-size: 12px; }
+  .pill { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 1px 9px; font-size: 12px; white-space: nowrap; color: var(--soft); }
+  .pill.s0 { border-color: var(--hair); color: var(--faint); }
+  .pill.s3, .pill.s4, .pill.s5, .pill.s6 { border-color: var(--sage); color: var(--ink); }
+  .pill.s7, .pill.s8 { background: var(--bronze); border-color: var(--bronze); color: var(--bg-deep); }
+  .pill.sout { border-style: dashed; color: var(--faint); }
+  .prio { font-family: var(--mono); color: var(--ink); }
+  .due { font-family: var(--mono); white-space: nowrap; }
+  .due.late { color: var(--late); }
+  .due.today { color: var(--bronze); }
+  .empty { padding: 40px; text-align: center; color: var(--faint); }
+
+  aside { position: fixed; inset: 0 0 0 auto; width: min(520px, 100%); background: var(--bg-mid); border-left: 1px solid var(--border); overflow-y: auto; transform: translateX(100%); transition: transform 0.2s ease; z-index: 10; }
+  aside.open { transform: none; }
+  aside .inner { padding: 22px 22px 40px; }
+  aside h2 { margin: 0 0 6px; font: 300 24px/1.2 var(--display); color: var(--ink); }
+  aside h3 { margin: 26px 0 10px; font: 400 15px/1.3 var(--display); color: var(--ink); }
+  .close { float: right; background: none; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; cursor: pointer; color: var(--soft); }
+  .quick { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  .btn { background: var(--bronze); color: var(--bg-deep); border: 0; border-radius: 4px; padding: 8px 14px; font-weight: 500; cursor: pointer; }
+  .btn.ghost { background: none; color: var(--bronze); border: 1px solid var(--border); }
+  .btn:disabled { opacity: 0.5; cursor: default; }
+  dl { display: grid; grid-template-columns: 130px 1fr; gap: 8px 14px; margin: 0; }
+  dt { color: var(--faint); font-size: 13px; }
+  dd { margin: 0; color: var(--soft); word-break: break-word; }
+  .form { display: grid; gap: 10px; }
+  .form label { display: grid; gap: 4px; font-size: 13px; color: var(--faint); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .row > * { flex: 1 1 140px; }
+  textarea { min-height: 70px; resize: vertical; }
+  .next { background: var(--bg-panel); border: 1px solid var(--hair); border-radius: 6px; padding: 12px 14px; margin-top: 12px; }
+  .next b { color: var(--ink); font-weight: 500; }
+  .toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--bg-panel); border: 1px solid var(--bronze); color: var(--ink); padding: 10px 16px; border-radius: 6px; opacity: 0; transition: opacity 0.2s; z-index: 20; pointer-events: none; }
+  .toast.show { opacity: 1; }
+  @media (max-width: 600px) { dl { grid-template-columns: 1fr; gap: 2px; } dd { margin-bottom: 8px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="shell">
+    <h1>ChronoProtect+ prospects</h1>
+    <div class="meta"><span id="today"></span><span id="files"></span></div>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="summary" id="summary" aria-label="Summary"></section>
+  <nav class="funnel" id="funnel" aria-label="Filter by step"></nav>
+
+  <section class="filters" aria-label="Filters">
+    <input type="search" id="q" placeholder="Search store, person, city, notes" aria-label="Search">
+    <select id="list" aria-label="List"><option value="">Both lists</option><option value="austin">Austin</option><option value="texas">Texas cities</option></select>
+    <select id="city" aria-label="City"><option value="">Every city</option></select>
+    <select id="tier" aria-label="Tier"><option value="">Every tier</option></select>
+    <label class="check"><input type="checkbox" id="dueOnly"> Due or overdue</label>
+    <label class="check"><input type="checkbox" id="hideOut" checked> Hide out</label>
+    <span class="count" id="count"></span>
+  </section>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-sort="shop">Store</th>
+          <th data-sort="city">City</th>
+          <th data-sort="tier">Tier</th>
+          <th data-sort="step">Step</th>
+          <th data-sort="priority">Priority</th>
+          <th data-sort="next">Next touch</th>
+          <th>Next action</th>
+          <th data-sort="person">Decision maker</th>
+          <th>Contact</th>
+          <th data-sort="last">Last touch</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</main>
+
+<aside id="panel" aria-label="Store details" aria-hidden="true"><div class="inner" id="panelInner"></div></aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const state = { data: null, sort: { key: "next", dir: 1 }, step: "", selected: null };
+const $ = (id) => document.getElementById(id);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const stepKey = (s) => (s || "0").split(" ")[0].toLowerCase();
+const STEP_ORDER = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "out"];
+const KINDS = ["call", "email", "visit", "mail", "dm", "demo", "proposal"];
+
+function toast(text) {
+  const t = $("toast"); t.textContent = text; t.classList.add("show");
+  clearTimeout(toast.timer); toast.timer = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+async function load() {
+  const res = await fetch("/api/prospects");
+  state.data = await res.json();
+  $("today").textContent = "Today, " + new Date(state.data.today + "T12:00").toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+  $("files").innerHTML = state.data.followups.length
+    ? ", follow-ups:" + state.data.followups.map((f) => ` <a href="/followups/${esc(f)}" target="_blank">${esc(f.replace(".md", ""))}</a>`).join("")
+    : "";
+  const all = rows();
+  fillSelect("city", [...new Set(all.map((r) => r.city))].sort());
+  fillSelect("tier", [...new Set(all.map((r) => r.Tier).filter(Boolean))].sort());
+  render();
+  if (state.selected) openPanel(state.selected.list, state.selected.number);
+}
+
+function fillSelect(id, values) {
+  const el = $(id), keep = el.value, first = el.options[0].outerHTML;
+  el.innerHTML = first + values.map((v) => `<option>${esc(v)}</option>`).join("");
+  el.value = keep;
+}
+
+function rows() {
+  const out = [];
+  for (const [list, { rows }] of Object.entries(state.data.lists)) {
+    for (const r of rows) out.push({ ...r, list, city: r.City || "Austin" });
+  }
+  return out;
+}
+
+function dueClass(r) {
+  if (!r["Next touch"]) return "";
+  if (r["Next touch"] < state.data.today) return "late";
+  if (r["Next touch"] === state.data.today) return "today";
+  return "";
+}
+
+function filtered() {
+  const q = $("q").value.trim().toLowerCase();
+  const list = $("list").value, city = $("city").value, tier = $("tier").value;
+  return rows().filter((r) => {
+    if (list && r.list !== list) return false;
+    if (city && r.city !== city) return false;
+    if (tier && r.Tier !== tier) return false;
+    if (state.step && stepKey(r.Step) !== state.step) return false;
+    if ($("hideOut").checked && !state.step && stepKey(r.Step) === "out") return false;
+    if ($("dueOnly").checked && !(r["Next touch"] && r["Next touch"] <= state.data.today)) return false;
+    if (q && !Object.values(r).join(" ").toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+
+const SORTS = {
+  shop: (r) => r.Shop.toLowerCase(),
+  city: (r) => r.city + r.Shop,
+  tier: (r) => r.Tier,
+  step: (r) => STEP_ORDER.indexOf(stepKey(r.Step)),
+  priority: (r) => -Number(r.Priority || 0),
+  next: (r) => r["Next touch"] || "9999",
+  person: (r) => r["Decision maker"] || "~",
+  last: (r) => r["Last touch"] || "0000",
+};
+
+function render() {
+  const all = rows();
+  const due = all.filter((r) => r["Next touch"] && r["Next touch"] <= state.data.today).length;
+  const count = (keys) => all.filter((r) => keys.includes(stepKey(r.Step))).length;
+  const week = new Date(state.data.today + "T12:00"); week.setDate(week.getDate() + 7);
+  const weekEnd = week.toISOString().slice(0, 10);
+  const soon = all.filter((r) => r["Next touch"] && r["Next touch"] <= weekEnd).length;
+  $("summary").innerHTML = [
+    ["Prospects", all.length, ""],
+    ["Due or overdue", due, due ? "alert" : ""],
+    ["In conversation", count(["3", "4", "5", "6"]), ""],
+    ["Signed or live", count(["7", "8"]), ""],
+    ["Due in the next 7 days", soon, ""],
+  ].map(([label, n, cls]) => `<div class="tile ${cls}"><b>${n}</b><span>${label}</span></div>`).join("");
+
+  $("funnel").innerHTML = `<button data-step="" aria-pressed="${!state.step}">Every step <b>${all.length}</b></button>` +
+    STEP_ORDER.map((k) => {
+      const n = count([k]);
+      const label = k === "out" ? "Out" : `${k} ${state.data.steps[k]}`;
+      return `<button data-step="${k}" aria-pressed="${state.step === k}">${esc(label)} <b>${n}</b></button>`;
+    }).join("");
+
+  const list = filtered();
+  const key = SORTS[state.sort.key];
+  list.sort((a, b) => {
+    const x = key(a), y = key(b);
+    const primary = x < y ? -1 : x > y ? 1 : 0;
+    return primary * state.sort.dir || Number(b.Priority) - Number(a.Priority);
+  });
+  document.querySelectorAll("th[data-sort]").forEach((th) => {
+    th.toggleAttribute("aria-sort", th.dataset.sort === state.sort.key);
+    if (th.dataset.sort === state.sort.key) th.setAttribute("aria-sort", state.sort.dir > 0 ? "ascending" : "descending");
+  });
+  $("count").textContent = `${list.length} shown`;
+  $("rows").innerHTML = list.length ? list.map((r) => {
+    const k = stepKey(r.Step);
+    const contact = [r.Phone && `<a href="tel:${esc(r.Phone)}" onclick="event.stopPropagation()">${esc(r.Phone)}</a>`, r.Email && `<a href="mailto:${esc(r.Email)}" onclick="event.stopPropagation()">${esc(r.Email)}</a>`].filter(Boolean).join("<br>");
+    const active = state.selected && state.selected.list === r.list && state.selected.number === r["#"] ? "active" : "";
+    return `<tr class="${active}" data-list="${r.list}" data-number="${esc(r["#"])}">
+      <td class="shop">${esc(r.Shop)}<span class="sub">${esc(r.Type)}</span></td>
+      <td>${esc(r.city)}<span class="sub">${esc(r.Area)}</span></td>
+      <td>${esc(r.Tier)}</td>
+      <td><span class="pill s${k}">${esc(r.Step)}</span></td>
+      <td class="prio">${esc(r.Priority)}</td>
+      <td class="due ${dueClass(r)}">${esc(r["Next touch"] || "None")}</td>
+      <td>${esc(r["Next action"])}</td>
+      <td>${esc(r["Decision maker"])}</td>
+      <td>${contact}</td>
+      <td class="due">${esc(r["Last touch"])}<span class="sub">${esc(r["Last touch type"])}</span></td>
+    </tr>`;
+  }).join("") : `<tr><td colspan="10" class="empty">No stores match these filters.</td></tr>`;
+}
+
+function find(list, number) {
+  return state.data.lists[list].rows.find((r) => r["#"] === number);
+}
+
+function openPanel(list, number) {
+  const r = find(list, number);
+  if (!r) return;
+  state.selected = { list, number };
+  const editable = new Set(state.data.editable);
+  const skip = new Set(["#", "Shop", ...editable]);
+  const maps = r.Address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.Shop + " " + r.Address + " " + (r.City || "Austin") + " TX")}` : "";
+  const details = Object.entries(r).filter(([k]) => !skip.has(k)).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v) || "<span style='color:var(--faint)'>Not known</span>"}</dd>`).join("");
+  const field = (name, area) => `<label>${esc(name)}${area ? `<textarea data-field="${esc(name)}">${esc(r[name])}</textarea>` : `<input data-field="${esc(name)}" value="${esc(r[name])}">`}</label>`;
+  $("panelInner").innerHTML = `
+    <button class="close" id="close" aria-label="Close">Close</button>
+    <h2>${esc(r.Shop)}</h2>
+    <span class="pill s${stepKey(r.Step)}">${esc(r.Step)}</span> <span class="prio">Priority ${esc(r.Priority)}</span>
+    <div class="quick">
+      ${r.Phone ? `<a class="btn ghost" href="tel:${esc(r.Phone)}">Call ${esc(r.Phone)}</a>` : ""}
+      ${r.Email ? `<a class="btn ghost" href="mailto:${esc(r.Email)}">Email</a>` : ""}
+      ${maps ? `<a class="btn ghost" href="${maps}" target="_blank" rel="noopener">Map</a>` : ""}
+    </div>
+    <div class="next"><b>Next, ${esc(r["Next touch"] || "no date")}:</b> ${esc(r["Next action"])}</div>
+
+    <h3>Record a touch</h3>
+    <div class="form">
+      <div class="row">
+        <select id="kind" aria-label="Touch type">${KINDS.map((k) => `<option>${k}</option>`).join("")}</select>
+        <input type="date" id="touchDate" value="${state.data.today}" aria-label="Date">
+      </div>
+      <input id="touchNote" placeholder="What happened, in one line" aria-label="Note">
+      <div class="row"><button class="btn" id="saveTouch">Record touch</button></div>
+    </div>
+
+    <h3>Move to a step</h3>
+    <div class="form">
+      <div class="row">
+        <select id="newStep" aria-label="Step">${STEP_ORDER.map((k) => `<option value="${k}" ${k === stepKey(r.Step) ? "selected" : ""}>${k === "out" ? "Out" : k + " " + esc(state.data.steps[k])}</option>`).join("")}</select>
+        <button class="btn" id="saveStep">Move</button>
+      </div>
+    </div>
+
+    <h3>Contact and notes</h3>
+    <div class="form">
+      ${field("Decision maker")}
+      <div class="row">${field("Phone")}${field("Email")}</div>
+      <div class="row">${field("Instagram")}${field("Level and code")}</div>
+      <div class="row">${field("Next touch")}${field("Next action")}</div>
+      ${field("Notes", true)}
+      <div class="row"><button class="btn ghost" id="saveFields">Save changes</button></div>
+    </div>
+
+    <h3>Everything else</h3>
+    <dl>${details}</dl>`;
+  $("panel").classList.add("open");
+  $("panel").setAttribute("aria-hidden", "false");
+  $("close").onclick = closePanel;
+  $("saveTouch").onclick = () => post("/api/touch", { kind: $("kind").value, date: $("touchDate").value, note: $("touchNote").value }, "Touch recorded");
+  $("saveStep").onclick = () => post("/api/step", { step: $("newStep").value }, "Step changed");
+  $("saveFields").onclick = () => {
+    const changes = {};
+    $("panelInner").querySelectorAll("[data-field]").forEach((el) => { changes[el.dataset.field] = el.value; });
+    post("/api/update", { changes }, "Saved");
+  };
+  render();
+}
+
+function closePanel() {
+  state.selected = null;
+  $("panel").classList.remove("open");
+  $("panel").setAttribute("aria-hidden", "true");
+  render();
+}
+
+async function post(path, extra, message) {
+  const { list, number } = state.selected;
+  const res = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ list, number, ...extra }) });
+  const data = await res.json();
+  if (!res.ok) { toast(data.error || "Something went wrong"); return; }
+  toast(`${message}. Next: ${data.row["Next touch"] || "none"}`);
+  await load();
+}
+
+document.addEventListener("click", (e) => {
+  const tr = e.target.closest("tbody tr[data-list]");
+  if (tr) openPanel(tr.dataset.list, tr.dataset.number);
+  const th = e.target.closest("th[data-sort]");
+  if (th) {
+    state.sort = { key: th.dataset.sort, dir: state.sort.key === th.dataset.sort ? -state.sort.dir : 1 };
+    render();
+  }
+  const pill = e.target.closest(".funnel button");
+  if (pill) { state.step = pill.dataset.step; render(); }
+});
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && state.selected) closePanel(); });
+["q", "list", "city", "tier", "dueOnly", "hideOut"].forEach((id) => $(id).addEventListener("input", render));
+load();
+</script>
+</body>
+</html>

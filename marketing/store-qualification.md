@@ -99,6 +99,23 @@ python3 marketing/followups.py step austin 3 3           # move to step 3
 cadence; `step` moves a store and schedules the first action of its new
 step.
 
+**The dashboard.** Every prospect and everything known about it, on your
+own computer:
+
+```
+python3 marketing/dashboard/server.py
+```
+
+Then open http://localhost:8765. It needs only Python 3, which macOS and
+Linux include, and reads and writes the same two CSVs, so a touch recorded
+there is the same as one recorded with the script. It shows the totals and
+what is due, a count per step (click one to filter), search and filters by
+list, city and tier, and a table sorted by next touch or any column. Click
+a store for its full record: call, email and map links, record a touch,
+move it to a step, and edit its contacts and notes. It listens on this
+computer only. Pull the repository before you start and commit after, so
+the scheduled task sees your changes.
+
 **The scheduled task.** "Store follow-ups" runs on Monday, Thursday and
 Saturday at 7:43 am Central, the mornings after the visit evenings and the
 Saturday rounds. With Gmail connected, it:
