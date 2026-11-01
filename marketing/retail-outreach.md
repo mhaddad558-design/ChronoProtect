@@ -483,21 +483,27 @@ Add one line, after "nothing goes on display", where it fits:
 
 ## Tracking
 
-Keep one row per shop. A spreadsheet is enough.
+One row per shop in `austin-prospects.csv` and `texas-prospects.csv`. Each
+shop sits on a qualification step, from 0 Confirm to 8 Live, and the step
+sets its next action and date. The steps, the priority score, the questions
+to ask in store and the follow-up cadence are in `store-qualification.md`.
+The "Store follow-ups" scheduled task drafts what is due on Monday,
+Thursday and Saturday mornings.
 
 | Column | Example |
 |---|---|
 | Shop, area, tier | Smith Jewelers, Midtown, A |
 | Decision maker | Owner, Dana Smith |
 | Contacts | Email, Instagram, phone |
-| Stage | Listed, contacted, conversation, demo, proposal, signed, no |
-| Last touch, next touch | Nov 12 visit, Nov 19 demo |
+| Step, priority | 3 Conversation, 7 |
+| Last touch, type, touches | 2026-11-12, visit, 1 |
+| Next touch, next action | 2026-11-13, template 2 recap and offer a demo |
 | Level and code | Stock and fit; card partner, `SMITH10` |
 | Notes | Asked about two-tone; owner in on Wednesdays |
 
 Every Friday:
 
-- **Stages:** count the shops at each step and compare with the funnel.
+- **Steps:** count the shops at each step and compare with the funnel.
 - **Below target:** if a step is short, send more mail and email the next
   week, not fewer visits.
 
