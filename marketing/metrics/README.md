@@ -29,7 +29,7 @@ scheduled task reads it through the Vercel connector and fills:
 - **Website visitors**: every visitor that week.
 - **From Instagram**: the instagram.com and l.instagram.com referrers.
 - **From outreach email**: visitors to `/partners`, the page the email's
-  "See how it works" button opens.
+  "See what it adds" button opens.
 - **From dealer card**: visitors to `/care`, the page the card's QR code
   opens.
 - **Search and direct**: everything else.
