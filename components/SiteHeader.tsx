@@ -12,6 +12,7 @@ const LINKS = [
   { href: "/shop", label: "Shop all" },
   { href: "/catalog", label: "Fitment" },
   { href: "/installation", label: "Installation" },
+  { href: "/partners", label: "Partners" },
 ];
 
 export default function SiteHeader() {
