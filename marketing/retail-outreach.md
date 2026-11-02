@@ -331,17 +331,17 @@ fitment."
 > Hello, I am [name] from ChronoProtect+. We make protective film cut to
 > each Rolex reference, so it covers the case, bezel and every bracelet
 > link, and comes off clean when the owner wants it gone. It works like PPF
-> on a car: you sell it with the watch, and your fitter puts it on by
-> appointment. It adds margin to every Datejust, Submariner, GMT-Master II
-> and Daytona you sell. Could I show you a sample on one of your pieces? It
-> takes two minutes.
+> on a car: offered with the watch and fitted by appointment. It could add
+> something for your clients, and margin on every Datejust, Submariner,
+> GMT-Master II and Daytona you sell. Could I show you a sample on one of
+> your pieces? It takes two minutes.
 
 **When they say "we do not sell accessories"**
 
-> Then start without a shelf. Sell the add-on with the watch, order the kit
-> cut for that reference, and fit it at the appointment the client books.
-> If fitting is not for you, a card goes in the box and you earn on every
-> order through it.
+> Nothing has to go on a shelf. The kit can be ordered for the watch when it
+> sells, and fitted at an appointment the client books. If fitting is not
+> for you, a card in the box points the client to a fitting, and you earn
+> on every order through it.
 
 **When they ask "does it damage the watch"**
 
@@ -349,103 +349,119 @@ fitment."
 > underneath is the one it had on the day it went on. I can take this one
 > off in front of you.
 
+**Tone for every email and visit.** These stores already have a large
+clientele and run a good business. Offer what the film could add for them
+and their clients; never tell them how to sell, price or run the store.
+
 **Template 1: first email**
 
 The HTML version, with the crest, the kit and the dealer card, is
-`marketing/email/preowned-outreach.html`.
+`marketing/email/preowned-outreach.html`. Its button opens
+chronoprotect.store/partners, which is how visits from the email are
+counted.
 
-> Subject: An add-on at the sale, fitted by appointment
+> Subject: More to offer with every Rolex you sell
 >
 > Hello [name],
 >
 > I run ChronoProtect+, a studio in Austin that cuts protective film to each
-> Rolex reference. We are independent of Rolex, so we work with the stores
-> that sell the watches. ChronoShield+ covers the case, bezel, every
-> bracelet link and the clasp; ChronoGuard+ covers the case and clasp. A
-> trained fitter puts it on in about an hour, and it comes off clean, with
-> no residue.
+> Rolex reference. We are independent of Rolex and work with the stores that
+> sell the watches. ChronoShield+ covers the case, bezel, every bracelet
+> link and the clasp; ChronoGuard+ covers the case and clasp. It goes on in
+> about an hour, by appointment, and comes off clean.
 >
-> I noticed the [reference] in your listings this week. Whoever buys it
-> will wear it home with nothing between the clasp and a desk edge on day
-> one.
+> I noticed the [reference] in your listings this week. Whoever buys it will
+> wear it home, and the clasp meets its first desk edge that same day.
 >
-> Think of it as paint protection film for the watch. Almost no one fits
-> PPF to their own car: the dealer offers it with the car, and a fitter puts
-> it on by appointment. Watch film has mostly stalled because it asked
-> owners to fit it themselves, at the kitchen table. Sold with the watch and
-> fitted by your team, it becomes part of the purchase.
+> Your clients already trust you with the watch. The film is a way to carry
+> that care past the sale, much as a good car dealer offers paint protection
+> film with a new car: fitted by appointment, rather than left for the owner
+> to manage at home.
 >
-> It also adds margin to the Rolex models you sell most. We cut for the
-> Datejust, Submariner, GMT-Master II and Daytona. You buy each kit
-> wholesale, sell it at retail as an add-on, and charge for the fitting.
-> When the market is slow, that lifts the margin on each sale you do make;
-> when it is busy, it adds to every watch that goes out the door.
+> Margin on the Rolex models you already sell. We cut for the Datejust,
+> Submariner, GMT-Master II and Daytona. Kits come to the store wholesale
+> and sell at retail, so each one adds margin to a sale already made, with
+> no new clients to find. It steadies the month when the market is quiet,
+> and adds to every sale when it is busy.
 >
-> The client books the fitting when it suits them: the next day, the next
-> week, or leaving the watch with you for a day or two. I train whoever will
-> do the fitting, on a display piece. For a reference you do not keep, order
-> the kit cut for it before the appointment.
+> What it could bring to your store:
+> - Something more at the sale. A considered extra beyond the box and papers, cut to the exact reference, so the fit is certain before the client commits.
+> - Clients who come back. A fitting appointment brings the client back to the store after the sale, and new film brings them back again in a year or two.
+> - Support from us. I would fit a sample on one of your display pieces and show whoever you choose how it is done. Every piece is pre-cut and numbered, so nothing is trimmed over a client's watch.
 >
-> Kits ship in November. I would be glad to bring a sample on [day] and fit
-> it on one of your display pieces, so your team can see the whole process.
-> Which day suits you?
+> If it sounds right for your clients, I would be glad to bring a sample on
+> [day] and fit it on one of your display pieces, so you can see it for
+> yourself. Kits ship in November.
 >
-> Mark
-> chronoprotect.store
-
-**Template 1R: first email to a Rolex store**
-
-For the official Rolex retailers. It asks for nothing on display: a few
-kits out of sight, offered with the watch and fitted by appointment, because their agreements with Rolex usually rule out third-party
-accessories on the counter. Send from store@chronoprotect.co, after the
-phone call that found the right name. The HTML version is
-`marketing/email/rolex-store-outreach.html`.
-
-> Subject: Film sold at handover, fitted by appointment
+> See what it adds: https://www.chronoprotect.store/partners
 >
-> Hello [name],
->
-> I run ChronoProtect+, a studio in Austin that cuts protective film to each
-> Rolex reference. We are independent of Rolex, so we work with the stores
-> that sell the watches. ChronoShield+ covers the case, bezel, every
-> bracelet link and the clasp; ChronoGuard+ covers the case and clasp. A
-> trained fitter puts it on in about an hour, and it comes off clean, with
-> no residue.
->
-> Many of your clients wear the watch out of the store, and the clasp meets
-> its first desk edge that same day. Think of the film as paint protection
-> film for the watch: almost no one fits PPF to their own car, because the
-> dealer offers it with the car and a fitter puts it on by appointment.
-> Offered at handover and fitted by your team, it becomes part of the
-> service rather than another job for the client.
->
-> It also adds margin to the Rolex models you sell most: the Datejust,
-> Submariner, GMT-Master II and Daytona. You buy each kit wholesale, sell
-> it at retail with the watch, and charge for the fitting. When the
-> market is slow, that lifts the margin on each sale you do make; when it
-> is busy, it adds to every watch that goes out the door.
->
-> [Store] could keep a few kits out of sight for the references you sell
-> most, or order one cut for a client's watch. Nothing goes on display. The
-> client books the fitting when it suits them, or leaves the watch with you
-> for a day or two, and a card in the box carries the reference and the
-> appointment.
->
-> Kits ship in November. I would be glad to bring a sample on [day] and fit
-> it on a display piece with your team, or to post a sample kit and a few
-> cards if that suits you better.
->
-> Thank you for your time.
+> Or reply to this email, and I will call at a time that suits you.
 >
 > Mark
 > ChronoProtect+, Austin
 > 512-831-1410, store@chronoprotect.co
 > chronoprotect.store
 >
-> ChronoProtect+ is not affiliated with, endorsed by, or sponsored by Rolex
-> SA. Reference numbers are used only to describe fitment.
+> ChronoProtect+ is not affiliated with, endorsed by, or sponsored by Rolex SA. Reference numbers are used only to describe fitment.
+> ChronoProtect+, 6401 Rialto Blvd., Austin, Texas 78735
+> If you would rather not hear from us, reply "no thanks" and we will not write again.
 
-Add one line, after "nothing goes on display", where it fits:
+**Template 1R: first email to a Rolex store**
+
+For the official Rolex retailers. It asks for nothing on display: a few
+kits out of sight, offered with the watch and fitted by appointment,
+because their agreements with Rolex usually rule out third-party
+accessories on the counter. Send from store@chronoprotect.co, after the
+phone call that found the right name. The HTML version is
+`marketing/email/rolex-store-outreach.html`.
+
+> Subject: Something more to offer at the handover
+>
+> Hello [name],
+>
+> I run ChronoProtect+, a studio in Austin that cuts protective film to each
+> Rolex reference. We are independent of Rolex and work with the stores that
+> sell the watches. ChronoShield+ covers the case, bezel, every bracelet
+> link and the clasp; ChronoGuard+ covers the case and clasp. It goes on in
+> about an hour, by appointment, and comes off clean.
+>
+> Many of your clients wear the watch out of the store, and the clasp meets
+> its first desk edge that same day.
+>
+> Your clients already trust you with the watch. The film is a way to carry
+> that care past the sale, much as a good car dealer offers paint protection
+> film with a new car: fitted by appointment, rather than left for the owner
+> to manage at home.
+>
+> Margin on the Rolex models you already sell. We cut for the Datejust,
+> Submariner, GMT-Master II and Daytona. Kits come to the store wholesale
+> and sell at retail, so each one adds margin to a sale already made, with
+> no new clients to find. It steadies the month when the market is quiet,
+> and adds to every sale when it is busy.
+>
+> What it could bring to your store:
+> - At the handover. Something considered to offer with the watch, with nothing on display and nothing touching a watch in the case.
+> - Clients who come back. A fitting appointment brings the client back to the store after the sale, and new film brings them back again in a year or two.
+> - However suits the store. Kits on hand for the references you sell most, or ordered per sale. Where fitting in the store is not an option, a card in the box points the client to a fitting by appointment.
+>
+> If it sounds right for your clients, I would be glad to bring a sample on
+> [day] and fit it on a display piece, or to post a sample kit and a few
+> cards if that suits you better. Kits ship in November.
+>
+> See what it adds: https://www.chronoprotect.store/partners
+>
+> Or reply to this email, and I will call at a time that suits you.
+>
+> Mark
+> ChronoProtect+, Austin
+> 512-831-1410, store@chronoprotect.co
+> chronoprotect.store
+>
+> ChronoProtect+ is not affiliated with, endorsed by, or sponsored by Rolex SA. Reference numbers are used only to describe fitment.
+> ChronoProtect+, 6401 Rialto Blvd., Austin, Texas 78735
+> If you would rather not hear from us, reply "no thanks" and we will not write again.
+
+Add one line, after the paragraph about the client's first desk edge, where it fits:
 
 - **Certified pre-owned counter** (Korman, Eiseman): "It suits a Certified
   Pre-Owned handover in particular: the watch has just been serviced, and
@@ -472,8 +488,8 @@ Add one line, after "nothing goes on display", where it fits:
 > Subject: More margin on every Rolex you sell this year
 >
 > Hello [name], we spoke in [month] about ChronoProtect+. [Store count] shops
-> now sell our film with the watch and fit it by appointment. Could I come by in the
-> next two weeks to set you up the same way?
+> now offer our film with the watch and fit it by appointment. Could I come
+> by in the next two weeks and show you how it is working for them?
 
 **Instagram DM (after a few weeks of genuine engagement, never cold)**
 
