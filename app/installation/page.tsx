@@ -130,12 +130,12 @@ export default async function InstallationPage() {
           <div className="cp-measure">
             <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)" }}>Run a watch store?</h2>
             <p className="cp-lede" style={{ marginTop: "1rem" }}>
-              Offer ChronoProtect+ as an add-on with every Datejust, Submariner, GMT-Master II and
-              Daytona you sell, and fit it by appointment. Kits come to you wholesale, and we train
-              your fitter on a display piece.
+              ChronoProtect+ could add margin to every Datejust, Submariner, GMT-Master II and
+              Daytona you sell: offered at the handover, fitted by appointment, and bought by the
+              store wholesale.
             </p>
             <p style={{ marginTop: "1.5rem" }}>
-              <Link href="/partners">How it works for watch stores</Link>
+              <Link href="/partners">What it could add to your store</Link>
             </p>
           </div>
         </div>

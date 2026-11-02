@@ -6,7 +6,7 @@ import { STUDIO_EMAIL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "For watch stores",
   description:
-    "Offer ChronoProtect+ with every Datejust, Submariner, GMT-Master II and Daytona you sell, and fit it by appointment, the way paint protection film is sold with a car. Kits come to you wholesale.",
+    "What ChronoProtect+ could add to a watch store: something more to offer at the handover, a reason for clients to come back, and margin on every Datejust, Submariner, GMT-Master II and Daytona you sell.",
 };
 
 /** The four families as a store thinks of them, in the order they sell. */
@@ -19,8 +19,10 @@ const MODELS = [
 
 /**
  * The page the outreach email's button opens, so Web Analytics can count
- * visits from the email by path. It sells the arrangement, never the terms:
- * the wholesale price is discussed in person, not written here.
+ * visits from the email by path. It is written as an offer to stores that
+ * already run a good business: what the film could add for them and their
+ * clients, never instructions on how to sell. It never states the terms; the
+ * wholesale price is discussed in person.
  */
 export default function PartnersPage() {
   const families = allFamilies();
@@ -31,7 +33,7 @@ export default function PartnersPage() {
       .filter((family) => model.match(family.model))
       .reduce((sum, family) => sum + family.references.length, 0),
   }));
-  const partnerMail = `mailto:${STUDIO_EMAIL}?subject=Fitting%20partner`;
+  const partnerMail = `mailto:${STUDIO_EMAIL}?subject=Sample%20fitting`;
 
   return (
     <>
@@ -39,16 +41,17 @@ export default function PartnersPage() {
         <div className="cp-measure">
           <p className="cp-eyebrow">For watch stores</p>
           <h1 style={{ fontSize: "clamp(2.2rem, 6vw, 3.4rem)" }}>
-            Sold with the watch, fitted by appointment.
+            More to offer with every watch you sell.
           </h1>
           <p className="cp-lede" style={{ marginTop: "1.5rem" }}>
-            Paint protection film is offered with the car, and a fitter puts it on at a time the
-            owner books. ChronoProtect+ works the same way: your client adds the film at the sale,
-            and your fitter puts it on in about an hour, the next day or whenever suits them.
+            Your clients already trust you with the watch. ChronoProtect+ gives them a way to keep
+            it as it was on the day they bought it: film cut to the reference and fitted by
+            appointment, much as paint protection film is offered with a new car. For the store, it
+            is a considered extra at the handover, and margin on a sale you have already made.
           </p>
           <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>
             <a href={partnerMail} className="cp-btn">
-              Become a fitting partner
+              Arrange a sample fitting
             </a>
             <Link href="/shop" className="cp-btn cp-btn--ghost">
               See the kits
@@ -68,12 +71,12 @@ export default function PartnersPage() {
 
           <div className="cp-wall__panel">
             <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
-              Margin on the Rolex models you sell most.
+              Margin on the Rolex models you already sell.
             </h2>
             <p className="cp-lede" style={{ marginTop: "1.25rem" }}>
-              You sell the film at retail as an add-on, and the kits come to you wholesale. That is
-              margin on every one of these that leaves the store: a cushion when the market is slow,
-              and more on every sale when it is busy.
+              Kits come to the store wholesale and sell at retail, so each one adds margin to a sale
+              already made, with no new clients to find. It steadies the month when the market is
+              quiet, and adds to every sale when it is busy.
             </p>
             <dl className="cp-spec" style={{ marginTop: "2rem" }}>
               {models.map((model) => (
@@ -91,23 +94,28 @@ export default function PartnersPage() {
 
       <section className="cp-band">
         <div className="cp-shell">
-          <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>How it works in your store.</h2>
+          <h2 style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>What it brings to the showroom.</h2>
 
-          <dl className="cp-spec cp-spec--steps" style={{ marginTop: "2.5rem" }}>
-            <Row label="Sell it with the watch">
-              Offer the film at handover, at retail. Each kit is cut to the reference, so you know it
-              fits before the client pays.
+          <dl className="cp-spec" style={{ marginTop: "2.5rem" }}>
+            <Row label="For your clients">
+              A watch that stays as it left the case. The film takes the desk edges and door frames,
+              and comes off clean whenever they choose.
             </Row>
-            <Row label="Fit it by appointment">
-              The client books an hour, the next day or whenever suits them, or leaves the watch with
-              you for a day or two. Nobody has to do it at the kitchen table.
+            <Row label="At the handover">
+              Something considered to offer beyond the box and papers, cut to the exact reference, so
+              the fit is certain before anyone commits.
             </Row>
-            <Row label="We train your fitter">
-              We fit a sample on one of your display pieces and train whoever will do the fittings: a
-              watchmaker, the bench, or a member of staff.
+            <Row label="Return visits">
+              A fitting appointment brings the client back into the showroom after the sale, and
+              replacement film brings them back again in a year or two.
             </Row>
-            <Row label="Stock it or order it">
-              Keep the kits you sell most on the shelf, and order the rest when the watch sells.
+            <Row label="Margin">
+              A retail add-on bought wholesale, with kits kept on the shelf or ordered per sale,
+              whichever suits the store.
+            </Row>
+            <Row label="Support">
+              We fit a sample on one of your display pieces and show whoever you choose how it is
+              done. A fitting takes about an hour.
             </Row>
           </dl>
         </div>
@@ -116,11 +124,11 @@ export default function PartnersPage() {
       <section className="cp-band cp-band--mid">
         <div className="cp-shell">
           <div className="cp-measure">
-            <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)" }}>Selling new Rolex.</h2>
+            <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)" }}>For Rolex retailers.</h2>
             <p className="cp-lede" style={{ marginTop: "1rem" }}>
-              Nothing goes on display and nothing touches a watch in the case. The film is offered at
-              handover. If your agreement rules out fitting in the store, a card in the box points the
-              client to a fitting by appointment, and the sale is still credited to you.
+              Nothing goes on display, and nothing touches a watch in the case. Where your agreement
+              leaves fitting outside the store, a card in the box can point the client to a fitting by
+              appointment, and the sale is still credited to you.
             </p>
           </div>
         </div>
@@ -129,15 +137,15 @@ export default function PartnersPage() {
       <section className="cp-band">
         <div className="cp-shell">
           <div className="cp-measure">
-            <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)" }}>Talk to us about your store.</h2>
+            <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)" }}>See it on one of your pieces.</h2>
             <p className="cp-lede" style={{ marginTop: "1rem" }}>
-              Tell us which models you sell most, and we will bring a sample to fit on one of your
-              display pieces.
+              If it sounds right for your clients, we would be glad to fit a sample on a display piece
+              and talk through how it could work in the way that suits your store.
             </p>
           </div>
           <div className="cp-hero__actions" style={{ marginTop: "2rem" }}>
             <a href={partnerMail} className="cp-btn">
-              Become a fitting partner
+              Arrange a sample fitting
             </a>
             <Link href="/catalog" className="cp-btn cp-btn--ghost">
               Browse the catalog
