@@ -7,6 +7,8 @@ The steps and the cadence are explained in store-qualification.md.
     python3 marketing/followups.py due [--date YYYY-MM-DD]
     python3 marketing/followups.py touch austin 3 email [--date YYYY-MM-DD] [--note "..."]
     python3 marketing/followups.py step austin 3 4 [--date YYYY-MM-DD]
+    python3 marketing/followups.py hold      # take the dates off every visit
+    python3 marketing/followups.py resume    # after VISITS_ON_HOLD = False
 
 `touch` records a touch at the store's current step (email, call, visit,
 mail, dm, demo, proposal) and schedules the next one. `step` moves a store to
@@ -93,6 +95,10 @@ BLACKOUTS = [
 ]
 PARK_UNTIL = dt.date(2027, 1, 4)
 VISIT_DAYS = {2, 4, 5}  # Wednesday and Friday evenings, Saturday from opening
+# Visits wait until the supplier and the product are confirmed (see
+# visits-on-hold.md). While True, a visit gets no date and is never due.
+VISITS_ON_HOLD = True
+HOLD_ACTION = "On hold: visit once supplier and product are confirmed"
 
 
 def step_key(value: str) -> str:
@@ -131,6 +137,9 @@ def plan_next(row: dict, today: dt.date, in_austin: bool) -> None:
         return
     if kind == "visit" and not in_austin:
         kind, action = "call", action.replace("Visit", "Call (or visit on a booked trip day)", 1)
+    if kind == "visit" and VISITS_ON_HOLD:
+        row["Next touch"], row["Next action"] = "", f"{HOLD_ACTION}. Then: {action}"
+        return
     row["Next touch"] = schedule(today + dt.timedelta(days=days), kind, in_austin).isoformat()
     row["Next action"] = action
 
@@ -227,6 +236,51 @@ def update_fields(name: str, number: str, changes: dict) -> dict:
     return row
 
 
+def is_visit(action: str) -> bool:
+    words = action.lower()
+    return "visit" in words and not words.startswith(("call", "confirm"))
+
+
+def hold_visits() -> list:
+    """Takes the date off every store whose next action is a visit."""
+    held = []
+    for name in FILES:
+        fields, rows = load(name)
+        for row in rows:
+            action = row["Next action"]
+            if row["Next touch"] and is_visit(action) and not action.startswith(HOLD_ACTION):
+                row["Next touch"], row["Next action"] = "", f"{HOLD_ACTION}. Then: {action}"
+                held.append((name, row["#"], row["Shop"]))
+        save(name, fields, rows)
+    return held
+
+
+def resume_visits(day: dt.date) -> list:
+    """Gives every held store a date again, from its step's cadence."""
+    resumed = []
+    for name in FILES:
+        fields, rows = load(name)
+        for row in rows:
+            if row["Next action"].startswith(HOLD_ACTION):
+                row["Next action"] = row["Next action"].split("Then: ", 1)[-1]
+                row["Next touch"] = schedule(day, "visit", name == "austin").isoformat()
+                resumed.append((name, row["#"], row["Shop"], row["Next touch"]))
+        save(name, fields, rows)
+    return resumed
+
+
+def cmd_hold(args) -> None:
+    for item in hold_visits():
+        print("held:", *item)
+
+
+def cmd_resume(args) -> None:
+    if VISITS_ON_HOLD:
+        raise SystemExit("Set VISITS_ON_HOLD = False in followups.py first.")
+    for item in resume_visits(dt.date.fromisoformat(args.date)):
+        print("resumed:", *item)
+
+
 def cmd_touch(args) -> None:
     row = record_touch(args.list, args.number, args.kind, dt.date.fromisoformat(args.date), args.note or "")
     print(f"{row['Shop']}: next {row['Next touch']}, {row['Next action']}")
@@ -260,6 +314,13 @@ def main() -> None:
     step.add_argument("step")
     step.add_argument("--date", default=today)
     step.set_defaults(run=cmd_step)
+
+    hold = sub.add_parser("hold")
+    hold.set_defaults(run=cmd_hold)
+
+    resume = sub.add_parser("resume")
+    resume.add_argument("--date", default=today)
+    resume.set_defaults(run=cmd_resume)
 
     args = parser.parse_args()
     args.run(args)

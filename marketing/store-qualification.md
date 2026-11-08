@@ -86,6 +86,10 @@ visit on a booked trip day. Nothing is due over Thanksgiving (November 26 to
 
 ## Automation
 
+**Visits are on hold** from November 8, 2026 until the supplier and the
+product are confirmed: see `visits-on-hold.md`. Calls, emails and confirms
+carry on; no visit is scheduled and the visit events are off the calendar.
+
 **The script.** `marketing/followups.py` reads both trackers and keeps the
 dates:
 
