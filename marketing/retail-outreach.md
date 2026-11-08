@@ -389,9 +389,8 @@ counted.
 > - Clients who come back. A fitting appointment brings the client back to the store after the sale, and new film brings them back again in a year or two.
 > - Support from us. I would fit a sample on one of your display pieces and show whoever you choose how it is done. Every piece is pre-cut and numbered, so nothing is trimmed over a client's watch.
 >
-> If it sounds right for your clients, I would be glad to bring a sample on
-> [day] and fit it on one of your display pieces, so you can see it for
-> yourself. Kits ship in November.
+> If it sounds right for your clients, I would be glad to bring a sample and
+> fit it on one of your display pieces, so you can see it for yourself.
 >
 > See what it adds: https://www.chronoprotect.store/partners
 >
@@ -444,9 +443,9 @@ phone call that found the right name. The HTML version is
 > - Clients who come back. A fitting appointment brings the client back to the store after the sale, and new film brings them back again in a year or two.
 > - However suits the store. Kits on hand for the references you sell most, or ordered per sale. Where fitting in the store is not an option, a card in the box points the client to a fitting by appointment.
 >
-> If it sounds right for your clients, I would be glad to bring a sample on
-> [day] and fit it on a display piece, or to post a sample kit and a few
-> cards if that suits you better. Kits ship in November.
+> If it sounds right for your clients, I would be glad to bring a sample and
+> fit it on a display piece, or to post a sample kit and a few cards if that
+> suits you better.
 >
 > See what it adds: https://www.chronoprotect.store/partners
 >

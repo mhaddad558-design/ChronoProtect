@@ -1,4 +1,4 @@
-# Visits on hold
+# Visits and emails on hold
 
 Put on hold on November 8, 2026, until the supplier and the product are
 confirmed. The schedule then starts over: new dates, rebuilt from the
@@ -6,12 +6,21 @@ store hours and visit rules in `retail-outreach.md`.
 
 ## What was paused
 
+- **Emails, from November 8.** `EMAILS_ON_HOLD = True` in `followups.py`.
+  No first email or follow-up is scheduled or drafted. Bernard Watch Co.,
+  Exclusive Timepieces, Jonathan's Fine Jewelers, DeMesy & Co. and The
+  Diamond Factory had an email due and now carry no date. The seven
+  unsent Gmail drafts stay in store@chronoprotect.co, with the visit dates
+  and "Kits ship in November" taken out; do not send them until the hold
+  is lifted. Calls to find the right person carry on.
+
 - **Tracker visits.** `VISITS_ON_HOLD = True` in `followups.py`. While it is
   on, no visit is scheduled: a store whose next action would be a visit gets
   no date and the action "On hold: visit once supplier and product are
   confirmed". Calls, emails and confirms carry on as before. To restart,
   set it to False and run `python3 marketing/followups.py resume` to give
-  every held store a date again.
+  every held store a date again. The same works for emails with
+  `EMAILS_ON_HOLD`.
 - **Google Calendar.** The visit and trip events below were removed from
   mhaddad558@gmail.com. Their details are kept here so they can be
   recreated on new dates. Nothing else on the calendar was touched.

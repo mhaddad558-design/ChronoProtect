@@ -7,8 +7,8 @@ The steps and the cadence are explained in store-qualification.md.
     python3 marketing/followups.py due [--date YYYY-MM-DD]
     python3 marketing/followups.py touch austin 3 email [--date YYYY-MM-DD] [--note "..."]
     python3 marketing/followups.py step austin 3 4 [--date YYYY-MM-DD]
-    python3 marketing/followups.py hold      # take the dates off every visit
-    python3 marketing/followups.py resume    # after VISITS_ON_HOLD = False
+    python3 marketing/followups.py hold      # take the dates off every visit and email on hold
+    python3 marketing/followups.py resume    # after setting VISITS_ON_HOLD or EMAILS_ON_HOLD to False
 
 `touch` records a touch at the store's current step (email, call, visit,
 mail, dm, demo, proposal) and schedules the next one. `step` moves a store to
@@ -95,10 +95,20 @@ BLACKOUTS = [
 ]
 PARK_UNTIL = dt.date(2027, 1, 4)
 VISIT_DAYS = {2, 4, 5}  # Wednesday and Friday evenings, Saturday from opening
-# Visits wait until the supplier and the product are confirmed (see
-# visits-on-hold.md). While True, a visit gets no date and is never due.
+# Visits and emails wait until the supplier and the product are confirmed
+# (see visits-on-hold.md). While a kind is on hold, its touches get no date
+# and are never due; calls, confirms and mailers carry on.
 VISITS_ON_HOLD = True
-HOLD_ACTION = "On hold: visit once supplier and product are confirmed"
+EMAILS_ON_HOLD = True
+HOLD_ACTION = {
+    "visit": "On hold: visit once supplier and product are confirmed",
+    "email": "On hold: email once supplier and product are confirmed",
+}
+HOLD_PREFIX = "On hold:"
+
+
+def on_hold(kind: str) -> bool:
+    return {"visit": VISITS_ON_HOLD, "email": EMAILS_ON_HOLD}.get(kind, False)
 
 
 def step_key(value: str) -> str:
@@ -137,8 +147,8 @@ def plan_next(row: dict, today: dt.date, in_austin: bool) -> None:
         return
     if kind == "visit" and not in_austin:
         kind, action = "call", action.replace("Visit", "Call (or visit on a booked trip day)", 1)
-    if kind == "visit" and VISITS_ON_HOLD:
-        row["Next touch"], row["Next action"] = "", f"{HOLD_ACTION}. Then: {action}"
+    if on_hold(kind):
+        row["Next touch"], row["Next action"] = "", f"{HOLD_ACTION[kind]}. Then: {action}"
         return
     row["Next touch"] = schedule(today + dt.timedelta(days=days), kind, in_austin).isoformat()
     row["Next action"] = action
@@ -236,48 +246,59 @@ def update_fields(name: str, number: str, changes: dict) -> dict:
     return row
 
 
-def is_visit(action: str) -> bool:
+EMAIL_STARTS = ("email", "template", "short follow-up email", "send the proposal",
+                "check in on the proposal", "thank them")
+
+
+def action_kind(action: str) -> str:
+    """Reads what kind of touch a next action is, from its wording."""
     words = action.lower()
-    return "visit" in words and not words.startswith(("call", "confirm"))
+    if words.startswith(EMAIL_STARTS):
+        return "email"
+    if "visit" in words and not words.startswith(("call", "confirm")):
+        return "visit"
+    return ""
 
 
-def hold_visits() -> list:
-    """Takes the date off every store whose next action is a visit."""
+def hold_touches() -> list:
+    """Takes the date off every store whose next touch is a kind on hold."""
     held = []
     for name in FILES:
         fields, rows = load(name)
         for row in rows:
-            action = row["Next action"]
-            if row["Next touch"] and is_visit(action) and not action.startswith(HOLD_ACTION):
-                row["Next touch"], row["Next action"] = "", f"{HOLD_ACTION}. Then: {action}"
-                held.append((name, row["#"], row["Shop"]))
+            action, kind = row["Next action"], action_kind(row["Next action"])
+            if row["Next touch"] and kind and on_hold(kind) and not action.startswith(HOLD_PREFIX):
+                row["Next touch"], row["Next action"] = "", f"{HOLD_ACTION[kind]}. Then: {action}"
+                held.append((name, row["#"], row["Shop"], kind))
         save(name, fields, rows)
     return held
 
 
-def resume_visits(day: dt.date) -> list:
-    """Gives every held store a date again, from its step's cadence."""
+def resume_touches(day: dt.date) -> list:
+    """Gives every held store whose kind is no longer on hold a date again."""
     resumed = []
     for name in FILES:
         fields, rows = load(name)
         for row in rows:
-            if row["Next action"].startswith(HOLD_ACTION):
-                row["Next action"] = row["Next action"].split("Then: ", 1)[-1]
-                row["Next touch"] = schedule(day, "visit", name == "austin").isoformat()
-                resumed.append((name, row["#"], row["Shop"], row["Next touch"]))
+            action = row["Next action"]
+            kind = next((k for k, text in HOLD_ACTION.items() if action.startswith(text)), "")
+            if kind and not on_hold(kind):
+                row["Next action"] = action.split("Then: ", 1)[-1]
+                row["Next touch"] = schedule(day, kind, name == "austin").isoformat()
+                resumed.append((name, row["#"], row["Shop"], kind, row["Next touch"]))
         save(name, fields, rows)
     return resumed
 
 
 def cmd_hold(args) -> None:
-    for item in hold_visits():
+    for item in hold_touches():
         print("held:", *item)
 
 
 def cmd_resume(args) -> None:
-    if VISITS_ON_HOLD:
-        raise SystemExit("Set VISITS_ON_HOLD = False in followups.py first.")
-    for item in resume_visits(dt.date.fromisoformat(args.date)):
+    if VISITS_ON_HOLD and EMAILS_ON_HOLD:
+        raise SystemExit("Set VISITS_ON_HOLD or EMAILS_ON_HOLD to False in followups.py first.")
+    for item in resume_touches(dt.date.fromisoformat(args.date)):
         print("resumed:", *item)
 
 
